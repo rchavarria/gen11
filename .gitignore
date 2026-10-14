@@ -1,5 +1,6 @@
 # My own rules
 tmp
+.idea
 
 # Logs
 logs

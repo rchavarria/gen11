@@ -135,5 +135,9 @@ Campos que interesan de cada partido (tanto de buscar partido como listar próxi
   - Comenzado
   - Terminado
 
+#### Otras consideraciones
+
+- Parece que no se puede filtrar por `Categoria`: no se reduce ni filtra el número de resultados
+
 ## Buscar equipo: `/v2/busqueda.ashx`
 

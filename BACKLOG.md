@@ -3,6 +3,8 @@
 ## To Do list
 
 - mispartidos.ashx: ¿devuelve partidos pasados? ¿O solo los próximos?
+- completar api-reference para marcador de un partido en vivo
+- completar api-reference para estadísiticas de un partido en vivo
 
 ## Done list
 

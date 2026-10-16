@@ -21,6 +21,9 @@
  * ---------------------
  * BASE_URL     (required) Base URL of the API (e.g. "https://data.source").
  * DEVICE_ID    (required) Registered device id, sent as `id_dispositivo`.
+ * KEY          (required) Initial value for the `key` parameter. It is only
+ *              used for the first request; each response returns the key
+ *              for the next one.
  * OUTPUT_DIR   (optional) Directory where JSON files are written. Relative
  *              paths are resolved against the current working directory.
  *              Created automatically if it does not exist. Defaults to ".".
@@ -31,6 +34,7 @@
  *
  *   BASE_URL=https://data.source
  *   DEVICE_ID=YOUR_DEVICE_ID
+ *   KEY=YOUR_INITIAL_KEY
  *   OUTPUT_DIR=./output
  *
  * CONFIGURATION VARIABLES (in source)
@@ -49,7 +53,6 @@
  * --------------------------------------------
  * 1. startPage   First page to download (integer >= 1).
  * 2. totalPages  Total number of pages to download (integer >= 1).
- * 3. initialKey  Initial value for the `key` parameter.
  *
  * REQUEST FORMAT
  * --------------
@@ -93,11 +96,12 @@
  * ------------------
  *   cp .env.example .env    # then edit .env with your values
  *
- *   node --env-file=.env download.js 1 10 INITIAL_KEY
+ *   node --env-file=.env download.js 1 10
  *     Downloads pages 1 to 10 (games-0001.json ... games-0010.json).
  *
- *   node --env-file=.env download.js 101 50 ABCDEF123
+ *   node --env-file=.env download.js 101 50
  *     Downloads 50 pages starting from page 101.
+ *     To resume a previous run, set KEY in .env to the last received key.
  *     Expected files: games-0101.json, games-0102.json, ..., games-0150.json
  * =============================================================================
  */
@@ -114,19 +118,22 @@ const path = require('node:path');
 
 const BASE_URL = (process.env.BASE_URL || '').trim();
 const DEVICE_ID = (process.env.DEVICE_ID || '').trim();
+const KEY = (process.env.KEY || '').trim();
 const OUTPUT_DIR = (process.env.OUTPUT_DIR || '').trim() || '.';
 
 const MIN_DELAY_MS = 10 * 60 * 1000;
 const MAX_DELAY_MS = 15 * 60 * 1000;
 const REQUEST_TIMEOUT_MS = 30 * 1000;
 const SEPARATOR = '-'.repeat(50);
-const USAGE = 'Usage: node --env-file=.env download.js <startPage> <totalPages> <initialKey>';
+const USAGE = 'Usage: node --env-file=.env download.js <startPage> <totalPages>';
 
 const API_PATH = '/v2/busqueda.ashx';
 const ACTION = 'buscarPartido';
 const PAGE_SIZE = 50;
 
-const TEXT = 'BALONCESTO ALCOBENDAS';
+// const TEXT = 'BALONCESTO ALCOBENDAS';
+// const TEXT = 'REAL MADRID C.F.';
+const TEXT = 'ELITE INTERNATIONAL SCHOOL C.D.E';
 
 // -----------------------------------------------------------------------------
 // Helpers
@@ -433,6 +440,7 @@ function validateEnvironment() {
   const missing = [];
   if (BASE_URL === '') missing.push('BASE_URL');
   if (DEVICE_ID === '') missing.push('DEVICE_ID');
+  if (KEY === '') missing.push('KEY');
 
   if (missing.length > 0) {
     throw new Error(
@@ -451,14 +459,14 @@ function validateEnvironment() {
 /**
  * Parses and validates command-line arguments.
  * @param {string[]} argv
- * @returns {{startPage: number, totalPages: number, initialKey: string}}
+ * @returns {{startPage: number, totalPages: number}}
  */
 function parseArguments(argv) {
-  if (argv.length < 3) {
+  if (argv.length < 2) {
     throw new Error(`Missing arguments.\n${USAGE}`);
   }
 
-  const [startPageArg, totalPagesArg, initialKeyArg] = argv;
+  const [startPageArg, totalPagesArg] = argv;
 
   const parsePositiveInt = (value, name) => {
     if (!/^\d+$/.test(value) || Number(value) < 1) {
@@ -469,17 +477,12 @@ function parseArguments(argv) {
 
   const startPage = parsePositiveInt(startPageArg, 'startPage');
   const totalPages = parsePositiveInt(totalPagesArg, 'totalPages');
-  const initialKey = String(initialKeyArg).trim();
-
-  if (initialKey === '') {
-    throw new Error(`Invalid initialKey: it must not be empty.\n${USAGE}`);
-  }
 
   if (startPage + totalPages - 1 > 9999) {
     console.warn('Warning: page numbers above 9999 will produce file names longer than 4 digits.');
   }
 
-  return { startPage, totalPages, initialKey };
+  return { startPage, totalPages };
 }
 
 /**
@@ -520,7 +523,7 @@ async function main() {
   console.log(`Downloading ${args.totalPages} page(s) starting from page ${args.startPage}.`);
 
   try {
-    const stats = await downloadPages(args.startPage, args.totalPages, args.initialKey);
+    const stats = await downloadPages(args.startPage, args.totalPages, KEY);
     printSummary(stats, Date.now() - startTime);
   } catch (err) {
     console.error(`Error: ${err.message}`);

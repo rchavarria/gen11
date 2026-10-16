@@ -131,9 +131,12 @@ const API_PATH = '/v2/busqueda.ashx';
 const ACTION = 'buscarPartido';
 const PAGE_SIZE = 50;
 
-// const TEXT = 'BALONCESTO ALCOBENDAS';
+const TEXT = 'BALONCESTO ALCOBENDAS';
 // const TEXT = 'REAL MADRID C.F.';
-const TEXT = 'ELITE INTERNATIONAL SCHOOL C.D.E';
+// const TEXT = 'ELITE INTERNATIONAL SCHOOL C.D.E'; // S.B.A.
+// const TEXT = 'TORRELODONES A.D.';
+// const TEXT = 'GIGANTES YOUTH SPORTS ACADEMY C.D.B.'; // Laso
+// const TEXT = 'ESTUDIANTES';
 
 // -----------------------------------------------------------------------------
 // Helpers

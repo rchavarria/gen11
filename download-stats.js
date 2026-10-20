@@ -321,7 +321,9 @@ function validateResponse(data) {
   }
 
   if ('error' in data && !isEmptyValue(data.error)) {
-    throw new Error(`API returned an error: ${JSON.stringify(data.error)}`);
+    const error = new Error(`API returned an error: ${JSON.stringify(data.error)}`);
+    error.apiError = data.error;
+    throw error;
   }
 
   if ('resultado' in data && data.resultado !== 'correcto') {
@@ -341,11 +343,11 @@ function validateResponse(data) {
  * Saves the complete response of a game to disk.
  * @param {{title: string, id: string}} game
  * @param {object} responseData
+ * @param {string} [outputDir] Target directory. Defaults to OUTPUT_DIR.
  * @returns {Promise<string>} The generated file name.
  */
-async function saveStats(game, responseData) {
+async function saveStats(game, responseData, outputDir = resolveOutputDir()) {
   const fileName = buildFileName(game.title, game.id);
-  const outputDir = resolveOutputDir();
   await fs.mkdir(outputDir, { recursive: true });
   await fs.writeFile(path.join(outputDir, fileName), `${JSON.stringify(responseData, null, 2)}\n`, 'utf8');
   return fileName;
@@ -502,5 +504,10 @@ async function main() {
   }
 }
 
-main();
+module.exports = { fetchStats, saveStats, buildFileName };
+
+// Only run when executed directly, not when required as a module.
+if (require.main === module) {
+  main();
+}
 

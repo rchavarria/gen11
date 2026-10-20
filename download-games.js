@@ -24,6 +24,8 @@
  * Games whose id is empty or not hexadecimal are ignored.
  * Games already marked with `downloaded: true` are skipped (no file checks,
  * no requests).
+ * Games marked with `played: false` whose `date` ("YYYY-MM-DD" or ISO 8601)
+ * is after today are skipped as well.
  * Requests are sent strictly sequentially, with a random pause between them.
  * downloads/games.json is rewritten only when the whole process succeeds.
  *
@@ -114,6 +116,37 @@ function isValidGame(game) {
 }
 
 /**
+ * Returns the local calendar day of a date as "YYYY-MM-DD".
+ * @param {Date} date
+ * @returns {string}
+ */
+function toDayString(date) {
+  const pad = (n) => String(n).padStart(2, '0');
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+}
+
+/**
+ * Returns true when `value` is a valid date whose day is strictly after today.
+ * Accepts "YYYY-MM-DD" or any ISO 8601 date-time. Missing or invalid values
+ * return false.
+ * @param {unknown} value
+ * @returns {boolean}
+ */
+function isAfterToday(value) {
+  if (typeof value !== 'string' || value.trim() === '') return false;
+  const text = value.trim();
+  let day;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(text)) {
+    day = text;
+  } else {
+    const parsed = new Date(text);
+    if (Number.isNaN(parsed.getTime())) return false;
+    day = toDayString(parsed);
+  }
+  return day > toDayString(new Date());
+}
+
+/**
  * Returns true if the given file exists.
  * @param {string} filePath
  * @returns {Promise<boolean>}
@@ -200,10 +233,10 @@ function isNoDataError(err) {
 /**
  * Processes every game of the data object, mutating it in memory.
  * @param {{games: object[]}} data
- * @returns {Promise<{skipped: number, alreadyDownloaded: number, newlyDownloaded: number, notPlayed: number, ignored: number}>}
+ * @returns {Promise<{skipped: number, notPlayedYet: number, alreadyDownloaded: number, newlyDownloaded: number, notPlayed: number, ignored: number}>}
  */
 async function processGames(data) {
-  const summary = { skipped: 0, alreadyDownloaded: 0, newlyDownloaded: 0, notPlayed: 0, ignored: 0 };
+  const summary = { skipped: 0, notPlayedYet: 0, alreadyDownloaded: 0, newlyDownloaded: 0, notPlayed: 0, ignored: 0 };
   const state = { requestsSent: 0 };
   const total = data.games.length;
 
@@ -218,6 +251,12 @@ async function processGames(data) {
     // Games already marked as downloaded are skipped without any check.
     if (game.downloaded === true) {
       summary.skipped += 1;
+      continue;
+    }
+
+    // Games not played yet and scheduled after today are skipped too.
+    if (game.played === false && isAfterToday(game.date)) {
+      summary.notPlayedYet += 1;
       continue;
     }
 
@@ -296,6 +335,7 @@ function printSummary(summary, elapsedMs) {
   console.log('Summary');
   console.log('='.repeat(50));
   console.log(`Skipped (marked as downloaded): ${summary.skipped}`);
+  console.log(`Skipped (played: false, date after today): ${summary.notPlayedYet}`);
   console.log(`Already downloaded: ${summary.alreadyDownloaded}`);
   console.log(`Newly downloaded: ${summary.newlyDownloaded}`);
   console.log(`Not played ("sin datos"): ${summary.notPlayed}`);

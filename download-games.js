@@ -22,6 +22,8 @@
  *                  downloaded.
  *
  * Games whose id is empty or not hexadecimal are ignored.
+ * Games already marked with `downloaded: true` are skipped (no file checks,
+ * no requests).
  * Requests are sent strictly sequentially, with a random pause between them.
  * downloads/games.json is rewritten only when the whole process succeeds.
  *
@@ -198,10 +200,10 @@ function isNoDataError(err) {
 /**
  * Processes every game of the data object, mutating it in memory.
  * @param {{games: object[]}} data
- * @returns {Promise<{alreadyDownloaded: number, newlyDownloaded: number, notPlayed: number, ignored: number}>}
+ * @returns {Promise<{skipped: number, alreadyDownloaded: number, newlyDownloaded: number, notPlayed: number, ignored: number}>}
  */
 async function processGames(data) {
-  const summary = { alreadyDownloaded: 0, newlyDownloaded: 0, notPlayed: 0, ignored: 0 };
+  const summary = { skipped: 0, alreadyDownloaded: 0, newlyDownloaded: 0, notPlayed: 0, ignored: 0 };
   const state = { requestsSent: 0 };
   const total = data.games.length;
 
@@ -210,6 +212,12 @@ async function processGames(data) {
 
     if (!isValidGame(game)) {
       summary.ignored += 1;
+      continue;
+    }
+
+    // Games already marked as downloaded are skipped without any check.
+    if (game.downloaded === true) {
+      summary.skipped += 1;
       continue;
     }
 
@@ -287,6 +295,7 @@ function printSummary(summary, elapsedMs) {
   console.log('='.repeat(50));
   console.log('Summary');
   console.log('='.repeat(50));
+  console.log(`Skipped (marked as downloaded): ${summary.skipped}`);
   console.log(`Already downloaded: ${summary.alreadyDownloaded}`);
   console.log(`Newly downloaded: ${summary.newlyDownloaded}`);
   console.log(`Not played ("sin datos"): ${summary.notPlayed}`);

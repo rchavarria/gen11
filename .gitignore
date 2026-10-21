@@ -2,6 +2,7 @@
 tmp
 .idea
 downloads
+config.json
 
 # Logs
 logs

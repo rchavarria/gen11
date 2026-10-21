@@ -10,27 +10,28 @@
  * source API and saves every complete JSON response to disk, one file per
  * game. Games are downloaded strictly sequentially (never in parallel), with
  * a random pause between 10 and 15 minutes between requests.
- * The `key` does not rotate for this endpoint: the same key (read from .env)
- * is used for every request.
+ * The `key` does not rotate for this endpoint: the same key (read from
+ * config.json) is used for every request.
  *
  * REQUIREMENTS
  * ------------
- * - Node.js >= 20.6 (native global `fetch` and the `--env-file` flag).
+ * - Node.js >= 18 (native global `fetch`).
  * - No external dependencies.
  *
- * ENVIRONMENT VARIABLES
- * ---------------------
- * BASE_URL     (required) Base URL of the API (e.g. "https://data.source").
- * DEVICE_ID    (required) Registered device id, sent as `id_dispositivo`.
- * KEY          (required) Key sent as `key` in every request.
- * OUTPUT_DIR   (optional) Directory where JSON files are written. Relative
- *              paths are resolved against the current working directory.
- *              Created automatically if it does not exist. Defaults to ".".
- * The script aborts if a required variable is missing or empty.
+ * CONFIGURATION (config.json)
+ * ---------------------------
+ * Read and validated by config.js (copy config.example.json to config.json):
+ * baseUrl      (required) Base URL of the API (e.g. "https://data.source").
+ * deviceId     (required) Registered device id, sent as `id_dispositivo`.
+ * key          (required) Key sent as `key` in every request.
+ * outputDir    (optional) Root download directory, resolved against the
+ *              project root. Files are written to <outputDir>/games-scores,
+ *              created automatically if it does not exist.
+ * The script aborts if config.json is missing or invalid.
  *
  * CONFIGURATION VARIABLES (in source)
  * -----------------------------------
- * API_PATH            Endpoint path appended to BASE_URL ("/v2/envivo/partido.ashx").
+ * API_PATH            Endpoint path appended to baseUrl ("/v2/envivo/partido.ashx").
  * GAMES               List of games to download: { title, id }.
  *                     `title` is used as-is in the file name.
  *                     `id` is the game id, sent as `id_partido`.
@@ -41,9 +42,9 @@
  * REQUEST FORMAT
  * --------------
  * Method:        POST
- * URL:           BASE_URL + API_PATH
+ * URL:           baseUrl + API_PATH
  * Content-Type:  application/x-www-form-urlencoded
- * Body:          id_partido=<id>&id_dispositivo=<DEVICE_ID>&key=<KEY>
+ * Body:          id_partido=<id>&id_dispositivo=<deviceId>&key=<key>
  *
  * NOTE: `id_dispositivo` and `key` may contain "=" characters. The data source
  * does NOT accept them percent-encoded ("%3D"), so they are appended raw.
@@ -59,18 +60,18 @@
  *
  * FILE NAMING CONVENTION
  * ----------------------
- * <OUTPUT_DIR>/<title>-<id>.json
+ * <outputDir>/games-scores/<title>-<id>.json
  *
  * ERROR HANDLING RULES
  * --------------------
  * No retries. Execution aborts immediately (exit code 1) on network errors,
  * HTTP errors, invalid JSON, invalid response structure, a non-empty `error`
- * field or a `resultado` other than "correcto". Missing environment variables
+ * field or a `resultado` other than "correcto". An invalid config.json
  * or an invalid GAMES list also abort execution.
  *
  * EXECUTION EXAMPLE
  * -----------------
- *   node --env-file=.env download-scores.js
+ *   node download-scores.js
  * =============================================================================
  */
 
@@ -80,20 +81,16 @@ const crypto = require('node:crypto');
 const fs = require('node:fs/promises');
 const path = require('node:path');
 
+const { loadConfig } = require('./config');
+
 // -----------------------------------------------------------------------------
 // Global configuration
 // -----------------------------------------------------------------------------
-
-const BASE_URL = (process.env.BASE_URL || '').trim();
-const DEVICE_ID = (process.env.DEVICE_ID || '').trim();
-const KEY = (process.env.KEY || '').trim();
-const OUTPUT_DIR = (process.env.OUTPUT_DIR || '').trim() || '.';
 
 const MIN_DELAY_MS = 100 * 1000;
 const MAX_DELAY_MS = 200 * 1000;
 const REQUEST_TIMEOUT_MS = 30 * 1000;
 const SEPARATOR = '-'.repeat(50);
-const USAGE = 'Usage: node --env-file=.env download-scores.js';
 
 const API_PATH = '/v2/envivo/partido.ashx';
 
@@ -202,8 +199,8 @@ function randomDelay(minMs, maxMs) {
   return crypto.randomInt(minMs, maxMs + 1);
 }
 
-function buildUrl() {
-  const base = BASE_URL.replace(/\/+$/, '');
+function buildUrl(config) {
+  const base = config.baseUrl.replace(/\/+$/, '');
   const apiPath = API_PATH.startsWith('/') ? API_PATH : `/${API_PATH}`;
   return `${base}${apiPath}`;
 }
@@ -212,12 +209,13 @@ function buildUrl() {
  * Builds the x-www-form-urlencoded request body.
  * `id_dispositivo` and `key` are appended raw because the data source
  * rejects their percent-encoded "=" characters.
+ * @param {{deviceId: string, key: string}} config
  * @param {string} gameId
  * @returns {string}
  */
-function buildRequestBody(gameId) {
+function buildRequestBody(config, gameId) {
   const params = new URLSearchParams({ id_partido: gameId });
-  return `${params.toString()}&id_dispositivo=${DEVICE_ID}&key=${KEY}`;
+  return `${params.toString()}&id_dispositivo=${config.deviceId}&key=${config.key}`;
 }
 
 /**
@@ -228,10 +226,6 @@ function buildRequestBody(gameId) {
  */
 function buildFileName(title, id) {
   return `${title}-${id}.json`;
-}
-
-function resolveOutputDir() {
-  return path.resolve(process.cwd(), OUTPUT_DIR);
 }
 
 function isEmptyValue(value) {
@@ -261,18 +255,19 @@ function timestamp(date = new Date()) {
 
 /**
  * Sends the POST request for one game and returns the parsed, validated JSON.
+ * @param {{baseUrl: string, deviceId: string, key: string}} config
  * @param {string} gameId
  * @returns {Promise<object>}
  */
-async function fetchScore(gameId) {
-  const url = buildUrl();
+async function fetchScore(config, gameId) {
+  const url = buildUrl(config);
   let response;
 
   try {
     response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: buildRequestBody(gameId),
+      body: buildRequestBody(config, gameId),
       signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     });
   } catch (err) {
@@ -330,10 +325,10 @@ function validateResponse(data) {
  * Saves the complete response of a game to disk.
  * @param {{title: string, id: string}} game
  * @param {object} responseData
- * @param {string} [outputDir] Target directory. Defaults to OUTPUT_DIR.
+ * @param {string} outputDir Target directory.
  * @returns {Promise<string>} The generated file name.
  */
-async function saveScore(game, responseData, outputDir = resolveOutputDir()) {
+async function saveScore(game, responseData, outputDir) {
   const fileName = buildFileName(game.title, game.id);
   await fs.mkdir(outputDir, { recursive: true });
   await fs.writeFile(path.join(outputDir, fileName), `${JSON.stringify(responseData, null, 2)}\n`, 'utf8');
@@ -364,9 +359,10 @@ async function waitBeforeNextRequest() {
 
 /**
  * Downloads the score of every game in GAMES, sequentially.
+ * @param {ReturnType<typeof loadConfig>} config
  * @returns {Promise<{gamesDownloaded: number, totalGames: number}>}
  */
-async function downloadScores() {
+async function downloadScores(config) {
   const stats = { gamesDownloaded: 0, totalGames: GAMES.length };
 
   for (let i = 0; i < GAMES.length; i += 1) {
@@ -377,9 +373,9 @@ async function downloadScores() {
     let finished;
     let fileName;
     try {
-      data = await fetchScore(game.id);
+      data = await fetchScore(config, game.id);
       finished = new Date();
-      fileName = await saveScore(game, data);
+      fileName = await saveScore(game, data, config.paths.gamesScores);
     } catch (err) {
       const failed = finished || new Date();
       console.error(SEPARATOR);
@@ -403,26 +399,6 @@ async function downloadScores() {
   }
 
   return stats;
-}
-
-function validateEnvironment() {
-  const missing = [];
-  if (BASE_URL === '') missing.push('BASE_URL');
-  if (DEVICE_ID === '') missing.push('DEVICE_ID');
-  if (KEY === '') missing.push('KEY');
-
-  if (missing.length > 0) {
-    throw new Error(
-      `Missing required environment variable(s): ${missing.join(', ')}.\n` +
-        `Define them in a .env file.\n${USAGE}`,
-    );
-  }
-
-  try {
-    new URL(BASE_URL);
-  } catch {
-    throw new Error(`Invalid BASE_URL environment variable: "${BASE_URL}"`);
-  }
 }
 
 function validateGames() {
@@ -456,8 +432,9 @@ function printSummary(stats, elapsedMs) {
 async function main() {
   const startTime = Date.now();
 
+  let config;
   try {
-    validateEnvironment();
+    config = loadConfig();
     validateGames();
   } catch (err) {
     console.error(`Error: ${err.message}`);
@@ -465,12 +442,12 @@ async function main() {
     return;
   }
 
-  console.log(`Endpoint: ${buildUrl()}`);
-  console.log(`Output directory: ${resolveOutputDir()}`);
+  console.log(`Endpoint: ${buildUrl(config)}`);
+  console.log(`Output directory: ${config.paths.gamesScores}`);
   console.log(`Downloading score of ${GAMES.length} game(s).`);
 
   try {
-    const stats = await downloadScores();
+    const stats = await downloadScores(config);
     printSummary(stats, Date.now() - startTime);
   } catch (err) {
     console.error(`Error: ${err.message}`);

@@ -1,0 +1,7 @@
+{
+  "baseUrl": "https://data.source",
+  "deviceId": "YOUR_DEVICE_ID",
+  "key": "YOUR_KEY",
+  "outputDir": "./downloads"
+}
+

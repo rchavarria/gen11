@@ -1,3 +1,12 @@
+## Configuración
+
+Los scripts leen la configuración de `config.json` en la raíz del proyecto
+(ignorado por git), mediante `loadConfig()` de `config.js`, que también la valida.
+`config.example.json` contiene valores de ejemplo.
+
+Cada `main` llama a `loadConfig()` una sola vez y pasa `config` como parámetro
+a las funciones que lo necesitan. Las rutas de salida están en `config.paths`.
+
 ## Cómo pedir los datos
 
 Haz las peticiones una a una, nunca en paralelo

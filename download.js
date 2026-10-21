@@ -14,32 +14,34 @@
  *
  * REQUIREMENTS
  * ------------
- * - Node.js >= 20.6 (native global `fetch` and the `--env-file` flag).
+ * - Node.js >= 18 (native global `fetch`).
  * - No external dependencies.
  *
- * ENVIRONMENT VARIABLES
- * ---------------------
- * BASE_URL     (required) Base URL of the API (e.g. "https://data.source").
- * DEVICE_ID    (required) Registered device id, sent as `id_dispositivo`.
- * KEY          (required) Initial value for the `key` parameter. It is only
+ * CONFIGURATION (config.json)
+ * ---------------------------
+ * Read and validated by config.js (copy config.example.json to config.json):
+ * baseUrl      (required) Base URL of the API (e.g. "https://data.source").
+ * deviceId     (required) Registered device id, sent as `id_dispositivo`.
+ * key          (required) Initial value for the `key` parameter. It is only
  *              used for the first request; each response returns the key
  *              for the next one.
- * OUTPUT_DIR   (optional) Directory where JSON files are written. Relative
- *              paths are resolved against the current working directory.
- *              Created automatically if it does not exist. Defaults to ".".
- * The script aborts if a required variable is missing or empty.
+ * outputDir    (optional) Root download directory, resolved against the
+ *              project root. Files are written to <outputDir>/games,
+ *              created automatically if it does not exist.
+ * The script aborts if config.json is missing or invalid.
  *
- * They are loaded from a `.env` file using Node's native `--env-file` flag.
- * Copy `.env.example` to `.env` and fill in the values:
+ * Example config.json (see config.example.json):
  *
- *   BASE_URL=https://data.source
- *   DEVICE_ID=YOUR_DEVICE_ID
- *   KEY=YOUR_INITIAL_KEY
- *   OUTPUT_DIR=./output
+ *   {
+ *     "baseUrl": "https://data.source",
+ *     "deviceId": "YOUR_DEVICE_ID",
+ *     "key": "YOUR_INITIAL_KEY",
+ *     "outputDir": "./downloads"
+ *   }
  *
  * CONFIGURATION VARIABLES (in source)
  * -----------------------------------
- * API_PATH            Endpoint path appended to BASE_URL ("/v2/busqueda.ashx").
+ * API_PATH            Endpoint path appended to baseUrl ("/v2/busqueda.ashx").
  * TEXT                Search text, sent as `texto`.
  * ACTION              API action, sent as `accion` (required by the endpoint).
  * PAGE_SIZE           Records per page (always 50).
@@ -57,9 +59,9 @@
  * REQUEST FORMAT
  * --------------
  * Method:        POST
- * URL:           BASE_URL + API_PATH
+ * URL:           baseUrl + API_PATH
  * Content-Type:  application/x-www-form-urlencoded
- * Body:          accion=buscarPartido&texto=<TEXT>&skip=<skip>&id_dispositivo=<DEVICE_ID>&key=<key>
+ * Body:          accion=buscarPartido&texto=<TEXT>&skip=<skip>&id_dispositivo=<deviceId>&key=<key>
  *
  * skip = (currentPage - 1) * 50
  *
@@ -78,7 +80,7 @@
  *
  * FILE NAMING CONVENTION
  * ----------------------
- * <OUTPUT_DIR>/games-<page number padded to 4 digits>.json
+ * <outputDir>/games/games-<page number padded to 4 digits>.json
  *   games-0001.json, games-0010.json, games-0100.json, games-1234.json
  *
  * ERROR HANDLING RULES
@@ -89,20 +91,19 @@
  * - Invalid JSON
  * - Invalid response structure (missing `partidos` array or `key`)
  * - Any response whose `error` field contains a non-empty value
- * Invalid command-line arguments or missing environment variables also abort
+ * Invalid command-line arguments or an invalid config.json also abort
  * execution.
  *
  * EXECUTION EXAMPLES
  * ------------------
- *   cp .env.example .env    # then edit .env with your values
+ *   cp config.example.json config.json    # then edit config.json with your values
  *
- *   node --env-file=.env download.js 1 10
+ *   node download.js 1 10
  *     Downloads pages 1 to 10 (games-0001.json ... games-0010.json).
  *
- *   node --env-file=.env download.js 101 50
+ *   node download.js 101 50
  *     Downloads 50 pages starting from page 101.
- *     To resume a previous run, set KEY in .env to the last received key.
- *     Expected files: games-0101.json, games-0102.json, ..., games-0150.json
+ *     To resume a previous run, set "key" in config.json to the last received key.
  * =============================================================================
  */
 
@@ -112,20 +113,17 @@ const crypto = require('node:crypto');
 const fs = require('node:fs/promises');
 const path = require('node:path');
 
+const { loadConfig } = require('./config');
+
 // -----------------------------------------------------------------------------
 // Global configuration
 // -----------------------------------------------------------------------------
-
-const BASE_URL = (process.env.BASE_URL || '').trim();
-const DEVICE_ID = (process.env.DEVICE_ID || '').trim();
-const KEY = (process.env.KEY || '').trim();
-const OUTPUT_DIR = (process.env.OUTPUT_DIR || '').trim() || '.';
 
 const MIN_DELAY_MS = 10 * 60 * 1000;
 const MAX_DELAY_MS = 15 * 60 * 1000;
 const REQUEST_TIMEOUT_MS = 30 * 1000;
 const SEPARATOR = '-'.repeat(50);
-const USAGE = 'Usage: node --env-file=.env download.js <startPage> <totalPages>';
+const USAGE = 'Usage: node download.js <startPage> <totalPages>';
 
 const API_PATH = '/v2/busqueda.ashx';
 const ACTION = 'buscarPartido';
@@ -162,11 +160,12 @@ function randomDelay(minMs, maxMs) {
 }
 
 /**
- * Builds the full request URL from BASE_URL and API_PATH.
+ * Builds the full request URL from config.baseUrl and API_PATH.
+ * @param {{baseUrl: string}} config
  * @returns {string}
  */
-function buildUrl() {
-  const base = BASE_URL.replace(/\/+$/, '');
+function buildUrl(config) {
+  const base = config.baseUrl.replace(/\/+$/, '');
   const apiPath = API_PATH.startsWith('/') ? API_PATH : `/${API_PATH}`;
   return `${base}${apiPath}`;
 }
@@ -175,17 +174,18 @@ function buildUrl() {
  * Builds the x-www-form-urlencoded request body.
  * `id_dispositivo` and `key` are appended raw because the data source
  * rejects their percent-encoded "=" characters.
+ * @param {{deviceId: string}} config
  * @param {number} skip
  * @param {string} key
  * @returns {string}
  */
-function buildRequestBody(skip, key) {
+function buildRequestBody(config, skip, key) {
   const params = new URLSearchParams({
     accion: ACTION,
     texto: TEXT,
     skip: String(skip),
   });
-  return `${params.toString()}&id_dispositivo=${DEVICE_ID}&key=${key}`;
+  return `${params.toString()}&id_dispositivo=${config.deviceId}&key=${key}`;
 }
 
 /**
@@ -204,14 +204,6 @@ function calculateSkip(pageNumber) {
  */
 function buildFileName(pageNumber) {
   return `games-${String(pageNumber).padStart(4, '0')}.json`;
-}
-
-/**
- * Returns the absolute output directory.
- * @returns {string}
- */
-function resolveOutputDir() {
-  return path.resolve(process.cwd(), OUTPUT_DIR);
 }
 
 /**
@@ -258,19 +250,20 @@ function timestamp(date = new Date()) {
  * Sends the POST request for one page and returns the parsed, validated JSON.
  * Throws on network errors, HTTP errors, invalid JSON, API errors or an
  * invalid response structure.
+ * @param {{baseUrl: string, deviceId: string}} config
  * @param {number} skip
  * @param {string} key
  * @returns {Promise<object>}
  */
-async function fetchPage(skip, key) {
-  const url = buildUrl();
+async function fetchPage(config, skip, key) {
+  const url = buildUrl(config);
   let response;
 
   try {
     response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: buildRequestBody(skip, key),
+      body: buildRequestBody(config, skip, key),
       signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     });
   } catch (err) {
@@ -324,13 +317,14 @@ function validateResponse(data) {
 
 /**
  * Saves the complete response of a page to disk.
+ * @param {{paths: {games: string}}} config
  * @param {number} pageNumber
  * @param {object} responseData
  * @returns {Promise<string>} The generated file name.
  */
-async function savePage(pageNumber, responseData) {
+async function savePage(config, pageNumber, responseData) {
   const fileName = buildFileName(pageNumber);
-  const outputDir = resolveOutputDir();
+  const outputDir = config.paths.games;
   await fs.mkdir(outputDir, { recursive: true });
   await fs.writeFile(path.join(outputDir, fileName), `${JSON.stringify(responseData, null, 2)}\n`, 'utf8');
   return fileName;
@@ -374,13 +368,15 @@ async function waitBeforeNextRequest() {
 }
 
 /**
- * Downloads `totalPages` pages sequentially starting at `startPage`.
+ * Downloads `totalPages` pages sequentially starting at `startPage`, using
+ * `config.key` as the initial key.
+ * @param {ReturnType<typeof loadConfig>} config
  * @param {number} startPage
  * @param {number} totalPages
- * @param {string} initialKey
  * @returns {Promise<{pagesDownloaded: number, totalMatches: number, lastKey: string}>}
  */
-async function downloadPages(startPage, totalPages, initialKey) {
+async function downloadPages(config, startPage, totalPages) {
+  const initialKey = config.key;
   const stats = { pagesDownloaded: 0, totalMatches: 0, lastKey: initialKey };
   let currentKey = initialKey;
   const lastPage = startPage + totalPages - 1;
@@ -393,9 +389,9 @@ async function downloadPages(startPage, totalPages, initialKey) {
     let finished;
     let fileName;
     try {
-      data = await fetchPage(skip, currentKey);
+      data = await fetchPage(config, skip, currentKey);
       finished = new Date();
-      fileName = await savePage(page, data);
+      fileName = await savePage(config, page, data);
     } catch (err) {
       const failed = finished || new Date();
       console.error(SEPARATOR);
@@ -434,29 +430,6 @@ async function downloadPages(startPage, totalPages, initialKey) {
   }
 
   return stats;
-}
-
-/**
- * Validates that the required environment variables are set.
- */
-function validateEnvironment() {
-  const missing = [];
-  if (BASE_URL === '') missing.push('BASE_URL');
-  if (DEVICE_ID === '') missing.push('DEVICE_ID');
-  if (KEY === '') missing.push('KEY');
-
-  if (missing.length > 0) {
-    throw new Error(
-      `Missing required environment variable(s): ${missing.join(', ')}.\n` +
-        `Define them in a .env file.\n${USAGE}`,
-    );
-  }
-
-  try {
-    new URL(BASE_URL);
-  } catch {
-    throw new Error(`Invalid BASE_URL environment variable: "${BASE_URL}"`);
-  }
 }
 
 /**
@@ -511,9 +484,10 @@ function printSummary(stats, elapsedMs) {
 async function main() {
   const startTime = Date.now();
 
+  let config;
   let args;
   try {
-    validateEnvironment();
+    config = loadConfig();
     args = parseArguments(process.argv.slice(2));
   } catch (err) {
     console.error(`Error: ${err.message}`);
@@ -521,12 +495,12 @@ async function main() {
     return;
   }
 
-  console.log(`Endpoint: ${buildUrl()}`);
-  console.log(`Output directory: ${resolveOutputDir()}`);
+  console.log(`Endpoint: ${buildUrl(config)}`);
+  console.log(`Output directory: ${config.paths.games}`);
   console.log(`Downloading ${args.totalPages} page(s) starting from page ${args.startPage}.`);
 
   try {
-    const stats = await downloadPages(args.startPage, args.totalPages, KEY);
+    const stats = await downloadPages(config, args.startPage, args.totalPages);
     printSummary(stats, Date.now() - startTime);
   } catch (err) {
     console.error(`Error: ${err.message}`);

@@ -24,7 +24,8 @@
  * deviceId     (required) Registered device id, sent as `id_dispositivo`.
  * key          (required) Initial value for the `key` parameter. It is only
  *              used for the first request; each response returns the key
- *              for the next one.
+ *              for the next one. The received key is written back to
+ *              config.json after every downloaded page.
  * outputDir    (optional) Root download directory, resolved against the
  *              project root. Files are written to <outputDir>/games,
  *              created automatically if it does not exist.
@@ -103,7 +104,8 @@
  *
  *   node download.js 101 50
  *     Downloads 50 pages starting from page 101.
- *     To resume a previous run, set "key" in config.json to the last received key.
+ *     After every downloaded page, the received key is saved as "key" in
+ *     config.json, so a later run resumes with the last valid key.
  * =============================================================================
  */
 
@@ -113,7 +115,7 @@ const crypto = require('node:crypto');
 const fs = require('node:fs/promises');
 const path = require('node:path');
 
-const { loadConfig } = require('./config');
+const { loadConfig, updateConfigKey } = require('./config');
 
 // -----------------------------------------------------------------------------
 // Global configuration
@@ -369,35 +371,38 @@ async function waitBeforeNextRequest() {
 
 /**
  * Downloads `totalPages` pages sequentially starting at `startPage`, using
- * `config.key` as the initial key.
- * @param {ReturnType<typeof loadConfig>} config
+ * `config.key` as the initial key. After every saved page, the received key
+ * is persisted in config.json (see updateConfigKey).
+ * @param {ReturnType<typeof loadConfig>} initialConfig
  * @param {number} startPage
  * @param {number} totalPages
  * @returns {Promise<{pagesDownloaded: number, totalMatches: number, lastKey: string}>}
  */
-async function downloadPages(config, startPage, totalPages) {
-  const initialKey = config.key;
-  const stats = { pagesDownloaded: 0, totalMatches: 0, lastKey: initialKey };
-  let currentKey = initialKey;
+async function downloadPages(initialConfig, startPage, totalPages) {
+  let config = initialConfig;
+  const stats = { pagesDownloaded: 0, totalMatches: 0, lastKey: config.key };
   const lastPage = startPage + totalPages - 1;
 
   for (let page = startPage; page <= lastPage; page += 1) {
     const skip = calculateSkip(page);
     const started = new Date();
+    const sentKey = config.key;
 
     let data;
     let finished;
     let fileName;
     try {
-      data = await fetchPage(config, skip, currentKey);
+      data = await fetchPage(config, skip, sentKey);
       finished = new Date();
       fileName = await savePage(config, page, data);
+      config = updateConfigKey(config, data.key);
     } catch (err) {
       const failed = finished || new Date();
       console.error(SEPARATOR);
       console.error(`Page: ${page}`);
       console.error(`Skip: ${skip}`);
-      console.error(`Sent key: ${currentKey}`);
+      console.error(`Sent key: ${sentKey}`);
+      if (data && data.key) console.error(`Received key: ${data.key}`);
       console.error(`Started: ${timestamp(started)}`);
       console.error(`Failed: ${timestamp(failed)}`);
       console.error(`Duration: ${formatDuration(failed - started)}`);
@@ -406,12 +411,12 @@ async function downloadPages(config, startPage, totalPages) {
       throw err;
     }
 
-    const receivedKey = data.key;
+    const receivedKey = config.key;
 
     logPage({
       page,
       skip,
-      sentKey: currentKey,
+      sentKey,
       receivedKey,
       matches: data.partidos.length,
       fileName,
@@ -422,7 +427,6 @@ async function downloadPages(config, startPage, totalPages) {
     stats.pagesDownloaded += 1;
     stats.totalMatches += data.partidos.length;
     stats.lastKey = receivedKey;
-    currentKey = receivedKey;
 
     if (page < lastPage) {
       await waitBeforeNextRequest();

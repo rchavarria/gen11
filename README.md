@@ -15,7 +15,7 @@ cp config.example.json config.json
 |-------------|----------|--------------------------------------------------------------------|
 | `baseUrl`   | yes      | Base URL of the API                                                |
 | `deviceId`  | yes      | Registered device id, sent as `id_dispositivo`                     |
-| `key`       | yes      | Key sent as `key` (initial key for `download.js`)                  |
+| `key`       | yes      | Key sent as `key` (initial key for `download.js`, which updates it after every page) |
 | `outputDir` | no       | Root download directory, relative to the project root (default `.`) |
 
 Each script writes into its own subfolder of `outputDir`:

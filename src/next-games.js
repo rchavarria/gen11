@@ -8,7 +8,8 @@
  * -------
  * Downloads the list of upcoming games ("mispartidos") of the followed teams
  * with a single request to the data source API and saves the complete JSON
- * response to disk.
+ * response to disk. Finally, it prints a summary of every received game
+ * (NombreEquipoLocal, NombreEquipoVisitante, Fecha and IdPartido).
  * The response returns a new `key`, which is written back to config.json as
  * soon as the response is validated (before saving the output file).
  *
@@ -189,6 +190,25 @@ function validateResponse(data) {
   }
 }
 
+/**
+ * Prints a summary of every received game: NombreEquipoLocal,
+ * NombreEquipoVisitante, Fecha and IdPartido.
+ * @param {object[]} games The `mispartidos` array of the response.
+ */
+function printGamesSummary(games) {
+  console.log('');
+  console.log('='.repeat(50));
+  console.log(`Games summary (${games.length})`);
+  console.log('='.repeat(50));
+  games.forEach((game, i) => {
+    const g = game || {};
+    console.log(`Game: ${i + 1}/${games.length}`);
+    console.log(`  ${g.NombreEquipoLocal ?? ''} 🆚 ${g.NombreEquipoVisitante ?? ''}`);
+    console.log(`  📆 ${g.Fecha ?? ''} ➡️ ${g.IdPartido}`);
+  });
+  console.log('='.repeat(50));
+}
+
 async function main() {
   const started = new Date();
 
@@ -238,6 +258,8 @@ async function main() {
   console.log(`Finished: ${timestamp(finished)}`);
   console.log(`Duration: ${formatDuration(finished - started)}`);
   console.log(SEPARATOR);
+
+  printGamesSummary(data.mispartidos);
 }
 
 main();

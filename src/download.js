@@ -19,7 +19,7 @@
  *
  * CONFIGURATION (config.json)
  * ---------------------------
- * Read and validated by src/config.js (copy config.example.json to config.json):
+ * Read and validated by src/core/config.js (copy config.example.json to config.json):
  * baseUrl      (required) Base URL of the API (e.g. "https://data.source").
  * deviceId     (required) Registered device id, sent as `id_dispositivo`.
  * key          (required) Initial value for the `key` parameter. It is only
@@ -48,7 +48,7 @@
  * PAGE_SIZE           Records per page (always 50).
  * REQUEST_TIMEOUT_MS  Maximum time allowed for a single HTTP request.
  *
- * The pause between requests is defined by longWait() in src/wait.js
+ * The pause between requests is defined by longWait() in src/core/wait.js
  * (random, between 10 and 15 minutes). A new random pause is chosen before
  * each request (there is no pause after the last page).
  *
@@ -111,11 +111,11 @@
 
 'use strict';
 
-const { loadConfig, updateConfigKey } = require('./config');
-const { longWait } = require('./wait');
-const { formatDuration, timestamp } = require('./format');
-const { isEmptyValue } = require('./validate');
-const { writeJson } = require('./files');
+const { loadConfig, updateConfigKey } = require('./core/config');
+const { longWait } = require('./core/wait');
+const { formatDuration, timestamp } = require('./core/format');
+const { isEmptyValue } = require('./core/validate');
+const { writeJson } = require('./core/files');
 
 // -----------------------------------------------------------------------------
 // Global configuration

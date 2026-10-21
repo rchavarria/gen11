@@ -15,7 +15,7 @@
  * - Only one:      an error is printed and execution aborts.
  * - None exists:   stats and scores are downloaded (fetchStats from
  *                  download-stats.js, fetchScore from download-scores.js,
- *                  saveStats/saveScore from src/files.js). On success the game is marked with
+ *                  saveStats/saveScore from src/core/files.js). On success the game is marked with
  *                  `downloaded: true`. If the API answers "sin datos" (game not
  *                  played yet), the game is marked with `played: false` and
  *                  processing continues with the next game. On any other
@@ -28,7 +28,7 @@
  * Games marked with `played: false` whose `date` ("YYYY-MM-DD" or ISO 8601)
  * is after today are skipped as well.
  * Requests are sent strictly sequentially, with a random pause between them
- * (shortWait() in src/wait.js: between 100 and 200 seconds).
+ * (shortWait() in src/core/wait.js: between 100 and 200 seconds).
  * <outputDir>/games.json is rewritten only when the whole process succeeds.
  *
  * REQUIREMENTS
@@ -38,7 +38,7 @@
  *
  * CONFIGURATION (config.json)
  * ---------------------------
- * Read and validated by src/config.js (copy config.example.json to config.json):
+ * Read and validated by src/core/config.js (copy config.example.json to config.json):
  * baseUrl      (required) Base URL of the API (e.g. "https://data.source").
  * deviceId     (required) Registered device id, sent as `id_dispositivo`.
  * key          (required) Key sent as `key` in every request.
@@ -59,11 +59,11 @@ const path = require('node:path');
 
 const { fetchStats } = require('./download-stats');
 const { fetchScore } = require('./download-scores');
-const { loadConfig } = require('./config');
-const { shortWait } = require('./wait');
-const { formatDuration, timestamp } = require('./format');
-const { fileExists } = require('./validate');
-const { buildFileName, saveStats, saveScore, writeJson } = require('./files');
+const { loadConfig } = require('./core/config');
+const { shortWait } = require('./core/wait');
+const { formatDuration, timestamp } = require('./core/format');
+const { fileExists } = require('./core/validate');
+const { buildFileName, saveStats, saveScore, writeJson } = require('./core/files');
 
 // -----------------------------------------------------------------------------
 // Global configuration

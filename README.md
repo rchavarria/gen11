@@ -40,9 +40,9 @@ node src/download-games.js
 
 | Module            | Contents                                                                 |
 |-------------------|--------------------------------------------------------------------------|
-| `src/config.js`   | `loadConfig()`, `updateConfigKey()`: read/validate/update `config.json`  |
-| `src/wait.js`     | `sleep`, `randomDelay`, `waitBeforeNextRequest`, `shortWait()` (100–200 s), `longWait()` (10–15 min) |
-| `src/format.js`   | `formatDuration`, `timestamp`                                            |
-| `src/validate.js` | `isEmptyValue`, `isPlainObject`, `fileExists`                            |
-| `src/files.js`    | `writeJson`, `buildFileName`, `saveStats`, `saveScore`                   |
+| `src/core/config.js`   | `loadConfig()`, `updateConfigKey()`: read/validate/update `config.json`  |
+| `src/core/wait.js`     | `sleep`, `randomDelay`, `waitBeforeNextRequest`, `shortWait()` (100–200 s), `longWait()` (10–15 min) |
+| `src/core/format.js`   | `formatDuration`, `timestamp`                                            |
+| `src/core/validate.js` | `isEmptyValue`, `isPlainObject`, `fileExists`                            |
+| `src/core/files.js`    | `writeJson`, `buildFileName`, `saveStats`, `saveScore`                   |
 

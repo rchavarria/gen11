@@ -10,7 +10,7 @@
  * of games from the data source API and saves every complete JSON response to
  * disk, one file per game. Games are downloaded strictly sequentially (never
  * in parallel), with a random pause between requests (shortWait() in
- * src/wait.js).
+ * src/core/wait.js).
  * The `key` does not rotate for this endpoint: the same key (read from
  * config.json) is used for every request.
  *
@@ -21,7 +21,7 @@
  *
  * CONFIGURATION (config.json)
  * ---------------------------
- * Read and validated by src/config.js (copy config.example.json to config.json):
+ * Read and validated by src/core/config.js (copy config.example.json to config.json):
  * baseUrl      (required) Base URL of the API (e.g. "https://data.source").
  * deviceId     (required) Registered device id, sent as `id_dispositivo`.
  * key          (required) Key sent as `key` in every request.
@@ -38,7 +38,7 @@
  *                     `id` is the game id, sent as `id_partido`.
  * REQUEST_TIMEOUT_MS  Maximum time allowed for a single HTTP request.
  *
- * The pause between requests is defined by shortWait() in src/wait.js
+ * The pause between requests is defined by shortWait() in src/core/wait.js
  * (random, between 100 and 200 seconds).
  *
  * REQUEST FORMAT
@@ -84,11 +84,11 @@
 
 'use strict';
 
-const { loadConfig } = require('./config');
-const { shortWait } = require('./wait');
-const { formatDuration, timestamp } = require('./format');
-const { isEmptyValue, isPlainObject } = require('./validate');
-const { saveStats } = require('./files');
+const { loadConfig } = require('./core/config');
+const { shortWait } = require('./core/wait');
+const { formatDuration, timestamp } = require('./core/format');
+const { isEmptyValue, isPlainObject } = require('./core/validate');
+const { saveStats } = require('./core/files');
 
 // -----------------------------------------------------------------------------
 // Global configuration

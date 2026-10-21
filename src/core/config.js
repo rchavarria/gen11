@@ -23,7 +23,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const PROJECT_ROOT = path.resolve(__dirname, '..');
+const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
 const CONFIG_FILE = path.join(PROJECT_ROOT, 'config.json');
 const EXAMPLE_FILE = 'config.example.json';
 

@@ -10,7 +10,7 @@
  * API and saves every complete JSON response to disk, one file per page.
  * Each response returns a new `key` that must be used in the next request,
  * so pages are downloaded strictly sequentially (never in parallel), with a
- * random pause between 1 and 5 minutes between requests.
+ * random pause between 10 and 15 minutes between requests.
  *
  * REQUIREMENTS
  * ------------
@@ -46,11 +46,11 @@
  * TEXT                Search text, sent as `texto`.
  * ACTION              API action, sent as `accion` (required by the endpoint).
  * PAGE_SIZE           Records per page (always 50).
- * MIN_DELAY_MS        Minimum pause between requests (1 minute).
- * MAX_DELAY_MS        Maximum pause between requests (5 minutes).
- *                     A new random pause within this range is chosen before
- *                     each request (there is no pause after the last page).
  * REQUEST_TIMEOUT_MS  Maximum time allowed for a single HTTP request.
+ *
+ * The pause between requests is defined by longWait() in src/wait.js
+ * (random, between 10 and 15 minutes). A new random pause is chosen before
+ * each request (there is no pause after the last page).
  *
  * COMMAND-LINE ARGUMENTS (in this exact order)
  * --------------------------------------------
@@ -111,18 +111,16 @@
 
 'use strict';
 
-const crypto = require('node:crypto');
-const fs = require('node:fs/promises');
-const path = require('node:path');
-
 const { loadConfig, updateConfigKey } = require('./config');
+const { longWait } = require('./wait');
+const { formatDuration, timestamp } = require('./format');
+const { isEmptyValue } = require('./validate');
+const { writeJson } = require('./files');
 
 // -----------------------------------------------------------------------------
 // Global configuration
 // -----------------------------------------------------------------------------
 
-const MIN_DELAY_MS = 10 * 60 * 1000;
-const MAX_DELAY_MS = 15 * 60 * 1000;
 const REQUEST_TIMEOUT_MS = 30 * 1000;
 const SEPARATOR = '-'.repeat(50);
 const USAGE = 'Usage: node src/download.js <startPage> <totalPages>';
@@ -141,25 +139,6 @@ const TEXT = 'BALONCESTO ALCOBENDAS';
 // -----------------------------------------------------------------------------
 // Helpers
 // -----------------------------------------------------------------------------
-
-/**
- * Waits for the given number of milliseconds.
- * @param {number} ms
- * @returns {Promise<void>}
- */
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-/**
- * Returns a random number of milliseconds between minMs and maxMs (inclusive).
- * @param {number} minMs
- * @param {number} maxMs
- * @returns {number}
- */
-function randomDelay(minMs, maxMs) {
-  return crypto.randomInt(minMs, maxMs + 1);
-}
 
 /**
  * Builds the full request URL from config.baseUrl and API_PATH.
@@ -206,42 +185,6 @@ function calculateSkip(pageNumber) {
  */
 function buildFileName(pageNumber) {
   return `games-${String(pageNumber).padStart(4, '0')}.json`;
-}
-
-/**
- * Returns true when a value should be considered "empty" (no error).
- * @param {unknown} value
- * @returns {boolean}
- */
-function isEmptyValue(value) {
-  if (value === null || value === undefined || value === false) return true;
-  if (typeof value === 'string') return value.trim() === '';
-  if (Array.isArray(value)) return value.length === 0;
-  if (typeof value === 'object') return Object.keys(value).length === 0;
-  return false;
-}
-
-/**
- * Formats a duration in milliseconds as a human-readable string.
- * @param {number} ms
- * @returns {string}
- */
-function formatDuration(ms) {
-  const totalSeconds = Math.floor(ms / 1000);
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-  const pad = (n) => String(n).padStart(2, '0');
-  return `${pad(hours)}:${pad(minutes)}:${pad(seconds)} (${ms} ms)`;
-}
-
-/**
- * Returns a timestamp in ISO 8601 format without milliseconds.
- * @param {Date} [date] Defaults to now.
- * @returns {string}
- */
-function timestamp(date = new Date()) {
-  return date.toISOString().replace(/\.\d{3}Z$/, 'Z');
 }
 
 // -----------------------------------------------------------------------------
@@ -325,11 +268,7 @@ function validateResponse(data) {
  * @returns {Promise<string>} The generated file name.
  */
 async function savePage(config, pageNumber, responseData) {
-  const fileName = buildFileName(pageNumber);
-  const outputDir = config.paths.games;
-  await fs.mkdir(outputDir, { recursive: true });
-  await fs.writeFile(path.join(outputDir, fileName), `${JSON.stringify(responseData, null, 2)}\n`, 'utf8');
-  return fileName;
+  return writeJson(config.paths.games, buildFileName(pageNumber), responseData);
 }
 
 /**
@@ -356,17 +295,6 @@ function logPage(info) {
   console.log(`Finished: ${timestamp(info.finished)}`);
   console.log(`Duration: ${formatDuration(info.finished - info.started)}`);
   console.log(SEPARATOR);
-}
-
-/**
- * Waits a random time between MIN_DELAY_MS and MAX_DELAY_MS, logging it.
- * @returns {Promise<void>}
- */
-async function waitBeforeNextRequest() {
-  const delayMs = randomDelay(MIN_DELAY_MS, MAX_DELAY_MS);
-  const nextRequestAt = timestamp(new Date(Date.now() + delayMs));
-  console.log(`Waiting ${formatDuration(delayMs)} before the next request (at ${nextRequestAt})...`);
-  await sleep(delayMs);
 }
 
 /**
@@ -429,7 +357,7 @@ async function downloadPages(initialConfig, startPage, totalPages) {
     stats.lastKey = receivedKey;
 
     if (page < lastPage) {
-      await waitBeforeNextRequest();
+      await longWait();
     }
   }
 

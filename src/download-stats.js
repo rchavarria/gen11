@@ -9,7 +9,8 @@
  * Downloads the live statistics ("acta": players and their stats) of a list
  * of games from the data source API and saves every complete JSON response to
  * disk, one file per game. Games are downloaded strictly sequentially (never
- * in parallel), with a random pause between requests.
+ * in parallel), with a random pause between requests (shortWait() in
+ * src/wait.js).
  * The `key` does not rotate for this endpoint: the same key (read from
  * config.json) is used for every request.
  *
@@ -35,9 +36,10 @@
  * GAMES               List of games to download: { title, id }.
  *                     `title` is used as-is in the file name.
  *                     `id` is the game id, sent as `id_partido`.
- * MIN_DELAY_MS        Minimum pause between requests.
- * MAX_DELAY_MS        Maximum pause between requests.
  * REQUEST_TIMEOUT_MS  Maximum time allowed for a single HTTP request.
+ *
+ * The pause between requests is defined by shortWait() in src/wait.js
+ * (random, between 100 and 200 seconds).
  *
  * REQUEST FORMAT
  * --------------
@@ -82,18 +84,16 @@
 
 'use strict';
 
-const crypto = require('node:crypto');
-const fs = require('node:fs/promises');
-const path = require('node:path');
-
 const { loadConfig } = require('./config');
+const { shortWait } = require('./wait');
+const { formatDuration, timestamp } = require('./format');
+const { isEmptyValue, isPlainObject } = require('./validate');
+const { saveStats } = require('./files');
 
 // -----------------------------------------------------------------------------
 // Global configuration
 // -----------------------------------------------------------------------------
 
-const MIN_DELAY_MS = 100 * 1000;
-const MAX_DELAY_MS = 200 * 1000;
 const REQUEST_TIMEOUT_MS = 30 * 1000;
 const SEPARATOR = '-'.repeat(50);
 
@@ -196,14 +196,6 @@ const GAMES = [
 // Helpers
 // -----------------------------------------------------------------------------
 
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-function randomDelay(minMs, maxMs) {
-  return crypto.randomInt(minMs, maxMs + 1);
-}
-
 function buildUrl(config) {
   const base = config.baseUrl.replace(/\/+$/, '');
   const apiPath = API_PATH.startsWith('/') ? API_PATH : `/${API_PATH}`;
@@ -221,41 +213,6 @@ function buildUrl(config) {
 function buildRequestBody(config, gameId) {
   const params = new URLSearchParams({ id_partido: gameId });
   return `${params.toString()}&id_dispositivo=${config.deviceId}&key=${config.key}`;
-}
-
-/**
- * Returns the output file name for a game. The title is used as-is.
- * @param {string} title
- * @param {string} id
- * @returns {string}
- */
-function buildFileName(title, id) {
-  return `${title}-${id}.json`;
-}
-
-function isEmptyValue(value) {
-  if (value === null || value === undefined || value === false) return true;
-  if (typeof value === 'string') return value.trim() === '';
-  if (Array.isArray(value)) return value.length === 0;
-  if (typeof value === 'object') return Object.keys(value).length === 0;
-  return false;
-}
-
-function isPlainObject(value) {
-  return value !== null && typeof value === 'object' && !Array.isArray(value);
-}
-
-function formatDuration(ms) {
-  const totalSeconds = Math.floor(ms / 1000);
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-  const pad = (n) => String(n).padStart(2, '0');
-  return `${pad(hours)}:${pad(minutes)}:${pad(seconds)} (${ms} ms)`;
-}
-
-function timestamp(date = new Date()) {
-  return date.toISOString().replace(/\.\d{3}Z$/, 'Z');
 }
 
 // -----------------------------------------------------------------------------
@@ -334,20 +291,6 @@ function validateResponse(data) {
   }
 }
 
-/**
- * Saves the complete response of a game to disk.
- * @param {{title: string, id: string}} game
- * @param {object} responseData
- * @param {string} outputDir Target directory.
- * @returns {Promise<string>} The generated file name.
- */
-async function saveStats(game, responseData, outputDir) {
-  const fileName = buildFileName(game.title, game.id);
-  await fs.mkdir(outputDir, { recursive: true });
-  await fs.writeFile(path.join(outputDir, fileName), `${JSON.stringify(responseData, null, 2)}\n`, 'utf8');
-  return fileName;
-}
-
 function countPlayers(list) {
   return Array.isArray(list) ? list.length : 0;
 }
@@ -370,13 +313,6 @@ function logGame(info) {
   console.log(`Finished: ${timestamp(info.finished)}`);
   console.log(`Duration: ${formatDuration(info.finished - info.started)}`);
   console.log(SEPARATOR);
-}
-
-async function waitBeforeNextRequest() {
-  const delayMs = randomDelay(MIN_DELAY_MS, MAX_DELAY_MS);
-  const nextRequestAt = timestamp(new Date(Date.now() + delayMs));
-  console.log(`Waiting ${formatDuration(delayMs)} before the next request (at ${nextRequestAt})...`);
-  await sleep(delayMs);
 }
 
 /**
@@ -416,7 +352,7 @@ async function downloadStats(config) {
     stats.gamesDownloaded += 1;
 
     if (i < GAMES.length - 1) {
-      await waitBeforeNextRequest();
+      await shortWait();
     }
   }
 
@@ -481,7 +417,7 @@ async function main() {
   }
 }
 
-module.exports = { fetchStats, saveStats, buildFileName };
+module.exports = { fetchStats };
 
 // Only run when executed directly, not when required as a module.
 if (require.main === module) {

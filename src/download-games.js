@@ -13,8 +13,9 @@
  *
  * - Both exist:    the game is marked with `downloaded: true`.
  * - Only one:      an error is printed and execution aborts.
- * - None exists:   stats and scores are downloaded (reusing download-stats.js
- *                  and download-scores.js). On success the game is marked with
+ * - None exists:   stats and scores are downloaded (fetchStats from
+ *                  download-stats.js, fetchScore from download-scores.js,
+ *                  saveStats/saveScore from src/files.js). On success the game is marked with
  *                  `downloaded: true`. If the API answers "sin datos" (game not
  *                  played yet), the game is marked with `played: false` and
  *                  processing continues with the next game. On any other
@@ -26,7 +27,8 @@
  * no requests).
  * Games marked with `played: false` whose `date` ("YYYY-MM-DD" or ISO 8601)
  * is after today are skipped as well.
- * Requests are sent strictly sequentially, with a random pause between them.
+ * Requests are sent strictly sequentially, with a random pause between them
+ * (shortWait() in src/wait.js: between 100 and 200 seconds).
  * <outputDir>/games.json is rewritten only when the whole process succeeds.
  *
  * REQUIREMENTS
@@ -52,47 +54,27 @@
 
 'use strict';
 
-const crypto = require('node:crypto');
 const fs = require('node:fs/promises');
 const path = require('node:path');
 
-const { fetchStats, saveStats } = require('./download-stats');
-const { fetchScore, saveScore, buildFileName } = require('./download-scores');
+const { fetchStats } = require('./download-stats');
+const { fetchScore } = require('./download-scores');
 const { loadConfig } = require('./config');
+const { shortWait } = require('./wait');
+const { formatDuration, timestamp } = require('./format');
+const { fileExists } = require('./validate');
+const { buildFileName, saveStats, saveScore, writeJson } = require('./files');
 
 // -----------------------------------------------------------------------------
 // Global configuration
 // -----------------------------------------------------------------------------
 
-const MIN_DELAY_MS = 100 * 1000;
-const MAX_DELAY_MS = 200 * 1000;
 const SEPARATOR = '-'.repeat(50);
 const NO_DATA_ERROR = 'sin datos';
 
 // -----------------------------------------------------------------------------
 // Helpers
 // -----------------------------------------------------------------------------
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-function randomDelay(minMs, maxMs) {
-  return crypto.randomInt(minMs, maxMs + 1);
-}
-
-function formatDuration(ms) {
-  const totalSeconds = Math.floor(ms / 1000);
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-  const pad = (n) => String(n).padStart(2, '0');
-  return `${pad(hours)}:${pad(minutes)}:${pad(seconds)} (${ms} ms)`;
-}
-
-function timestamp(date = new Date()) {
-  return date.toISOString().replace(/\.\d{3}Z$/, 'Z');
-}
 
 /**
  * Returns true when the game has a usable slug and a non-empty hexadecimal id.
@@ -141,27 +123,6 @@ function isAfterToday(value) {
   return day > toDayString(new Date());
 }
 
-/**
- * Returns true if the given file exists.
- * @param {string} filePath
- * @returns {Promise<boolean>}
- */
-async function fileExists(filePath) {
-  try {
-    await fs.access(filePath);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-async function waitBeforeNextRequest() {
-  const delayMs = randomDelay(MIN_DELAY_MS, MAX_DELAY_MS);
-  const nextRequestAt = timestamp(new Date(Date.now() + delayMs));
-  console.log(`Waiting ${formatDuration(delayMs)} before the next request (at ${nextRequestAt})...`);
-  await sleep(delayMs);
-}
-
 // -----------------------------------------------------------------------------
 // Core logic
 // -----------------------------------------------------------------------------
@@ -192,7 +153,8 @@ async function readGamesFile(config) {
  * @param {object} data
  */
 async function writeGamesFile(config, data) {
-  await fs.writeFile(config.paths.gamesFile, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
+  const { gamesFile } = config.paths;
+  await writeJson(path.dirname(gamesFile), path.basename(gamesFile), data);
 }
 
 /**
@@ -206,13 +168,13 @@ async function downloadGame(config, game, state) {
   // download-stats.js / download-scores.js expect { title, id }.
   const target = { title: game.slug, id: game.id };
 
-  if (state.requestsSent > 0) await waitBeforeNextRequest();
+  if (state.requestsSent > 0) await shortWait();
   state.requestsSent += 1;
   const statsData = await fetchStats(config, target.id);
   await saveStats(target, statsData, config.paths.gamesStats);
   console.log(`Stats saved: ${buildFileName(target.title, target.id)}`);
 
-  await waitBeforeNextRequest();
+  await shortWait();
   state.requestsSent += 1;
   const scoreData = await fetchScore(config, target.id);
   await saveScore(target, scoreData, config.paths.gamesScores);

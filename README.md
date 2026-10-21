@@ -36,3 +36,13 @@ node src/download-scores.js
 node src/download-games.js
 ```
 
+## Shared modules
+
+| Module            | Contents                                                                 |
+|-------------------|--------------------------------------------------------------------------|
+| `src/config.js`   | `loadConfig()`, `updateConfigKey()`: read/validate/update `config.json`  |
+| `src/wait.js`     | `sleep`, `randomDelay`, `waitBeforeNextRequest`, `shortWait()` (100–200 s), `longWait()` (10–15 min) |
+| `src/format.js`   | `formatDuration`, `timestamp`                                            |
+| `src/validate.js` | `isEmptyValue`, `isPlainObject`, `fileExists`                            |
+| `src/files.js`    | `writeJson`, `buildFileName`, `saveStats`, `saveScore`                   |
+

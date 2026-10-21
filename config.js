@@ -36,16 +36,10 @@ function readString(raw, name) {
 }
 
 /**
- * Reads, validates and returns the configuration.
- * @returns {Readonly<{
- *   baseUrl: string,
- *   deviceId: string,
- *   key: string,
- *   outputDir: string,
- *   paths: Readonly<{games: string, gamesStats: string, gamesScores: string, gamesFile: string}>
- * }>}
+ * Reads and parses config.json, returning the raw JSON object (not validated).
+ * @returns {Record<string, unknown>}
  */
-function loadConfig() {
+function readRawConfig() {
   let text;
   try {
     text = fs.readFileSync(CONFIG_FILE, 'utf8');
@@ -66,6 +60,22 @@ function loadConfig() {
   if (raw === null || typeof raw !== 'object' || Array.isArray(raw)) {
     throw new Error(`Invalid ${CONFIG_FILE}: expected a JSON object.`);
   }
+
+  return raw;
+}
+
+/**
+ * Reads, validates and returns the configuration.
+ * @returns {Readonly<{
+ *   baseUrl: string,
+ *   deviceId: string,
+ *   key: string,
+ *   outputDir: string,
+ *   paths: Readonly<{games: string, gamesStats: string, gamesScores: string, gamesFile: string}>
+ * }>}
+ */
+function loadConfig() {
+  const raw = readRawConfig();
 
   const baseUrl = readString(raw, 'baseUrl');
   const deviceId = readString(raw, 'deviceId');
@@ -103,5 +113,37 @@ function loadConfig() {
   });
 }
 
-module.exports = { loadConfig };
+/**
+ * Persists a new `key` in config.json and returns a new configuration object
+ * with the updated key. Every other value in config.json is kept as-is.
+ * The file is written atomically (temporary file + rename).
+ * @param {ReturnType<typeof loadConfig>} config Current configuration.
+ * @param {string} newKey New value for `key`.
+ * @returns {ReturnType<typeof loadConfig>}
+ */
+function updateConfigKey(config, newKey) {
+  if (typeof newKey !== 'string' || newKey.trim() === '') {
+    throw new Error('updateConfigKey: newKey must be a non-empty string.');
+  }
+  const key = newKey.trim();
 
+  const raw = readRawConfig();
+  raw.key = key;
+
+  const tmpFile = `${CONFIG_FILE}.tmp`;
+  try {
+    fs.writeFileSync(tmpFile, `${JSON.stringify(raw, null, 2)}\n`, 'utf8');
+    fs.renameSync(tmpFile, CONFIG_FILE);
+  } catch (err) {
+    try {
+      fs.rmSync(tmpFile, { force: true });
+    } catch {
+      // ignore cleanup errors
+    }
+    throw new Error(`Cannot write ${CONFIG_FILE}: ${err.message}`);
+  }
+
+  return Object.freeze({ ...config, key });
+}
+
+module.exports = { loadConfig, updateConfigKey };

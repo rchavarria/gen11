@@ -27,5 +27,15 @@ function timestamp(date = new Date()) {
   return date.toISOString().replace(/\.\d{3}Z$/, 'Z');
 }
 
-module.exports = { formatDuration, timestamp };
+/**
+ * Returns the local calendar day of a date as "YYYY-MM-DD".
+ * @param {Date} [date] Defaults to now.
+ * @returns {string}
+ */
+function toDayString(date = new Date()) {
+  const pad = (n) => String(n).padStart(2, '0');
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+}
+
+module.exports = { formatDuration, timestamp, toDayString };
 

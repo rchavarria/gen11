@@ -15,7 +15,7 @@ cp config.example.json config.json
 |-------------|----------|--------------------------------------------------------------------|
 | `baseUrl`   | yes      | Base URL of the API                                                |
 | `deviceId`  | yes      | Registered device id, sent as `id_dispositivo`                     |
-| `key`       | yes      | Key sent as `key` (initial key for `download.js`, which updates it after every page) |
+| `key`       | yes      | Key sent as `key` (rotating key: `download.js` and `next-games.js` update it after every request) |
 | `outputDir` | no       | Root download directory, relative to the project root (default `.`) |
 
 Each script writes into its own subfolder of `outputDir`:
@@ -26,6 +26,7 @@ Each script writes into its own subfolder of `outputDir`:
 | `download-stats.js`  | `<outputDir>/games-stats/`                    |
 | `download-scores.js` | `<outputDir>/games-scores/`                   |
 | `download-games.js`  | `<outputDir>/games.json`, `games-stats/`, `games-scores/` |
+| `next-games.js`      | `<outputDir>/next-games/<YYYY-MM-DD>.json`    |
 
 ## Usage
 
@@ -34,6 +35,7 @@ node src/download.js <startPage> <totalPages>
 node src/download-stats.js
 node src/download-scores.js
 node src/download-games.js
+node src/next-games.js
 ```
 
 ## Shared modules

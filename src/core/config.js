@@ -18,6 +18,7 @@
  *   paths.gamesStats   <outputDir>/games-stats   (download-stats.js)
  *   paths.gamesScores  <outputDir>/games-scores  (download-scores.js)
  *   paths.gamesFile    <outputDir>/games.json    (download-games.js)
+ *   paths.nextGames    <outputDir>/next-games    (next-games.js)
  */
 
 const fs = require('node:fs');
@@ -72,7 +73,7 @@ function readRawConfig() {
  *   deviceId: string,
  *   key: string,
  *   outputDir: string,
- *   paths: Readonly<{games: string, gamesStats: string, gamesScores: string, gamesFile: string}>
+ *   paths: Readonly<{games: string, gamesStats: string, gamesScores: string, gamesFile: string, nextGames: string}>
  * }>}
  */
 function loadConfig() {
@@ -110,6 +111,7 @@ function loadConfig() {
       gamesStats: path.join(outputDir, 'games-stats'),
       gamesScores: path.join(outputDir, 'games-scores'),
       gamesFile: path.join(outputDir, 'games.json'),
+      nextGames: path.join(outputDir, 'next-games'),
     }),
   });
 }

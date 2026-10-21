@@ -61,7 +61,7 @@ const { fetchStats } = require('./download-stats');
 const { fetchScore } = require('./download-scores');
 const { loadConfig } = require('./core/config');
 const { shortWait } = require('./core/wait');
-const { formatDuration, timestamp } = require('./core/format');
+const { formatDuration, timestamp, toDayString } = require('./core/format');
 const { fileExists } = require('./core/validate');
 const { buildFileName, saveStats, saveScore, writeJson } = require('./core/files');
 
@@ -92,15 +92,6 @@ function isValidGame(game) {
   );
 }
 
-/**
- * Returns the local calendar day of a date as "YYYY-MM-DD".
- * @param {Date} date
- * @returns {string}
- */
-function toDayString(date) {
-  const pad = (n) => String(n).padStart(2, '0');
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
-}
 
 /**
  * Returns true when `value` is a valid date whose day is strictly after today.

@@ -25,7 +25,8 @@
  * key          (required) Initial value for the `key` parameter. It is only
  *              used for the first request; each response returns the key
  *              for the next one. The received key is written back to
- *              config.json after every downloaded page.
+ *              config.json as soon as each response is validated, before
+ *              the page file is saved.
  * outputDir    (optional) Root download directory, resolved against the
  *              project root. Files are written to <outputDir>/games,
  *              created automatically if it does not exist.
@@ -299,8 +300,9 @@ function logPage(info) {
 
 /**
  * Downloads `totalPages` pages sequentially starting at `startPage`, using
- * `config.key` as the initial key. After every saved page, the received key
- * is persisted in config.json (see updateConfigKey).
+ * `config.key` as the initial key. After every valid response, the received
+ * key is persisted in config.json (see updateConfigKey) before the page file
+ * is saved, so the key is never lost if writing the file fails.
  * @param {ReturnType<typeof loadConfig>} initialConfig
  * @param {number} startPage
  * @param {number} totalPages
@@ -322,8 +324,8 @@ async function downloadPages(initialConfig, startPage, totalPages) {
     try {
       data = await fetchPage(config, skip, sentKey);
       finished = new Date();
-      fileName = await savePage(config, page, data);
       config = updateConfigKey(config, data.key);
+      fileName = await savePage(config, page, data);
     } catch (err) {
       const failed = finished || new Date();
       console.error(SEPARATOR);

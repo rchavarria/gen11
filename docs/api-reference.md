@@ -389,7 +389,7 @@ Respuesta:
 Todos los partidos de los equipos que sigues, en una sola llamada
 
 ```bash
-curl -s https://data.source/v2/envivo/mispartidos.ashx \
+curl -s https://data.source/v2/mispartidos.ashx \
 -d accion=listadoProximos \
 -d dias=365 \
 -d id_dispositivo={id-dispositivo-guardado} \

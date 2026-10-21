@@ -20,7 +20,7 @@
  *
  * CONFIGURATION (config.json)
  * ---------------------------
- * Read and validated by config.js (copy config.example.json to config.json):
+ * Read and validated by src/config.js (copy config.example.json to config.json):
  * baseUrl      (required) Base URL of the API (e.g. "https://data.source").
  * deviceId     (required) Registered device id, sent as `id_dispositivo`.
  * key          (required) Key sent as `key` in every request.
@@ -76,7 +76,7 @@
  *
  * EXECUTION EXAMPLE
  * -----------------
- *   node download-stats.js
+ *   node src/download-stats.js
  * =============================================================================
  */
 

@@ -19,7 +19,7 @@
  *
  * CONFIGURATION (config.json)
  * ---------------------------
- * Read and validated by config.js (copy config.example.json to config.json):
+ * Read and validated by src/config.js (copy config.example.json to config.json):
  * baseUrl      (required) Base URL of the API (e.g. "https://data.source").
  * deviceId     (required) Registered device id, sent as `id_dispositivo`.
  * key          (required) Initial value for the `key` parameter. It is only
@@ -99,10 +99,10 @@
  * ------------------
  *   cp config.example.json config.json    # then edit config.json with your values
  *
- *   node download.js 1 10
+ *   node src/download.js 1 10
  *     Downloads pages 1 to 10 (games-0001.json ... games-0010.json).
  *
- *   node download.js 101 50
+ *   node src/download.js 101 50
  *     Downloads 50 pages starting from page 101.
  *     After every downloaded page, the received key is saved as "key" in
  *     config.json, so a later run resumes with the last valid key.
@@ -125,7 +125,7 @@ const MIN_DELAY_MS = 10 * 60 * 1000;
 const MAX_DELAY_MS = 15 * 60 * 1000;
 const REQUEST_TIMEOUT_MS = 30 * 1000;
 const SEPARATOR = '-'.repeat(50);
-const USAGE = 'Usage: node download.js <startPage> <totalPages>';
+const USAGE = 'Usage: node src/download.js <startPage> <totalPages>';
 
 const API_PATH = '/v2/busqueda.ashx';
 const ACTION = 'buscarPartido';

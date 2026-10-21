@@ -1,7 +1,7 @@
 ## Configuración
 
 Los scripts leen la configuración de `config.json` en la raíz del proyecto
-(ignorado por git), mediante `loadConfig()` de `config.js`, que también la valida.
+(ignorado por git), mediante `loadConfig()` de `src/config.js`, que también la valida.
 `config.example.json` contiene valores de ejemplo.
 
 Cada `main` llama a `loadConfig()` una sola vez y pasa `config` como parámetro

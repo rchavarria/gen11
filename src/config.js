@@ -23,7 +23,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const CONFIG_FILE = path.join(__dirname, 'config.json');
+const PROJECT_ROOT = path.resolve(__dirname, '..');
+const CONFIG_FILE = path.join(PROJECT_ROOT, 'config.json');
 const EXAMPLE_FILE = 'config.example.json';
 
 function readString(raw, name) {
@@ -97,7 +98,7 @@ function loadConfig() {
     throw new Error(`Invalid "baseUrl" in ${CONFIG_FILE}: "${baseUrl}"`);
   }
 
-  const outputDir = path.resolve(__dirname, outputDirRaw);
+  const outputDir = path.resolve(PROJECT_ROOT, outputDirRaw);
 
   return Object.freeze({
     baseUrl,

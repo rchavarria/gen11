@@ -30,9 +30,9 @@ Each script writes into its own subfolder of `outputDir`:
 ## Usage
 
 ```bash
-node download.js <startPage> <totalPages>
-node download-stats.js
-node download-scores.js
-node download-games.js
+node src/download.js <startPage> <totalPages>
+node src/download-stats.js
+node src/download-scores.js
+node src/download-games.js
 ```
 

@@ -6,6 +6,7 @@
 
 ## Done list
 
+- 2026-10-23: `download-stats.js`: descargar las estadísticas de cada partido jugado
 - 2026-10-23: `download-scores.js`: descargar los marcadores de cada partido jugado
 - 2026-10-15: completar api-reference para _próximos partidos_
 - 2026-10-15: completar api-reference para estadísticas de un partido en vivo

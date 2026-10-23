@@ -27,6 +27,7 @@ Each script writes into its own subfolder of `outputDir`:
 | `download-scores.js` | `<outputDir>/games-scores/`                   |
 | `download-games.js`  | `<outputDir>/games.json`, `games-stats/`, `games-scores/` |
 | `next-games.js`      | `<outputDir>/next-games/<YYYY-MM-DD>.json`    |
+| `scored-points.js`   | `<outputDir>/game-scored-points/<slug>-<id>.json`, `games.json` (`scored` flag) |
 
 ## Usage
 
@@ -36,7 +37,7 @@ node src/download-stats.js
 node src/download-scores.js
 node src/download-games.js
 node src/next-games.js
-node src/scored-points.js <input.json>
+node src/scored-points.js
 ```
 
 ## Shared modules
@@ -47,5 +48,6 @@ node src/scored-points.js <input.json>
 | `src/core/wait.js`     | `sleep`, `randomDelay`, `waitBeforeNextRequest`, `shortWait()` (100–200 s), `longWait()` (10–15 min) |
 | `src/core/format.js`   | `formatDuration`, `timestamp`                                            |
 | `src/core/validate.js` | `isEmptyValue`, `isPlainObject`, `fileExists`                            |
+| `src/core/games.js`    | `isValidGame`, `readGamesFile`, `writeGamesFile`                         |
 | `src/core/files.js`    | `writeJson`, `buildFileName`, `saveStats`, `saveScore`                   |
 

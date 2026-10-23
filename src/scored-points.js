@@ -121,7 +121,13 @@ function getScoredPoints(data) {
         timestamp: getActionTimeMs(action),
         jersey: action.dorsal,
         ...getActionScore(action),
-      })),
+      }))
+      // Ascending by time; ties (e.g. free throws) ordered by total score.
+      .sort(
+        (a, b) =>
+          a.timestamp - b.timestamp ||
+          a.home_score + a.away_score - (b.home_score + b.away_score),
+      ),
   };
 }
 

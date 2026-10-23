@@ -81,8 +81,25 @@ function getActionTimeMs(action) {
   const [, hours, minutes, seconds, tenths = '0'] = match;
   const timeMs =
     (Number(hours) * 60 * 60 + Number(minutes) * 60 + Number(seconds)) * 1000 + Number(tenths) * 100;
-  const periodOffsetMs = (4 - period) * 10 * 60 * 1000;
-  return periodOffsetMs + elapsedMs;
+  return getPeriodEndMs(period) - timeMs;
+}
+
+/**
+ * Returns the score after the action, decoded from `informacion_adicional`.
+ * @param {{informacion_adicional: unknown}} action
+ * @returns {{home_score: number, away_score: number}}
+ */
+function getActionScore(action) {
+  let info;
+  try {
+    info = JSON.parse(action.informacion_adicional);
+  } catch (err) {
+    throw new Error(`informacion_adicional no válida: ${action.informacion_adicional}`);
+  }
+  if (!info || typeof info !== 'object' || info.tanteoLocal === undefined || info.tanteoVisitante === undefined) {
+    throw new Error(`informacion_adicional sin tanteo: ${action.informacion_adicional}`);
+  }
+  return { home_score: info.tanteoLocal, away_score: info.tanteoVisitante };
 }
 
 function getScoredPoints(data) {

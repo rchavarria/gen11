@@ -36,6 +36,7 @@ node src/download-stats.js
 node src/download-scores.js
 node src/download-games.js
 node src/next-games.js
+node src/scored-points.js <input.json>
 ```
 
 ## Shared modules

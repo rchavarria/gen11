@@ -7,9 +7,15 @@
  * PURPOSE
  * -------
  * Extracts scored points (CANASTA-1P, CANASTA-2P and CANASTA-3P) of the games
- * listed in <outputDir>/games.json. The output is a JSON object useful for
- * creating a timeline of scored points, ideally on the browser, generated with
- * three.js or similar libraries.
+ * listed in <outputDir>/games.json. The output is a Chart.js 4 configuration
+ * object ({type: 'line', data: {datasets}, options}) ready to render the score
+ * evolution of a game in the browser.
+ *
+ * It contains two datasets: home team (red) and away team (blue). The scoring
+ * team is identified comparing each action's `equipo_id` with
+ * `partido.idlocal` / `partido.idvisitante`. Each dataset starts at
+ * {x: 0, y: 0} and every point is {x, y, jersey}, where `x` is the elapsed
+ * game time in ms, `y` the accumulated team score and `jersey` the scorer.
  *
  * For every game with a valid id and `downloaded: true`, it checks whether
  * <outputDir>/game-scored-points/<slug>-<id>.json exists:
@@ -49,6 +55,8 @@ const SCORING_ACTION_TYPES = new Set(['CANASTA-1P', 'CANASTA-2P', 'CANASTA-3P'])
 const REGULAR_PERIODS = 4;
 const PERIOD_MS = 10 * 60 * 1000;
 const OVERTIME_MS = 5 * 60 * 1000;
+const HOME_COLORS = { border: 'rgb(255, 99, 132)', background: 'rgba(255, 99, 132, 0.5)' };
+const AWAY_COLORS = { border: 'rgb(54, 162, 235)', background: 'rgba(54, 162, 235, 0.5)' };
 
 /**
  * Returns the ms elapsed at the end of `period`: 10 minutes per regular
@@ -112,22 +120,92 @@ function getScoredPoints(data) {
     throw new Error('No se encontró el array envivo.historialacciones.');
   }
 
-  return {
-    home_team: data.partido && data.partido.local,
-    away_team: data.partido && data.partido.visitante,
-    actions: actions
-      .filter((action) => action && SCORING_ACTION_TYPES.has(action.accion_tipo))
-      .map((action) => ({
+  const game = data.partido;
+  if (!game || typeof game !== 'object') {
+    throw new Error('No se encontró el objeto partido.');
+  }
+  if (game.idlocal == null || game.idvisitante == null) {
+    throw new Error(`partido.idlocal / partido.idvisitante no válidos: ${game.idlocal} / ${game.idvisitante}`);
+  }
+  const homeId = Number(game.idlocal);
+  const awayId = Number(game.idvisitante);
+
+  const scoringActions = actions
+    .filter((action) => action && SCORING_ACTION_TYPES.has(action.accion_tipo))
+    .map((action) => {
+      const teamId = Number(action.equipo_id);
+      if (teamId !== homeId && teamId !== awayId) {
+        throw new Error(`equipo_id no coincide con ningún equipo: ${action.equipo_id}`);
+      }
+      return {
         timestamp: getActionTimeMs(action),
         jersey: action.dorsal,
+        isHome: teamId === homeId,
         ...getActionScore(action),
-      }))
-      // Ascending by time; ties (e.g. free throws) ordered by total score.
-      .sort(
-        (a, b) =>
-          a.timestamp - b.timestamp ||
-          a.home_score + a.away_score - (b.home_score + b.away_score),
-      ),
+      };
+    })
+    // Ascending by time; ties (e.g. free throws) ordered by total score.
+    .sort(
+      (a, b) =>
+        a.timestamp - b.timestamp ||
+        a.home_score + a.away_score - (b.home_score + b.away_score),
+    );
+
+  const homeData = [{ x: 0, y: 0 }];
+  const awayData = [{ x: 0, y: 0 }];
+  for (const action of scoringActions) {
+    if (action.isHome) {
+      homeData.push({ x: action.timestamp, y: action.home_score, jersey: action.jersey });
+    } else {
+      awayData.push({ x: action.timestamp, y: action.away_score, jersey: action.jersey });
+    }
+  }
+
+  return {
+    type: 'line',
+    data: {
+      datasets: [
+        buildDataset(game.local, HOME_COLORS, homeData),
+        buildDataset(game.visitante, AWAY_COLORS, awayData),
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: `${game.local} vs ${game.visitante}`,
+        },
+      },
+      scales: {
+        x: {
+          type: 'linear',
+          display: true,
+          title: { display: true, text: 'ms' },
+        },
+        y: {
+          display: true,
+          title: { display: true, text: 'puntos' },
+        },
+      },
+    },
+  };
+}
+
+/**
+ * Builds a Chart.js 4 line dataset.
+ * @param {string} label
+ * @param {{border: string, background: string}} colors
+ * @param {object[]} points
+ */
+function buildDataset(label, colors, points) {
+  return {
+    label,
+    backgroundColor: colors.background,
+    borderColor: colors.border,
+    fill: false,
+    tension: 0.4,
+    data: points,
   };
 }
 

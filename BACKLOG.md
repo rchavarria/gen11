@@ -3,6 +3,9 @@
 ## To Do list
 
 - mispartidos.ashx: ¿devuelve partidos pasados? ¿O solo los próximos?
+- filtrar partidos de la temporada pasada, los jugados por los cadetes de ambos años
+  - descargarlos: score y stats
+  - extraer las gráficas de puntuaciones
 
 ## Done list
 

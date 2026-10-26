@@ -6,6 +6,7 @@
 - filtrar partidos de la temporada pasada, los jugados por los cadetes de ambos años
   - descargarlos: score y stats
   - extraer las gráficas de puntuaciones
+- script para renovar la key de la API
 
 ## Done list
 

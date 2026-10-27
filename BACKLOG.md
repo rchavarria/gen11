@@ -2,13 +2,12 @@
 
 ## To Do list
 
-- filtrar partidos de la temporada pasada, los jugados por los cadetes de ambos años
-  - descargarlos: score y stats
-  - extraer las gráficas de puntuaciones
 - script para renovar la key de la API
 
 ## Done list
 
+- 2026-10-27: filtrar partidos de la temporada pasada, los jugados por los cadetes de ambos años
+  - solo se han encontrado los partidos del 2010, categoría oro, fase 1, 3 y playoffs
 - 2026-10-27: mispartidos.ashx: ¿devuelve partidos pasados? ¿O solo los próximos?
   - Solo los próximos, los pasados hay que recuperarlos con `buscarPartido`
 - 2026-10-23: scored-points.js debe generar un JSON válido para Chart.js, al estilo de [line chart](https://quickchart.io/sandbox)

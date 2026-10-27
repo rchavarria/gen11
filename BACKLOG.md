@@ -3,6 +3,7 @@
 ## To Do list
 
 - script para renovar la key de la API
+- implementar un "cliente" que agrupe las llamadas a la API, de forma que los scripts puedan usarlo y no tener que repetir la lógica de las llamadas a la API en cada script
 
 ## Done list
 

@@ -2,7 +2,6 @@
 
 ## To Do list
 
-- mispartidos.ashx: ¿devuelve partidos pasados? ¿O solo los próximos?
 - filtrar partidos de la temporada pasada, los jugados por los cadetes de ambos años
   - descargarlos: score y stats
   - extraer las gráficas de puntuaciones
@@ -10,6 +9,8 @@
 
 ## Done list
 
+- 2026-10-27: mispartidos.ashx: ¿devuelve partidos pasados? ¿O solo los próximos?
+  - Solo los próximos, los pasados hay que recuperarlos con `buscarPartido`
 - 2026-10-23: scored-points.js debe generar un JSON válido para Chart.js, al estilo de [line chart](https://quickchart.io/sandbox)
 - 2026-10-23: `download-stats.js`: descargar las estadísticas de cada partido jugado
 - 2026-10-23: `download-scores.js`: descargar los marcadores de cada partido jugado

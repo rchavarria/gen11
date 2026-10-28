@@ -14,7 +14,7 @@
  *
  * The returned object also contains `paths`, with the subfolders/files used by
  * each script (all inside `outputDir`):
- *   paths.games        <outputDir>/games         (download.js)
+ *   paths.games        <outputDir>/games         (previous-games.js)
  *   paths.gamesStats   <outputDir>/games-stats   (download-games.js)
  *   paths.gamesScores  <outputDir>/games-scores  (download-games.js)
  *   paths.gamesFile    <outputDir>/games.json    (download-games.js)

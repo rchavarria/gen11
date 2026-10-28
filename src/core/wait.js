@@ -5,7 +5,7 @@
  *
  *   shortWait()  random pause between 100 and 200 seconds
  *                (download-games.js).
- *   longWait()   random pause between 10 and 15 minutes (download.js).
+ *   longWait()   random pause between 10 and 15 minutes (previous-games.js).
  */
 
 const crypto = require('node:crypto');

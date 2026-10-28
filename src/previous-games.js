@@ -83,10 +83,10 @@
  * ------------------
  *   cp config.example.json config.json    # then edit config.json with your values
  *
- *   node src/download.js 1 10
+ *   node src/previous-games.js 1 10
  *     Downloads pages 1 to 10 (games-0001.json ... games-0010.json).
  *
- *   node src/download.js 101 50
+ *   node src/previous-games.js 101 50
  *     Downloads 50 pages starting from page 101.
  *     After every downloaded page, the received key is saved as "key" in
  *     config.json, so a later run resumes with the last valid key.
@@ -106,7 +106,7 @@ const { writeJson } = require('./core/files');
 // -----------------------------------------------------------------------------
 
 const SEPARATOR = '-'.repeat(50);
-const USAGE = 'Usage: node src/download.js <startPage> <totalPages>';
+const USAGE = 'Usage: node src/previous-games.js <startPage> <totalPages>';
 
 const PAGE_SIZE = 50;
 

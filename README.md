@@ -22,7 +22,7 @@ Each script writes into its own subfolder of `outputDir`:
 
 | Script               | Output                                                                          |
 |----------------------|---------------------------------------------------------------------------------|
-| `download.js`        | `<outputDir>/games/`                                                            |
+| `previous-games.js`  | `<outputDir>/games/`                                                            |
 | `download-games.js`  | `<outputDir>/games.json`, `games-stats/`, `games-scores/`                       |
 | `next-games.js`      | `<outputDir>/next-games/<YYYY-MM-DD>.json`                                      |
 | `scored-points.js`   | `<outputDir>/game-scored-points/<slug>-<id>.json`, `games.json` (`scored` flag) |
@@ -30,7 +30,7 @@ Each script writes into its own subfolder of `outputDir`:
 ## Usage
 
 ```bash
-node src/download.js <startPage> <totalPages>
+node src/previous-games.js <startPage> <totalPages>
 node src/download-games.js
 node src/next-games.js
 node src/scored-points.js

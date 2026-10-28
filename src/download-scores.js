@@ -10,8 +10,9 @@
  * source API and saves every complete JSON response to disk, one file per
  * game. Games are downloaded strictly sequentially (never in parallel), with
  * a random pause between requests (shortWait() in src/core/wait.js).
- * The `key` does not rotate for this endpoint: the same key (read from
- * config.json) is used for every request.
+ * Requests, response validation and key rotation are handled by ApiClient
+ * (src/core/api-client.js): if a response contains a new `key`, it is saved
+ * to config.json and used for the next request.
  *
  * REQUIREMENTS
  * ------------
@@ -23,7 +24,7 @@
  * Read and validated by src/core/config.js (copy config.example.json to config.json):
  * baseUrl      (required) Base URL of the API (e.g. "https://data.source").
  * deviceId     (required) Registered device id, sent as `id_dispositivo`.
- * key          (required) Key sent as `key` in every request.
+ * key          (required) Key sent as `key`. Replaced by a received key, if any.
  * outputDir    (optional) Root download directory, resolved against the
  *              project root. Files are written to <outputDir>/games-scores,
  *              created automatically if it does not exist.
@@ -31,11 +32,9 @@
  *
  * CONFIGURATION VARIABLES (in source)
  * -----------------------------------
- * API_PATH            Endpoint path appended to baseUrl ("/v2/envivo/partido.ashx").
  * GAMES               List of games to download: { title, id }.
  *                     `title` is used as-is in the file name.
  *                     `id` is the game id, sent as `id_partido`.
- * REQUEST_TIMEOUT_MS  Maximum time allowed for a single HTTP request.
  *
  * The pause between requests is defined by shortWait() in src/core/wait.js
  * (random, between 100 and 200 seconds).
@@ -43,7 +42,7 @@
  * REQUEST FORMAT
  * --------------
  * Method:        POST
- * URL:           baseUrl + API_PATH
+ * URL:           baseUrl + "/v2/envivo/partido.ashx"
  * Content-Type:  application/x-www-form-urlencoded
  * Body:          id_partido=<id>&id_dispositivo=<deviceId>&key=<key>
  *
@@ -79,19 +78,17 @@
 'use strict';
 
 const { loadConfig } = require('./core/config');
+const { ApiClient } = require('./core/api-client');
 const { shortWait } = require('./core/wait');
 const { formatDuration, timestamp } = require('./core/format');
-const { isEmptyValue } = require('./core/validate');
 const { saveScore } = require('./core/files');
 
 // -----------------------------------------------------------------------------
 // Global configuration
 // -----------------------------------------------------------------------------
 
-const REQUEST_TIMEOUT_MS = 30 * 1000;
 const SEPARATOR = '-'.repeat(50);
 
-const API_PATH = '/v2/envivo/partido.ashx';
 
 /** @type {{title: string, id: string}[]} */
 const GAMES = [
@@ -187,100 +184,8 @@ const GAMES = [
 ];
 
 // -----------------------------------------------------------------------------
-// Helpers
-// -----------------------------------------------------------------------------
-
-function buildUrl(config) {
-  const base = config.baseUrl.replace(/\/+$/, '');
-  const apiPath = API_PATH.startsWith('/') ? API_PATH : `/${API_PATH}`;
-  return `${base}${apiPath}`;
-}
-
-/**
- * Builds the x-www-form-urlencoded request body.
- * `id_dispositivo` and `key` are appended raw because the data source
- * rejects their percent-encoded "=" characters.
- * @param {{deviceId: string, key: string}} config
- * @param {string} gameId
- * @returns {string}
- */
-function buildRequestBody(config, gameId) {
-  const params = new URLSearchParams({ id_partido: gameId });
-  return `${params.toString()}&id_dispositivo=${config.deviceId}&key=${config.key}`;
-}
-
-// -----------------------------------------------------------------------------
 // Core logic
 // -----------------------------------------------------------------------------
-
-/**
- * Sends the POST request for one game and returns the parsed, validated JSON.
- * @param {{baseUrl: string, deviceId: string, key: string}} config
- * @param {string} gameId
- * @returns {Promise<object>}
- */
-async function fetchScore(config, gameId) {
-  const url = buildUrl(config);
-  let response;
-
-  try {
-    response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: buildRequestBody(config, gameId),
-      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
-    });
-  } catch (err) {
-    const reason = err && err.cause ? `${err.message} (${err.cause.message || err.cause})` : err.message;
-    throw new Error(`Network error while requesting ${url}: ${reason}`);
-  }
-
-  let rawBody;
-  try {
-    rawBody = await response.text();
-  } catch (err) {
-    throw new Error(`Network error while reading response body: ${err.message}`);
-  }
-
-  if (!response.ok) {
-    throw new Error(`HTTP error ${response.status} ${response.statusText}. Body: ${rawBody.slice(0, 500)}`);
-  }
-
-  let data;
-  try {
-    data = JSON.parse(rawBody);
-  } catch (err) {
-    throw new Error(`Invalid JSON response: ${err.message}. Body: ${rawBody.slice(0, 500)}`);
-  }
-
-  validateResponse(data);
-  return data;
-}
-
-/**
- * Validates the structure and error fields of an API response.
- * @param {unknown} data
- */
-function validateResponse(data) {
-  if (data === null || typeof data !== 'object' || Array.isArray(data)) {
-    throw new Error('Invalid response: expected a JSON object.');
-  }
-
-  if ('error' in data && !isEmptyValue(data.error)) {
-    const error = new Error(`API returned an error: ${JSON.stringify(data.error)}`);
-    error.apiError = data.error;
-    throw error;
-  }
-
-  if ('resultado' in data && data.resultado !== 'correcto') {
-    throw new Error(`API returned an unexpected resultado: ${JSON.stringify(data.resultado)}`);
-  }
-
-  if (data.partido === null || typeof data.partido !== 'object' || Array.isArray(data.partido)) {
-    throw new Error('Invalid response: "partido" field is missing or is not an object.');
-  }
-}
-
 function logGame(info) {
   const p = info.data.partido;
   console.log(SEPARATOR);
@@ -298,10 +203,10 @@ function logGame(info) {
 
 /**
  * Downloads the score of every game in GAMES, sequentially.
- * @param {ReturnType<typeof loadConfig>} config
+ * @param {ApiClient} client
  * @returns {Promise<{gamesDownloaded: number, totalGames: number}>}
  */
-async function downloadScores(config) {
+async function downloadScores(client) {
   const stats = { gamesDownloaded: 0, totalGames: GAMES.length };
 
   for (let i = 0; i < GAMES.length; i += 1) {
@@ -312,9 +217,9 @@ async function downloadScores(config) {
     let finished;
     let fileName;
     try {
-      data = await fetchScore(config, game.id);
+      data = await client.getGameScore(game.id);
       finished = new Date();
-      fileName = await saveScore(game, data, config.paths.gamesScores);
+      fileName = await saveScore(game, data, client.config.paths.gamesScores);
     } catch (err) {
       const failed = finished || new Date();
       console.error(SEPARATOR);
@@ -371,9 +276,9 @@ function printSummary(stats, elapsedMs) {
 async function main() {
   const startTime = Date.now();
 
-  let config;
+  let client;
   try {
-    config = loadConfig();
+    client = new ApiClient(loadConfig());
     validateGames();
   } catch (err) {
     console.error(`Error: ${err.message}`);
@@ -381,12 +286,11 @@ async function main() {
     return;
   }
 
-  console.log(`Endpoint: ${buildUrl(config)}`);
-  console.log(`Output directory: ${config.paths.gamesScores}`);
+  console.log(`Output directory: ${client.config.paths.gamesScores}`);
   console.log(`Downloading score of ${GAMES.length} game(s).`);
 
   try {
-    const stats = await downloadScores(config);
+    const stats = await downloadScores(client);
     printSummary(stats, Date.now() - startTime);
   } catch (err) {
     console.error(`Error: ${err.message}`);
@@ -398,10 +302,4 @@ async function main() {
   }
 }
 
-module.exports = { fetchScore };
-
-// Only run when executed directly, not when required as a module.
-if (require.main === module) {
-  main();
-}
-
+main();

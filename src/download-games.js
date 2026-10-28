@@ -14,8 +14,9 @@
  * - Both exist:    the game is marked with `downloaded: true`.
  * - Only one:      an error is printed and execution aborts.
  * - None exists:   stats and scores are downloaded (fetchStats from
- *                  download-stats.js, fetchScore from download-scores.js,
- *                  saveStats/saveScore from src/core/files.js). On success the game is marked with
+ *                  download-stats.js, ApiClient.getGameScore from
+ *                  src/core/api-client.js, saveStats/saveScore from
+ *                  src/core/files.js). On success the game is marked with
  *                  `downloaded: true`. If the API answers "sin datos" (game not
  *                  played yet), the game is marked with `played: false` and
  *                  processing continues with the next game. On any other
@@ -41,7 +42,8 @@
  * Read and validated by src/core/config.js (copy config.example.json to config.json):
  * baseUrl      (required) Base URL of the API (e.g. "https://data.source").
  * deviceId     (required) Registered device id, sent as `id_dispositivo`.
- * key          (required) Key sent as `key` in every request.
+ * key          (required) Key sent as `key`. Replaced by a key received in a
+ *              score response, if any (handled by ApiClient).
  * outputDir    (optional) Root download directory, resolved against the
  *              project root. Contains games.json, games-stats/ and
  *              games-scores/.
@@ -57,7 +59,7 @@
 const path = require('node:path');
 
 const { fetchStats } = require('./download-stats');
-const { fetchScore } = require('./download-scores');
+const { ApiClient, isNoDataError } = require('./core/api-client');
 const { loadConfig } = require('./core/config');
 const { shortWait } = require('./core/wait');
 const { formatDuration, timestamp, toDayString } = require('./core/format');
@@ -70,7 +72,6 @@ const { isValidGame, readGamesFile, writeGamesFile } = require('./core/games');
 // -----------------------------------------------------------------------------
 
 const SEPARATOR = '-'.repeat(50);
-const NO_DATA_ERROR = 'sin datos';
 
 // -----------------------------------------------------------------------------
 // Helpers
@@ -106,45 +107,37 @@ function isAfterToday(value) {
 /**
  * Downloads stats and scores of one game, sequentially.
  * Files already written are kept even if a later step fails.
- * @param {ReturnType<typeof loadConfig>} config
+ * @param {ApiClient} client
  * @param {{slug: string, id: string}} game
  * @param {{requestsSent: number}} state Shared state used to pause between requests.
  */
-async function downloadGame(config, game, state) {
+async function downloadGame(client, game, state) {
   // download-stats.js / download-scores.js expect { title, id }.
   const target = { title: game.slug, id: game.id };
 
   if (state.requestsSent > 0) await shortWait();
   state.requestsSent += 1;
-  const statsData = await fetchStats(config, target.id);
-  await saveStats(target, statsData, config.paths.gamesStats);
+  // client.config always holds the latest key.
+  const statsData = await fetchStats(client.config, target.id);
+  await saveStats(target, statsData, client.config.paths.gamesStats);
   console.log(`Stats saved: ${buildFileName(target.title, target.id)}`);
 
   await shortWait();
   state.requestsSent += 1;
-  const scoreData = await fetchScore(config, target.id);
-  await saveScore(target, scoreData, config.paths.gamesScores);
+  const scoreData = await client.getGameScore(target.id);
+  await saveScore(target, scoreData, client.config.paths.gamesScores);
   console.log(`Score saved: ${buildFileName(target.title, target.id)}`);
 }
 
-/**
- * Returns true when the error is the API "sin datos" (no data) error,
- * meaning the game has not been played yet.
- * @param {Error & {apiError?: unknown}} err
- * @returns {boolean}
- */
-function isNoDataError(err) {
-  return typeof err.apiError === 'string' && err.apiError.trim().toLowerCase() === NO_DATA_ERROR;
-}
 
 /**
  * Processes every game of the data object, mutating it in memory.
- * @param {ReturnType<typeof loadConfig>} config
+ * @param {ApiClient} client
  * @param {{games: object[]}} data
  * @returns {Promise<{skipped: number, notPlayedYet: number, alreadyDownloaded: number, newlyDownloaded: number, notPlayed: number, ignored: number}>}
  */
-async function processGames(config, data) {
-  const { gamesStats: statsDir, gamesScores: scoresDir } = config.paths;
+async function processGames(client, data) {
+  const { gamesStats: statsDir, gamesScores: scoresDir } = client.config.paths;
   const summary = { skipped: 0, notPlayedYet: 0, alreadyDownloaded: 0, newlyDownloaded: 0, notPlayed: 0, ignored: 0 };
   const state = { requestsSent: 0 };
   const total = data.games.length;
@@ -192,7 +185,7 @@ async function processGames(config, data) {
     console.log(`Id: ${game.id}`);
     const started = new Date();
     try {
-      await downloadGame(config, game, state);
+      await downloadGame(client, game, state);
     } catch (err) {
       if (isNoDataError(err)) {
         // Game not played yet: flag it and continue with the next one.
@@ -237,9 +230,11 @@ async function main() {
   const startTime = Date.now();
 
   let config;
+  let client;
   let data;
   try {
     config = loadConfig();
+    client = new ApiClient(config);
     data = await readGamesFile(config);
   } catch (err) {
     console.error(`Error: ${err.message}`);
@@ -253,7 +248,7 @@ async function main() {
   console.log(`Processing ${data.games.length} game(s).`);
 
   try {
-    const summary = await processGames(config, data);
+    const summary = await processGames(client, data);
     // Only persist the games file when everything succeeded.
     await writeGamesFile(config, data);
     console.log(`Games file updated: ${config.paths.gamesFile}`);

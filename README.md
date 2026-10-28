@@ -11,22 +11,22 @@ Scripts read their configuration from `config.json` at the project root
 cp config.example.json config.json
 ```
 
-| Key         | Required | Description                                                        |
-|-------------|----------|--------------------------------------------------------------------|
-| `baseUrl`   | yes      | Base URL of the API                                                |
-| `deviceId`  | yes      | Registered device id, sent as `id_dispositivo`                     |
-| `key`       | yes      | Key sent as `key` (rotating key: `download.js` and `next-games.js` update it after every request) |
-| `outputDir` | no       | Root download directory, relative to the project root (default `.`) |
+| Key         | Required | Description                                                                                 |
+|-------------|----------|---------------------------------------------------------------------------------------------|
+| `baseUrl`   | yes      | Base URL of the API                                                                         |
+| `deviceId`  | yes      | Registered device id, sent as `id_dispositivo`                                              |
+| `key`       | yes      | Key sent as `key` (`api-client.js` rotates the key when a score response returns a new one) |
+| `outputDir` | no       | Root download directory, relative to the project root (default `.`)                         |
 
 Each script writes into its own subfolder of `outputDir`:
 
-| Script               | Output                                        |
-|----------------------|-----------------------------------------------|
-| `download.js`        | `<outputDir>/games/`                          |
-| `download-stats.js`  | `<outputDir>/games-stats/`                    |
-| `download-scores.js` | `<outputDir>/games-scores/`                   |
-| `download-games.js`  | `<outputDir>/games.json`, `games-stats/`, `games-scores/` |
-| `next-games.js`      | `<outputDir>/next-games/<YYYY-MM-DD>.json`    |
+| Script               | Output                                                                          |
+|----------------------|---------------------------------------------------------------------------------|
+| `download.js`        | `<outputDir>/games/`                                                            |
+| `download-stats.js`  | `<outputDir>/games-stats/`                                                      |
+| `download-scores.js` | `<outputDir>/games-scores/`                                                     |
+| `download-games.js`  | `<outputDir>/games.json`, `games-stats/`, `games-scores/`                       |
+| `next-games.js`      | `<outputDir>/next-games/<YYYY-MM-DD>.json`                                      |
 | `scored-points.js`   | `<outputDir>/game-scored-points/<slug>-<id>.json`, `games.json` (`scored` flag) |
 
 ## Usage
@@ -42,12 +42,13 @@ node src/scored-points.js
 
 ## Shared modules
 
-| Module            | Contents                                                                 |
-|-------------------|--------------------------------------------------------------------------|
-| `src/core/config.js`   | `loadConfig()`, `updateConfigKey()`: read/validate/update `config.json`  |
-| `src/core/wait.js`     | `sleep`, `randomDelay`, `waitBeforeNextRequest`, `shortWait()` (100–200 s), `longWait()` (10–15 min) |
-| `src/core/format.js`   | `formatDuration`, `timestamp`                                            |
-| `src/core/validate.js` | `isEmptyValue`, `isPlainObject`, `fileExists`                            |
-| `src/core/games.js`    | `isValidGame`, `readGamesFile`, `writeGamesFile`                         |
-| `src/core/files.js`    | `writeJson`, `buildFileName`, `saveStats`, `saveScore`                   |
+| Module                   | Contents                                                                                             |
+|--------------------------|------------------------------------------------------------------------------------------------------|
+| `src/core/config.js`     | `loadConfig()`, `updateConfigKey()`: read/validate/update `config.json`                              |
+| `src/core/wait.js`       | `sleep`, `randomDelay`, `waitBeforeNextRequest`, `shortWait()` (100–200 s), `longWait()` (10–15 min) |
+| `src/core/format.js`     | `formatDuration`, `timestamp`                                                                        |
+| `src/core/validate.js`   | `isEmptyValue`, `isPlainObject`, `fileExists`                                                        |
+| `src/core/games.js`      | `isValidGame`, `readGamesFile`, `writeGamesFile`                                                     |
+| `src/core/files.js`      | `writeJson`, `buildFileName`, `saveStats`, `saveScore`                                               |
+| `src/core/api-client.js` | `ApiClient` (API calls, validation, key rotation), `ApiError`, `isNoDataError`                       |
 

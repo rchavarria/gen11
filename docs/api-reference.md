@@ -44,6 +44,13 @@ Devuelve `resultado:"correcto"` con dos valores que hay que guardar:
 }
 ```
 
+### Renovar la key
+
+Registrar de nuevo un `uid` ya registrado devuelve `"error": "uuid ya registrado"`,
+pero la respuesta incluye una `key` nueva con la que seguir haciendo llamadas.
+`node src/renew-key.js` lo hace con un `uid` fijo (`REGISTER_UID` en `src/core/api-client.js`)
+y guarda la key en `config.json`.
+
 ## Llamadas útiles
 
 Ir poniéndolas en H2 y describiendo qué hacen y qué parámetros llevan. Poner ejemplos de `curl` y de respuesta JSON.

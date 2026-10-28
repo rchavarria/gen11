@@ -43,6 +43,18 @@ const PATHS = Object.freeze({
   liveStats: '/v2/envivo/estadisticas.ashx',
 });
 
+/**
+ * Fixed, already registered device uid (Android ID: 16 hex chars) used to
+ * renew the key. It is NOT the `id_dispositivo` returned by the API.
+ */
+const REGISTER_UID = 'df9f4513177795c2';
+
+/**
+ * Error returned when registering an already registered uid. It is expected
+ * when renewing the key: the response still contains a new `key`.
+ */
+const ALREADY_REGISTERED_ERROR = 'uuid ya registrado';
+
 const REGISTER_PARAMS = Object.freeze({
   plataforma: 'android',
   tipo_dispositivo: 'mobile',
@@ -119,24 +131,26 @@ class ApiClient {
   // ---------------------------------------------------------------------------
 
   /**
-   * Registers again the device (uid = config.deviceId) to obtain a new key.
-   * The new key is always persisted in config.json. `deviceId` is never
-   * changed: if the received `id_dispositivo` differs from config.deviceId,
-   * an ApiError is thrown and the key is NOT saved.
+   * Registers again the fixed uid (REGISTER_UID) to obtain a new key.
+   * The API answers with the error "uuid ya registrado", which is expected
+   * and accepted, together with a new `key`, persisted in config.json.
+   * `deviceId` is never changed: if the response contains a non-empty
+   * `id_dispositivo` different from config.deviceId, an ApiError is thrown
+   * and the key is NOT saved.
    * @returns {Promise<object>}
    */
   async renewKey() {
     const deviceId = this.#config.deviceId;
     const data = await this.#post(
       PATHS.device,
-      { accion: 'registrar', uid: deviceId, ...REGISTER_PARAMS },
-      { auth: false },
+      { accion: 'registrar', uid: REGISTER_UID, ...REGISTER_PARAMS },
+      { auth: false, allowedError: ALREADY_REGISTERED_ERROR },
     );
 
     if (typeof data.key !== 'string' || data.key.trim() === '') {
       throw new ApiError('Invalid response: "key" field is missing or empty.', { data });
     }
-    if (data.id_dispositivo !== deviceId) {
+    if (!isEmptyValue(data.id_dispositivo) && data.id_dispositivo !== deviceId) {
       throw new ApiError(
         `Invalid response: received id_dispositivo ${JSON.stringify(data.id_dispositivo)} ` +
           `does not match config deviceId ${JSON.stringify(deviceId)}. Key NOT saved.`,
@@ -268,10 +282,10 @@ class ApiClient {
    * validation. Throws on network, HTTP, JSON or API errors.
    * @param {string} apiPath
    * @param {Record<string, string>} params
-   * @param {{auth?: boolean, checkResultado?: boolean}} [options]
+   * @param {{auth?: boolean, checkResultado?: boolean, allowedError?: string}} [options]
    * @returns {Promise<Record<string, any>>}
    */
-  async #post(apiPath, params, { auth = true, checkResultado = true } = {}) {
+  async #post(apiPath, params, { auth = true, checkResultado = true, allowedError } = {}) {
     const url = this.#buildUrl(apiPath);
     const started = Date.now();
     let response;
@@ -311,7 +325,7 @@ class ApiClient {
       throw new Error(`Invalid JSON response: ${err.message}. Body: ${rawBody.slice(0, 500)}`);
     }
 
-    ApiClient.#validateCommon(data, { checkResultado });
+    ApiClient.#validateCommon(data, { checkResultado, allowedError });
     return data;
   }
 
@@ -340,12 +354,23 @@ class ApiClient {
   /**
    * Validates the fields shared by every response. The `resultado` check
    * can be disabled with `checkResultado: false`.
+   * When `allowedError` is given and the response `error` matches it
+   * (case-insensitive, trimmed), the response is accepted and `resultado`
+   * is not checked.
    * @param {unknown} data
-   * @param {{checkResultado?: boolean}} [options]
+   * @param {{checkResultado?: boolean, allowedError?: string}} [options]
    */
-  static #validateCommon(data, { checkResultado = true } = {}) {
+  static #validateCommon(data, { checkResultado = true, allowedError } = {}) {
     if (!isPlainObject(data)) {
       throw new ApiError('Invalid response: expected a JSON object.');
+    }
+
+    if (
+      typeof allowedError === 'string' &&
+      typeof data.error === 'string' &&
+      data.error.trim().toLowerCase() === allowedError.toLowerCase()
+    ) {
+      return;
     }
 
     if ('error' in data && !isEmptyValue(data.error)) {

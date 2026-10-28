@@ -34,6 +34,7 @@ node src/previous-games.js <startPage> <totalPages>
 node src/download-games.js
 node src/next-games.js
 node src/scored-points.js
+node src/renew-key.js
 ```
 
 ## Shared modules

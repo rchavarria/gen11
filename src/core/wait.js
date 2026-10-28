@@ -4,7 +4,7 @@
  * Waiting helpers shared by the download scripts.
  *
  *   shortWait()  random pause between 100 and 200 seconds
- *                (download-stats.js, download-scores.js, download-games.js).
+ *                (download-games.js).
  *   longWait()   random pause between 10 and 15 minutes (download.js).
  */
 

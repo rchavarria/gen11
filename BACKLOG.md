@@ -7,6 +7,7 @@
 
 ## Done list
 
+- 2026-10-28: migrar descargas de stats/marcadores a `ApiClient` y eliminar `download-stats.js` y `download-scores.js` (cubiertos por `download-games.js`)
 - 2026-10-27: filtrar partidos de la temporada pasada, los jugados por los cadetes de ambos años
   - solo se han encontrado los partidos del 2010, categoría oro, fase 1, 3 y playoffs
 - 2026-10-27: mispartidos.ashx: ¿devuelve partidos pasados? ¿O solo los próximos?

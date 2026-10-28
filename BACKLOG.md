@@ -3,10 +3,10 @@
 ## To Do list
 
 - script para renovar la key de la API
-- implementar un "cliente" que agrupe las llamadas a la API, de forma que los scripts puedan usarlo y no tener que repetir la lógica de las llamadas a la API en cada script
 
 ## Done list
 
+- 2026-10-28: implementar un "cliente" que agrupe las llamadas a la API, de forma que los scripts puedan usarlo y no tener que repetir la lógica de las llamadas a la API en cada script
 - 2026-10-28: migrar descargas de stats/marcadores a `ApiClient` y eliminar `download-stats.js` y `download-scores.js` (cubiertos por `download-games.js`)
 - 2026-10-27: filtrar partidos de la temporada pasada, los jugados por los cadetes de ambos años
   - solo se han encontrado los partidos del 2010, categoría oro, fase 1, 3 y playoffs

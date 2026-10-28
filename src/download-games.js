@@ -13,8 +13,8 @@
  *
  * - Both exist:    the game is marked with `downloaded: true`.
  * - Only one:      an error is printed and execution aborts.
- * - None exists:   stats and scores are downloaded (fetchStats from
- *                  download-stats.js, ApiClient.getGameScore from
+ * - None exists:   stats and scores are downloaded
+ *                  (ApiClient.getGameStats/getGameScore from
  *                  src/core/api-client.js, saveStats/saveScore from
  *                  src/core/files.js). On success the game is marked with
  *                  `downloaded: true`. If the API answers "sin datos" (game not
@@ -43,7 +43,7 @@
  * baseUrl      (required) Base URL of the API (e.g. "https://data.source").
  * deviceId     (required) Registered device id, sent as `id_dispositivo`.
  * key          (required) Key sent as `key`. Replaced by a key received in a
- *              score response, if any (handled by ApiClient).
+ *              stats or score response, if any (handled by ApiClient).
  * outputDir    (optional) Root download directory, resolved against the
  *              project root. Contains games.json, games-stats/ and
  *              games-scores/.
@@ -58,7 +58,6 @@
 
 const path = require('node:path');
 
-const { fetchStats } = require('./download-stats');
 const { ApiClient, isNoDataError } = require('./core/api-client');
 const { loadConfig } = require('./core/config');
 const { shortWait } = require('./core/wait');
@@ -112,13 +111,12 @@ function isAfterToday(value) {
  * @param {{requestsSent: number}} state Shared state used to pause between requests.
  */
 async function downloadGame(client, game, state) {
-  // download-stats.js / download-scores.js expect { title, id }.
+  // saveStats / saveScore expect { title, id }.
   const target = { title: game.slug, id: game.id };
 
   if (state.requestsSent > 0) await shortWait();
   state.requestsSent += 1;
-  // client.config always holds the latest key.
-  const statsData = await fetchStats(client.config, target.id);
+  const statsData = await client.getGameStats(target.id);
   await saveStats(target, statsData, client.config.paths.gamesStats);
   console.log(`Stats saved: ${buildFileName(target.title, target.id)}`);
 

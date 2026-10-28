@@ -10,7 +10,9 @@
  *     percent-encoded "=" characters ("%3D").
  *   - Request headers and timeout.
  *   - Network, HTTP and JSON error handling.
- *   - Common response validation (`error` and `resultado` fields).
+ *   - Common response validation (`error` field, and `resultado` except for
+ *     searchGames).
+ *   - searchGames requires a non-empty `key` different from the sent one.
  *   - Key rotation: whenever a response contains a non-empty `key` different
  *     from the current one, it is persisted in config.json and updated in
  *     memory before the data is returned.
@@ -147,6 +149,8 @@ class ApiClient {
 
   /**
    * Searches games by text (club name). Results are paginated 50 by 50.
+   * The `resultado` field is not checked. The response must contain a
+   * non-empty `key` different from the sent one.
    * @param {{text: string, skip?: number}} params
    * @returns {Promise<object>} Response with a `partidos` array.
    */
@@ -158,9 +162,19 @@ class ApiClient {
       throw new TypeError('searchGames: skip must be an integer >= 0.');
     }
 
-    const data = await this.#post(PATHS.search, { accion: 'buscarPartido', texto: text, skip: String(skip) });
+    const data = await this.#post(
+      PATHS.search,
+      { accion: 'buscarPartido', texto: text, skip: String(skip) },
+      { checkResultado: false },
+    );
     if (!Array.isArray(data.partidos)) {
       throw new ApiError('Invalid response: "partidos" field is missing or is not an array.', { data });
+    }
+    if (typeof data.key !== 'string' || data.key.trim() === '') {
+      throw new ApiError('Invalid response: "key" field is missing or empty.', { data });
+    }
+    if (data.key.trim() === this.#config.key) {
+      throw new ApiError('Invalid response: received "key" is the same as the sent one.', { data });
     }
     return this.#finish(data);
   }
@@ -254,10 +268,10 @@ class ApiClient {
    * validation. Throws on network, HTTP, JSON or API errors.
    * @param {string} apiPath
    * @param {Record<string, string>} params
-   * @param {{auth?: boolean}} [options]
+   * @param {{auth?: boolean, checkResultado?: boolean}} [options]
    * @returns {Promise<Record<string, any>>}
    */
-  async #post(apiPath, params, { auth = true } = {}) {
+  async #post(apiPath, params, { auth = true, checkResultado = true } = {}) {
     const url = this.#buildUrl(apiPath);
     const started = Date.now();
     let response;
@@ -297,7 +311,7 @@ class ApiClient {
       throw new Error(`Invalid JSON response: ${err.message}. Body: ${rawBody.slice(0, 500)}`);
     }
 
-    ApiClient.#validateCommon(data);
+    ApiClient.#validateCommon(data, { checkResultado });
     return data;
   }
 
@@ -324,10 +338,12 @@ class ApiClient {
   }
 
   /**
-   * Validates the fields shared by every response.
+   * Validates the fields shared by every response. The `resultado` check
+   * can be disabled with `checkResultado: false`.
    * @param {unknown} data
+   * @param {{checkResultado?: boolean}} [options]
    */
-  static #validateCommon(data) {
+  static #validateCommon(data, { checkResultado = true } = {}) {
     if (!isPlainObject(data)) {
       throw new ApiError('Invalid response: expected a JSON object.');
     }
@@ -336,7 +352,7 @@ class ApiClient {
       throw new ApiError(`API returned an error: ${JSON.stringify(data.error)}`, { apiError: data.error, data });
     }
 
-    if ('resultado' in data && data.resultado !== 'correcto') {
+    if (checkResultado && 'resultado' in data && data.resultado !== 'correcto') {
       throw new ApiError(`API returned an unexpected resultado: ${JSON.stringify(data.resultado)}`, { data });
     }
   }

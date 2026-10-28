@@ -12,6 +12,9 @@
  * so pages are downloaded strictly sequentially (never in parallel), with a
  * random pause between 10 and 15 minutes between requests.
  *
+ * The request, response validation and key rotation are delegated to
+ * ApiClient.searchGames() (src/core/api-client.js).
+ *
  * REQUIREMENTS
  * ------------
  * - Node.js >= 18 (native global `fetch`).
@@ -43,11 +46,8 @@
  *
  * CONFIGURATION VARIABLES (in source)
  * -----------------------------------
- * API_PATH            Endpoint path appended to baseUrl ("/v2/busqueda.ashx").
  * TEXT                Search text, sent as `texto`.
- * ACTION              API action, sent as `accion` (required by the endpoint).
  * PAGE_SIZE           Records per page (always 50).
- * REQUEST_TIMEOUT_MS  Maximum time allowed for a single HTTP request.
  *
  * The pause between requests is defined by longWait() in src/core/wait.js
  * (random, between 10 and 15 minutes). A new random pause is chosen before
@@ -58,27 +58,9 @@
  * 1. startPage   First page to download (integer >= 1).
  * 2. totalPages  Total number of pages to download (integer >= 1).
  *
- * REQUEST FORMAT
- * --------------
- * Method:        POST
- * URL:           baseUrl + API_PATH
- * Content-Type:  application/x-www-form-urlencoded
- * Body:          accion=buscarPartido&texto=<TEXT>&skip=<skip>&id_dispositivo=<deviceId>&key=<key>
- *
+ * PAGINATION
+ * ----------
  * skip = (currentPage - 1) * 50
- *
- * NOTE: `id_dispositivo` and `key` may contain "=" characters. The data source
- * does NOT accept them percent-encoded ("%3D"), so these two values are
- * appended raw at the end of the body. All other parameters are encoded
- * normally with URLSearchParams.
- *
- * RESPONSE FORMAT
- * ---------------
- * {
- *   "partidos": [ ... ],
- *   "key": "NEXT_KEY",
- *   "error": null | "" | "<error message>"
- * }
  *
  * FILE NAMING CONVENTION
  * ----------------------
@@ -91,7 +73,8 @@
  * - Network errors (including request timeouts)
  * - HTTP errors (non-2xx status codes)
  * - Invalid JSON
- * - Invalid response structure (missing `partidos` array or `key`)
+ * - Invalid response structure (missing `partidos` array, or `key` missing
+ *   or equal to the sent one)
  * - Any response whose `error` field contains a non-empty value
  * Invalid command-line arguments or an invalid config.json also abort
  * execution.
@@ -112,22 +95,19 @@
 
 'use strict';
 
-const { loadConfig, updateConfigKey } = require('./core/config');
+const { ApiClient } = require('./core/api-client');
+const { loadConfig } = require('./core/config');
 const { longWait } = require('./core/wait');
 const { formatDuration, timestamp } = require('./core/format');
-const { isEmptyValue } = require('./core/validate');
 const { writeJson } = require('./core/files');
 
 // -----------------------------------------------------------------------------
 // Global configuration
 // -----------------------------------------------------------------------------
 
-const REQUEST_TIMEOUT_MS = 30 * 1000;
 const SEPARATOR = '-'.repeat(50);
 const USAGE = 'Usage: node src/download.js <startPage> <totalPages>';
 
-const API_PATH = '/v2/busqueda.ashx';
-const ACTION = 'buscarPartido';
 const PAGE_SIZE = 50;
 
 const TEXT = 'BALONCESTO ALCOBENDAS';
@@ -140,35 +120,6 @@ const TEXT = 'BALONCESTO ALCOBENDAS';
 // -----------------------------------------------------------------------------
 // Helpers
 // -----------------------------------------------------------------------------
-
-/**
- * Builds the full request URL from config.baseUrl and API_PATH.
- * @param {{baseUrl: string}} config
- * @returns {string}
- */
-function buildUrl(config) {
-  const base = config.baseUrl.replace(/\/+$/, '');
-  const apiPath = API_PATH.startsWith('/') ? API_PATH : `/${API_PATH}`;
-  return `${base}${apiPath}`;
-}
-
-/**
- * Builds the x-www-form-urlencoded request body.
- * `id_dispositivo` and `key` are appended raw because the data source
- * rejects their percent-encoded "=" characters.
- * @param {{deviceId: string}} config
- * @param {number} skip
- * @param {string} key
- * @returns {string}
- */
-function buildRequestBody(config, skip, key) {
-  const params = new URLSearchParams({
-    accion: ACTION,
-    texto: TEXT,
-    skip: String(skip),
-  });
-  return `${params.toString()}&id_dispositivo=${config.deviceId}&key=${key}`;
-}
 
 /**
  * Calculates the skip value for a 1-based page number.
@@ -191,75 +142,6 @@ function buildFileName(pageNumber) {
 // -----------------------------------------------------------------------------
 // Core logic
 // -----------------------------------------------------------------------------
-
-/**
- * Sends the POST request for one page and returns the parsed, validated JSON.
- * Throws on network errors, HTTP errors, invalid JSON, API errors or an
- * invalid response structure.
- * @param {{baseUrl: string, deviceId: string}} config
- * @param {number} skip
- * @param {string} key
- * @returns {Promise<object>}
- */
-async function fetchPage(config, skip, key) {
-  const url = buildUrl(config);
-  let response;
-
-  try {
-    response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: buildRequestBody(config, skip, key),
-      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
-    });
-  } catch (err) {
-    const reason = err && err.cause ? `${err.message} (${err.cause.message || err.cause})` : err.message;
-    throw new Error(`Network error while requesting ${url}: ${reason}`);
-  }
-
-  let rawBody;
-  try {
-    rawBody = await response.text();
-  } catch (err) {
-    throw new Error(`Network error while reading response body: ${err.message}`);
-  }
-
-  if (!response.ok) {
-    throw new Error(`HTTP error ${response.status} ${response.statusText}. Body: ${rawBody.slice(0, 500)}`);
-  }
-
-  let data;
-  try {
-    data = JSON.parse(rawBody);
-  } catch (err) {
-    throw new Error(`Invalid JSON response: ${err.message}. Body: ${rawBody.slice(0, 500)}`);
-  }
-
-  validateResponse(data);
-  return data;
-}
-
-/**
- * Validates the structure and error field of an API response.
- * @param {unknown} data
- */
-function validateResponse(data) {
-  if (data === null || typeof data !== 'object' || Array.isArray(data)) {
-    throw new Error('Invalid response: expected a JSON object.');
-  }
-
-  if ('error' in data && !isEmptyValue(data.error)) {
-    throw new Error(`API returned an error: ${JSON.stringify(data.error)}`);
-  }
-
-  if (!Array.isArray(data.partidos)) {
-    throw new Error('Invalid response: "partidos" field is missing or is not an array.');
-  }
-
-  if (typeof data.key !== 'string' || data.key.trim() === '') {
-    throw new Error('Invalid response: "key" field is missing or empty.');
-  }
-}
 
 /**
  * Saves the complete response of a page to disk.
@@ -300,39 +182,37 @@ function logPage(info) {
 
 /**
  * Downloads `totalPages` pages sequentially starting at `startPage`, using
- * `config.key` as the initial key. After every valid response, the received
- * key is persisted in config.json (see updateConfigKey) before the page file
- * is saved, so the key is never lost if writing the file fails.
- * @param {ReturnType<typeof loadConfig>} initialConfig
+ * the client's current key as the initial key. ApiClient persists every
+ * received key in config.json before returning the data, so the key is never
+ * lost if writing the page file fails.
+ * @param {ApiClient} client
  * @param {number} startPage
  * @param {number} totalPages
  * @returns {Promise<{pagesDownloaded: number, totalMatches: number, lastKey: string}>}
  */
-async function downloadPages(initialConfig, startPage, totalPages) {
-  let config = initialConfig;
-  const stats = { pagesDownloaded: 0, totalMatches: 0, lastKey: config.key };
+async function downloadPages(client, startPage, totalPages) {
+  const stats = { pagesDownloaded: 0, totalMatches: 0, lastKey: client.key };
   const lastPage = startPage + totalPages - 1;
 
   for (let page = startPage; page <= lastPage; page += 1) {
     const skip = calculateSkip(page);
     const started = new Date();
-    const sentKey = config.key;
+    const sentKey = client.key;
 
     let data;
     let finished;
     let fileName;
     try {
-      data = await fetchPage(config, skip, sentKey);
+      data = await client.searchGames({ text: TEXT, skip });
       finished = new Date();
-      config = updateConfigKey(config, data.key);
-      fileName = await savePage(config, page, data);
+      fileName = await savePage(client.config, page, data);
     } catch (err) {
       const failed = finished || new Date();
       console.error(SEPARATOR);
       console.error(`Page: ${page}`);
       console.error(`Skip: ${skip}`);
       console.error(`Sent key: ${sentKey}`);
-      if (data && data.key) console.error(`Received key: ${data.key}`);
+      if (client.key !== sentKey) console.error(`Received key: ${client.key}`);
       console.error(`Started: ${timestamp(started)}`);
       console.error(`Failed: ${timestamp(failed)}`);
       console.error(`Duration: ${formatDuration(failed - started)}`);
@@ -341,7 +221,7 @@ async function downloadPages(initialConfig, startPage, totalPages) {
       throw err;
     }
 
-    const receivedKey = config.key;
+    const receivedKey = client.key;
 
     logPage({
       page,
@@ -418,10 +298,10 @@ function printSummary(stats, elapsedMs) {
 async function main() {
   const startTime = Date.now();
 
-  let config;
+  let client;
   let args;
   try {
-    config = loadConfig();
+    client = new ApiClient(loadConfig());
     args = parseArguments(process.argv.slice(2));
   } catch (err) {
     console.error(`Error: ${err.message}`);
@@ -429,12 +309,11 @@ async function main() {
     return;
   }
 
-  console.log(`Endpoint: ${buildUrl(config)}`);
-  console.log(`Output directory: ${config.paths.games}`);
+  console.log(`Output directory: ${client.config.paths.games}`);
   console.log(`Downloading ${args.totalPages} page(s) starting from page ${args.startPage}.`);
 
   try {
-    const stats = await downloadPages(config, args.startPage, args.totalPages);
+    const stats = await downloadPages(client, args.startPage, args.totalPages);
     printSummary(stats, Date.now() - startTime);
   } catch (err) {
     console.error(`Error: ${err.message}`);

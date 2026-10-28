@@ -11,12 +11,12 @@ Scripts read their configuration from `config.json` at the project root
 cp config.example.json config.json
 ```
 
-| Key         | Required | Description                                                                                          |
-|-------------|----------|------------------------------------------------------------------------------------------------------|
-| `baseUrl`   | yes      | Base URL of the API                                                                                  |
-| `deviceId`  | yes      | Registered device id, sent as `id_dispositivo`                                                       |
-| `key`       | yes      | Key sent as `key` (`api-client.js` rotates the key when a stats or score response returns a new one) |
-| `outputDir` | no       | Root download directory, relative to the project root (default `.`)                                  |
+| Key         | Required | Description                                                                               |
+|-------------|----------|-------------------------------------------------------------------------------------------|
+| `baseUrl`   | yes      | Base URL of the API                                                                       |
+| `deviceId`  | yes      | Registered device id, sent as `id_dispositivo`                                            |
+| `key`       | yes      | Key sent as `key` (`api-client.js` rotates the key whenever a response returns a new one) |
+| `outputDir` | no       | Root download directory, relative to the project root (default `.`)                       |
 
 Each script writes into its own subfolder of `outputDir`:
 

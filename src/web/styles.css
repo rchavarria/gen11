@@ -1,0 +1,138 @@
+:root {
+  --bg: #f4f5f7;
+  --card: #fff;
+  --text: #1d2330;
+  --muted: #6b7280;
+  --accent: #e8590c;
+  --border: #e3e5e8;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; }
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1rem 2rem;
+}
+
+.month-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  background: var(--bg);
+}
+
+.month-nav h1 { margin: 0; font-size: 1.3rem; }
+
+.month-nav button {
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 8px;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.week {
+  scroll-margin-top: 4rem;
+  margin-top: 1rem;
+}
+
+.week__title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+}
+
+.week--current .week__title { color: var(--accent); }
+.week--current .week__title::after { content: ' · esta semana'; }
+
+.week__empty {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  color: var(--muted);
+}
+
+.week__games {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.game-card {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+a.game-card:hover { border-color: var(--accent); }
+
+.game-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.game-card__side {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.2rem 0;
+}
+
+.game-card__side--winner { font-weight: 700; }
+
+.game-card__club { flex: 1; }
+
+.game-card__score {
+  min-width: 2.5rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: 1.1rem;
+}
+
+.club-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.club-logo--placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--border);
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.back-link {
+  display: inline-block;
+  margin: 1rem 0;
+  color: var(--accent);
+  text-decoration: none;
+}

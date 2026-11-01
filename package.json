@@ -1,0 +1,22 @@
+{
+  "name": "gen11",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Gather basket players data born on 2011",
+  "license": "MIT",
+  "scripts": {
+    "build-data": "node src/build-data.js",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.2",
+    "vite": "^8.3.5"
+  }
+}

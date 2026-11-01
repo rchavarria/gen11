@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build-data": "node src/build-data.js",
+    "sync": "node src/sync.js",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"

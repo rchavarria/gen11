@@ -3,6 +3,9 @@
 ## To Do list
 
 - `ApiClient`: renovar la key automáticamente (`renewKey()`) cuando la API responda "Faltan parámetros", y reintentar la petición una vez
+- web: detalle del partido con marcador por cuartos y estadísticas por dorsal (`src/data/games/<slug>.json`)
+- web: gráfica de evolución del marcador, enlace a vídeo, filtro por categoría
+- web: añadir escudos de los clubs en `src/web/public/logos/` y su `logo` en `src/data/clubs.json`
 
 ## Done list
 

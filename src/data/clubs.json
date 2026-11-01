@@ -1,48 +1,48 @@
 [
   {
-    "slug": "alcorcon-basket",
+    "slug": "alcorcon",
     "name": "ALCORCON BASKET",
-    "logo": null,
+    "logo": "alcorcon.png",
     "sourceNames": [
       "ALCORCON BASKET"
     ]
   },
   {
-    "slug": "baloncesto-alcobendas",
+    "slug": "alcobendas",
     "name": "BALONCESTO ALCOBENDAS",
-    "logo": null,
+    "logo": "alcobendas.png",
     "sourceNames": [
       "BALONCESTO ALCOBENDAS"
     ]
   },
   {
-    "slug": "baloncesto-fuenlabrada",
+    "slug": "fuenlabrada",
     "name": "BALONCESTO FUENLABRADA",
-    "logo": null,
+    "logo": "fuenlabrada.jpg",
     "sourceNames": [
       "BALONCESTO FUENLABRADA"
     ]
   },
   {
-    "slug": "basket-torrejon",
+    "slug": "torrejon",
     "name": "BASKET TORREJON CDE",
-    "logo": null,
+    "logo": "torrejon.png",
     "sourceNames": [
       "BASKET TORREJON CDE"
     ]
   },
   {
-    "slug": "distrito-olimpico",
+    "slug": "distrito",
     "name": "DISTRITO OLIMPICO",
-    "logo": null,
+    "logo": "distrito-olimpico.png",
     "sourceNames": [
       "DISTRITO OLIMPICO"
     ]
   },
   {
-    "slug": "elite-international-school",
+    "slug": "sba",
     "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-    "logo": null,
+    "logo": "sba.png",
     "sourceNames": [
       "ELITE INTERNATIONAL SCHOOL C.D.E"
     ]
@@ -50,39 +50,39 @@
   {
     "slug": "estudiantes",
     "name": "ESTUDIANTES",
-    "logo": null,
+    "logo": "estudiantes.png",
     "sourceNames": [
       "ESTUDIANTES"
     ]
   },
   {
-    "slug": "gigantes-youth-sports-academy",
+    "slug": "laso",
     "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
-    "logo": null,
+    "logo": "laso.png",
     "sourceNames": [
       "GIGANTES YOUTH SPORTS ACADEMY C.D.B."
     ]
   },
   {
-    "slug": "las-rozas",
+    "slug": "rozas",
     "name": "LAS ROZAS C.B.",
-    "logo": null,
+    "logo": "rozas.png",
     "sourceNames": [
       "LAS ROZAS C.B."
     ]
   },
   {
-    "slug": "patrocinio-san-jose",
+    "slug": "patrocinio",
     "name": "PATROCINIO SAN JOSE C.B.",
-    "logo": null,
+    "logo": "patrocinio.png",
     "sourceNames": [
       "PATROCINIO SAN JOSE C.B."
     ]
   },
   {
-    "slug": "real-canoe",
+    "slug": "canoe",
     "name": "REAL CANOE N.C.",
-    "logo": null,
+    "logo": "canoe.png",
     "sourceNames": [
       "REAL CANOE N.C."
     ]
@@ -90,15 +90,15 @@
   {
     "slug": "real-madrid",
     "name": "REAL MADRID C.F.",
-    "logo": null,
+    "logo": "real-madrid.png",
     "sourceNames": [
       "REAL MADRID C.F."
     ]
   },
   {
-    "slug": "san-jorge-baloncesto",
+    "slug": "sanjorge",
     "name": "SAN JORGE BALONCESTO",
-    "logo": null,
+    "logo": "san-jorge.jpg",
     "sourceNames": [
       "SAN JORGE BALONCESTO"
     ]
@@ -106,7 +106,7 @@
   {
     "slug": "torrelodones",
     "name": "TORRELODONES A.D.",
-    "logo": null,
+    "logo": "torrelodones.png",
     "sourceNames": [
       "TORRELODONES A.D."
     ]
@@ -114,7 +114,7 @@
   {
     "slug": "zentro",
     "name": "ZENTRO C.B.",
-    "logo": null,
+    "logo": "zentro.png",
     "sourceNames": [
       "ZENTRO C.B."
     ]

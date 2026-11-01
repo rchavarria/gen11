@@ -8,14 +8,14 @@
     "home": {
       "club": "real-madrid",
       "name": "REAL MADRID C.F.",
-      "logo": null,
+      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": 132
     },
     "away": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 37
     }
@@ -27,16 +27,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 84
     },
     "away": {
-      "club": "las-rozas",
+      "club": "rozas",
       "name": "LAS ROZAS C.B.",
-      "logo": null,
+      "logo": "rozas.png",
       "team": "C.B. LAS ROZAS \"A\"",
       "score": 85
     }
@@ -48,16 +48,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "patrocinio-san-jose",
+      "club": "patrocinio",
       "name": "PATROCINIO SAN JOSE C.B.",
-      "logo": null,
+      "logo": "patrocinio.png",
       "team": "PATROCINIO SAN JOSE",
       "score": 84
     },
     "away": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 90
     }
@@ -69,16 +69,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 60
     },
     "away": {
       "club": "estudiantes",
       "name": "ESTUDIANTES",
-      "logo": null,
+      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": 97
     }
@@ -90,16 +90,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "baloncesto-fuenlabrada",
+      "club": "fuenlabrada",
       "name": "BALONCESTO FUENLABRADA",
-      "logo": null,
+      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 86
     },
     "away": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 66
     }
@@ -111,16 +111,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 71
     },
     "away": {
       "club": "real-madrid",
       "name": "REAL MADRID C.F.",
-      "logo": null,
+      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": 108
     }
@@ -132,16 +132,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "las-rozas",
+      "club": "rozas",
       "name": "LAS ROZAS C.B.",
-      "logo": null,
+      "logo": "rozas.png",
       "team": "C.B. LAS ROZAS \"A\"",
       "score": 62
     },
     "away": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 72
     }
@@ -155,14 +155,14 @@
     "home": {
       "club": "estudiantes",
       "name": "ESTUDIANTES",
-      "logo": null,
+      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": 103
     },
     "away": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 52
     }
@@ -174,16 +174,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 73
     },
     "away": {
-      "club": "patrocinio-san-jose",
+      "club": "patrocinio",
       "name": "PATROCINIO SAN JOSE C.B.",
-      "logo": null,
+      "logo": "patrocinio.png",
       "team": "PATROCINIO SAN JOSE",
       "score": 80
     }
@@ -195,16 +195,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 51
     },
     "away": {
-      "club": "baloncesto-fuenlabrada",
+      "club": "fuenlabrada",
       "name": "BALONCESTO FUENLABRADA",
-      "logo": null,
+      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 82
     }
@@ -218,14 +218,14 @@
     "home": {
       "club": "zentro",
       "name": "ZENTRO C.B.",
-      "logo": null,
+      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": 101
     },
     "away": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 46
     }
@@ -237,16 +237,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 68
     },
     "away": {
       "club": "zentro",
       "name": "ZENTRO C.B.",
-      "logo": null,
+      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": 105
     }
@@ -260,14 +260,14 @@
     "home": {
       "club": "torrelodones",
       "name": "TORRELODONES A.D.",
-      "logo": null,
+      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": 77
     },
     "away": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 57
     }
@@ -279,16 +279,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 79
     },
     "away": {
-      "club": "baloncesto-fuenlabrada",
+      "club": "fuenlabrada",
       "name": "BALONCESTO FUENLABRADA",
-      "logo": null,
+      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 117
     }
@@ -300,16 +300,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "baloncesto-fuenlabrada",
+      "club": "fuenlabrada",
       "name": "BALONCESTO FUENLABRADA",
-      "logo": null,
+      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 80
     },
     "away": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 62
     }
@@ -321,16 +321,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 68
     },
     "away": {
-      "club": "distrito-olimpico",
+      "club": "distrito",
       "name": "DISTRITO OLIMPICO",
-      "logo": null,
+      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO EDU SPORTS A",
       "score": 71
     }
@@ -342,16 +342,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "distrito-olimpico",
+      "club": "distrito",
       "name": "DISTRITO OLIMPICO",
-      "logo": null,
+      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO EDU SPORTS A",
       "score": 96
     },
     "away": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 101
     }
@@ -363,16 +363,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 75
     },
     "away": {
       "club": "torrelodones",
       "name": "TORRELODONES A.D.",
-      "logo": null,
+      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": 92
     }
@@ -386,14 +386,14 @@
     "home": {
       "club": "real-madrid",
       "name": "REAL MADRID C.F.",
-      "logo": null,
+      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": 107
     },
     "away": {
-      "club": "elite-international-school",
+      "club": "sba",
       "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": null,
+      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY",
       "score": 51
     }
@@ -405,16 +405,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "distrito-olimpico",
+      "club": "distrito",
       "name": "DISTRITO OLIMPICO",
-      "logo": null,
+      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO A",
       "score": 125
     },
     "away": {
-      "club": "baloncesto-fuenlabrada",
+      "club": "fuenlabrada",
       "name": "BALONCESTO FUENLABRADA",
-      "logo": null,
+      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 68
     }
@@ -426,16 +426,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "real-canoe",
+      "club": "canoe",
       "name": "REAL CANOE N.C.",
-      "logo": null,
+      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": 84
     },
     "away": {
-      "club": "san-jorge-baloncesto",
+      "club": "sanjorge",
       "name": "SAN JORGE BALONCESTO",
-      "logo": null,
+      "logo": "san-jorge.jpg",
       "team": "SANJORGE",
       "score": 71
     }
@@ -447,16 +447,16 @@
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "elite-international-school",
+      "club": "sba",
       "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": null,
+      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY A",
       "score": 119
     },
     "away": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 95
     }
@@ -468,16 +468,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "gigantes-youth-sports-academy",
+      "club": "laso",
       "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
-      "logo": null,
+      "logo": "laso.png",
       "team": "LASO ACADEMY \"A\"",
       "score": 110
     },
     "away": {
-      "club": "alcorcon-basket",
+      "club": "alcorcon",
       "name": "ALCORCON BASKET",
-      "logo": null,
+      "logo": "alcorcon.png",
       "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": 72
     }
@@ -489,16 +489,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "elite-international-school",
+      "club": "sba",
       "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": null,
+      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY",
       "score": 99
     },
     "away": {
-      "club": "real-canoe",
+      "club": "canoe",
       "name": "REAL CANOE N.C.",
-      "logo": null,
+      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": 77
     }
@@ -512,14 +512,14 @@
     "home": {
       "club": "torrelodones",
       "name": "TORRELODONES A.D.",
-      "logo": null,
+      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": 88
     },
     "away": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 81
     }
@@ -531,16 +531,16 @@
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 90
     },
     "away": {
-      "club": "basket-torrejon",
+      "club": "torrejon",
       "name": "BASKET TORREJON CDE",
-      "logo": null,
+      "logo": "torrejon.png",
       "team": "BASKET TORREJON \"A\"",
       "score": 101
     }
@@ -554,14 +554,14 @@
     "home": {
       "club": "estudiantes",
       "name": "ESTUDIANTES",
-      "logo": null,
+      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": 103
     },
     "away": {
-      "club": "alcorcon-basket",
+      "club": "alcorcon",
       "name": "ALCORCON BASKET",
-      "logo": null,
+      "logo": "alcorcon.png",
       "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": 74
     }
@@ -575,14 +575,14 @@
     "home": {
       "club": "estudiantes",
       "name": "ESTUDIANTES",
-      "logo": null,
+      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": 60
     },
     "away": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 52
     }
@@ -596,14 +596,14 @@
     "home": {
       "club": "torrelodones",
       "name": "TORRELODONES A.D.",
-      "logo": null,
+      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": 89
     },
     "away": {
-      "club": "gigantes-youth-sports-academy",
+      "club": "laso",
       "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
-      "logo": null,
+      "logo": "laso.png",
       "team": "LASO ACADEMY \"A\"",
       "score": 93
     }
@@ -615,16 +615,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "elite-international-school",
+      "club": "sba",
       "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": null,
+      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY",
       "score": 106
     },
     "away": {
-      "club": "baloncesto-fuenlabrada",
+      "club": "fuenlabrada",
       "name": "BALONCESTO FUENLABRADA",
-      "logo": null,
+      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 120
     }
@@ -636,16 +636,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "real-canoe",
+      "club": "canoe",
       "name": "REAL CANOE N.C.",
-      "logo": null,
+      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": 45
     },
     "away": {
-      "club": "distrito-olimpico",
+      "club": "distrito",
       "name": "DISTRITO OLIMPICO",
-      "logo": null,
+      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO A",
       "score": 104
     }
@@ -659,14 +659,14 @@
     "home": {
       "club": "real-madrid",
       "name": "REAL MADRID C.F.",
-      "logo": null,
+      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": 91
     },
     "away": {
-      "club": "san-jorge-baloncesto",
+      "club": "sanjorge",
       "name": "SAN JORGE BALONCESTO",
-      "logo": null,
+      "logo": "san-jorge.jpg",
       "team": "SANJORGE",
       "score": 58
     }
@@ -678,16 +678,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 70
     },
     "away": {
-      "club": "alcorcon-basket",
+      "club": "alcorcon",
       "name": "ALCORCON BASKET",
-      "logo": null,
+      "logo": "alcorcon.png",
       "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": 75
     }
@@ -699,16 +699,16 @@
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "san-jorge-baloncesto",
+      "club": "sanjorge",
       "name": "SAN JORGE BALONCESTO",
-      "logo": null,
+      "logo": "san-jorge.jpg",
       "team": "SANJORGE",
       "score": 105
     },
     "away": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 90
     }
@@ -722,14 +722,14 @@
     "home": {
       "club": "zentro",
       "name": "ZENTRO C.B.",
-      "logo": null,
+      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": 92
     },
     "away": {
       "club": "estudiantes",
       "name": "ESTUDIANTES",
-      "logo": null,
+      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": 62
     }
@@ -741,16 +741,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "gigantes-youth-sports-academy",
+      "club": "laso",
       "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
-      "logo": null,
+      "logo": "laso.png",
       "team": "LASO ACADEMY \"A\"",
       "score": 93
     },
     "away": {
       "club": "zentro",
       "name": "ZENTRO C.B.",
-      "logo": null,
+      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": 79
     }
@@ -762,16 +762,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "san-jorge-baloncesto",
+      "club": "sanjorge",
       "name": "SAN JORGE BALONCESTO",
-      "logo": null,
+      "logo": "san-jorge.jpg",
       "team": "SANJORGE",
       "score": 52
     },
     "away": {
-      "club": "distrito-olimpico",
+      "club": "distrito",
       "name": "DISTRITO OLIMPICO",
-      "logo": null,
+      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO A",
       "score": 131
     }
@@ -783,16 +783,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "distrito-olimpico",
+      "club": "distrito",
       "name": "DISTRITO OLIMPICO",
-      "logo": null,
+      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO A",
       "score": null
     },
     "away": {
       "club": "real-madrid",
       "name": "REAL MADRID C.F.",
-      "logo": null,
+      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": null
     }
@@ -804,16 +804,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "real-canoe",
+      "club": "canoe",
       "name": "REAL CANOE N.C.",
-      "logo": null,
+      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": null
     },
     "away": {
-      "club": "baloncesto-fuenlabrada",
+      "club": "fuenlabrada",
       "name": "BALONCESTO FUENLABRADA",
-      "logo": null,
+      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": null
     }
@@ -825,16 +825,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "alcorcon-basket",
+      "club": "alcorcon",
       "name": "ALCORCON BASKET",
-      "logo": null,
+      "logo": "alcorcon.png",
       "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": null
     },
     "away": {
       "club": "zentro",
       "name": "ZENTRO C.B.",
-      "logo": null,
+      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": null
     }
@@ -846,16 +846,16 @@
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "real-canoe",
+      "club": "canoe",
       "name": "REAL CANOE N.C.",
-      "logo": null,
+      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": 94
     },
     "away": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 76
     }
@@ -869,14 +869,14 @@
     "home": {
       "club": "estudiantes",
       "name": "ESTUDIANTES",
-      "logo": null,
+      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": null
     },
     "away": {
       "club": "torrelodones",
       "name": "TORRELODONES A.D.",
-      "logo": null,
+      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": null
     }
@@ -888,16 +888,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     },
     "away": {
-      "club": "gigantes-youth-sports-academy",
+      "club": "laso",
       "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
-      "logo": null,
+      "logo": "laso.png",
       "team": "LASO ACADEMY \"A\"",
       "score": null
     }
@@ -909,16 +909,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "san-jorge-baloncesto",
+      "club": "sanjorge",
       "name": "SAN JORGE BALONCESTO",
-      "logo": null,
+      "logo": "san-jorge.jpg",
       "team": "SANJORGE",
       "score": null
     },
     "away": {
-      "club": "elite-international-school",
+      "club": "sba",
       "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": null,
+      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY",
       "score": null
     }
@@ -930,16 +930,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "elite-international-school",
+      "club": "sba",
       "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": null,
+      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY",
       "score": null
     },
     "away": {
-      "club": "distrito-olimpico",
+      "club": "distrito",
       "name": "DISTRITO OLIMPICO",
-      "logo": null,
+      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO A",
       "score": null
     }
@@ -953,14 +953,14 @@
     "home": {
       "club": "real-madrid",
       "name": "REAL MADRID C.F.",
-      "logo": null,
+      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": null
     },
     "away": {
-      "club": "real-canoe",
+      "club": "canoe",
       "name": "REAL CANOE N.C.",
-      "logo": null,
+      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": null
     }
@@ -974,14 +974,14 @@
     "home": {
       "club": "torrelodones",
       "name": "TORRELODONES A.D.",
-      "logo": null,
+      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": null
     },
     "away": {
-      "club": "alcorcon-basket",
+      "club": "alcorcon",
       "name": "ALCORCON BASKET",
-      "logo": null,
+      "logo": "alcorcon.png",
       "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": null
     }
@@ -993,16 +993,16 @@
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     },
     "away": {
       "club": "real-madrid",
       "name": "REAL MADRID C.F.",
-      "logo": null,
+      "logo": "real-madrid.png",
       "team": "REAL MADRID",
       "score": null
     }
@@ -1014,16 +1014,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "baloncesto-fuenlabrada",
+      "club": "fuenlabrada",
       "name": "BALONCESTO FUENLABRADA",
-      "logo": null,
+      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": null
     },
     "away": {
-      "club": "san-jorge-baloncesto",
+      "club": "sanjorge",
       "name": "SAN JORGE BALONCESTO",
-      "logo": null,
+      "logo": "san-jorge.jpg",
       "team": "SANJORGE",
       "score": null
     }
@@ -1037,14 +1037,14 @@
     "home": {
       "club": "zentro",
       "name": "ZENTRO C.B.",
-      "logo": null,
+      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": null
     },
     "away": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     }
@@ -1058,14 +1058,14 @@
     "home": {
       "club": "zentro",
       "name": "ZENTRO C.B.",
-      "logo": null,
+      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": null
     },
     "away": {
       "club": "torrelodones",
       "name": "TORRELODONES A.D.",
-      "logo": null,
+      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": null
     }
@@ -1077,16 +1077,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "gigantes-youth-sports-academy",
+      "club": "laso",
       "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
-      "logo": null,
+      "logo": "laso.png",
       "team": "LASO ACADEMY \"A\"",
       "score": null
     },
     "away": {
       "club": "estudiantes",
       "name": "ESTUDIANTES",
-      "logo": null,
+      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": null
     }
@@ -1100,14 +1100,14 @@
     "home": {
       "club": "torrelodones",
       "name": "TORRELODONES A.D.",
-      "logo": null,
+      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": null
     },
     "away": {
       "club": "zentro",
       "name": "ZENTRO C.B.",
-      "logo": null,
+      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": null
     }
@@ -1119,16 +1119,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "baloncesto-fuenlabrada",
+      "club": "fuenlabrada",
       "name": "BALONCESTO FUENLABRADA",
-      "logo": null,
+      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": null
     },
     "away": {
-      "club": "distrito-olimpico",
+      "club": "distrito",
       "name": "DISTRITO OLIMPICO",
-      "logo": null,
+      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO A",
       "score": null
     }
@@ -1140,16 +1140,16 @@
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     },
     "away": {
-      "club": "real-canoe",
+      "club": "canoe",
       "name": "REAL CANOE N.C.",
-      "logo": null,
+      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": null
     }
@@ -1161,16 +1161,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "elite-international-school",
+      "club": "sba",
       "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": null,
+      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY",
       "score": null
     },
     "away": {
       "club": "real-madrid",
       "name": "REAL MADRID C.F.",
-      "logo": null,
+      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": null
     }
@@ -1182,16 +1182,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     },
     "away": {
       "club": "estudiantes",
       "name": "ESTUDIANTES",
-      "logo": null,
+      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": null
     }
@@ -1203,16 +1203,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "alcorcon-basket",
+      "club": "alcorcon",
       "name": "ALCORCON BASKET",
-      "logo": null,
+      "logo": "alcorcon.png",
       "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": null
     },
     "away": {
-      "club": "gigantes-youth-sports-academy",
+      "club": "laso",
       "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
-      "logo": null,
+      "logo": "laso.png",
       "team": "LASO ACADEMY \"A\"",
       "score": null
     }
@@ -1224,16 +1224,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "san-jorge-baloncesto",
+      "club": "sanjorge",
       "name": "SAN JORGE BALONCESTO",
-      "logo": null,
+      "logo": "san-jorge.jpg",
       "team": "SANJORGE",
       "score": null
     },
     "away": {
-      "club": "real-canoe",
+      "club": "canoe",
       "name": "REAL CANOE N.C.",
-      "logo": null,
+      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": null
     }
@@ -1245,16 +1245,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "baloncesto-fuenlabrada",
+      "club": "fuenlabrada",
       "name": "BALONCESTO FUENLABRADA",
-      "logo": null,
+      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": null
     },
     "away": {
       "club": "real-madrid",
       "name": "REAL MADRID C.F.",
-      "logo": null,
+      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": null
     }
@@ -1266,16 +1266,16 @@
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     },
     "away": {
-      "club": "elite-international-school",
+      "club": "sba",
       "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": null,
+      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY A",
       "score": null
     }
@@ -1289,14 +1289,14 @@
     "home": {
       "club": "real-madrid",
       "name": "REAL MADRID C.F.",
-      "logo": null,
+      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": null
     },
     "away": {
-      "club": "baloncesto-fuenlabrada",
+      "club": "fuenlabrada",
       "name": "BALONCESTO FUENLABRADA",
-      "logo": null,
+      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": null
     }
@@ -1308,16 +1308,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "distrito-olimpico",
+      "club": "distrito",
       "name": "DISTRITO OLIMPICO",
-      "logo": null,
+      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO A",
       "score": null
     },
     "away": {
-      "club": "san-jorge-baloncesto",
+      "club": "sanjorge",
       "name": "SAN JORGE BALONCESTO",
-      "logo": null,
+      "logo": "san-jorge.jpg",
       "team": "SANJORGE",
       "score": null
     }
@@ -1331,14 +1331,14 @@
     "home": {
       "club": "zentro",
       "name": "ZENTRO C.B.",
-      "logo": null,
+      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": null
     },
     "away": {
-      "club": "gigantes-youth-sports-academy",
+      "club": "laso",
       "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
-      "logo": null,
+      "logo": "laso.png",
       "team": "LASO ACADEMY \"A\"",
       "score": null
     }
@@ -1350,16 +1350,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "alcorcon-basket",
+      "club": "alcorcon",
       "name": "ALCORCON BASKET",
-      "logo": null,
+      "logo": "alcorcon.png",
       "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": null
     },
     "away": {
       "club": "estudiantes",
       "name": "ESTUDIANTES",
-      "logo": null,
+      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": null
     }
@@ -1371,16 +1371,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "real-canoe",
+      "club": "canoe",
       "name": "REAL CANOE N.C.",
-      "logo": null,
+      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": null
     },
     "away": {
-      "club": "elite-international-school",
+      "club": "sba",
       "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": null,
+      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY",
       "score": null
     }
@@ -1392,16 +1392,16 @@
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "basket-torrejon",
+      "club": "torrejon",
       "name": "BASKET TORREJON CDE",
-      "logo": null,
+      "logo": "torrejon.png",
       "team": "BASKET TORREJON \"A\"",
       "score": null
     },
     "away": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     }
@@ -1413,16 +1413,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "baloncesto-alcobendas",
+      "club": "alcobendas",
       "name": "BALONCESTO ALCOBENDAS",
-      "logo": null,
+      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     },
     "away": {
       "club": "torrelodones",
       "name": "TORRELODONES A.D.",
-      "logo": null,
+      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": null
     }
@@ -1434,16 +1434,16 @@
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "distrito-olimpico",
+      "club": "distrito",
       "name": "DISTRITO OLIMPICO",
-      "logo": null,
+      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO A",
       "score": null
     },
     "away": {
-      "club": "real-canoe",
+      "club": "canoe",
       "name": "REAL CANOE N.C.",
-      "logo": null,
+      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": null
     }

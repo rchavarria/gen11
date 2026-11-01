@@ -1,0 +1,57 @@
+import { useEffect, useMemo, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import calendar from '../../data/calendar.json';
+import GameCard from '../components/GameCard.jsx';
+import {
+  formatMonth, formatWeek, monthKey, parseMonthKey, shiftMonth, toIsoDate, weeksOfMonth,
+} from '../lib/dates.js';
+
+export default function CalendarPage() {
+  const [params, setParams] = useSearchParams();
+  const today = toIsoDate(new Date());
+  const month = parseMonthKey(params.get('mes')) ?? parseMonthKey(monthKey(new Date()));
+  const currentWeekRef = useRef(null);
+
+  const weeks = useMemo(() => weeksOfMonth(month).map((week) => ({
+    ...week,
+    isCurrent: week.start <= today && today <= week.end,
+    games: calendar.filter((game) => week.start <= game.date && game.date <= week.end),
+  })), [month.year, month.month, today]);
+
+  useEffect(() => {
+    if (currentWeekRef.current) currentWeekRef.current.scrollIntoView({ block: 'start' });
+    else window.scrollTo(0, 0);
+  }, [month.year, month.month]);
+
+  const goTo = (delta) => {
+    const next = shiftMonth(month, delta);
+    setParams({ mes: monthKey(new Date(next.year, next.month, 1)) });
+  };
+
+  return (
+    <main className="page">
+      <header className="month-nav">
+        <button type="button" onClick={() => goTo(-1)} aria-label="Mes anterior">‹</button>
+        <h1>{formatMonth(month)}</h1>
+        <button type="button" onClick={() => goTo(1)} aria-label="Mes siguiente">›</button>
+      </header>
+
+      {weeks.map((week) => (
+        <section
+          key={week.start}
+          ref={week.isCurrent ? currentWeekRef : undefined}
+          className={`week${week.isCurrent ? ' week--current' : ''}`}
+        >
+          <h2 className="week__title">{formatWeek(week)}</h2>
+          {week.games.length === 0
+            ? <p className="week__empty">Sin partidos</p>
+            : (
+              <div className="week__games">
+                {week.games.map((game) => <GameCard key={game.slug} game={game} />)}
+              </div>
+            )}
+        </section>
+      ))}
+    </main>
+  );
+}

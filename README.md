@@ -27,6 +27,7 @@ Each script writes into its own subfolder of `outputDir`:
 | `next-games.js`      | `<outputDir>/next-games/<YYYY-MM-DD>.json`                                      |
 | `scored-points.js`   | `<outputDir>/game-scored-points/<slug>-<id>.json`, `games.json` (`scored` flag) |
 | `build-data.js`      | `src/data/calendar.json` (anonymised data for the web)                          |
+| `sync.js`            | `<outputDir>/sync-reports/<YYYY-MM-DD>.md` (plus everything above, see below)   |
 
 ## Usage
 
@@ -37,7 +38,14 @@ node src/next-games.js
 node src/scored-points.js
 node src/renew-key.js
 node src/build-data.js
+npm run sync   # same as: node src/sync.js
 ```
+
+`sync.js` runs the whole pipeline: renew key, fetch upcoming games and add the
+new ones to `games.json` (empty `slug`), download stats/scores, generate the
+scored points, rebuild `calendar.json` and write a report. Setting the `slug`
+of new games in `games.json` is a manual step: games without slug are ignored
+and listed in the report as pending until you fill it in and run `sync` again.
 
 ## Web
 
@@ -65,4 +73,8 @@ npm run build        # dist/
 | `src/core/games.js`      | `isValidGame`, `readGamesFile`, `writeGamesFile`                                                     |
 | `src/core/files.js`      | `writeJson`, `buildFileName`, `saveStats`, `saveScore`                                               |
 | `src/core/api-client.js` | `ApiClient` (API calls, validation, key rotation), `ApiError`, `isNoDataError`                       |
+| `src/core/download.js`   | `processGames` (stats + scores download), `downloadGame`, `isAfterToday`                             |
+| `src/core/scored-points.js` | `getScoredPoints`, `generateScoredPoints`, `processGames`                                         |
+| `src/core/next-games.js` | `fetchNextGames`, `mergeNewGames`, `toIsoDate`                                                       |
+| `src/core/report.js`     | `buildReport`, `writeReport` (sync report)                                                           |
 

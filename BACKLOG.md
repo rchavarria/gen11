@@ -6,6 +6,7 @@
 
 ## Done list
 
+- 2026-10-31: web estática (React + Vite) con calendario semanal, `build-data.js` y despliegue en GitHub Pages ([diseño](docs/web-design.md))
 - 2026-10-28: `renew-key.js`: script para renovar la key de la API (registra de nuevo un `uid` fijo ya registrado; la API responde "uuid ya registrado" junto con una key nueva)
 - 2026-10-28: implementar un "cliente" que agrupe las llamadas a la API, de forma que los scripts puedan usarlo y no tener que repetir la lógica de las llamadas a la API en cada script
 - 2026-10-28: migrar descargas de stats/marcadores a `ApiClient` y eliminar `download-stats.js` y `download-scores.js` (cubiertos por `download-games.js`)

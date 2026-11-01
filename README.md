@@ -26,6 +26,7 @@ Each script writes into its own subfolder of `outputDir`:
 | `download-games.js`  | `<outputDir>/games.json`, `games-stats/`, `games-scores/`                       |
 | `next-games.js`      | `<outputDir>/next-games/<YYYY-MM-DD>.json`                                      |
 | `scored-points.js`   | `<outputDir>/game-scored-points/<slug>-<id>.json`, `games.json` (`scored` flag) |
+| `build-data.js`      | `src/data/calendar.json` (anonymised data for the web)                          |
 
 ## Usage
 
@@ -35,7 +36,23 @@ node src/download-games.js
 node src/next-games.js
 node src/scored-points.js
 node src/renew-key.js
+node src/build-data.js
 ```
+
+## Web
+
+Static React + Vite site in `src/web/`, published to GitHub Pages on every push
+to `main` (`.github/workflows/pages.yml`). See [web design](docs/web-design.md).
+
+```bash
+npm install
+npm run build-data   # downloads/ -> src/data/calendar.json (commit it)
+npm run dev          # local server
+npm run build        # dist/
+```
+
+- Clubs (display name, logo, names used by the source): `src/data/clubs.json`
+- Club logos: `src/web/public/logos/<club-slug>.png|jpg`
 
 ## Shared modules
 

@@ -1,12 +1,18 @@
 import { Link } from 'react-router-dom';
 import ClubLogo from './ClubLogo.jsx';
 import { formatDay } from '../lib/dates.js';
+import clubs from '../../data/clubs.json';
+
+const clubsBySlug = new Map(clubs.map((club) => [club.slug, club]));
 
 function Side({ side, winner }) {
+  const club = clubsBySlug.get(side.club);
+  if (!club) throw new Error(`Club no encontrado: ${side.club}`);
+
   return (
     <div className={`game-card__side${winner ? ' game-card__side--winner' : ''}`}>
-      <ClubLogo side={side} />
-      <span className="game-card__club">{side.name}</span>
+      <ClubLogo club={club} />
+      <span className="game-card__club">{club.name}</span>
       <span className="game-card__score">{side.score ?? ''}</span>
     </div>
   );

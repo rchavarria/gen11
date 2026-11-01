@@ -8,7 +8,8 @@
  * - Time, category, clubs and result come from the search results
  *   (<outputDir>/games/**) and next games (<outputDir>/next-games/), matched by
  *   game id. When a game is not found there, the score file is used instead.
- * - Club slugs and logos come from src/data/clubs.json (maintained by hand).
+ * - Club slugs come from src/data/clubs.json (maintained by hand).
+ *   The web resolves club names and logos from that file.
  *
  * Only whitelisted fields are written: no player or coach names, no ids.
  *
@@ -77,7 +78,7 @@ function normalizeName(name) {
  * @returns {Map<string, {slug: string, name: string, logo: string|null}>} source name -> club
  */
 function loadClubs() {
-  const clubs = fs.existsSync(CLUBS_FILE) ? readJson(CLUBS_FILE) : [];
+  const clubs = readJson(CLUBS_FILE);
   const bySourceName = new Map();
   for (const club of clubs) {
     for (const sourceName of club.sourceNames || []) {
@@ -103,19 +104,20 @@ function toScore(value) {
   return Number.isFinite(number) ? number : null;
 }
 
-function buildSide(clubs, unknownClubs, clubSourceName, teamName, score) {
-  const club = clubSourceName ? clubs.get(normalizeName(clubSourceName)) : undefined;
-  if (clubSourceName && !club) unknownClubs.add(clubSourceName.trim());
+function buildSide(clubs, clubSourceName, teamName, score) {
+  const sourceName = clubSourceName || teamName;
+  const club = clubs.get(normalizeName(sourceName));
+  if (!club) {
+    throw new Error(`Club not found in ${CLUBS_FILE}: "${sourceName || '(missing name)'}". Add its source name to sourceNames.`);
+  }
   return {
-    club: club ? club.slug : null,
-    name: club ? club.name : (clubSourceName || teamName || '').trim(),
-    logo: club && club.logo ? club.logo : null,
+    club: club.slug,
     team: (teamName || '').trim(),
     score,
   };
 }
 
-function fromSearch(game, entry, clubs, unknownClubs) {
+function fromSearch(game, entry, clubs) {
   const results = entry.Resultados || {};
   const home = toScore(results.ResultadoLocal);
   const away = toScore(results.ResultadoVisitante);
@@ -125,12 +127,12 @@ function fromSearch(game, entry, clubs, unknownClubs) {
     time: toTime(entry.Hora),
     category: (entry.Categoria || '').trim(),
     played: entry.Estado === 'Terminado' || (home !== null && away !== null),
-    home: buildSide(clubs, unknownClubs, entry.NombreClubLocal, entry.NombreEquipoLocal, home),
-    away: buildSide(clubs, unknownClubs, entry.NombreClubVisitante, entry.NombreEquipoVisitante, away),
+    home: buildSide(clubs, entry.NombreClubLocal, entry.NombreEquipoLocal, home),
+    away: buildSide(clubs, entry.NombreClubVisitante, entry.NombreEquipoVisitante, away),
   };
 }
 
-function fromScoreFile(game, scoreFile, clubs, unknownClubs) {
+function fromScoreFile(game, scoreFile, clubs) {
   const match = scoreFile ? readJson(scoreFile).partido || {} : {};
   const home = toScore(match.tanteo_local);
   const away = toScore(match.tanteo_visitante);
@@ -140,8 +142,8 @@ function fromScoreFile(game, scoreFile, clubs, unknownClubs) {
     time: null,
     category: '',
     played: match.estado_partido === 'FINALIZADO',
-    home: buildSide(clubs, unknownClubs, null, match.local, home),
-    away: buildSide(clubs, unknownClubs, null, match.visitante, away),
+    home: buildSide(clubs, null, match.local, home),
+    away: buildSide(clubs, null, match.visitante, away),
   };
 }
 
@@ -154,13 +156,12 @@ async function main() {
   const scoreIndex = indexScoreFiles(config);
   const clubs = loadClubs();
 
-  const unknownClubs = new Set();
   const unmatched = [];
   const calendar = games.map((game) => {
     const entry = searchIndex.get(game.id);
-    if (entry) return fromSearch(game, entry, clubs, unknownClubs);
+    if (entry) return fromSearch(game, entry, clubs);
     unmatched.push(game.slug);
-    return fromScoreFile(game, scoreIndex.get(game.id), clubs, unknownClubs);
+    return fromScoreFile(game, scoreIndex.get(game.id), clubs);
   });
 
   calendar.sort((a, b) => `${a.date} ${a.time || ''}`.localeCompare(`${b.date} ${b.time || ''}`));
@@ -174,14 +175,12 @@ async function main() {
     for (const slug of skipped) console.warn(`  - ${slug}`);
   }
   if (unmatched.length > 0) {
-    console.warn(`\n${unmatched.length} game(s) not found in search results (no time/category/club):`);
+    console.warn(`\n${unmatched.length} game(s) not found in search results (no time/category):`);
     for (const slug of unmatched) console.warn(`  - ${slug}`);
   }
-  if (unknownClubs.size > 0) {
-    console.warn(`\n${unknownClubs.size} club(s) missing in ${path.relative(process.cwd(), CLUBS_FILE)}:`);
-    for (const name of [...unknownClubs].sort()) console.warn(`  - ${name}`);
-  }
 }
+
+module.exports = { buildSide, fromSearch, fromScoreFile };
 
 if (require.main === module) {
   main().catch((err) => {

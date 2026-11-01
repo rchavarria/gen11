@@ -28,7 +28,10 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   - si un partido no aparece en las búsquedas, usa su marcador (`games-scores/`)
   - omite los partidos que aún no tienen id
   - escribe solo los campos de una lista blanca
-- Se guardan tanto el equipo como el club, aunque solo se muestra el club
+- Cada `home` y `away` guarda `club` (slug de un club existente), `team` y `score`.
+  La web obtiene el nombre y el escudo desde `clubs.json`, sin duplicarlos en el calendario.
+  El generador falla antes de escribir si no puede resolver un club; su nombre de la
+  fuente (o el equipo, si solo hay marcador) debe estar en `sourceNames`.
 - Slug del partido: lo añades a mano en `games.json` antes de procesarlo;
   es el id estable (el `id_partido` de la fuente caduca)
 - `src/data/clubs.json` (a mano): `slug`, `name` (el que se muestra), `logo` (fichero en

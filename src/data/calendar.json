@@ -7,15 +7,11 @@
     "played": true,
     "home": {
       "club": "real-madrid",
-      "name": "REAL MADRID C.F.",
-      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": 132
     },
     "away": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 37
     }
@@ -28,15 +24,11 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 84
     },
     "away": {
       "club": "rozas",
-      "name": "LAS ROZAS C.B.",
-      "logo": "rozas.png",
       "team": "C.B. LAS ROZAS \"A\"",
       "score": 85
     }
@@ -49,15 +41,11 @@
     "played": true,
     "home": {
       "club": "patrocinio",
-      "name": "PATROCINIO SAN JOSE C.B.",
-      "logo": "patrocinio.png",
       "team": "PATROCINIO SAN JOSE",
       "score": 84
     },
     "away": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 90
     }
@@ -70,15 +58,11 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 60
     },
     "away": {
       "club": "estudiantes",
-      "name": "ESTUDIANTES",
-      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": 97
     }
@@ -91,15 +75,11 @@
     "played": true,
     "home": {
       "club": "fuenlabrada",
-      "name": "BALONCESTO FUENLABRADA",
-      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 86
     },
     "away": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 66
     }
@@ -112,15 +92,11 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 71
     },
     "away": {
       "club": "real-madrid",
-      "name": "REAL MADRID C.F.",
-      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": 108
     }
@@ -133,15 +109,11 @@
     "played": true,
     "home": {
       "club": "rozas",
-      "name": "LAS ROZAS C.B.",
-      "logo": "rozas.png",
       "team": "C.B. LAS ROZAS \"A\"",
       "score": 62
     },
     "away": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 72
     }
@@ -154,15 +126,11 @@
     "played": true,
     "home": {
       "club": "estudiantes",
-      "name": "ESTUDIANTES",
-      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": 103
     },
     "away": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 52
     }
@@ -175,15 +143,11 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 73
     },
     "away": {
       "club": "patrocinio",
-      "name": "PATROCINIO SAN JOSE C.B.",
-      "logo": "patrocinio.png",
       "team": "PATROCINIO SAN JOSE",
       "score": 80
     }
@@ -196,15 +160,11 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 51
     },
     "away": {
       "club": "fuenlabrada",
-      "name": "BALONCESTO FUENLABRADA",
-      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 82
     }
@@ -217,15 +177,11 @@
     "played": true,
     "home": {
       "club": "zentro",
-      "name": "ZENTRO C.B.",
-      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": 101
     },
     "away": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 46
     }
@@ -238,15 +194,11 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 68
     },
     "away": {
       "club": "zentro",
-      "name": "ZENTRO C.B.",
-      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": 105
     }
@@ -259,15 +211,11 @@
     "played": true,
     "home": {
       "club": "torrelodones",
-      "name": "TORRELODONES A.D.",
-      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": 77
     },
     "away": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 57
     }
@@ -280,15 +228,11 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 79
     },
     "away": {
       "club": "fuenlabrada",
-      "name": "BALONCESTO FUENLABRADA",
-      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 117
     }
@@ -301,15 +245,11 @@
     "played": true,
     "home": {
       "club": "fuenlabrada",
-      "name": "BALONCESTO FUENLABRADA",
-      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 80
     },
     "away": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 62
     }
@@ -322,15 +262,11 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 68
     },
     "away": {
       "club": "distrito",
-      "name": "DISTRITO OLIMPICO",
-      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO EDU SPORTS A",
       "score": 71
     }
@@ -343,15 +279,11 @@
     "played": true,
     "home": {
       "club": "distrito",
-      "name": "DISTRITO OLIMPICO",
-      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO EDU SPORTS A",
       "score": 96
     },
     "away": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 101
     }
@@ -364,15 +296,11 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 75
     },
     "away": {
       "club": "torrelodones",
-      "name": "TORRELODONES A.D.",
-      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": 92
     }
@@ -385,15 +313,11 @@
     "played": true,
     "home": {
       "club": "real-madrid",
-      "name": "REAL MADRID C.F.",
-      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": 107
     },
     "away": {
       "club": "sba",
-      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY",
       "score": 51
     }
@@ -406,15 +330,11 @@
     "played": true,
     "home": {
       "club": "distrito",
-      "name": "DISTRITO OLIMPICO",
-      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO A",
       "score": 125
     },
     "away": {
       "club": "fuenlabrada",
-      "name": "BALONCESTO FUENLABRADA",
-      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 68
     }
@@ -427,15 +347,11 @@
     "played": true,
     "home": {
       "club": "canoe",
-      "name": "REAL CANOE N.C.",
-      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": 84
     },
     "away": {
       "club": "sanjorge",
-      "name": "SAN JORGE BALONCESTO",
-      "logo": "san-jorge.jpg",
       "team": "SANJORGE",
       "score": 71
     }
@@ -448,15 +364,11 @@
     "played": true,
     "home": {
       "club": "sba",
-      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY A",
       "score": 119
     },
     "away": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 95
     }
@@ -469,15 +381,11 @@
     "played": true,
     "home": {
       "club": "laso",
-      "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
-      "logo": "laso.png",
       "team": "LASO ACADEMY \"A\"",
       "score": 110
     },
     "away": {
       "club": "alcorcon",
-      "name": "ALCORCON BASKET",
-      "logo": "alcorcon.png",
       "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": 72
     }
@@ -490,15 +398,11 @@
     "played": true,
     "home": {
       "club": "sba",
-      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY",
       "score": 99
     },
     "away": {
       "club": "canoe",
-      "name": "REAL CANOE N.C.",
-      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": 77
     }
@@ -511,15 +415,11 @@
     "played": true,
     "home": {
       "club": "torrelodones",
-      "name": "TORRELODONES A.D.",
-      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": 88
     },
     "away": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 81
     }
@@ -532,15 +432,11 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 90
     },
     "away": {
       "club": "torrejon",
-      "name": "BASKET TORREJON CDE",
-      "logo": "torrejon.png",
       "team": "BASKET TORREJON \"A\"",
       "score": 101
     }
@@ -553,15 +449,11 @@
     "played": true,
     "home": {
       "club": "estudiantes",
-      "name": "ESTUDIANTES",
-      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": 103
     },
     "away": {
       "club": "alcorcon",
-      "name": "ALCORCON BASKET",
-      "logo": "alcorcon.png",
       "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": 74
     }
@@ -574,15 +466,11 @@
     "played": true,
     "home": {
       "club": "estudiantes",
-      "name": "ESTUDIANTES",
-      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": 60
     },
     "away": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 52
     }
@@ -595,15 +483,11 @@
     "played": true,
     "home": {
       "club": "torrelodones",
-      "name": "TORRELODONES A.D.",
-      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": 89
     },
     "away": {
       "club": "laso",
-      "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
-      "logo": "laso.png",
       "team": "LASO ACADEMY \"A\"",
       "score": 93
     }
@@ -616,15 +500,11 @@
     "played": true,
     "home": {
       "club": "sba",
-      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY",
       "score": 106
     },
     "away": {
       "club": "fuenlabrada",
-      "name": "BALONCESTO FUENLABRADA",
-      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 120
     }
@@ -637,15 +517,11 @@
     "played": true,
     "home": {
       "club": "canoe",
-      "name": "REAL CANOE N.C.",
-      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": 45
     },
     "away": {
       "club": "distrito",
-      "name": "DISTRITO OLIMPICO",
-      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO A",
       "score": 104
     }
@@ -658,15 +534,11 @@
     "played": true,
     "home": {
       "club": "real-madrid",
-      "name": "REAL MADRID C.F.",
-      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": 91
     },
     "away": {
       "club": "sanjorge",
-      "name": "SAN JORGE BALONCESTO",
-      "logo": "san-jorge.jpg",
       "team": "SANJORGE",
       "score": 58
     }
@@ -679,15 +551,11 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 70
     },
     "away": {
       "club": "alcorcon",
-      "name": "ALCORCON BASKET",
-      "logo": "alcorcon.png",
       "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": 75
     }
@@ -700,15 +568,11 @@
     "played": true,
     "home": {
       "club": "sanjorge",
-      "name": "SAN JORGE BALONCESTO",
-      "logo": "san-jorge.jpg",
       "team": "SANJORGE",
       "score": 105
     },
     "away": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 90
     }
@@ -721,15 +585,11 @@
     "played": true,
     "home": {
       "club": "zentro",
-      "name": "ZENTRO C.B.",
-      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": 92
     },
     "away": {
       "club": "estudiantes",
-      "name": "ESTUDIANTES",
-      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": 62
     }
@@ -742,15 +602,11 @@
     "played": true,
     "home": {
       "club": "laso",
-      "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
-      "logo": "laso.png",
       "team": "LASO ACADEMY \"A\"",
       "score": 93
     },
     "away": {
       "club": "zentro",
-      "name": "ZENTRO C.B.",
-      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": 79
     }
@@ -763,15 +619,11 @@
     "played": true,
     "home": {
       "club": "sanjorge",
-      "name": "SAN JORGE BALONCESTO",
-      "logo": "san-jorge.jpg",
       "team": "SANJORGE",
       "score": 52
     },
     "away": {
       "club": "distrito",
-      "name": "DISTRITO OLIMPICO",
-      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO A",
       "score": 131
     }
@@ -784,15 +636,11 @@
     "played": false,
     "home": {
       "club": "distrito",
-      "name": "DISTRITO OLIMPICO",
-      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO A",
       "score": null
     },
     "away": {
       "club": "real-madrid",
-      "name": "REAL MADRID C.F.",
-      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": null
     }
@@ -805,15 +653,11 @@
     "played": false,
     "home": {
       "club": "canoe",
-      "name": "REAL CANOE N.C.",
-      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": null
     },
     "away": {
       "club": "fuenlabrada",
-      "name": "BALONCESTO FUENLABRADA",
-      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": null
     }
@@ -826,15 +670,11 @@
     "played": false,
     "home": {
       "club": "alcorcon",
-      "name": "ALCORCON BASKET",
-      "logo": "alcorcon.png",
       "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": null
     },
     "away": {
       "club": "zentro",
-      "name": "ZENTRO C.B.",
-      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": null
     }
@@ -847,15 +687,11 @@
     "played": true,
     "home": {
       "club": "canoe",
-      "name": "REAL CANOE N.C.",
-      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": 94
     },
     "away": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 76
     }
@@ -868,15 +704,11 @@
     "played": false,
     "home": {
       "club": "estudiantes",
-      "name": "ESTUDIANTES",
-      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": null
     },
     "away": {
       "club": "torrelodones",
-      "name": "TORRELODONES A.D.",
-      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": null
     }
@@ -889,15 +721,11 @@
     "played": false,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     },
     "away": {
       "club": "laso",
-      "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
-      "logo": "laso.png",
       "team": "LASO ACADEMY \"A\"",
       "score": null
     }
@@ -910,15 +738,11 @@
     "played": false,
     "home": {
       "club": "sanjorge",
-      "name": "SAN JORGE BALONCESTO",
-      "logo": "san-jorge.jpg",
       "team": "SANJORGE",
       "score": null
     },
     "away": {
       "club": "sba",
-      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY",
       "score": null
     }
@@ -931,15 +755,11 @@
     "played": false,
     "home": {
       "club": "sba",
-      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY",
       "score": null
     },
     "away": {
       "club": "distrito",
-      "name": "DISTRITO OLIMPICO",
-      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO A",
       "score": null
     }
@@ -952,15 +772,11 @@
     "played": false,
     "home": {
       "club": "real-madrid",
-      "name": "REAL MADRID C.F.",
-      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": null
     },
     "away": {
       "club": "canoe",
-      "name": "REAL CANOE N.C.",
-      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": null
     }
@@ -973,15 +789,11 @@
     "played": false,
     "home": {
       "club": "torrelodones",
-      "name": "TORRELODONES A.D.",
-      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": null
     },
     "away": {
       "club": "alcorcon",
-      "name": "ALCORCON BASKET",
-      "logo": "alcorcon.png",
       "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": null
     }
@@ -994,15 +806,11 @@
     "played": false,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     },
     "away": {
       "club": "real-madrid",
-      "name": "REAL MADRID C.F.",
-      "logo": "real-madrid.png",
       "team": "REAL MADRID",
       "score": null
     }
@@ -1015,15 +823,11 @@
     "played": false,
     "home": {
       "club": "fuenlabrada",
-      "name": "BALONCESTO FUENLABRADA",
-      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": null
     },
     "away": {
       "club": "sanjorge",
-      "name": "SAN JORGE BALONCESTO",
-      "logo": "san-jorge.jpg",
       "team": "SANJORGE",
       "score": null
     }
@@ -1036,15 +840,11 @@
     "played": false,
     "home": {
       "club": "zentro",
-      "name": "ZENTRO C.B.",
-      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": null
     },
     "away": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     }
@@ -1057,15 +857,11 @@
     "played": false,
     "home": {
       "club": "zentro",
-      "name": "ZENTRO C.B.",
-      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": null
     },
     "away": {
       "club": "torrelodones",
-      "name": "TORRELODONES A.D.",
-      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": null
     }
@@ -1078,15 +874,11 @@
     "played": false,
     "home": {
       "club": "laso",
-      "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
-      "logo": "laso.png",
       "team": "LASO ACADEMY \"A\"",
       "score": null
     },
     "away": {
       "club": "estudiantes",
-      "name": "ESTUDIANTES",
-      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": null
     }
@@ -1099,15 +891,11 @@
     "played": false,
     "home": {
       "club": "torrelodones",
-      "name": "TORRELODONES A.D.",
-      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": null
     },
     "away": {
       "club": "zentro",
-      "name": "ZENTRO C.B.",
-      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": null
     }
@@ -1120,15 +908,11 @@
     "played": false,
     "home": {
       "club": "fuenlabrada",
-      "name": "BALONCESTO FUENLABRADA",
-      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": null
     },
     "away": {
       "club": "distrito",
-      "name": "DISTRITO OLIMPICO",
-      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO A",
       "score": null
     }
@@ -1141,15 +925,11 @@
     "played": false,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     },
     "away": {
       "club": "canoe",
-      "name": "REAL CANOE N.C.",
-      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": null
     }
@@ -1162,15 +942,11 @@
     "played": false,
     "home": {
       "club": "sba",
-      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY",
       "score": null
     },
     "away": {
       "club": "real-madrid",
-      "name": "REAL MADRID C.F.",
-      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": null
     }
@@ -1183,15 +959,11 @@
     "played": false,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     },
     "away": {
       "club": "estudiantes",
-      "name": "ESTUDIANTES",
-      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": null
     }
@@ -1204,15 +976,11 @@
     "played": false,
     "home": {
       "club": "alcorcon",
-      "name": "ALCORCON BASKET",
-      "logo": "alcorcon.png",
       "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": null
     },
     "away": {
       "club": "laso",
-      "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
-      "logo": "laso.png",
       "team": "LASO ACADEMY \"A\"",
       "score": null
     }
@@ -1225,15 +993,11 @@
     "played": false,
     "home": {
       "club": "sanjorge",
-      "name": "SAN JORGE BALONCESTO",
-      "logo": "san-jorge.jpg",
       "team": "SANJORGE",
       "score": null
     },
     "away": {
       "club": "canoe",
-      "name": "REAL CANOE N.C.",
-      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": null
     }
@@ -1246,15 +1010,11 @@
     "played": false,
     "home": {
       "club": "fuenlabrada",
-      "name": "BALONCESTO FUENLABRADA",
-      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": null
     },
     "away": {
       "club": "real-madrid",
-      "name": "REAL MADRID C.F.",
-      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": null
     }
@@ -1267,15 +1027,11 @@
     "played": false,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     },
     "away": {
       "club": "sba",
-      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY A",
       "score": null
     }
@@ -1288,15 +1044,11 @@
     "played": false,
     "home": {
       "club": "real-madrid",
-      "name": "REAL MADRID C.F.",
-      "logo": "real-madrid.png",
       "team": "REAL MADRID ´A´",
       "score": null
     },
     "away": {
       "club": "fuenlabrada",
-      "name": "BALONCESTO FUENLABRADA",
-      "logo": "fuenlabrada.jpg",
       "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": null
     }
@@ -1309,15 +1061,11 @@
     "played": false,
     "home": {
       "club": "distrito",
-      "name": "DISTRITO OLIMPICO",
-      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO A",
       "score": null
     },
     "away": {
       "club": "sanjorge",
-      "name": "SAN JORGE BALONCESTO",
-      "logo": "san-jorge.jpg",
       "team": "SANJORGE",
       "score": null
     }
@@ -1330,15 +1078,11 @@
     "played": false,
     "home": {
       "club": "zentro",
-      "name": "ZENTRO C.B.",
-      "logo": "zentro.png",
       "team": "ZENTRO BASKET MADRID",
       "score": null
     },
     "away": {
       "club": "laso",
-      "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
-      "logo": "laso.png",
       "team": "LASO ACADEMY \"A\"",
       "score": null
     }
@@ -1351,15 +1095,11 @@
     "played": false,
     "home": {
       "club": "alcorcon",
-      "name": "ALCORCON BASKET",
-      "logo": "alcorcon.png",
       "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": null
     },
     "away": {
       "club": "estudiantes",
-      "name": "ESTUDIANTES",
-      "logo": "estudiantes.png",
       "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": null
     }
@@ -1372,15 +1112,11 @@
     "played": false,
     "home": {
       "club": "canoe",
-      "name": "REAL CANOE N.C.",
-      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": null
     },
     "away": {
       "club": "sba",
-      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-      "logo": "sba.png",
       "team": "SPANISH BASKETBALL ACADEMY",
       "score": null
     }
@@ -1393,15 +1129,11 @@
     "played": false,
     "home": {
       "club": "torrejon",
-      "name": "BASKET TORREJON CDE",
-      "logo": "torrejon.png",
       "team": "BASKET TORREJON \"A\"",
       "score": null
     },
     "away": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     }
@@ -1414,15 +1146,11 @@
     "played": false,
     "home": {
       "club": "alcobendas",
-      "name": "BALONCESTO ALCOBENDAS",
-      "logo": "alcobendas.png",
       "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     },
     "away": {
       "club": "torrelodones",
-      "name": "TORRELODONES A.D.",
-      "logo": "torrelodones.png",
       "team": "JANSEN BT \"A\"",
       "score": null
     }
@@ -1435,15 +1163,11 @@
     "played": false,
     "home": {
       "club": "distrito",
-      "name": "DISTRITO OLIMPICO",
-      "logo": "distrito-olimpico.png",
       "team": "DISTRITO OLIMPICO A",
       "score": null
     },
     "away": {
       "club": "canoe",
-      "name": "REAL CANOE N.C.",
-      "logo": "canoe.png",
       "team": "REAL CANOE N.C. \"A\"",
       "score": null
     }

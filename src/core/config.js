@@ -20,6 +20,7 @@
  *   paths.gamesFile    <outputDir>/games.json    (download-games.js)
  *   paths.nextGames    <outputDir>/next-games    (next-games.js)
  *   paths.gameScoredPoints <outputDir>/game-scored-points (scored-points.js)
+ *   paths.syncReports  <outputDir>/sync-reports  (sync.js)
  */
 
 const fs = require('node:fs');
@@ -74,7 +75,7 @@ function readRawConfig() {
  *   deviceId: string,
  *   key: string,
  *   outputDir: string,
- *   paths: Readonly<{games: string, gamesStats: string, gamesScores: string, gamesFile: string, nextGames: string, gameScoredPoints: string}>
+ *   paths: Readonly<{games: string, gamesStats: string, gamesScores: string, gamesFile: string, nextGames: string, gameScoredPoints: string, syncReports: string}>
  * }>}
  */
 function loadConfig() {
@@ -114,6 +115,7 @@ function loadConfig() {
       gamesFile: path.join(outputDir, 'games.json'),
       nextGames: path.join(outputDir, 'next-games'),
       gameScoredPoints: path.join(outputDir, 'game-scored-points'),
+      syncReports: path.join(outputDir, 'sync-reports'),
     }),
   });
 }

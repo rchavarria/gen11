@@ -34,7 +34,8 @@
  *
  * CONFIGURATION VARIABLES (in source)
  * -----------------------------------
- * DAYS                Number of days ahead, sent as `dias` (fixed: 21).
+ * DAYS                Number of days ahead, sent as `dias` (fixed: 21,
+ *                     defined in src/core/next-games.js).
  *
  * FILE NAMING CONVENTION
  * ----------------------
@@ -58,14 +59,13 @@
 const { ApiClient } = require('./core/api-client');
 const { loadConfig } = require('./core/config');
 const { formatDuration, timestamp, toDayString } = require('./core/format');
-const { writeJson } = require('./core/files');
+const { DAYS, fetchNextGames } = require('./core/next-games');
 
 // -----------------------------------------------------------------------------
 // Global configuration
 // -----------------------------------------------------------------------------
 
 const SEPARATOR = '-'.repeat(50);
-const DAYS = 21;
 
 // -----------------------------------------------------------------------------
 // Core logic
@@ -111,8 +111,7 @@ async function main() {
   let data;
   try {
     // ApiClient persists the rotated key before returning the data.
-    data = await client.getNextGames({ days: DAYS });
-    await writeJson(client.config.paths.nextGames, fileName, data);
+    ({ data } = await fetchNextGames(client, { days: DAYS, date: started }));
   } catch (err) {
     const failed = new Date();
     console.error(SEPARATOR);

@@ -147,9 +147,7 @@ function fromScoreFile(game, scoreFile, clubs) {
   };
 }
 
-async function main() {
-  const config = loadConfig();
-  const allGames = (await readGamesFile(config)).games;
+async function buildCalendar(config) {  const allGames = (await readGamesFile(config)).games;
   const games = allGames.filter(isValidGame);
   const skipped = allGames.filter((game) => !isValidGame(game)).map((game) => game.slug || '(no slug)');
   const searchIndex = indexSearchResults(config);
@@ -178,12 +176,13 @@ async function main() {
     console.warn(`\n${unmatched.length} game(s) not found in search results (no time/category):`);
     for (const slug of unmatched) console.warn(`  - ${slug}`);
   }
+  return { count: calendar.length, skipped, unmatched };
 }
 
-module.exports = { buildSide, fromSearch, fromScoreFile };
+module.exports = { buildSide, fromSearch, fromScoreFile, buildCalendar };
 
 if (require.main === module) {
-  main().catch((err) => {
+  Promise.resolve().then(() => buildCalendar(loadConfig())).catch((err) => {
     console.error(err.message);
     process.exitCode = 1;
   });

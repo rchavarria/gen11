@@ -32,6 +32,8 @@
  * (shortWait() in src/core/wait.js: between 100 and 200 seconds).
  * <outputDir>/games.json is rewritten only when the whole process succeeds.
  *
+ * The download logic lives in src/core/download.js (shared with sync.js).
+ *
  * REQUIREMENTS
  * ------------
  * - Node.js >= 18 (native global `fetch`).
@@ -56,173 +58,10 @@
 
 'use strict';
 
-const path = require('node:path');
-
-const { ApiClient, isNoDataError } = require('./core/api-client');
+const { ApiClient } = require('./core/api-client');
 const { loadConfig } = require('./core/config');
-const { shortWait } = require('./core/wait');
-const { formatDuration, timestamp, toDayString } = require('./core/format');
-const { fileExists } = require('./core/validate');
-const { buildFileName, saveStats, saveScore } = require('./core/files');
-const { isValidGame, readGamesFile, writeGamesFile } = require('./core/games');
-
-// -----------------------------------------------------------------------------
-// Global configuration
-// -----------------------------------------------------------------------------
-
-const SEPARATOR = '-'.repeat(50);
-
-// -----------------------------------------------------------------------------
-// Helpers
-// -----------------------------------------------------------------------------
-
-
-/**
- * Returns true when `value` is a valid date whose day is strictly after today.
- * Accepts "YYYY-MM-DD" or any ISO 8601 date-time. Missing or invalid values
- * return false.
- * @param {unknown} value
- * @returns {boolean}
- */
-function isAfterToday(value) {
-  if (typeof value !== 'string' || value.trim() === '') return false;
-  const text = value.trim();
-  let day;
-  if (/^\d{4}-\d{2}-\d{2}$/.test(text)) {
-    day = text;
-  } else {
-    const parsed = new Date(text);
-    if (Number.isNaN(parsed.getTime())) return false;
-    day = toDayString(parsed);
-  }
-  return day > toDayString(new Date());
-}
-
-// -----------------------------------------------------------------------------
-// Core logic
-// -----------------------------------------------------------------------------
-
-
-/**
- * Downloads stats and scores of one game, sequentially.
- * Files already written are kept even if a later step fails.
- * @param {ApiClient} client
- * @param {{slug: string, id: string}} game
- * @param {{requestsSent: number}} state Shared state used to pause between requests.
- */
-async function downloadGame(client, game, state) {
-  // saveStats / saveScore expect { title, id }.
-  const target = { title: game.slug, id: game.id };
-
-  if (state.requestsSent > 0) await shortWait();
-  state.requestsSent += 1;
-  const statsData = await client.getGameStats(target.id);
-  await saveStats(target, statsData, client.config.paths.gamesStats);
-  console.log(`Stats saved: ${buildFileName(target.title, target.id)}`);
-
-  await shortWait();
-  state.requestsSent += 1;
-  const scoreData = await client.getGameScore(target.id);
-  await saveScore(target, scoreData, client.config.paths.gamesScores);
-  console.log(`Score saved: ${buildFileName(target.title, target.id)}`);
-}
-
-
-/**
- * Processes every game of the data object, mutating it in memory.
- * @param {ApiClient} client
- * @param {{games: object[]}} data
- * @returns {Promise<{skipped: number, notPlayedYet: number, alreadyDownloaded: number, newlyDownloaded: number, notPlayed: number, ignored: number}>}
- */
-async function processGames(client, data) {
-  const { gamesStats: statsDir, gamesScores: scoresDir } = client.config.paths;
-  const summary = { skipped: 0, notPlayedYet: 0, alreadyDownloaded: 0, newlyDownloaded: 0, notPlayed: 0, ignored: 0 };
-  const state = { requestsSent: 0 };
-  const total = data.games.length;
-
-  for (let i = 0; i < total; i += 1) {
-    const game = data.games[i];
-
-    if (!isValidGame(game)) {
-      summary.ignored += 1;
-      continue;
-    }
-
-    // Games already marked as downloaded are skipped without any check.
-    if (game.downloaded === true) {
-      summary.skipped += 1;
-      continue;
-    }
-
-    // Games not played yet and scheduled after today are skipped too.
-    if (game.played === false && isAfterToday(game.date)) {
-      summary.notPlayedYet += 1;
-      continue;
-    }
-
-    const fileName = buildFileName(game.slug, game.id);
-    const hasStats = await fileExists(path.join(statsDir, fileName));
-    const hasScore = await fileExists(path.join(scoresDir, fileName));
-
-    if (hasStats && hasScore) {
-      game.downloaded = true;
-      summary.alreadyDownloaded += 1;
-      continue;
-    }
-
-    if (hasStats !== hasScore) {
-      const missing = hasStats ? scoresDir : statsDir;
-      const error = new Error(`Game "${game.slug}" is only partially downloaded: missing ${path.join(missing, fileName)}`);
-      error.summary = summary;
-      throw error;
-    }
-
-    console.log(SEPARATOR);
-    console.log(`Game: ${i + 1}/${total}`);
-    console.log(`Slug: ${game.slug}`);
-    console.log(`Id: ${game.id}`);
-    const started = new Date();
-    try {
-      await downloadGame(client, game, state);
-    } catch (err) {
-      if (isNoDataError(err)) {
-        // Game not played yet: flag it and continue with the next one.
-        game.played = false;
-        summary.notPlayed += 1;
-        console.warn(`No data ("${err.apiError}"): game marked as played: false.`);
-        console.log(SEPARATOR);
-        continue;
-      }
-      console.error(`Failed: ${timestamp()} after ${formatDuration(Date.now() - started)}`);
-      console.error(SEPARATOR);
-      err.summary = summary;
-      throw err;
-    }
-    console.log(`Duration: ${formatDuration(Date.now() - started)}`);
-    console.log(SEPARATOR);
-
-    delete game.played;
-    game.downloaded = true;
-    summary.newlyDownloaded += 1;
-  }
-
-  return summary;
-}
-
-function printSummary(summary, elapsedMs) {
-  console.log('');
-  console.log('='.repeat(50));
-  console.log('Summary');
-  console.log('='.repeat(50));
-  console.log(`Skipped (marked as downloaded): ${summary.skipped}`);
-  console.log(`Skipped (played: false, date after today): ${summary.notPlayedYet}`);
-  console.log(`Already downloaded: ${summary.alreadyDownloaded}`);
-  console.log(`Newly downloaded: ${summary.newlyDownloaded}`);
-  console.log(`Not played ("sin datos"): ${summary.notPlayed}`);
-  console.log(`Ignored (empty/invalid id): ${summary.ignored}`);
-  console.log(`Total execution time: ${formatDuration(elapsedMs)}`);
-  console.log('='.repeat(50));
-}
+const { processGames, printSummary } = require('./core/download');
+const { readGamesFile, writeGamesFile } = require('./core/games');
 
 async function main() {
   const startTime = Date.now();

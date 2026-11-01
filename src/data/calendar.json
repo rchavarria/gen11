@@ -1,0 +1,1451 @@
+[
+  {
+    "slug": "s56-cadete-oro-f1-g1-j1-madrid-alcobendas",
+    "date": "2025-09-20",
+    "time": "11:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "real-madrid",
+      "name": "REAL MADRID C.F.",
+      "logo": null,
+      "team": "REAL MADRID ´A´",
+      "score": 132
+    },
+    "away": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 37
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-f1-g1-j2-alcobendas-rozas",
+    "date": "2025-09-28",
+    "time": "11:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 84
+    },
+    "away": {
+      "club": "las-rozas",
+      "name": "LAS ROZAS C.B.",
+      "logo": null,
+      "team": "C.B. LAS ROZAS \"A\"",
+      "score": 85
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-f1-g1-j3-patrocinio-alcobendas",
+    "date": "2025-10-05",
+    "time": "18:15",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "patrocinio-san-jose",
+      "name": "PATROCINIO SAN JOSE C.B.",
+      "logo": null,
+      "team": "PATROCINIO SAN JOSE",
+      "score": 84
+    },
+    "away": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 90
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-f1-g1-j4-alcobendas-estudiantes",
+    "date": "2025-10-18",
+    "time": "19:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 60
+    },
+    "away": {
+      "club": "estudiantes",
+      "name": "ESTUDIANTES",
+      "logo": null,
+      "team": "MOVISTAR ESTUDIANTES \"A\"",
+      "score": 97
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-f1-g1-j5-fuenlabrada-alcobendas",
+    "date": "2025-10-26",
+    "time": "12:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "baloncesto-fuenlabrada",
+      "name": "BALONCESTO FUENLABRADA",
+      "logo": null,
+      "team": "BALONCESTO FUENLABRADA \"A\"",
+      "score": 86
+    },
+    "away": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 66
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-f1-g1-j6-alcobendas-madrid",
+    "date": "2025-11-09",
+    "time": "18:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 71
+    },
+    "away": {
+      "club": "real-madrid",
+      "name": "REAL MADRID C.F.",
+      "logo": null,
+      "team": "REAL MADRID ´A´",
+      "score": 108
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-f1-g1-j7-rozas-alcobendas",
+    "date": "2025-11-16",
+    "time": "15:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "las-rozas",
+      "name": "LAS ROZAS C.B.",
+      "logo": null,
+      "team": "C.B. LAS ROZAS \"A\"",
+      "score": 62
+    },
+    "away": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 72
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-f1-g1-j8-estudiantes-alcobendas",
+    "date": "2025-11-30",
+    "time": "11:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "estudiantes",
+      "name": "ESTUDIANTES",
+      "logo": null,
+      "team": "MOVISTAR ESTUDIANTES \"A\"",
+      "score": 103
+    },
+    "away": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 52
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-f1-g1-j9-alcobendas-patrocinio",
+    "date": "2025-12-13",
+    "time": "13:15",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 73
+    },
+    "away": {
+      "club": "patrocinio-san-jose",
+      "name": "PATROCINIO SAN JOSE C.B.",
+      "logo": null,
+      "team": "PATROCINIO SAN JOSE",
+      "score": 80
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-f1-g1-j10-alcobendas-fuenlabrada",
+    "date": "2025-12-14",
+    "time": "18:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 51
+    },
+    "away": {
+      "club": "baloncesto-fuenlabrada",
+      "name": "BALONCESTO FUENLABRADA",
+      "logo": null,
+      "team": "BALONCESTO FUENLABRADA \"A\"",
+      "score": 82
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-playoffs-j1-zentro-alcobendas",
+    "date": "2026-04-19",
+    "time": "18:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "zentro",
+      "name": "ZENTRO C.B.",
+      "logo": null,
+      "team": "ZENTRO BASKET MADRID",
+      "score": 101
+    },
+    "away": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 46
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-playoffs-j2-alcobendas-zentro",
+    "date": "2026-04-25",
+    "time": "13:15",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 68
+    },
+    "away": {
+      "club": "zentro",
+      "name": "ZENTRO C.B.",
+      "logo": null,
+      "team": "ZENTRO BASKET MADRID",
+      "score": 105
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-f3-j1-torrelodones-alcobendas",
+    "date": "2026-05-10",
+    "time": "11:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "torrelodones",
+      "name": "TORRELODONES A.D.",
+      "logo": null,
+      "team": "JANSEN BT \"A\"",
+      "score": 77
+    },
+    "away": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 57
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-f3-j5-alcobendas-fuenlabrada",
+    "date": "2026-05-14",
+    "time": "20:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 79
+    },
+    "away": {
+      "club": "baloncesto-fuenlabrada",
+      "name": "BALONCESTO FUENLABRADA",
+      "logo": null,
+      "team": "BALONCESTO FUENLABRADA \"A\"",
+      "score": 117
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-f3-j2-fuenlabrada-alcobendas",
+    "date": "2026-05-17",
+    "time": "18:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "baloncesto-fuenlabrada",
+      "name": "BALONCESTO FUENLABRADA",
+      "logo": null,
+      "team": "BALONCESTO FUENLABRADA \"A\"",
+      "score": 80
+    },
+    "away": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 62
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-f3-j3-alcobendas-distrito",
+    "date": "2026-05-24",
+    "time": "11:15",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 68
+    },
+    "away": {
+      "club": "distrito-olimpico",
+      "name": "DISTRITO OLIMPICO",
+      "logo": null,
+      "team": "DISTRITO OLIMPICO EDU SPORTS A",
+      "score": 71
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-f3-j6-distrito-alcobendas",
+    "date": "2026-05-27",
+    "time": "20:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "distrito-olimpico",
+      "name": "DISTRITO OLIMPICO",
+      "logo": null,
+      "team": "DISTRITO OLIMPICO EDU SPORTS A",
+      "score": 96
+    },
+    "away": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 101
+    }
+  },
+  {
+    "slug": "s56-cadete-oro-f3-j4-alcobendas-torrelodones",
+    "date": "2026-05-31",
+    "time": "18:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 75
+    },
+    "away": {
+      "club": "torrelodones",
+      "name": "TORRELODONES A.D.",
+      "logo": null,
+      "team": "JANSEN BT \"A\"",
+      "score": 92
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j01-madrid-sba",
+    "date": "2026-09-19",
+    "time": "18:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "real-madrid",
+      "name": "REAL MADRID C.F.",
+      "logo": null,
+      "team": "REAL MADRID ´A´",
+      "score": 107
+    },
+    "away": {
+      "club": "elite-international-school",
+      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+      "logo": null,
+      "team": "SPANISH BASKETBALL ACADEMY",
+      "score": 51
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j01-distrito-fuenlabrada",
+    "date": "2026-09-19",
+    "time": "18:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "distrito-olimpico",
+      "name": "DISTRITO OLIMPICO",
+      "logo": null,
+      "team": "DISTRITO OLIMPICO A",
+      "score": 125
+    },
+    "away": {
+      "club": "baloncesto-fuenlabrada",
+      "name": "BALONCESTO FUENLABRADA",
+      "logo": null,
+      "team": "BALONCESTO FUENLABRADA \"A\"",
+      "score": 68
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j01-canoe-sanjorge",
+    "date": "2026-09-20",
+    "time": "11:15",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "real-canoe",
+      "name": "REAL CANOE N.C.",
+      "logo": null,
+      "team": "REAL CANOE N.C. \"A\"",
+      "score": 84
+    },
+    "away": {
+      "club": "san-jorge-baloncesto",
+      "name": "SAN JORGE BALONCESTO",
+      "logo": null,
+      "team": "SANJORGE",
+      "score": 71
+    }
+  },
+  {
+    "slug": "junior-f1-g1-j01-sba-alcobendas",
+    "date": "2026-09-20",
+    "time": "12:30",
+    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "elite-international-school",
+      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+      "logo": null,
+      "team": "SPANISH BASKETBALL ACADEMY A",
+      "score": 119
+    },
+    "away": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 95
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j06-laso-alcorcon",
+    "date": "2026-09-20",
+    "time": "18:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "gigantes-youth-sports-academy",
+      "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+      "logo": null,
+      "team": "LASO ACADEMY \"A\"",
+      "score": 110
+    },
+    "away": {
+      "club": "alcorcon-basket",
+      "name": "ALCORCON BASKET",
+      "logo": null,
+      "team": "SALTIUM ALCORCÓN BASKET \"A\"",
+      "score": 72
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j02-sba-canoe",
+    "date": "2026-09-26",
+    "time": "14:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "elite-international-school",
+      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+      "logo": null,
+      "team": "SPANISH BASKETBALL ACADEMY",
+      "score": 99
+    },
+    "away": {
+      "club": "real-canoe",
+      "name": "REAL CANOE N.C.",
+      "logo": null,
+      "team": "REAL CANOE N.C. \"A\"",
+      "score": 77
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j02-torrelodones-alcobendas",
+    "date": "2026-09-26",
+    "time": "19:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "torrelodones",
+      "name": "TORRELODONES A.D.",
+      "logo": null,
+      "team": "JANSEN BT \"A\"",
+      "score": 88
+    },
+    "away": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 81
+    }
+  },
+  {
+    "slug": "junior-f1-g1-j02-alcobendas-torrejon",
+    "date": "2026-09-27",
+    "time": "20:00",
+    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 90
+    },
+    "away": {
+      "club": "basket-torrejon",
+      "name": "BASKET TORREJON CDE",
+      "logo": null,
+      "team": "BASKET TORREJON \"A\"",
+      "score": 101
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j02-estudiantes-alcorcon",
+    "date": "2026-09-27",
+    "time": "20:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "estudiantes",
+      "name": "ESTUDIANTES",
+      "logo": null,
+      "team": "MOVISTAR ESTUDIANTES \"A\"",
+      "score": 103
+    },
+    "away": {
+      "club": "alcorcon-basket",
+      "name": "ALCORCON BASKET",
+      "logo": null,
+      "team": "SALTIUM ALCORCÓN BASKET \"A\"",
+      "score": 74
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j06-estudiantes-alcobendas",
+    "date": "2026-09-29",
+    "time": "19:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "estudiantes",
+      "name": "ESTUDIANTES",
+      "logo": null,
+      "team": "MOVISTAR ESTUDIANTES \"A\"",
+      "score": 60
+    },
+    "away": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 52
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j03-torrelodones-laso",
+    "date": "2026-10-03",
+    "time": "12:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "torrelodones",
+      "name": "TORRELODONES A.D.",
+      "logo": null,
+      "team": "JANSEN BT \"A\"",
+      "score": 89
+    },
+    "away": {
+      "club": "gigantes-youth-sports-academy",
+      "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+      "logo": null,
+      "team": "LASO ACADEMY \"A\"",
+      "score": 93
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j03-sba-fuenlabrada",
+    "date": "2026-10-03",
+    "time": "14:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "elite-international-school",
+      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+      "logo": null,
+      "team": "SPANISH BASKETBALL ACADEMY",
+      "score": 106
+    },
+    "away": {
+      "club": "baloncesto-fuenlabrada",
+      "name": "BALONCESTO FUENLABRADA",
+      "logo": null,
+      "team": "BALONCESTO FUENLABRADA \"A\"",
+      "score": 120
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j03-canoe-distrito",
+    "date": "2026-10-03",
+    "time": "16:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "real-canoe",
+      "name": "REAL CANOE N.C.",
+      "logo": null,
+      "team": "REAL CANOE N.C. \"A\"",
+      "score": 45
+    },
+    "away": {
+      "club": "distrito-olimpico",
+      "name": "DISTRITO OLIMPICO",
+      "logo": null,
+      "team": "DISTRITO OLIMPICO A",
+      "score": 104
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j03-madrid-sanjorge",
+    "date": "2026-10-03",
+    "time": "17:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "real-madrid",
+      "name": "REAL MADRID C.F.",
+      "logo": null,
+      "team": "REAL MADRID ´A´",
+      "score": 91
+    },
+    "away": {
+      "club": "san-jorge-baloncesto",
+      "name": "SAN JORGE BALONCESTO",
+      "logo": null,
+      "team": "SANJORGE",
+      "score": 58
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j03-alcobendas-alcorcon",
+    "date": "2026-10-04",
+    "time": "13:15",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 70
+    },
+    "away": {
+      "club": "alcorcon-basket",
+      "name": "ALCORCON BASKET",
+      "logo": null,
+      "team": "SALTIUM ALCORCÓN BASKET \"A\"",
+      "score": 75
+    }
+  },
+  {
+    "slug": "junior-f1-g1-j03-sanjorge-alcobendas",
+    "date": "2026-10-04",
+    "time": "13:30",
+    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "san-jorge-baloncesto",
+      "name": "SAN JORGE BALONCESTO",
+      "logo": null,
+      "team": "SANJORGE",
+      "score": 105
+    },
+    "away": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 90
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j03-zentro-estudiantes",
+    "date": "2026-10-04",
+    "time": "18:15",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "zentro",
+      "name": "ZENTRO C.B.",
+      "logo": null,
+      "team": "ZENTRO BASKET MADRID",
+      "score": 92
+    },
+    "away": {
+      "club": "estudiantes",
+      "name": "ESTUDIANTES",
+      "logo": null,
+      "team": "MOVISTAR ESTUDIANTES \"A\"",
+      "score": 62
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j02-laso-zentro",
+    "date": "2026-10-08",
+    "time": "21:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "gigantes-youth-sports-academy",
+      "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+      "logo": null,
+      "team": "LASO ACADEMY \"A\"",
+      "score": 93
+    },
+    "away": {
+      "club": "zentro",
+      "name": "ZENTRO C.B.",
+      "logo": null,
+      "team": "ZENTRO BASKET MADRID",
+      "score": 79
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j02-sanjorge-distrito",
+    "date": "2026-10-11",
+    "time": "16:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "san-jorge-baloncesto",
+      "name": "SAN JORGE BALONCESTO",
+      "logo": null,
+      "team": "SANJORGE",
+      "score": 52
+    },
+    "away": {
+      "club": "distrito-olimpico",
+      "name": "DISTRITO OLIMPICO",
+      "logo": null,
+      "team": "DISTRITO OLIMPICO A",
+      "score": 131
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j04-distrito-madrid",
+    "date": "2026-10-17",
+    "time": "16:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "distrito-olimpico",
+      "name": "DISTRITO OLIMPICO",
+      "logo": null,
+      "team": "DISTRITO OLIMPICO A",
+      "score": null
+    },
+    "away": {
+      "club": "real-madrid",
+      "name": "REAL MADRID C.F.",
+      "logo": null,
+      "team": "REAL MADRID ´A´",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j04-canoe-fuenlabrada",
+    "date": "2026-10-18",
+    "time": "11:15",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "real-canoe",
+      "name": "REAL CANOE N.C.",
+      "logo": null,
+      "team": "REAL CANOE N.C. \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "baloncesto-fuenlabrada",
+      "name": "BALONCESTO FUENLABRADA",
+      "logo": null,
+      "team": "BALONCESTO FUENLABRADA \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j04-alcorcon-zentro",
+    "date": "2026-10-18",
+    "time": "11:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "alcorcon-basket",
+      "name": "ALCORCON BASKET",
+      "logo": null,
+      "team": "SALTIUM ALCORCÓN BASKET \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "zentro",
+      "name": "ZENTRO C.B.",
+      "logo": null,
+      "team": "ZENTRO BASKET MADRID",
+      "score": null
+    }
+  },
+  {
+    "slug": "junior-f1-g1-j04-canoe-alcobendas",
+    "date": "2026-10-18",
+    "time": "13:00",
+    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "played": true,
+    "home": {
+      "club": "real-canoe",
+      "name": "REAL CANOE N.C.",
+      "logo": null,
+      "team": "REAL CANOE N.C. \"A\"",
+      "score": 94
+    },
+    "away": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": 76
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j04-estudiantes-torrelodones",
+    "date": "2026-10-18",
+    "time": "18:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "estudiantes",
+      "name": "ESTUDIANTES",
+      "logo": null,
+      "team": "MOVISTAR ESTUDIANTES \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "torrelodones",
+      "name": "TORRELODONES A.D.",
+      "logo": null,
+      "team": "JANSEN BT \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j04-alcobendas-laso",
+    "date": "2026-10-18",
+    "time": "20:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "gigantes-youth-sports-academy",
+      "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+      "logo": null,
+      "team": "LASO ACADEMY \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j04-sanjorge-sba",
+    "date": "2026-10-18",
+    "time": "20:15",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "san-jorge-baloncesto",
+      "name": "SAN JORGE BALONCESTO",
+      "logo": null,
+      "team": "SANJORGE",
+      "score": null
+    },
+    "away": {
+      "club": "elite-international-school",
+      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+      "logo": null,
+      "team": "SPANISH BASKETBALL ACADEMY",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j05-sba-distrito",
+    "date": "2026-10-24",
+    "time": "14:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "elite-international-school",
+      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+      "logo": null,
+      "team": "SPANISH BASKETBALL ACADEMY",
+      "score": null
+    },
+    "away": {
+      "club": "distrito-olimpico",
+      "name": "DISTRITO OLIMPICO",
+      "logo": null,
+      "team": "DISTRITO OLIMPICO A",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j05-madrid-canoe",
+    "date": "2026-10-24",
+    "time": "17:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "real-madrid",
+      "name": "REAL MADRID C.F.",
+      "logo": null,
+      "team": "REAL MADRID ´A´",
+      "score": null
+    },
+    "away": {
+      "club": "real-canoe",
+      "name": "REAL CANOE N.C.",
+      "logo": null,
+      "team": "REAL CANOE N.C. \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j05-torrelodones-alcorcon",
+    "date": "2026-10-24",
+    "time": "19:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "torrelodones",
+      "name": "TORRELODONES A.D.",
+      "logo": null,
+      "team": "JANSEN BT \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "alcorcon-basket",
+      "name": "ALCORCON BASKET",
+      "logo": null,
+      "team": "SALTIUM ALCORCÓN BASKET \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "junior-f1-g1-j05-alcobendas-madrid",
+    "date": "2026-10-25",
+    "time": "13:15",
+    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "real-madrid",
+      "name": "REAL MADRID C.F.",
+      "logo": null,
+      "team": "REAL MADRID",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j05-fuenlabrada-sanjorge",
+    "date": "2026-10-25",
+    "time": "16:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "baloncesto-fuenlabrada",
+      "name": "BALONCESTO FUENLABRADA",
+      "logo": null,
+      "team": "BALONCESTO FUENLABRADA \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "san-jorge-baloncesto",
+      "name": "SAN JORGE BALONCESTO",
+      "logo": null,
+      "team": "SANJORGE",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j05-zentro-alcobendas",
+    "date": "2026-10-25",
+    "time": "18:15",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "zentro",
+      "name": "ZENTRO C.B.",
+      "logo": null,
+      "team": "ZENTRO BASKET MADRID",
+      "score": null
+    },
+    "away": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j01-zentro-torrelodones",
+    "date": "2026-10-27",
+    "time": "19:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "zentro",
+      "name": "ZENTRO C.B.",
+      "logo": null,
+      "team": "ZENTRO BASKET MADRID",
+      "score": null
+    },
+    "away": {
+      "club": "torrelodones",
+      "name": "TORRELODONES A.D.",
+      "logo": null,
+      "team": "JANSEN BT \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j05-laso-estudiantes",
+    "date": "2026-11-05",
+    "time": "21:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "gigantes-youth-sports-academy",
+      "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+      "logo": null,
+      "team": "LASO ACADEMY \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "estudiantes",
+      "name": "ESTUDIANTES",
+      "logo": null,
+      "team": "MOVISTAR ESTUDIANTES \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j06-torrelodones-zentro",
+    "date": "2026-11-07",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "torrelodones",
+      "name": "TORRELODONES A.D.",
+      "logo": null,
+      "team": "JANSEN BT \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "zentro",
+      "name": "ZENTRO C.B.",
+      "logo": null,
+      "team": "ZENTRO BASKET MADRID",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j06-fuenlabrada-distrito",
+    "date": "2026-11-07",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "baloncesto-fuenlabrada",
+      "name": "BALONCESTO FUENLABRADA",
+      "logo": null,
+      "team": "BALONCESTO FUENLABRADA \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "distrito-olimpico",
+      "name": "DISTRITO OLIMPICO",
+      "logo": null,
+      "team": "DISTRITO OLIMPICO A",
+      "score": null
+    }
+  },
+  {
+    "slug": "junior-f1-g1-j09-alcobendas-canoe",
+    "date": "2026-11-07",
+    "time": "13:15",
+    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "real-canoe",
+      "name": "REAL CANOE N.C.",
+      "logo": null,
+      "team": "REAL CANOE N.C. \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j06-sba-madrid",
+    "date": "2026-11-07",
+    "time": "14:00",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "elite-international-school",
+      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+      "logo": null,
+      "team": "SPANISH BASKETBALL ACADEMY",
+      "score": null
+    },
+    "away": {
+      "club": "real-madrid",
+      "name": "REAL MADRID C.F.",
+      "logo": null,
+      "team": "REAL MADRID ´A´",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j01-alcobendas-estudiantes",
+    "date": "2026-11-08",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "estudiantes",
+      "name": "ESTUDIANTES",
+      "logo": null,
+      "team": "MOVISTAR ESTUDIANTES \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j01-alcorcon-laso",
+    "date": "2026-11-08",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "alcorcon-basket",
+      "name": "ALCORCON BASKET",
+      "logo": null,
+      "team": "SALTIUM ALCORCÓN BASKET \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "gigantes-youth-sports-academy",
+      "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+      "logo": null,
+      "team": "LASO ACADEMY \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j06-sanjorge-canoe",
+    "date": "2026-11-08",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "san-jorge-baloncesto",
+      "name": "SAN JORGE BALONCESTO",
+      "logo": null,
+      "team": "SANJORGE",
+      "score": null
+    },
+    "away": {
+      "club": "real-canoe",
+      "name": "REAL CANOE N.C.",
+      "logo": null,
+      "team": "REAL CANOE N.C. \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j02-fuenlabrada-madrid",
+    "date": "2026-11-08",
+    "time": "13:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "baloncesto-fuenlabrada",
+      "name": "BALONCESTO FUENLABRADA",
+      "logo": null,
+      "team": "BALONCESTO FUENLABRADA \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "real-madrid",
+      "name": "REAL MADRID C.F.",
+      "logo": null,
+      "team": "REAL MADRID ´A´",
+      "score": null
+    }
+  },
+  {
+    "slug": "junior-f1-g1-j06-alcobendas-sba",
+    "date": "2026-11-08",
+    "time": "18:00",
+    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "elite-international-school",
+      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+      "logo": null,
+      "team": "SPANISH BASKETBALL ACADEMY A",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j07-madrid-fuenlabrada",
+    "date": "2026-11-14",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "real-madrid",
+      "name": "REAL MADRID C.F.",
+      "logo": null,
+      "team": "REAL MADRID ´A´",
+      "score": null
+    },
+    "away": {
+      "club": "baloncesto-fuenlabrada",
+      "name": "BALONCESTO FUENLABRADA",
+      "logo": null,
+      "team": "BALONCESTO FUENLABRADA \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j07-distrito-sanjorge",
+    "date": "2026-11-14",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "distrito-olimpico",
+      "name": "DISTRITO OLIMPICO",
+      "logo": null,
+      "team": "DISTRITO OLIMPICO A",
+      "score": null
+    },
+    "away": {
+      "club": "san-jorge-baloncesto",
+      "name": "SAN JORGE BALONCESTO",
+      "logo": null,
+      "team": "SANJORGE",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j07-zentro-laso",
+    "date": "2026-11-15",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "zentro",
+      "name": "ZENTRO C.B.",
+      "logo": null,
+      "team": "ZENTRO BASKET MADRID",
+      "score": null
+    },
+    "away": {
+      "club": "gigantes-youth-sports-academy",
+      "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+      "logo": null,
+      "team": "LASO ACADEMY \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j07-alcorcon-estudiantes",
+    "date": "2026-11-15",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "alcorcon-basket",
+      "name": "ALCORCON BASKET",
+      "logo": null,
+      "team": "SALTIUM ALCORCÓN BASKET \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "estudiantes",
+      "name": "ESTUDIANTES",
+      "logo": null,
+      "team": "MOVISTAR ESTUDIANTES \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j07-canoe-sba",
+    "date": "2026-11-15",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "real-canoe",
+      "name": "REAL CANOE N.C.",
+      "logo": null,
+      "team": "REAL CANOE N.C. \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "elite-international-school",
+      "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+      "logo": null,
+      "team": "SPANISH BASKETBALL ACADEMY",
+      "score": null
+    }
+  },
+  {
+    "slug": "junior-f1-g1-j07-torrejon-alcobendas",
+    "date": "2026-11-15",
+    "time": null,
+    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "basket-torrejon",
+      "name": "BASKET TORREJON CDE",
+      "logo": null,
+      "team": "BASKET TORREJON \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g2-j07-alcobendas-torrelodones",
+    "date": "2026-11-15",
+    "time": "13:15",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "baloncesto-alcobendas",
+      "name": "BALONCESTO ALCOBENDAS",
+      "logo": null,
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "torrelodones",
+      "name": "TORRELODONES A.D.",
+      "logo": null,
+      "team": "JANSEN BT \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "cadete-f1-g1-j08-distrito-canoe",
+    "date": "2026-11-21",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "distrito-olimpico",
+      "name": "DISTRITO OLIMPICO",
+      "logo": null,
+      "team": "DISTRITO OLIMPICO A",
+      "score": null
+    },
+    "away": {
+      "club": "real-canoe",
+      "name": "REAL CANOE N.C.",
+      "logo": null,
+      "team": "REAL CANOE N.C. \"A\"",
+      "score": null
+    }
+  }
+]

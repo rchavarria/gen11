@@ -18,7 +18,7 @@
  *   paths.gamesStats   <outputDir>/games-stats   (download-games.js)
  *   paths.gamesScores  <outputDir>/games-scores  (download-games.js)
  *   paths.gamesFile    <outputDir>/games.json    (download-games.js)
- *   paths.nextGames    <outputDir>/next-games    (next-games.js)
+ *   paths.nextGames    <outputDir>/next-games    (daily responses and next-games.json)
  *   paths.gameScoredPoints <outputDir>/game-scored-points (scored-points.js)
  *   paths.syncReports  <outputDir>/sync-reports  (sync.js)
  */

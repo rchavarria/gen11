@@ -41,6 +41,8 @@
  * ----------------------
  * <outputDir>/next-games/<YYYY-MM-DD>.json  (local date of execution)
  * An existing file for the same date is overwritten.
+ * <outputDir>/next-games/next-games.json accumulates games by IdPartido.
+ * Received games replace existing entries, sorted by Fecha and Hora.
  *
  * ERROR HANDLING RULES
  * --------------------
@@ -109,9 +111,10 @@ async function main() {
   console.log(`Days ahead: ${DAYS}`);
 
   let data;
+  let mergedCount;
   try {
     // ApiClient persists the rotated key before returning the data.
-    ({ data } = await fetchNextGames(client, { days: DAYS, date: started }));
+    ({ data, mergedCount } = await fetchNextGames(client, { days: DAYS, date: started }));
   } catch (err) {
     const failed = new Date();
     console.error(SEPARATOR);
@@ -131,6 +134,7 @@ async function main() {
   console.log(`Sent key: ${sentKey}`);
   console.log(`Received key: ${client.key}`);
   console.log(`Games received: ${data.mispartidos.length}`);
+  console.log(`Accumulated games: ${mergedCount} (next-games.json)`);
   console.log(`Output file: ${fileName}`);
   console.log(`Started: ${timestamp(started)}`);
   console.log(`Finished: ${timestamp(finished)}`);
@@ -141,4 +145,3 @@ async function main() {
 }
 
 main();
-

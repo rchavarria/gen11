@@ -84,8 +84,9 @@ async function run(config, result) {
   await shortWait();
 
   step(`2. Upcoming games (${DAYS} days)`);
-  const { data: next, fileName } = await fetchNextGames(client, { days: DAYS, date: result.startedAt });
+  const { data: next, fileName, mergedCount } = await fetchNextGames(client, { days: DAYS, date: result.startedAt });
   console.log(`Games received: ${next.mispartidos.length} (saved to ${fileName})`);
+  console.log(`Accumulated games: ${mergedCount} (next-games.json)`);
 
   const data = await readGamesFile(config);
   result.newGames = mergeNewGames(data, next.mispartidos);

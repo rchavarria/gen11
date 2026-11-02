@@ -5,9 +5,9 @@
  * raw downloads. It makes no API requests.
  *
  * - Games come from <outputDir>/games.json (slugs added by hand).
- * - Time, category, clubs and result come from the search results
- *   (<outputDir>/games/**) and next games (<outputDir>/next-games/), matched by
- *   game id. When a game is not found there, the score file is used instead.
+ * - Time, category and clubs come from the next games file (<outputDir>/next-games/next-games.json), matched by
+ *   game id. Scores come from score files, falling back to search results.
+ *   When a game is not found in searches, the score file is used instead.
  * - Club slugs come from src/data/clubs.json (maintained by hand).
  *   The web resolves club names and logos from that file.
  *
@@ -41,18 +41,16 @@ function listJsonFiles(dir) {
 }
 
 /**
- * Indexes search results and next games by `IdPartido`. Next games are read
- * last, so their (more recent) data wins.
+ * Indexes the games in <nextGames>/next-games.json by `IdPartido`.
  * @returns {Map<string, object>}
  */
 function indexSearchResults(config) {
   const index = new Map();
-  const files = [...listJsonFiles(config.paths.games), ...listJsonFiles(config.paths.nextGames)];
-  for (const file of files) {
-    const json = readJson(file);
-    for (const game of json.partidos || json.mispartidos || []) {
-      if (game && game.IdPartido) index.set(game.IdPartido, game);
-    }
+  const file = path.join(config.paths.nextGames, 'next-games.json');
+  if (!fs.existsSync(file)) return index;
+  const json = readJson(file);
+  for (const game of json.partidos || json.mispartidos || []) {
+    if (game && game.IdPartido) index.set(game.IdPartido, game);
   }
   return index;
 }
@@ -117,16 +115,17 @@ function buildSide(clubs, clubSourceName, teamName, score) {
   };
 }
 
-function fromSearch(game, entry, clubs) {
+function fromSearch(game, entry, clubs, scoreFile) {
+  const match = scoreFile ? readJson(scoreFile).partido || {} : {};
   const results = entry.Resultados || {};
-  const home = toScore(results.ResultadoLocal);
-  const away = toScore(results.ResultadoVisitante);
+  const home = toScore(match.tanteo_local) ?? toScore(results.ResultadoLocal);
+  const away = toScore(match.tanteo_visitante) ?? toScore(results.ResultadoVisitante);
   return {
     slug: game.slug,
     date: toIsoDate(entry.Fecha) || game.date,
     time: toTime(entry.Hora),
     category: (entry.Categoria || '').trim(),
-    played: entry.Estado === 'Terminado' || (home !== null && away !== null),
+    played: match.estado_partido === 'FINALIZADO' || entry.Estado === 'Terminado' || (home !== null && away !== null),
     home: buildSide(clubs, entry.NombreClubLocal, entry.NombreEquipoLocal, home),
     away: buildSide(clubs, entry.NombreClubVisitante, entry.NombreEquipoVisitante, away),
   };
@@ -147,7 +146,8 @@ function fromScoreFile(game, scoreFile, clubs) {
   };
 }
 
-async function buildCalendar(config) {  const allGames = (await readGamesFile(config)).games;
+async function buildCalendar(config) {
+  const allGames = (await readGamesFile(config)).games;
   const games = allGames.filter(isValidGame);
   const skipped = allGames.filter((game) => !isValidGame(game)).map((game) => game.slug || '(no slug)');
   const searchIndex = indexSearchResults(config);
@@ -157,7 +157,7 @@ async function buildCalendar(config) {  const allGames = (await readGamesFile(co
   const unmatched = [];
   const calendar = games.map((game) => {
     const entry = searchIndex.get(game.id);
-    if (entry) return fromSearch(game, entry, clubs);
+    if (entry) return fromSearch(game, entry, clubs, scoreIndex.get(game.id));
     unmatched.push(game.slug);
     return fromScoreFile(game, scoreIndex.get(game.id), clubs);
   });

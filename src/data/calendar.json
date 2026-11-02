@@ -902,7 +902,7 @@
   {
     "slug": "s67-jnr-oro-f1-g1-j06-alcobendas-sba",
     "date": "2026-11-08",
-    "time": "18:00",
+    "time": "13:30",
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
@@ -941,21 +941,6 @@
     },
     "away": {
       "club": "fuenlabrada",
-      "score": null
-    }
-  },
-  {
-    "slug": "s67-kdt-oro-f1-g1-j07-canoe-sba",
-    "date": "2026-11-15",
-    "time": null,
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
-    "home": {
-      "club": "canoe",
-      "score": null
-    },
-    "away": {
-      "club": "sba",
       "score": null
     }
   },
@@ -1001,6 +986,21 @@
     },
     "away": {
       "club": "alcobendas",
+      "score": null
+    }
+  },
+  {
+    "slug": "s67-kdt-oro-f1-g1-j07-canoe-sba",
+    "date": "2026-11-15",
+    "time": "11:15",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "canoe",
+      "score": null
+    },
+    "away": {
+      "club": "sba",
       "score": null
     }
   },

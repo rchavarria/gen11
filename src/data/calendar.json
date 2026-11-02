@@ -886,7 +886,7 @@
   {
     "slug": "s67-kdt-oro-f1-g2-j06-torrelodones-zentro",
     "date": "2026-11-07",
-    "time": null,
+    "time": "11:30",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
@@ -903,7 +903,7 @@
   {
     "slug": "s67-kdt-oro-f1-g1-j06-fuenlabrada-distrito",
     "date": "2026-11-07",
-    "time": null,
+    "time": "13:30",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
@@ -920,7 +920,7 @@
   {
     "slug": "s67-jnr-oro-f1-g1-j09-alcobendas-canoe",
     "date": "2026-11-07",
-    "time": "13:15",
+    "time": "13:30",
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
@@ -948,23 +948,6 @@
     "away": {
       "club": "real-madrid",
       "team": "REAL MADRID ´A´",
-      "score": null
-    }
-  },
-  {
-    "slug": "s67-kdt-oro-f1-g2-j01-alcobendas-estudiantes",
-    "date": "2026-11-08",
-    "time": null,
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
-    "home": {
-      "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
-      "score": null
-    },
-    "away": {
-      "club": "estudiantes",
-      "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": null
     }
   },
@@ -999,6 +982,23 @@
     "away": {
       "club": "laso",
       "team": "LASO ACADEMY \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "s67-kdt-oro-f1-g2-j01-alcobendas-estudiantes",
+    "date": "2026-11-08",
+    "time": "11:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "alcobendas",
+      "team": "FUNDAL ALCOBENDAS \"A\"",
+      "score": null
+    },
+    "away": {
+      "club": "estudiantes",
+      "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": null
     }
   },
@@ -1141,7 +1141,7 @@
   {
     "slug": "s67-kdt-oro-f1-g2-j07-alcobendas-torrelodones",
     "date": "2026-11-15",
-    "time": "13:15",
+    "time": "13:30",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {

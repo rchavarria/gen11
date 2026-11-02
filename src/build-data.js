@@ -4,10 +4,9 @@
  * Builds the anonymized data used by the web (src/data/calendar.json) from the
  * raw downloads. It makes no API requests.
  *
- * - Games come from <outputDir>/games.json (slugs added by hand).
- * - Time, category and clubs come from the next games file (<outputDir>/next-games/next-games.json), matched by
- *   game id. Scores come from score files, falling back to search results.
- *   When a game is not found in searches, the score file is used instead.
+ * - Games, dates, times, categories and clubs come from
+ *   <outputDir>/dated-games.json (slugs added by hand).
+ * - Scores and played status come from score files, matched by game id.
  * - Club slugs come from src/data/clubs.json (maintained by hand).
  *   The web resolves club names and logos from that file.
  *
@@ -19,7 +18,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { loadConfig } = require('./core/config');
-const { isValidGame, readGamesFile } = require('./core/games');
+const { isValidGame } = require('./core/games');
+const { readDatedGamesFile } = require('./core/dated-games');
 
 const DATA_DIR = path.join(__dirname, 'data');
 const CLUBS_FILE = path.join(DATA_DIR, 'clubs.json');
@@ -38,21 +38,6 @@ function listJsonFiles(dir) {
       return entry.name.endsWith('.json') ? [full] : [];
     })
     .sort();
-}
-
-/**
- * Indexes the games in <nextGames>/next-games.json by `IdPartido`.
- * @returns {Map<string, object>}
- */
-function indexSearchResults(config) {
-  const index = new Map();
-  const file = path.join(config.paths.nextGames, 'next-games.json');
-  if (!fs.existsSync(file)) return index;
-  const json = readJson(file);
-  for (const game of json.partidos || json.mispartidos || []) {
-    if (game && game.IdPartido) index.set(game.IdPartido, game);
-  }
-  return index;
 }
 
 /**
@@ -86,11 +71,6 @@ function loadClubs() {
   return bySourceName;
 }
 
-function toIsoDate(ddmmyyyy) {
-  const match = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(ddmmyyyy || '');
-  return match ? `${match[3]}-${match[2]}-${match[1]}` : null;
-}
-
 function toTime(hhmmss) {
   const match = /^(\d{2}):(\d{2})/.exec(hhmmss || '');
   if (!match || (match[1] === '00' && match[2] === '00')) return null;
@@ -102,65 +82,40 @@ function toScore(value) {
   return Number.isFinite(number) ? number : null;
 }
 
-function buildSide(clubs, clubSourceName, teamName, score) {
-  const sourceName = clubSourceName || teamName;
-  const club = clubs.get(normalizeName(sourceName));
+function buildSide(clubs, clubSourceName, score) {
+  const club = clubs.get(normalizeName(clubSourceName));
   if (!club) {
-    throw new Error(`Club not found in ${CLUBS_FILE}: "${sourceName || '(missing name)'}". Add its source name to sourceNames.`);
+    throw new Error(`Club not found in ${CLUBS_FILE}: "${clubSourceName || '(missing name)'}". Add its source name to sourceNames.`);
   }
   return {
     club: club.slug,
-    team: (teamName || '').trim(),
     score,
   };
 }
 
-function fromSearch(game, entry, clubs, scoreFile) {
-  const match = scoreFile ? readJson(scoreFile).partido || {} : {};
-  const results = entry.Resultados || {};
-  const home = toScore(match.tanteo_local) ?? toScore(results.ResultadoLocal);
-  const away = toScore(match.tanteo_visitante) ?? toScore(results.ResultadoVisitante);
-  return {
-    slug: game.slug,
-    date: toIsoDate(entry.Fecha) || game.date,
-    time: toTime(entry.Hora),
-    category: (entry.Categoria || '').trim(),
-    played: match.estado_partido === 'FINALIZADO' || entry.Estado === 'Terminado' || (home !== null && away !== null),
-    home: buildSide(clubs, entry.NombreClubLocal, entry.NombreEquipoLocal, home),
-    away: buildSide(clubs, entry.NombreClubVisitante, entry.NombreEquipoVisitante, away),
-  };
-}
-
-function fromScoreFile(game, scoreFile, clubs) {
+function fromDatedGame(game, clubs, scoreFile) {
   const match = scoreFile ? readJson(scoreFile).partido || {} : {};
   const home = toScore(match.tanteo_local);
   const away = toScore(match.tanteo_visitante);
   return {
     slug: game.slug,
     date: game.date,
-    time: null,
-    category: '',
-    played: match.estado_partido === 'FINALIZADO',
-    home: buildSide(clubs, null, match.local, home),
-    away: buildSide(clubs, null, match.visitante, away),
+    time: toTime(game.time),
+    category: (game.category || '').trim(),
+    played: match.estado_partido === 'FINALIZADO' || (home !== null && away !== null),
+    home: buildSide(clubs, game.homeClubName, home),
+    away: buildSide(clubs, game.awayClubName, away),
   };
 }
 
 async function buildCalendar(config) {
-  const allGames = (await readGamesFile(config)).games;
+  const allGames = (await readDatedGamesFile(config))['dated-games'];
   const games = allGames.filter(isValidGame);
   const skipped = allGames.filter((game) => !isValidGame(game)).map((game) => game.slug || '(no slug)');
-  const searchIndex = indexSearchResults(config);
   const scoreIndex = indexScoreFiles(config);
   const clubs = loadClubs();
 
-  const unmatched = [];
-  const calendar = games.map((game) => {
-    const entry = searchIndex.get(game.id);
-    if (entry) return fromSearch(game, entry, clubs, scoreIndex.get(game.id));
-    unmatched.push(game.slug);
-    return fromScoreFile(game, scoreIndex.get(game.id), clubs);
-  });
+  const calendar = games.map((game) => fromDatedGame(game, clubs, scoreIndex.get(game.id)));
 
   calendar.sort((a, b) => `${a.date} ${a.time || ''}`.localeCompare(`${b.date} ${b.time || ''}`));
 
@@ -169,17 +124,13 @@ async function buildCalendar(config) {
 
   console.log(`${calendar.length} games written to ${path.relative(process.cwd(), CALENDAR_FILE)}`);
   if (skipped.length > 0) {
-    console.warn(`\n${skipped.length} game(s) skipped (no id yet):`);
+    console.warn(`\n${skipped.length} game(s) skipped (missing slug or invalid id):`);
     for (const slug of skipped) console.warn(`  - ${slug}`);
   }
-  if (unmatched.length > 0) {
-    console.warn(`\n${unmatched.length} game(s) not found in search results (no time/category):`);
-    for (const slug of unmatched) console.warn(`  - ${slug}`);
-  }
-  return { count: calendar.length, skipped, unmatched };
+  return { count: calendar.length, skipped };
 }
 
-module.exports = { buildSide, fromSearch, fromScoreFile, buildCalendar };
+module.exports = { buildSide, fromDatedGame, buildCalendar };
 
 if (require.main === module) {
   Promise.resolve().then(() => buildCalendar(loadConfig())).catch((err) => {

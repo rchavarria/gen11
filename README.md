@@ -48,9 +48,8 @@ and write a report. Setting the `slug` of new games in `dated-games.json` is a
 manual step: games without slug are ignored and listed in the report as pending
 until you fill it in and run `sync` again.
 
-`build-data.js` still reads `games.json` and
-`next-games/next-games.json`; migrating calendar generation to
-`dated-games.json` is not part of this change.
+`build-data.js` reads game metadata from `dated-games.json` and scores from
+`games-scores/`. Without a score file, games are shown as not played.
 
 ## Web
 
@@ -75,7 +74,7 @@ npm run build        # dist/
 | `src/core/wait.js`       | `sleep`, `randomDelay`, `waitBeforeNextRequest`, `shortWait()` (100–200 s), `longWait()` (10–15 min) |
 | `src/core/format.js`     | `formatDuration`, `timestamp`                                                                        |
 | `src/core/validate.js`   | `isEmptyValue`, `isPlainObject`, `fileExists`                                                        |
-| `src/core/games.js`      | `isValidGame`, `readGamesFile`, `writeGamesFile`                                                     |
+| `src/core/games.js`      | `isValidGame`                                                                                      |
 | `src/core/dated-games.js` | `readDatedGamesFile`, `writeDatedGamesFile`                                                         |
 | `src/core/files.js`      | `writeJson`, `buildFileName`, `saveStats`, `saveScore`                                               |
 | `src/core/api-client.js` | `ApiClient` (API calls, validation, key rotation), `ApiError`, `isNoDataError`                       |

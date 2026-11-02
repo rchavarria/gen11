@@ -17,7 +17,6 @@
  *   paths.games        <outputDir>/games         (previous-games.js)
  *   paths.gamesStats   <outputDir>/games-stats   (download-games.js)
  *   paths.gamesScores  <outputDir>/games-scores  (download-games.js)
- *   paths.gamesFile    <outputDir>/games.json    (build-data.js)
  *   paths.nextGames    <outputDir>/next-games    (daily responses)
  *   paths.datedGamesFile <outputDir>/dated-games.json
  *   paths.gameScoredPoints <outputDir>/game-scored-points (scored-points.js)
@@ -76,7 +75,7 @@ function readRawConfig() {
  *   deviceId: string,
  *   key: string,
  *   outputDir: string,
- *   paths: Readonly<{games: string, gamesStats: string, gamesScores: string, gamesFile: string, nextGames: string, datedGamesFile: string, gameScoredPoints: string, syncReports: string}>
+ *   paths: Readonly<{games: string, gamesStats: string, gamesScores: string, nextGames: string, datedGamesFile: string, gameScoredPoints: string, syncReports: string}>
  * }>}
  */
 function loadConfig() {
@@ -113,7 +112,6 @@ function loadConfig() {
       games: path.join(outputDir, 'games'),
       gamesStats: path.join(outputDir, 'games-stats'),
       gamesScores: path.join(outputDir, 'games-scores'),
-      gamesFile: path.join(outputDir, 'games.json'),
       nextGames: path.join(outputDir, 'next-games'),
       datedGamesFile: path.join(outputDir, 'dated-games.json'),
       gameScoredPoints: path.join(outputDir, 'game-scored-points'),

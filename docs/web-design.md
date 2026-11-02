@@ -23,19 +23,17 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 ## Datos
 
 - `src/build-data.js` lee los datos en bruto de `downloads/` y genera `src/data/calendar.json`
-  - cruza `games.json` con los resultados de búsqueda (`games/`) y los próximos partidos
-    (`next-games/`) por id de partido, para obtener fecha, hora, categoría y clubs
-  - combina esos datos con su marcador (`games-scores/`), dando prioridad a sus
-    puntuaciones y usando las de búsqueda cuando falte alguna; considera jugado
-    un partido finalizado en cualquiera de las fuentes o con ambas puntuaciones
-  - si un partido no aparece en las búsquedas, usa su marcador (`games-scores/`)
-  - omite los partidos que aún no tienen id
+  - lee `dated-games.json` para obtener slug, fecha, hora, categoría y clubs
+  - combina esos datos con su marcador (`games-scores/`) por id de partido;
+    considera jugado un partido finalizado o con ambas puntuaciones presentes
+  - sin fichero de marcador, lo considera no jugado y deja las puntuaciones vacías
+  - omite los partidos sin slug o con id inválido
   - escribe solo los campos de una lista blanca
-- Cada `home` y `away` guarda `club` (slug de un club existente), `team` y `score`.
+- Cada `home` y `away` guarda `club` (slug de un club existente) y `score`.
   La web obtiene el nombre y el escudo desde `clubs.json`, sin duplicarlos en el calendario.
   El generador falla antes de escribir si no puede resolver un club; su nombre de la
-  fuente (o el equipo, si solo hay marcador) debe estar en `sourceNames`.
-- Slug del partido: lo añades a mano en `games.json` antes de procesarlo;
+  fuente debe estar en `sourceNames`.
+- Slug del partido: lo añades a mano en `dated-games.json` antes de procesarlo;
   es el id estable (el `id_partido` de la fuente caduca)
 - `src/data/clubs.json` (a mano): `slug`, `name` (el que se muestra), `logo` (fichero en
   `public/logos/`, o `null`) y `sourceNames` (nombres del club en la fuente)

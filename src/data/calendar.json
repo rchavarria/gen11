@@ -7,12 +7,10 @@
     "played": true,
     "home": {
       "club": "real-madrid",
-      "team": "REAL MADRID ´A´",
       "score": 132
     },
     "away": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 37
     }
   },
@@ -24,12 +22,10 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 84
     },
     "away": {
       "club": "rozas",
-      "team": "C.B. LAS ROZAS \"A\"",
       "score": 85
     }
   },
@@ -41,12 +37,10 @@
     "played": true,
     "home": {
       "club": "patrocinio",
-      "team": "PATROCINIO SAN JOSE",
       "score": 84
     },
     "away": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 90
     }
   },
@@ -58,12 +52,10 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 60
     },
     "away": {
       "club": "estudiantes",
-      "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": 97
     }
   },
@@ -75,12 +67,10 @@
     "played": true,
     "home": {
       "club": "fuenlabrada",
-      "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 86
     },
     "away": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 66
     }
   },
@@ -92,12 +82,10 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 71
     },
     "away": {
       "club": "real-madrid",
-      "team": "REAL MADRID ´A´",
       "score": 108
     }
   },
@@ -109,12 +97,10 @@
     "played": true,
     "home": {
       "club": "rozas",
-      "team": "C.B. LAS ROZAS \"A\"",
       "score": 62
     },
     "away": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 72
     }
   },
@@ -126,12 +112,10 @@
     "played": true,
     "home": {
       "club": "estudiantes",
-      "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": 103
     },
     "away": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 52
     }
   },
@@ -143,12 +127,10 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 73
     },
     "away": {
       "club": "patrocinio",
-      "team": "PATROCINIO SAN JOSE",
       "score": 80
     }
   },
@@ -160,12 +142,10 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 51
     },
     "away": {
       "club": "fuenlabrada",
-      "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 82
     }
   },
@@ -177,12 +157,10 @@
     "played": true,
     "home": {
       "club": "zentro",
-      "team": "ZENTRO BASKET MADRID",
       "score": 101
     },
     "away": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 46
     }
   },
@@ -194,12 +172,10 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 68
     },
     "away": {
       "club": "zentro",
-      "team": "ZENTRO BASKET MADRID",
       "score": 105
     }
   },
@@ -211,12 +187,10 @@
     "played": true,
     "home": {
       "club": "torrelodones",
-      "team": "JANSEN BT \"A\"",
       "score": 77
     },
     "away": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 57
     }
   },
@@ -228,12 +202,10 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 79
     },
     "away": {
       "club": "fuenlabrada",
-      "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 117
     }
   },
@@ -245,12 +217,10 @@
     "played": true,
     "home": {
       "club": "fuenlabrada",
-      "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 80
     },
     "away": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 62
     }
   },
@@ -262,12 +232,10 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 68
     },
     "away": {
       "club": "distrito",
-      "team": "DISTRITO OLIMPICO EDU SPORTS A",
       "score": 71
     }
   },
@@ -279,12 +247,10 @@
     "played": true,
     "home": {
       "club": "distrito",
-      "team": "DISTRITO OLIMPICO EDU SPORTS A",
       "score": 96
     },
     "away": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 101
     }
   },
@@ -296,12 +262,10 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 75
     },
     "away": {
       "club": "torrelodones",
-      "team": "JANSEN BT \"A\"",
       "score": 92
     }
   },
@@ -313,12 +277,10 @@
     "played": true,
     "home": {
       "club": "real-madrid",
-      "team": "REAL MADRID ´A´",
       "score": 107
     },
     "away": {
       "club": "sba",
-      "team": "SPANISH BASKETBALL ACADEMY",
       "score": 51
     }
   },
@@ -330,12 +292,10 @@
     "played": true,
     "home": {
       "club": "distrito",
-      "team": "DISTRITO OLIMPICO A",
       "score": 125
     },
     "away": {
       "club": "fuenlabrada",
-      "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 68
     }
   },
@@ -347,12 +307,10 @@
     "played": true,
     "home": {
       "club": "canoe",
-      "team": "REAL CANOE N.C. \"A\"",
       "score": 84
     },
     "away": {
       "club": "sanjorge",
-      "team": "SANJORGE",
       "score": 71
     }
   },
@@ -364,12 +322,10 @@
     "played": true,
     "home": {
       "club": "sba",
-      "team": "SPANISH BASKETBALL ACADEMY A",
       "score": 119
     },
     "away": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 95
     }
   },
@@ -381,12 +337,10 @@
     "played": true,
     "home": {
       "club": "laso",
-      "team": "LASO ACADEMY \"A\"",
       "score": 110
     },
     "away": {
       "club": "alcorcon",
-      "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": 72
     }
   },
@@ -398,12 +352,10 @@
     "played": true,
     "home": {
       "club": "sba",
-      "team": "SPANISH BASKETBALL ACADEMY",
       "score": 99
     },
     "away": {
       "club": "canoe",
-      "team": "REAL CANOE N.C. \"A\"",
       "score": 77
     }
   },
@@ -415,12 +367,10 @@
     "played": true,
     "home": {
       "club": "torrelodones",
-      "team": "JANSEN BT \"A\"",
       "score": 88
     },
     "away": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 81
     }
   },
@@ -432,12 +382,10 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 90
     },
     "away": {
       "club": "torrejon",
-      "team": "BASKET TORREJON \"A\"",
       "score": 101
     }
   },
@@ -449,12 +397,10 @@
     "played": true,
     "home": {
       "club": "estudiantes",
-      "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": 103
     },
     "away": {
       "club": "alcorcon",
-      "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": 74
     }
   },
@@ -466,12 +412,10 @@
     "played": true,
     "home": {
       "club": "estudiantes",
-      "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": 60
     },
     "away": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 52
     }
   },
@@ -483,12 +427,10 @@
     "played": true,
     "home": {
       "club": "torrelodones",
-      "team": "JANSEN BT \"A\"",
       "score": 89
     },
     "away": {
       "club": "laso",
-      "team": "LASO ACADEMY \"A\"",
       "score": 93
     }
   },
@@ -500,12 +442,10 @@
     "played": true,
     "home": {
       "club": "sba",
-      "team": "SPANISH BASKETBALL ACADEMY",
       "score": 106
     },
     "away": {
       "club": "fuenlabrada",
-      "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 120
     }
   },
@@ -517,12 +457,10 @@
     "played": true,
     "home": {
       "club": "canoe",
-      "team": "REAL CANOE N.C. \"A\"",
       "score": 45
     },
     "away": {
       "club": "distrito",
-      "team": "DISTRITO OLIMPICO A",
       "score": 104
     }
   },
@@ -534,12 +472,10 @@
     "played": true,
     "home": {
       "club": "real-madrid",
-      "team": "REAL MADRID ´A´",
       "score": 91
     },
     "away": {
       "club": "sanjorge",
-      "team": "SANJORGE",
       "score": 58
     }
   },
@@ -551,12 +487,10 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 70
     },
     "away": {
       "club": "alcorcon",
-      "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": 75
     }
   },
@@ -568,12 +502,10 @@
     "played": true,
     "home": {
       "club": "sanjorge",
-      "team": "SANJORGE",
       "score": 105
     },
     "away": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 90
     }
   },
@@ -585,12 +517,10 @@
     "played": true,
     "home": {
       "club": "zentro",
-      "team": "ZENTRO BASKET MADRID",
       "score": 92
     },
     "away": {
       "club": "estudiantes",
-      "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": 62
     }
   },
@@ -602,12 +532,10 @@
     "played": true,
     "home": {
       "club": "laso",
-      "team": "LASO ACADEMY \"A\"",
       "score": 93
     },
     "away": {
       "club": "zentro",
-      "team": "ZENTRO BASKET MADRID",
       "score": 79
     }
   },
@@ -619,12 +547,10 @@
     "played": true,
     "home": {
       "club": "sanjorge",
-      "team": "SANJORGE",
       "score": 52
     },
     "away": {
       "club": "distrito",
-      "team": "DISTRITO OLIMPICO A",
       "score": 131
     }
   },
@@ -636,12 +562,10 @@
     "played": true,
     "home": {
       "club": "distrito",
-      "team": "DISTRITO OLIMPICO A",
       "score": 73
     },
     "away": {
       "club": "real-madrid",
-      "team": "REAL MADRID ´A´",
       "score": 80
     }
   },
@@ -653,12 +577,10 @@
     "played": true,
     "home": {
       "club": "canoe",
-      "team": "REAL CANOE N.C. \"A\"",
       "score": 79
     },
     "away": {
       "club": "fuenlabrada",
-      "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 70
     }
   },
@@ -670,12 +592,10 @@
     "played": true,
     "home": {
       "club": "alcorcon",
-      "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": 49
     },
     "away": {
       "club": "zentro",
-      "team": "ZENTRO BASKET MADRID",
       "score": 91
     }
   },
@@ -687,12 +607,10 @@
     "played": true,
     "home": {
       "club": "canoe",
-      "team": "REAL CANOE N.C. \"A\"",
       "score": 94
     },
     "away": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 76
     }
   },
@@ -704,12 +622,10 @@
     "played": true,
     "home": {
       "club": "estudiantes",
-      "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": 97
     },
     "away": {
       "club": "torrelodones",
-      "team": "JANSEN BT \"A\"",
       "score": 72
     }
   },
@@ -721,12 +637,10 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 68
     },
     "away": {
       "club": "laso",
-      "team": "LASO ACADEMY \"A\"",
       "score": 95
     }
   },
@@ -738,12 +652,10 @@
     "played": true,
     "home": {
       "club": "sanjorge",
-      "team": "SANJORGE",
       "score": 86
     },
     "away": {
       "club": "sba",
-      "team": "SPANISH BASKETBALL ACADEMY",
       "score": 105
     }
   },
@@ -755,12 +667,10 @@
     "played": true,
     "home": {
       "club": "sba",
-      "team": "SPANISH BASKETBALL ACADEMY",
       "score": 76
     },
     "away": {
       "club": "distrito",
-      "team": "DISTRITO OLIMPICO A",
       "score": 101
     }
   },
@@ -772,12 +682,10 @@
     "played": true,
     "home": {
       "club": "real-madrid",
-      "team": "REAL MADRID ´A´",
       "score": 79
     },
     "away": {
       "club": "canoe",
-      "team": "REAL CANOE N.C. \"A\"",
       "score": 52
     }
   },
@@ -789,12 +697,10 @@
     "played": true,
     "home": {
       "club": "torrelodones",
-      "team": "JANSEN BT \"A\"",
       "score": 66
     },
     "away": {
       "club": "alcorcon",
-      "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": 57
     }
   },
@@ -806,12 +712,10 @@
     "played": true,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 60
     },
     "away": {
       "club": "real-madrid",
-      "team": "REAL MADRID",
       "score": 131
     }
   },
@@ -823,12 +727,10 @@
     "played": true,
     "home": {
       "club": "fuenlabrada",
-      "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 100
     },
     "away": {
       "club": "sanjorge",
-      "team": "SANJORGE",
       "score": 62
     }
   },
@@ -840,12 +742,10 @@
     "played": true,
     "home": {
       "club": "zentro",
-      "team": "ZENTRO BASKET MADRID",
       "score": 93
     },
     "away": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": 53
     }
   },
@@ -857,12 +757,10 @@
     "played": true,
     "home": {
       "club": "zentro",
-      "team": "ZENTRO BASKET MADRID",
       "score": 90
     },
     "away": {
       "club": "torrelodones",
-      "team": "JANSEN BT \"A\"",
       "score": 74
     }
   },
@@ -874,12 +772,10 @@
     "played": false,
     "home": {
       "club": "laso",
-      "team": "LASO ACADEMY \"A\"",
       "score": null
     },
     "away": {
       "club": "estudiantes",
-      "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": null
     }
   },
@@ -891,29 +787,10 @@
     "played": false,
     "home": {
       "club": "torrelodones",
-      "team": "JANSEN BT \"A\"",
       "score": null
     },
     "away": {
       "club": "zentro",
-      "team": "ZENTRO BASKET MADRID",
-      "score": null
-    }
-  },
-  {
-    "slug": "s67-kdt-oro-f1-g1-j06-fuenlabrada-distrito",
-    "date": "2026-11-07",
-    "time": "13:30",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
-    "home": {
-      "club": "fuenlabrada",
-      "team": "BALONCESTO FUENLABRADA \"A\"",
-      "score": null
-    },
-    "away": {
-      "club": "distrito",
-      "team": "DISTRITO OLIMPICO A",
       "score": null
     }
   },
@@ -925,12 +802,25 @@
     "played": false,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     },
     "away": {
       "club": "canoe",
-      "team": "REAL CANOE N.C. \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "s67-kdt-oro-f1-g1-j06-fuenlabrada-distrito",
+    "date": "2026-11-07",
+    "time": "13:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "fuenlabrada",
+      "score": null
+    },
+    "away": {
+      "club": "distrito",
       "score": null
     }
   },
@@ -942,12 +832,10 @@
     "played": false,
     "home": {
       "club": "sba",
-      "team": "SPANISH BASKETBALL ACADEMY",
       "score": null
     },
     "away": {
       "club": "real-madrid",
-      "team": "REAL MADRID ´A´",
       "score": null
     }
   },
@@ -959,12 +847,10 @@
     "played": false,
     "home": {
       "club": "sanjorge",
-      "team": "SANJORGE",
       "score": null
     },
     "away": {
       "club": "canoe",
-      "team": "REAL CANOE N.C. \"A\"",
       "score": null
     }
   },
@@ -976,12 +862,10 @@
     "played": false,
     "home": {
       "club": "alcorcon",
-      "team": "SALTIUM ALCORCÓN BASKET \"A\"",
       "score": null
     },
     "away": {
       "club": "laso",
-      "team": "LASO ACADEMY \"A\"",
       "score": null
     }
   },
@@ -993,12 +877,10 @@
     "played": false,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     },
     "away": {
       "club": "estudiantes",
-      "team": "MOVISTAR ESTUDIANTES \"A\"",
       "score": null
     }
   },
@@ -1010,12 +892,10 @@
     "played": true,
     "home": {
       "club": "fuenlabrada",
-      "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": 0
     },
     "away": {
       "club": "real-madrid",
-      "team": "REAL MADRID ´A´",
       "score": 0
     }
   },
@@ -1027,29 +907,10 @@
     "played": false,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     },
     "away": {
       "club": "sba",
-      "team": "SPANISH BASKETBALL ACADEMY A",
-      "score": null
-    }
-  },
-  {
-    "slug": "s67-kdt-oro-f1-g1-j07-madrid-fuenlabrada",
-    "date": "2026-11-14",
-    "time": null,
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
-    "home": {
-      "club": "real-madrid",
-      "team": "REAL MADRID ´A´",
-      "score": null
-    },
-    "away": {
-      "club": "fuenlabrada",
-      "team": "BALONCESTO FUENLABRADA \"A\"",
       "score": null
     }
   },
@@ -1061,46 +922,25 @@
     "played": false,
     "home": {
       "club": "distrito",
-      "team": "DISTRITO OLIMPICO A",
       "score": null
     },
     "away": {
       "club": "sanjorge",
-      "team": "SANJORGE",
       "score": null
     }
   },
   {
-    "slug": "s67-kdt-oro-f1-g2-j07-zentro-laso",
-    "date": "2026-11-15",
+    "slug": "s67-kdt-oro-f1-g1-j07-madrid-fuenlabrada",
+    "date": "2026-11-14",
     "time": null,
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "zentro",
-      "team": "ZENTRO BASKET MADRID",
+      "club": "real-madrid",
       "score": null
     },
     "away": {
-      "club": "laso",
-      "team": "LASO ACADEMY \"A\"",
-      "score": null
-    }
-  },
-  {
-    "slug": "s67-kdt-oro-f1-g2-j07-alcorcon-estudiantes",
-    "date": "2026-11-15",
-    "time": null,
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
-    "home": {
-      "club": "alcorcon",
-      "team": "SALTIUM ALCORCÓN BASKET \"A\"",
-      "score": null
-    },
-    "away": {
-      "club": "estudiantes",
-      "team": "MOVISTAR ESTUDIANTES \"A\"",
+      "club": "fuenlabrada",
       "score": null
     }
   },
@@ -1112,12 +952,40 @@
     "played": false,
     "home": {
       "club": "canoe",
-      "team": "REAL CANOE N.C. \"A\"",
       "score": null
     },
     "away": {
       "club": "sba",
-      "team": "SPANISH BASKETBALL ACADEMY",
+      "score": null
+    }
+  },
+  {
+    "slug": "s67-kdt-oro-f1-g2-j07-alcorcon-estudiantes",
+    "date": "2026-11-15",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "alcorcon",
+      "score": null
+    },
+    "away": {
+      "club": "estudiantes",
+      "score": null
+    }
+  },
+  {
+    "slug": "s67-kdt-oro-f1-g2-j07-zentro-laso",
+    "date": "2026-11-15",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "zentro",
+      "score": null
+    },
+    "away": {
+      "club": "laso",
       "score": null
     }
   },
@@ -1129,12 +997,10 @@
     "played": false,
     "home": {
       "club": "torrejon",
-      "team": "BASKET TORREJON \"A\"",
       "score": null
     },
     "away": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     }
   },
@@ -1146,12 +1012,25 @@
     "played": false,
     "home": {
       "club": "alcobendas",
-      "team": "FUNDAL ALCOBENDAS \"A\"",
       "score": null
     },
     "away": {
       "club": "torrelodones",
-      "team": "JANSEN BT \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "s67-kdt-oro-f1-g1-j08-fuenlabrada-sba",
+    "date": "2026-11-21",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "fuenlabrada",
+      "score": null
+    },
+    "away": {
+      "club": "sba",
       "score": null
     }
   },
@@ -1163,12 +1042,85 @@
     "played": false,
     "home": {
       "club": "distrito",
-      "team": "DISTRITO OLIMPICO A",
       "score": null
     },
     "away": {
       "club": "canoe",
-      "team": "REAL CANOE N.C. \"A\"",
+      "score": null
+    }
+  },
+  {
+    "slug": "s67-kdt-oro-f1-g2-j08-alcorcon-alcobendas",
+    "date": "2026-11-22",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "alcorcon",
+      "score": null
+    },
+    "away": {
+      "club": "alcobendas",
+      "score": null
+    }
+  },
+  {
+    "slug": "s67-kdt-oro-f1-g2-j08-estudiantes-zentro",
+    "date": "2026-11-22",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "estudiantes",
+      "score": null
+    },
+    "away": {
+      "club": "zentro",
+      "score": null
+    }
+  },
+  {
+    "slug": "267-kdt-oro-f1-g1-j08-sanjorge-madrid",
+    "date": "2026-11-22",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "sanjorge",
+      "score": null
+    },
+    "away": {
+      "club": "real-madrid",
+      "score": null
+    }
+  },
+  {
+    "slug": "s67-kdt-oro-f1-g2-j08-laso-torrelodones",
+    "date": "2026-11-22",
+    "time": null,
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "laso",
+      "score": null
+    },
+    "away": {
+      "club": "torrelodones",
+      "score": null
+    }
+  },
+  {
+    "slug": "s67-jnr-oro-f1-g1-j08-alcobendas-sanjorge",
+    "date": "2026-11-22",
+    "time": "18:00",
+    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "alcobendas",
+      "score": null
+    },
+    "away": {
+      "club": "sanjorge",
       "score": null
     }
   }

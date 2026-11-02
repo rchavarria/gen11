@@ -2,7 +2,7 @@
 
 /**
  * Download logic shared by download-games.js and sync.js: stats and score of
- * the games listed in <outputDir>/games.json.
+ * the games listed in <outputDir>/dated-games.json.
  */
 
 const path = require('node:path');
@@ -28,6 +28,8 @@ function isAfterToday(value) {
   const text = value.trim();
   let day;
   if (/^\d{4}-\d{2}-\d{2}$/.test(text)) {
+    const parsed = new Date(`${text}T00:00:00Z`);
+    if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== text) return false;
     day = text;
   } else {
     const parsed = new Date(text);
@@ -65,20 +67,20 @@ async function downloadGame(client, game, state) {
  * Processes every game of the data object, mutating it in memory.
  * `summary.downloadedSlugs` and `summary.notPlayedSlugs` list the affected games.
  * @param {import('./api-client').ApiClient} client
- * @param {{games: object[]}} data
+ * @param {{dated-games: object[]}} data
  * @param {{requestsSent?: number}} [state] Pass requestsSent > 0 when a request
  *   was already sent, so the first download waits first.
  */
-async function processGames(client, data, state = { requestsSent: 0 }) {
+async function processGames(client, games, state = { requestsSent: 0 }) {
   const { gamesStats: statsDir, gamesScores: scoresDir } = client.config.paths;
   const summary = {
     skipped: 0, notPlayedYet: 0, alreadyDownloaded: 0, newlyDownloaded: 0, notPlayed: 0, ignored: 0,
     downloadedSlugs: [], notPlayedSlugs: [],
   };
-  const total = data.games.length;
+  const total = games.length;
 
   for (let i = 0; i < total; i += 1) {
-    const game = data.games[i];
+    const game = games[i];
 
     if (!isValidGame(game)) {
       summary.ignored += 1;
@@ -91,8 +93,8 @@ async function processGames(client, data, state = { requestsSent: 0 }) {
       continue;
     }
 
-    // Games not played yet and scheduled after today are skipped too.
-    if (game.played === false && isAfterToday(game.date)) {
+    // Games scheduled after today are never downloaded.
+    if (isAfterToday(game.date)) {
       summary.notPlayedYet += 1;
       continue;
     }
@@ -123,11 +125,10 @@ async function processGames(client, data, state = { requestsSent: 0 }) {
       await downloadGame(client, game, state);
     } catch (err) {
       if (isNoDataError(err)) {
-        // Game not played yet: flag it and continue with the next one.
-        game.played = false;
+        // Game not played yet: continue with the next one and retry next run.
         summary.notPlayed += 1;
         summary.notPlayedSlugs.push(game.slug);
-        console.warn(`No data ("${err.apiError}"): game marked as played: false.`);
+        console.warn(`No data ("${err.apiError}"): game will be retried on the next run.`);
         console.log(SEPARATOR);
         continue;
       }
@@ -139,7 +140,6 @@ async function processGames(client, data, state = { requestsSent: 0 }) {
     console.log(`Duration: ${formatDuration(Date.now() - started)}`);
     console.log(SEPARATOR);
 
-    delete game.played;
     game.downloaded = true;
     summary.newlyDownloaded += 1;
     summary.downloadedSlugs.push(game.slug);
@@ -154,7 +154,7 @@ function printSummary(summary, elapsedMs) {
   console.log('Summary');
   console.log('='.repeat(50));
   console.log(`Skipped (marked as downloaded): ${summary.skipped}`);
-  console.log(`Skipped (played: false, date after today): ${summary.notPlayedYet}`);
+  console.log(`Skipped (date after today): ${summary.notPlayedYet}`);
   console.log(`Already downloaded: ${summary.alreadyDownloaded}`);
   console.log(`Newly downloaded: ${summary.newlyDownloaded}`);
   console.log(`Not played ("sin datos"): ${summary.notPlayed}`);

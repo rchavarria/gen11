@@ -7,7 +7,7 @@
  * PURPOSE
  * -------
  * Extracts scored points (CANASTA-1P, CANASTA-2P and CANASTA-3P) of the games
- * listed in <outputDir>/games.json. The output is a Chart.js 4 configuration
+ * listed in <outputDir>/dated-games.json. The output is a Chart.js 4 configuration
  * object ({type: 'line', data: {datasets}, options}) ready to render the score
  * evolution of a game in the browser.
  *
@@ -29,7 +29,7 @@
  * Games whose id is empty or not hexadecimal, or not marked with
  * `downloaded: true`, are ignored.
  * Games already marked with `scored: true` are skipped (no file checks).
- * On any error execution aborts and <outputDir>/games.json is NOT updated.
+ * On any error execution aborts and <outputDir>/dated-games.json is NOT updated.
  *
  * The logic lives in src/core/scored-points.js (shared with sync.js).
  *
@@ -45,7 +45,7 @@
 'use strict';
 
 const { loadConfig } = require('./core/config');
-const { readGamesFile, writeGamesFile } = require('./core/games');
+const { readDatedGamesFile, writeDatedGamesFile } = require('./core/dated-games');
 const { processGames, printSummary } = require('./core/scored-points');
 
 async function main() {
@@ -55,23 +55,23 @@ async function main() {
   let data;
   try {
     config = loadConfig();
-    data = await readGamesFile(config);
+    data = await readDatedGamesFile(config);
   } catch (err) {
     console.error(`Error: ${err.message}`);
     process.exitCode = 1;
     return;
   }
 
-  console.log(`Games file: ${config.paths.gamesFile}`);
+  console.log(`Games file: ${config.paths.datedGamesFile}`);
   console.log(`Scores directory: ${config.paths.gamesScores}`);
   console.log(`Scored points directory: ${config.paths.gameScoredPoints}`);
-  console.log(`Processing ${data.games.length} game(s).`);
+  console.log(`Processing ${data['dated-games'].length} game(s).`);
 
   try {
-    const summary = await processGames(config, data);
+    const summary = await processGames(config, data['dated-games']);
     // Only persist the games file when everything succeeded.
-    await writeGamesFile(config, data);
-    console.log(`Games file updated: ${config.paths.gamesFile}`);
+    await writeDatedGamesFile(config, data);
+    console.log(`Games file updated: ${config.paths.datedGamesFile}`);
     printSummary(summary, Date.now() - startTime);
   } catch (err) {
     console.error(`Error: ${err.message}`);

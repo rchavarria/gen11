@@ -23,9 +23,9 @@ Each script writes into its own subfolder of `outputDir`:
 | Script               | Output                                                                          |
 |----------------------|---------------------------------------------------------------------------------|
 | `previous-games.js`  | `<outputDir>/games/`                                                            |
-| `download-games.js`  | `<outputDir>/games.json`, `games-stats/`, `games-scores/`                       |
-| `next-games.js`      | `<outputDir>/next-games/<YYYY-MM-DD>.json`                                      |
-| `scored-points.js`   | `<outputDir>/game-scored-points/<slug>-<id>.json`, `games.json` (`scored` flag) |
+| `download-games.js`  | `<outputDir>/dated-games.json`, `games-stats/`, `games-scores/`                 |
+| `next-games.js`      | `<outputDir>/next-games/<YYYY-MM-DD>.json`, `dated-games.json`                  |
+| `scored-points.js`   | `<outputDir>/game-scored-points/<slug>-<id>.json`, `dated-games.json`           |
 | `build-data.js`      | `src/data/calendar.json` (anonymised data for the web)                          |
 | `sync.js`            | `<outputDir>/sync-reports/<YYYY-MM-DD>.md` (plus everything above, see below)   |
 
@@ -42,10 +42,15 @@ npm run sync   # same as: node src/sync.js
 ```
 
 `sync.js` runs the whole pipeline: renew key, fetch upcoming games and add the
-new ones to `games.json` (empty `slug`), download stats/scores, generate the
-scored points, rebuild `calendar.json` and write a report. Setting the `slug`
-of new games in `games.json` is a manual step: games without slug are ignored
-and listed in the report as pending until you fill it in and run `sync` again.
+new ones to `dated-games.json` (empty `slug`), update dates and times of known
+games, download stats/scores, generate the scored points, rebuild `calendar.json`
+and write a report. Setting the `slug` of new games in `dated-games.json` is a
+manual step: games without slug are ignored and listed in the report as pending
+until you fill it in and run `sync` again.
+
+`build-data.js` still reads `games.json` and
+`next-games/next-games.json`; migrating calendar generation to
+`dated-games.json` is not part of this change.
 
 ## Web
 
@@ -71,10 +76,10 @@ npm run build        # dist/
 | `src/core/format.js`     | `formatDuration`, `timestamp`                                                                        |
 | `src/core/validate.js`   | `isEmptyValue`, `isPlainObject`, `fileExists`                                                        |
 | `src/core/games.js`      | `isValidGame`, `readGamesFile`, `writeGamesFile`                                                     |
+| `src/core/dated-games.js` | `readDatedGamesFile`, `writeDatedGamesFile`                                                         |
 | `src/core/files.js`      | `writeJson`, `buildFileName`, `saveStats`, `saveScore`                                               |
 | `src/core/api-client.js` | `ApiClient` (API calls, validation, key rotation), `ApiError`, `isNoDataError`                       |
 | `src/core/download.js`   | `processGames` (stats + scores download), `downloadGame`, `isAfterToday`                             |
 | `src/core/scored-points.js` | `getScoredPoints`, `generateScoredPoints`, `processGames`                                         |
-| `src/core/next-games.js` | `fetchNextGames`, `mergeNewGames`, `toIsoDate`                                                       |
+| `src/core/next-games.js` | `fetchNextGames`, `mergeDatedGames`, `toIsoDate`                                                     |
 | `src/core/report.js`     | `buildReport`, `writeReport` (sync report)                                                           |
-

@@ -11,12 +11,10 @@
  *
  *   1. Renews the API key (ApiClient.renewKey).
  *   2. Requests the upcoming games (21 days), saves the raw response to
- *      <outputDir>/next-games/<YYYY-MM-DD>.json and adds to games.json the
- *      games whose id is not there yet (empty `slug`, with `id` and `date`).
- *      games.json is written right after, so new games are never lost.
+ *      <outputDir>/next-games/<YYYY-MM-DD>.json and consolidates upcoming
+ *      games into <outputDir>/dated-games.json.
  *   3. Manual step (outside this script): put a `slug` to the new games in
- *      games.json. Games without slug are ignored and listed in the report
- *      as pending.
+ *      dated-games.json. Games without slug are ignored and listed in the report.
  *   4. Downloads stats and score of the games with id and slug not downloaded
  *      yet (same rules as download-games.js).
  *   5. Generates the Chart.js scored points of the downloaded games
@@ -40,8 +38,8 @@
 const { ApiClient } = require('./core/api-client');
 const { loadConfig } = require('./core/config');
 const { shorterWait } = require('./core/wait');
-const { readGamesFile, writeGamesFile } = require('./core/games');
-const { fetchNextGames, mergeNewGames, DAYS } = require('./core/next-games');
+const { readDatedGamesFile, writeDatedGamesFile } = require('./core/dated-games');
+const { fetchNextGames, DAYS } = require('./core/next-games');
 const download = require('./core/download');
 const scoredPoints = require('./core/scored-points');
 const { buildCalendar } = require('./build-data');
@@ -57,21 +55,17 @@ function step(text) {
 }
 
 /**
- * Games without slug, described with the data of the upcoming games when known.
+ * Games without slug in dated-games.json.
  */
-function findPendingSlug(data, upcoming) {
-  const byId = new Map(upcoming.map((game) => [game.IdPartido, game]));
-  return data.games
+function findPendingSlug(games) {
+  return games
     .filter((game) => game && typeof game.id === 'string' && game.id.trim() !== '' && String(game.slug || '').trim() === '')
-    .map((game) => {
-      const info = byId.get(game.id) || {};
-      return {
-        id: game.id,
-        date: game.date,
-        home: info.NombreEquipoLocal ?? '',
-        away: info.NombreEquipoVisitante ?? '',
-      };
-    });
+    .map((game) => ({
+      id: game.id,
+      date: game.date,
+      home: game.homeClubName ?? '',
+      away: game.awayClubName ?? '',
+    }));
 }
 
 async function run(config, result) {
@@ -84,24 +78,31 @@ async function run(config, result) {
   await shorterWait();
 
   step(`2. Upcoming games (${DAYS} days)`);
-  const { data: next, fileName, mergedCount } = await fetchNextGames(client, { days: DAYS, date: result.startedAt });
+  const { data: next, fileName, added, updated, total } = await fetchNextGames(client, { days: DAYS, date: result.startedAt });
   console.log(`Games received: ${next.mispartidos.length} (saved to ${fileName})`);
-  console.log(`Accumulated games: ${mergedCount} (next-games.json)`);
+  console.log(`Dated games added: ${added.length}`);
+  console.log(`Dated games updated: ${updated.length}`);
+  console.log(`Total dated games: ${total}`);
 
-  const data = await readGamesFile(config);
-  result.newGames = mergeNewGames(data, next.mispartidos);
-  result.pendingSlug = findPendingSlug(data, next.mispartidos);
-  await writeGamesFile(config, data);
-  console.log(`New games added to games.json: ${result.newGames.length}`);
+  const data = await readDatedGamesFile(config);
+  const games = data['dated-games'];
+  result.newGames = added.map((game) => ({
+    id: game.id,
+    date: game.date,
+    home: game.homeClubName,
+    away: game.awayClubName,
+  }));
+  result.pendingSlug = findPendingSlug(games);
+  console.log(`New games added to dated-games.json: ${result.newGames.length}`);
   console.log(`Games pending a slug: ${result.pendingSlug.length}`);
 
   step('3. Download stats and scores');
   try {
     // A request was just sent, so the first download waits first.
-    const summary = await download.processGames(client, data, { requestsSent: 1 });
+    const summary = await download.processGames(client, games, { requestsSent: 1 });
     result.downloaded = summary.downloadedSlugs;
     result.notPlayed = summary.notPlayedSlugs;
-    await writeGamesFile(config, data);
+    await writeDatedGamesFile(config, data);
     download.printSummary(summary, Date.now() - result.startedAt);
   } catch (err) {
     if (err.summary) {
@@ -113,9 +114,9 @@ async function run(config, result) {
 
   step('4. Scored points');
   try {
-    const summary = await scoredPoints.processGames(config, data);
+    const summary = await scoredPoints.processGames(config, games);
     result.scored = summary.scoredSlugs;
-    await writeGamesFile(config, data);
+    await writeDatedGamesFile(config, data);
     scoredPoints.printSummary(summary, Date.now() - result.startedAt);
   } catch (err) {
     if (err.summary) result.scored = err.summary.scoredSlugs;

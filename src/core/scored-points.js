@@ -189,15 +189,15 @@ async function generateScoredPoints(config, fileName) {
 }
 
 /**
- * Processes every game of the data object, mutating it in memory.
+ * Processes every game in the list, mutating it in memory.
  * @param {ReturnType<typeof loadConfig>} config
- * @param {{games: object[]}} data
+ * @param {object[]} games
  * @returns {Promise<{skipped: number, alreadyScored: number, newlyScored: number, ignored: number}>}
  */
-async function processGames(config, data) {
+async function processGames(config, games) {
   const summary = { skipped: 0, alreadyScored: 0, newlyScored: 0, ignored: 0, scoredSlugs: [] };
 
-  for (const game of data.games) {
+  for (const game of games) {
     if (!isValidGame(game) || game.downloaded !== true) {
       summary.ignored += 1;
       continue;
@@ -244,6 +244,5 @@ function printSummary(summary, elapsedMs) {
 }
 
 module.exports = { getScoredPoints, generateScoredPoints, processGames, printSummary };
-
 
 

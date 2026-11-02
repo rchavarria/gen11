@@ -45,7 +45,7 @@ function buildReport(result) {
   lines.push('');
 
   lines.push(...section('New games', result.newGames.map(describeGame)));
-  lines.push(...section('Games pending a slug (edit games.json)', result.pendingSlug.map(describeGame)));
+  lines.push(...section('Games pending a slug (edit dated-games.json)', result.pendingSlug.map(describeGame)));
   lines.push(...section('Downloaded games', result.downloaded));
   lines.push(...section('Games without data yet ("sin datos")', result.notPlayed));
   lines.push(...section('Scored points generated', result.scored));

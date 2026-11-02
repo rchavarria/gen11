@@ -28,7 +28,9 @@
  * deviceId     (required) Registered device id, sent as `id_dispositivo`.
  * key          (required) Key sent as `key`. Replaced by the received key.
  * outputDir    (optional) Root download directory, resolved against the
- *              project root. Files are written to <outputDir>/next-games,
+ *              project root. The daily response is written to
+ *              <outputDir>/next-games; accumulated games go to
+ *              <outputDir>/dated-games.json.
  *              created automatically if it does not exist.
  * The script aborts if config.json is missing or invalid.
  *
@@ -41,8 +43,9 @@
  * ----------------------
  * <outputDir>/next-games/<YYYY-MM-DD>.json  (local date of execution)
  * An existing file for the same date is overwritten.
- * <outputDir>/next-games/next-games.json accumulates games by IdPartido.
- * Received games replace existing entries, sorted by Fecha and Hora.
+ * <outputDir>/dated-games.json accumulates games by IdPartido. New games are
+ * added; existing games have only date and time refreshed. Entries are sorted
+ * by date and time.
  *
  * ERROR HANDLING RULES
  * --------------------
@@ -107,14 +110,16 @@ async function main() {
   const sentKey = client.key;
   const fileName = `${toDayString(started)}.json`;
 
-  console.log(`Output directory: ${client.config.paths.nextGames}`);
+  console.log(`Daily output directory: ${client.config.paths.nextGames}`);
+  console.log(`Accumulated games file: ${client.config.paths.datedGamesFile}`);
   console.log(`Days ahead: ${DAYS}`);
 
   let data;
-  let mergedCount;
+  let summary;
   try {
     // ApiClient persists the rotated key before returning the data.
-    ({ data, mergedCount } = await fetchNextGames(client, { days: DAYS, date: started }));
+    summary = await fetchNextGames(client, { days: DAYS, date: started });
+    ({ data } = summary);
   } catch (err) {
     const failed = new Date();
     console.error(SEPARATOR);
@@ -134,7 +139,9 @@ async function main() {
   console.log(`Sent key: ${sentKey}`);
   console.log(`Received key: ${client.key}`);
   console.log(`Games received: ${data.mispartidos.length}`);
-  console.log(`Accumulated games: ${mergedCount} (next-games.json)`);
+  console.log(`Dated games added: ${summary.added.length}`);
+  console.log(`Dated games updated: ${summary.updated.length}`);
+  console.log(`Total dated games: ${summary.total}`);
   console.log(`Output file: ${fileName}`);
   console.log(`Started: ${timestamp(started)}`);
   console.log(`Finished: ${timestamp(finished)}`);

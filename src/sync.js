@@ -39,7 +39,7 @@
 
 const { ApiClient } = require('./core/api-client');
 const { loadConfig } = require('./core/config');
-const { shortWait } = require('./core/wait');
+const { shorterWait } = require('./core/wait');
 const { readGamesFile, writeGamesFile } = require('./core/games');
 const { fetchNextGames, mergeNewGames, DAYS } = require('./core/next-games');
 const download = require('./core/download');
@@ -81,7 +81,7 @@ async function run(config, result) {
   await client.renewKey();
   console.log('Key renewed.');
 
-  await shortWait();
+  await shorterWait();
 
   step(`2. Upcoming games (${DAYS} days)`);
   const { data: next, fileName, mergedCount } = await fetchNextGames(client, { days: DAYS, date: result.startedAt });

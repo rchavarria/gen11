@@ -26,7 +26,7 @@ Each script writes into its own subfolder of `outputDir`:
 | `download-games.js`  | `<outputDir>/dated-games.json`, `games-stats/`, `games-scores/`                 |
 | `next-games.js`      | `<outputDir>/next-games/<YYYY-MM-DD>.json`, `dated-games.json`                  |
 | `scored-points.js`   | `<outputDir>/game-scored-points/<slug>-<id>.json`, `dated-games.json`           |
-| `build-data.js`      | `src/data/calendar.json` (anonymised data for the web)                          |
+| `build-data.js`      | `src/data/calendar.json`, `src/data/games/<slug>.json` (data for the web)        |
 | `sync.js`            | `<outputDir>/sync-reports/<YYYY-MM-DD>.md` (plus everything above, see below)   |
 
 ## Usage
@@ -44,12 +44,17 @@ npm run sync   # same as: node src/sync.js
 `sync.js` runs the whole pipeline: renew key, fetch upcoming games and add the
 new ones to `dated-games.json` (empty `slug`), update dates and times of known
 games, download stats/scores, generate the scored points, rebuild `calendar.json`
-and write a report. Setting the `slug` of new games in `dated-games.json` is a
+and per-game files, and write a report. Setting the `slug` of new games in `dated-games.json` is a
 manual step: games without slug are ignored and listed in the report as pending
 until you fill it in and run `sync` again.
 
 `build-data.js` reads game metadata from `dated-games.json` and scores from
 `games-scores/`. Without a score file, games are shown as not played.
+For games with both numeric scores, it also rewrites `src/data/games/<slug>.json`.
+These files preserve dated-game fields, including `id`, but omit `homeClubName`,
+`awayClubName`, `downloaded` and `scored`. They add `home` and `away` objects with the club `slug`, `score`, and numeric
+`quarterScores` ordered by period (including overtime). Club slugs are resolved
+through `sourceNames` in `clubs.json`; unknown clubs cause an error.
 
 ## Web
 
@@ -58,7 +63,7 @@ to `main` (`.github/workflows/pages.yml`). See [web design](docs/web-design.md).
 
 ```bash
 npm install
-npm run build-data   # downloads/ -> src/data/calendar.json (commit it)
+npm run build-data   # downloads/ -> src/data/calendar.json + games/*.json (commit them)
 npm run dev          # local server
 npm run build        # dist/
 ```

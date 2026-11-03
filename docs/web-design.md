@@ -42,17 +42,29 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   La página de detalle carga cada JSON de forma lazy mediante `import.meta.glob`.
 - Slug del partido: lo añades a mano en `dated-games.json` antes de procesarlo;
   es el id estable (el `id_partido` de la fuente caduca)
-- `src/data/clubs.json` (a mano): `slug`, `name` (el que se muestra), `logo` (fichero en
+- `src/data/clubs.json` (a mano): `slug`, `initials` (3 letras, se muestran en la tira de
+  próximos partidos), `name` (el que se muestra), `logo` (fichero en
   `public/logos/`, o `null`) y `sourceNames` (nombres del club en la fuente)
 - Vídeos: enlaces añadidos a mano (pendiente)
 
 ## Página principal: calendario
 
+### Tira de próximos partidos
+
+- Arriba del todo, a todo el ancho y con fondo oscuro
+- Partidos sin marcador con fecha de hoy en adelante, ordenados por fecha y hora
+- Tarjetas pequeñas: categoría corta (`CAD`, `JUN`), hora (si se conoce), fecha,
+  y escudo + `initials` de ambos clubs (local arriba)
+- Scroll horizontal con botones ‹ › a los lados (ocultos en móviles táctiles)
+- Las tarjetas no son clicables; si no hay próximos partidos no se muestra
+
+### Calendario
+
 - Selector de mes arriba (‹ Octubre 2026 ›); el mes va en la URL (`/#/?mes=2026-10`)
 - Bloques por semana, de lunes a domingo
 - Una semana que cruza dos meses aparece en ambos
 - Semanas sin partidos: se muestra «Sin partidos»
-- Al abrir, se muestra la semana actual
+- Al abrir, se muestra la semana actual (solo hace scroll si no está visible, para no ocultar la tira)
 - Se muestran todos los partidos, pasados y próximos
 
 ### Tarjeta de partido

@@ -137,6 +137,108 @@ a.game-card:hover { border-color: var(--accent); }
   text-decoration: none;
 }
 
+.upcoming {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0.5rem;
+  background: #111;
+}
+
+.upcoming__list {
+  display: flex;
+  gap: 0.5rem;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.upcoming__list::-webkit-scrollbar { display: none; }
+
+.upcoming__nav {
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--text);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.upcoming__nav:disabled { opacity: 0.3; cursor: default; }
+
+.upcoming-card {
+  flex: 0 0 auto;
+  min-width: 10.5rem;
+  scroll-snap-align: start;
+  background: var(--card);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.upcoming-card__header {
+  min-height: 1.9rem;
+  padding: 0.35rem 0.5rem;
+  background: var(--bg);
+  text-align: center;
+}
+
+.upcoming-card__category {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  background: #333;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.upcoming-card__category--cad { background: #1d6fd1; }
+.upcoming-card__category--jun { background: #c2410c; }
+
+.upcoming-card__body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.upcoming-card__when {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.7rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.upcoming-card__when strong { font-size: 1rem; color: var(--text); }
+
+.upcoming-card__clubs { display: grid; gap: 0.3rem; }
+
+.upcoming-card__club {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.upcoming-card__club .club-logo { width: 20px; height: 20px; font-size: 0.55rem; }
+
+@media (hover: none) and (max-width: 600px) {
+  .upcoming__nav { display: none; }
+}
+
 .game-detail {
   padding: 1.25rem;
   background: var(--card);

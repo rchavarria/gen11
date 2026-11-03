@@ -3,12 +3,13 @@
 ## To Do list
 
 - `ApiClient`: renovar la key automáticamente (`renewKey()`) cuando la API responda "Faltan parámetros", y reintentar la petición una vez
-- web: detalle del partido con marcador por cuartos y estadísticas por dorsal (`src/data/games/<slug>.json`)
+- web: mostrar el detalle del partido con marcador por cuartos y añadir estadísticas por dorsal (datos de marcador en `src/data/games/<slug>.json`)
 - web: gráfica de evolución del marcador, enlace a vídeo, filtro por categoría
 - web: añadir escudos de los clubs en `src/web/public/logos/` y su `logo` en `src/data/clubs.json`
 
 ## Done list
 
+- 2026-11-03: paso 6 de `sync.js`: generar `src/data/games/<slug>.json` con datos del partido, slugs de clubs, marcador y parciales por periodo (incluidas prórrogas)
 - 2026-11-01: `sync.js` (`npm run sync`): renueva la key, añade partidos nuevos a `games.json`, descarga, genera puntos anotados, `build-data` e informe en `sync-reports/`
 - 2026-10-31: web estática (React + Vite) con calendario semanal, `build-data.js` y despliegue en GitHub Pages ([diseño](docs/web-design.md))
 - 2026-10-28: `renew-key.js`: script para renovar la key de la API (registra de nuevo un `uid` fijo ya registrado; la API responde "uuid ya registrado" junto con una key nueva)

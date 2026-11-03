@@ -1,8 +1,8 @@
 'use strict';
 
 /**
- * Builds the anonymized data used by the web (src/data/calendar.json) from the
- * raw downloads. It makes no API requests.
+ * Builds the web calendar and per-game files from the raw downloads.
+ * It makes no API requests.
  *
  * - Games, dates, times, categories and clubs come from
  *   <outputDir>/dated-games.json (slugs added by hand).
@@ -10,7 +10,9 @@
  * - Club slugs come from src/data/clubs.json (maintained by hand).
  *   The web resolves club names and logos from that file.
  *
- * Only whitelisted fields are written: no player or coach names, no ids.
+ * The calendar only includes whitelisted fields (no ids). Per-game files keep
+ * dated-game fields, including ids but excluding source club names and internal
+ * download/scoring flags, and add scores and period scores.
  *
  * Usage: node src/build-data.js
  */
@@ -24,6 +26,7 @@ const { readDatedGamesFile } = require('./core/dated-games');
 const DATA_DIR = path.join(__dirname, 'data');
 const CLUBS_FILE = path.join(DATA_DIR, 'clubs.json');
 const CALENDAR_FILE = path.join(DATA_DIR, 'calendar.json');
+const GAMES_DIR = path.join(DATA_DIR, 'games');
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -108,6 +111,52 @@ function fromDatedGame(game, clubs, scoreFile) {
   };
 }
 
+function buildGameDetail(game, clubs, scoreData) {
+  const match = scoreData?.partido || {};
+  const homeScore = toScore(match.tanteo_local);
+  const awayScore = toScore(match.tanteo_visitante);
+  if (homeScore === null || awayScore === null) return null;
+
+  const { homeClubName, awayClubName, downloaded, scored, ...metadata } = game;
+  const home = buildSide(clubs, homeClubName, homeScore);
+  const away = buildSide(clubs, awayClubName, awayScore);
+  const periods = [...(match.periodos || [])].sort((a, b) => a.periodo - b.periodo);
+
+  return {
+    ...metadata,
+    home: {
+      slug: home.club,
+      score: home.score,
+      quarterScores: periods.map((period) => toScore(period.tanteo_periodo_local)),
+    },
+    away: {
+      slug: away.club,
+      score: away.score,
+      quarterScores: periods.map((period) => toScore(period.tanteo_periodo_visitante)),
+    },
+  };
+}
+
+async function buildGameFiles(config) {
+  const games = (await readDatedGamesFile(config))['dated-games'].filter(isValidGame);
+  const scoreIndex = indexScoreFiles(config);
+  const clubs = loadClubs();
+  const slugs = [];
+
+  fs.mkdirSync(GAMES_DIR, { recursive: true });
+  for (const game of games) {
+    const scoreFile = scoreIndex.get(game.id);
+    if (!scoreFile) continue;
+    const detail = buildGameDetail(game, clubs, readJson(scoreFile));
+    if (!detail) continue;
+    fs.writeFileSync(path.join(GAMES_DIR, `${game.slug}.json`), `${JSON.stringify(detail, null, 2)}\n`, 'utf8');
+    slugs.push(game.slug);
+  }
+
+  console.log(`${slugs.length} game files written to ${path.relative(process.cwd(), GAMES_DIR)}`);
+  return { count: slugs.length, slugs };
+}
+
 async function buildCalendar(config) {
   const allGames = (await readDatedGamesFile(config))['dated-games'];
   const games = allGames.filter(isValidGame);
@@ -130,10 +179,14 @@ async function buildCalendar(config) {
   return { count: calendar.length, skipped };
 }
 
-module.exports = { buildSide, fromDatedGame, buildCalendar };
+module.exports = { buildSide, fromDatedGame, buildGameDetail, buildGameFiles, buildCalendar };
 
 if (require.main === module) {
-  Promise.resolve().then(() => buildCalendar(loadConfig())).catch((err) => {
+  Promise.resolve().then(async () => {
+    const config = loadConfig();
+    await buildCalendar(config);
+    await buildGameFiles(config);
+  }).catch((err) => {
     console.error(err.message);
     process.exitCode = 1;
   });

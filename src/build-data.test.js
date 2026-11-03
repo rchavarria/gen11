@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { test } = require('node:test');
-const { buildSide, fromDatedGame } = require('./build-data');
+const { buildSide, fromDatedGame, buildGameDetail } = require('./build-data');
 
 const clubs = new Map([
   ['HOME CLUB', { slug: 'home', name: 'Home', logo: 'home.png' }],
@@ -16,6 +16,11 @@ const datedGame = {
   slug: 'game', id: 'ABC', date: '2026-09-21', time: '11:30:00',
   category: ' Cadete ', homeClubName: 'HOME CLUB', awayClubName: 'AWAY CLUB',
   downloaded: false, scored: false,
+};
+
+const detailMetadata = {
+  slug: 'game', id: 'ABC', date: '2026-09-21', time: '11:30:00',
+  category: ' Cadete ',
 };
 
 test('sides reference clubs without duplicating names, teams or logos', () => {
@@ -71,6 +76,56 @@ test('scores and played status come only from score files', (t) => {
   assert.deepEqual(fromDatedGame(datedGame, clubs, file), fromDatedGame(datedGame, clubs));
 });
 
+test('game details omit source names and internal flags and sort numeric period scores including overtime', () => {
+  const game = { ...datedGame, extra: 'preserved', homeClubName: ' home club ' };
+  const scoreData = { partido: {
+    tanteo_local: '85', tanteo_visitante: '80', estado_partido: 'EN JUEGO',
+    periodos: [
+      { periodo: 5, tanteo_periodo_local: '5', tanteo_periodo_visitante: '0' },
+      { periodo: 2, tanteo_periodo_local: 20, tanteo_periodo_visitante: 15 },
+      { periodo: 1, tanteo_periodo_local: 10, tanteo_periodo_visitante: 20 },
+      { periodo: 4, tanteo_periodo_local: 30, tanteo_periodo_visitante: 20 },
+      { periodo: 3, tanteo_periodo_local: 20, tanteo_periodo_visitante: 25 },
+    ],
+  } };
+  const original = JSON.stringify(scoreData);
+  const originalGame = JSON.stringify(game);
+  assert.deepEqual(buildGameDetail(game, clubs, scoreData), {
+    ...detailMetadata, extra: 'preserved',
+    home: { slug: 'home', score: 85, quarterScores: [10, 20, 20, 30, 5] },
+    away: { slug: 'away', score: 80, quarterScores: [20, 15, 25, 20, 0] },
+  });
+  assert.equal(JSON.stringify(scoreData), original);
+  assert.equal(JSON.stringify(game), originalGame);
+  assert.equal(game.home, undefined);
+});
+
+test('game details require both scores, accept zero and handle missing periods', () => {
+  for (const scoreData of [
+    undefined, {}, { partido: { estado_partido: 'FINALIZADO' } },
+    { partido: { tanteo_local: 0 } },
+    { partido: { tanteo_local: 'invalid', tanteo_visitante: 20 } },
+  ]) {
+    assert.equal(buildGameDetail(datedGame, clubs, scoreData), null);
+  }
+  assert.deepEqual(buildGameDetail(datedGame, clubs, {
+    partido: { tanteo_local: 0, tanteo_visitante: '20' },
+  }), {
+    ...detailMetadata,
+    home: { slug: 'home', score: 0, quarterScores: [] },
+    away: { slug: 'away', score: 20, quarterScores: [] },
+  });
+});
+
+test('game details reject unknown clubs', () => {
+  const scoreData = { partido: { tanteo_local: 80, tanteo_visitante: 70 } };
+  for (const field of ['homeClubName', 'awayClubName']) {
+    assert.throws(() => buildGameDetail({
+      ...datedGame, [field]: 'Unknown club',
+    }, clubs, scoreData), /Club not found.*Unknown club/);
+  }
+});
+
 test('calendar builds from dated games without legacy files, sorting and skipping incomplete entries', async (t) => {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'gen11-calendar-'));
   t.after(() => fs.rmSync(directory, { recursive: true }));
@@ -96,13 +151,35 @@ test('calendar builds from dated games without legacy files, sorting and skippin
   fs.writeFileSync(path.join(gamesScores, 'game-ABC.json'), JSON.stringify({
     partido: { tanteo_local: '80', tanteo_visitante: '70', estado_partido: 'FINALIZADO' },
   }));
-  const { buildCalendar } = require(path.join(directory, 'build-data.js'));
-  assert.deepEqual(await buildCalendar({ paths: {
+  const { buildCalendar, buildGameFiles } = require(path.join(directory, 'build-data.js'));
+  const config = { paths: {
     datedGamesFile, gamesScores: path.dirname(gamesScores),
-  } }), { count: 3, skipped: ['(no slug)', 'invalid-id'] });
+  } };
+  assert.deepEqual(await buildCalendar(config), { count: 3, skipped: ['(no slug)', 'invalid-id'] });
   const calendar = JSON.parse(fs.readFileSync(path.join(directory, 'data/calendar.json'), 'utf8'));
   assert.deepEqual(calendar.map((game) => game.slug), ['earlier', 'game', 'later']);
   assert.deepEqual(calendar[1], fromDatedGame(datedGame, clubs, path.join(gamesScores, 'game-ABC.json')));
   assert.equal(calendar[0].played, false);
   assert.equal(calendar[2].played, false);
+
+  fs.writeFileSync(path.join(gamesScores, 'earlier-CDE.json'), JSON.stringify({
+    partido: { tanteo_local: 10 },
+  }));
+  assert.deepEqual(await buildGameFiles(config), { count: 1, slugs: ['game'] });
+  const gamesDir = path.join(directory, 'data/games');
+  assert.deepEqual(fs.readdirSync(gamesDir), ['game.json']);
+  const gameFile = path.join(gamesDir, 'game.json');
+  assert.deepEqual(JSON.parse(fs.readFileSync(gameFile, 'utf8')), {
+    ...detailMetadata,
+    home: { slug: 'home', score: 80, quarterScores: [] },
+    away: { slug: 'away', score: 70, quarterScores: [] },
+  });
+  fs.writeFileSync(path.join(gamesScores, 'game-ABC.json'), JSON.stringify({
+    partido: { tanteo_local: 81, tanteo_visitante: 70 },
+  }));
+  assert.deepEqual(await buildGameFiles(config), { count: 1, slugs: ['game'] });
+  const rewritten = fs.readFileSync(gameFile, 'utf8');
+  assert.equal(JSON.parse(rewritten).home.score, 81);
+  await buildGameFiles(config);
+  assert.equal(fs.readFileSync(gameFile, 'utf8'), rewritten);
 });

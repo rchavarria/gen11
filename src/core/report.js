@@ -28,7 +28,7 @@ function describeGame(game) {
  *   startedAt: Date, finishedAt: Date, error?: string|null,
  *   newGames: object[], pendingSlug: object[],
  *   downloaded: string[], notPlayed: string[], scored: string[],
- *   calendarCount?: number|null
+ *   calendarCount?: number|null, gameFilesCount?: number|null
  * }} result
  * @returns {string}
  */
@@ -50,6 +50,7 @@ function buildReport(result) {
   lines.push(...section('Games without data yet ("sin datos")', result.notPlayed));
   lines.push(...section('Scored points generated', result.scored));
   if (result.calendarCount != null) lines.push(`Calendar: ${result.calendarCount} game(s) written.`, '');
+  if (result.gameFilesCount != null) lines.push(`Game files: ${result.gameFilesCount} written.`, '');
 
   return lines.join('\n');
 }

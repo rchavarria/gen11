@@ -20,7 +20,8 @@
  *   5. Generates the Chart.js scored points of the downloaded games
  *      (same rules as scored-points.js).
  *   6. Rebuilds src/data/calendar.json (build-data.js).
- *   7. Writes the report to <outputDir>/sync-reports/<YYYY-MM-DD>.md (an
+ *   7. Rebuilds src/data/games/<slug>.json for games with scores.
+ *   8. Writes the report to <outputDir>/sync-reports/<YYYY-MM-DD>.md (an
  *      existing report of the same day is overwritten) and prints it.
  *
  * Requests are sent strictly sequentially, with a random pause between them
@@ -42,7 +43,7 @@ const { readDatedGamesFile, writeDatedGamesFile } = require('./core/dated-games'
 const { fetchNextGames, DAYS } = require('./core/next-games');
 const download = require('./core/download');
 const scoredPoints = require('./core/scored-points');
-const { buildCalendar } = require('./build-data');
+const { buildCalendar, buildGameFiles } = require('./build-data');
 const { buildReport, writeReport } = require('./core/report');
 
 const SEPARATOR = '='.repeat(50);
@@ -125,6 +126,9 @@ async function run(config, result) {
 
   step('5. Calendar (build-data)');
   result.calendarCount = (await buildCalendar(config)).count;
+
+  step('6. Game files');
+  result.gameFilesCount = (await buildGameFiles(config)).count;
 }
 
 async function main() {
@@ -138,6 +142,7 @@ async function main() {
     notPlayed: [],
     scored: [],
     calendarCount: null,
+    gameFilesCount: null,
   };
 
   let config;

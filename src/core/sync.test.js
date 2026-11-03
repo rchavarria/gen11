@@ -131,6 +131,7 @@ test('buildReport lists sections, empty ones and the error', () => {
     error: 'boom',
     newGames: [{ id: 'BB', date: '2026-11-08', home: 'Home', away: 'Away' }],
     pendingSlug: [], downloaded: ['game-1'], notPlayed: [], scored: [], calendarCount: null,
+    gameFilesCount: 0,
   });
   assert.match(text, /# Sync report 2026-11-01/);
   assert.match(text, /Status: FAILED/);
@@ -139,4 +140,5 @@ test('buildReport lists sections, empty ones and the error', () => {
   assert.match(text, /## Downloaded games \(1\)\n\n- game-1/);
   assert.match(text, /Games pending a slug \(edit dated-games\.json\)/);
   assert.match(text, /## Games pending a slug.*\(0\)\n\n_None\._/);
+  assert.match(text, /Game files: 0 written\./);
 });

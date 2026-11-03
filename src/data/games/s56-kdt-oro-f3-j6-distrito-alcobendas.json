@@ -1,0 +1,29 @@
+{
+  "slug": "s56-kdt-oro-f3-j6-distrito-alcobendas",
+  "id": "3200330031007600410050004600710042007600650049005400580072004A006600510062006C00450067003D003D00",
+  "date": "2026-05-27",
+  "time": "20:30:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "distrito",
+    "score": 96,
+    "quarterScores": [
+      21,
+      34,
+      18,
+      19,
+      4
+    ]
+  },
+  "away": {
+    "slug": "alcobendas",
+    "score": 101,
+    "quarterScores": [
+      29,
+      22,
+      25,
+      16,
+      9
+    ]
+  }
+}

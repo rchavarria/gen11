@@ -1,0 +1,27 @@
+{
+  "slug": "s56-kdt-oro-playoffs-j1-zentro-alcobendas",
+  "id": "54007A007800300057004E004F006B00530050005300420033006700790078006E00470068007500650041003D003D00",
+  "date": "2026-04-19",
+  "time": "18:30:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "zentro",
+    "score": 101,
+    "quarterScores": [
+      20,
+      30,
+      28,
+      23
+    ]
+  },
+  "away": {
+    "slug": "alcobendas",
+    "score": 46,
+    "quarterScores": [
+      6,
+      16,
+      17,
+      7
+    ]
+  }
+}

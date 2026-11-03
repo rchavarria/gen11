@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g2-j03-alcobendas-alcorcon",
+  "id": "6C0055006300460049006B004D006E0049006C0070006400770066007A004B003700770072005000300077003D003D00",
+  "date": "2026-10-04",
+  "time": "13:15:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "alcobendas",
+    "score": 70,
+    "quarterScores": [
+      16,
+      19,
+      18,
+      17
+    ]
+  },
+  "away": {
+    "slug": "alcorcon",
+    "score": 75,
+    "quarterScores": [
+      9,
+      27,
+      14,
+      25
+    ]
+  }
+}

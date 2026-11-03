@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g1-j01-madrid-sba",
+  "id": "41006B0058002B004C00500062006C00530053004D0058003300730075006200760030007A006400490067003D003D00",
+  "date": "2026-09-19",
+  "time": "18:00:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "real-madrid",
+    "score": 107,
+    "quarterScores": [
+      24,
+      23,
+      35,
+      25
+    ]
+  },
+  "away": {
+    "slug": "sba",
+    "score": 51,
+    "quarterScores": [
+      10,
+      16,
+      18,
+      7
+    ]
+  }
+}

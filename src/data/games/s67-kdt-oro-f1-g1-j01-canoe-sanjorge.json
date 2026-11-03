@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g1-j01-canoe-sanjorge",
+  "id": "74004D00530062006D007400440031005900410072006A00380045004F0034005600680074003700350067003D003D00",
+  "date": "2026-09-20",
+  "time": "11:15:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "canoe",
+    "score": 84,
+    "quarterScores": [
+      15,
+      25,
+      13,
+      31
+    ]
+  },
+  "away": {
+    "slug": "sanjorge",
+    "score": 71,
+    "quarterScores": [
+      20,
+      17,
+      17,
+      17
+    ]
+  }
+}

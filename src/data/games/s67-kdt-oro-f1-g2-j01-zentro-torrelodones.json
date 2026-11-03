@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g2-j01-zentro-torrelodones",
+  "id": "64006600750068002F00360052005600370066005200420065002B0043006F004100330035007600660041003D003D00",
+  "date": "2026-10-27",
+  "time": "19:30:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "zentro",
+    "score": 90,
+    "quarterScores": [
+      25,
+      32,
+      16,
+      17
+    ]
+  },
+  "away": {
+    "slug": "torrelodones",
+    "score": 74,
+    "quarterScores": [
+      18,
+      21,
+      10,
+      25
+    ]
+  }
+}

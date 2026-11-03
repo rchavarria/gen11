@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g2-j04-alcobendas-laso",
+  "id": "48006900570049006D006C0039004300770073006F00710049005A00730062003000410048006D00410051003D003D00",
+  "date": "2026-10-18",
+  "time": "20:00:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "alcobendas",
+    "score": 68,
+    "quarterScores": [
+      17,
+      17,
+      18,
+      16
+    ]
+  },
+  "away": {
+    "slug": "laso",
+    "score": 95,
+    "quarterScores": [
+      23,
+      18,
+      28,
+      26
+    ]
+  }
+}

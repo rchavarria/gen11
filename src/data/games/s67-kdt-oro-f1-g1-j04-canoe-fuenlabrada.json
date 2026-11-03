@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g1-j04-canoe-fuenlabrada",
+  "id": "750052004E0068005000530050002F00790049004A006D00580034006A00370050005A0044005700360077003D003D00",
+  "date": "2026-10-18",
+  "time": "11:15:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "canoe",
+    "score": 79,
+    "quarterScores": [
+      18,
+      22,
+      17,
+      22
+    ]
+  },
+  "away": {
+    "slug": "fuenlabrada",
+    "score": 70,
+    "quarterScores": [
+      23,
+      19,
+      14,
+      14
+    ]
+  }
+}

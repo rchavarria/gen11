@@ -1,0 +1,27 @@
+{
+  "slug": "s56-kdt-oro-f1-g1-j4-alcobendas-estudiantes",
+  "id": "570039003700420062004C00340065004B0031006300500072003300530068003100470053003600590051003D003D00",
+  "date": "2025-10-18",
+  "time": "19:00:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "alcobendas",
+    "score": 60,
+    "quarterScores": [
+      17,
+      14,
+      16,
+      13
+    ]
+  },
+  "away": {
+    "slug": "estudiantes",
+    "score": 97,
+    "quarterScores": [
+      29,
+      22,
+      20,
+      26
+    ]
+  }
+}

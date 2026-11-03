@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g2-j04-estudiantes-torrelodones",
+  "id": "79006A006800500068006A00590059006D004F004C00680054006E0068006B003500370058005400550041003D003D00",
+  "date": "2026-10-18",
+  "time": "18:30:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "estudiantes",
+    "score": 97,
+    "quarterScores": [
+      35,
+      19,
+      25,
+      18
+    ]
+  },
+  "away": {
+    "slug": "torrelodones",
+    "score": 72,
+    "quarterScores": [
+      19,
+      23,
+      17,
+      13
+    ]
+  }
+}

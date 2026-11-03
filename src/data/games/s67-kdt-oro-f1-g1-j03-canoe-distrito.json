@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g1-j03-canoe-distrito",
+  "id": "74004D006C00460058007A0044004500650037006D006F0061004700570056005600640036004B00660041003D003D00",
+  "date": "2026-10-03",
+  "time": "16:30:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "canoe",
+    "score": 45,
+    "quarterScores": [
+      3,
+      8,
+      16,
+      18
+    ]
+  },
+  "away": {
+    "slug": "distrito",
+    "score": 104,
+    "quarterScores": [
+      27,
+      24,
+      28,
+      25
+    ]
+  }
+}

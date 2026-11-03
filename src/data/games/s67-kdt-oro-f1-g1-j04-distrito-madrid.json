@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g1-j04-distrito-madrid",
+  "id": "3300760067006C00620077006E0079004F004B006100780050005600500047004300420039006800790077003D003D00",
+  "date": "2026-10-17",
+  "time": "16:30:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "distrito",
+    "score": 73,
+    "quarterScores": [
+      29,
+      18,
+      17,
+      9
+    ]
+  },
+  "away": {
+    "slug": "real-madrid",
+    "score": 80,
+    "quarterScores": [
+      20,
+      16,
+      22,
+      22
+    ]
+  }
+}

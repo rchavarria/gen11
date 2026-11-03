@@ -1,0 +1,29 @@
+{
+  "slug": "s67-kdt-oro-f1-g2-j03-torrelodones-laso",
+  "id": "2B0043003600640044004D006F006100710051005000490038004F00710032007900350034006500790077003D003D00",
+  "date": "2026-10-03",
+  "time": "12:30:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "torrelodones",
+    "score": 89,
+    "quarterScores": [
+      27,
+      8,
+      21,
+      23,
+      10
+    ]
+  },
+  "away": {
+    "slug": "laso",
+    "score": 93,
+    "quarterScores": [
+      20,
+      24,
+      22,
+      13,
+      14
+    ]
+  }
+}

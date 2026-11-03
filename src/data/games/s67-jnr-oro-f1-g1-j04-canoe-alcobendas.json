@@ -1,0 +1,27 @@
+{
+  "slug": "s67-jnr-oro-f1-g1-j04-canoe-alcobendas",
+  "id": "6C00730072005300430074007200790066006700680057005A0037003600380030006B004B006D006F0077003D003D00",
+  "date": "2026-10-18",
+  "time": "13:00:00",
+  "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "canoe",
+    "score": 94,
+    "quarterScores": [
+      23,
+      30,
+      22,
+      19
+    ]
+  },
+  "away": {
+    "slug": "alcobendas",
+    "score": 76,
+    "quarterScores": [
+      20,
+      24,
+      16,
+      16
+    ]
+  }
+}

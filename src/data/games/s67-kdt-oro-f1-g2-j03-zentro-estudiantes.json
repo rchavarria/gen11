@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g2-j03-zentro-estudiantes",
+  "id": "56004700700065007500300068004600640077007100750044007900420071007800620078007700340051003D003D00",
+  "date": "2026-10-04",
+  "time": "18:15:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "zentro",
+    "score": 92,
+    "quarterScores": [
+      17,
+      29,
+      16,
+      30
+    ]
+  },
+  "away": {
+    "slug": "estudiantes",
+    "score": 62,
+    "quarterScores": [
+      18,
+      10,
+      16,
+      18
+    ]
+  }
+}

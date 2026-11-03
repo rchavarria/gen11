@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g1-j05-madrid-canoe",
+  "id": "460055007400690034005000520050007A00510072002F004D007000550037004900370048004500440041003D003D00",
+  "date": "2026-10-24",
+  "time": "17:00:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "real-madrid",
+    "score": 79,
+    "quarterScores": [
+      16,
+      27,
+      18,
+      18
+    ]
+  },
+  "away": {
+    "slug": "canoe",
+    "score": 52,
+    "quarterScores": [
+      6,
+      17,
+      14,
+      15
+    ]
+  }
+}

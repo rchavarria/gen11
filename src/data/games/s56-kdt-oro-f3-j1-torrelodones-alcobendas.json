@@ -1,0 +1,27 @@
+{
+  "slug": "s56-kdt-oro-f3-j1-torrelodones-alcobendas",
+  "id": "5400500067006200610046006D00780061004E0047004A00450038004B00640039003900480055006F0041003D003D00",
+  "date": "2026-05-10",
+  "time": "11:30:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "torrelodones",
+    "score": 77,
+    "quarterScores": [
+      17,
+      23,
+      26,
+      11
+    ]
+  },
+  "away": {
+    "slug": "alcobendas",
+    "score": 57,
+    "quarterScores": [
+      17,
+      7,
+      18,
+      15
+    ]
+  }
+}

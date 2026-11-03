@@ -1,0 +1,27 @@
+{
+  "slug": "s67-jnr-oro-f1-g1-j01-sba-alcobendas",
+  "id": "2B0066007A0045006A005A0050006B006100790032006400390038006B0049007200560053004D00750051003D003D00",
+  "date": "2026-09-20",
+  "time": "12:30:00",
+  "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "sba",
+    "score": 119,
+    "quarterScores": [
+      28,
+      46,
+      24,
+      21
+    ]
+  },
+  "away": {
+    "slug": "alcobendas",
+    "score": 95,
+    "quarterScores": [
+      24,
+      23,
+      22,
+      26
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "slug": "s56-kdt-oro-f1-g1-j7-rozas-alcobendas",
+  "id": "6A0061006C0073004300680058004A004C0062006A006C003900430053007A003800790062007200750051003D003D00",
+  "date": "2025-11-16",
+  "time": "15:30:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "rozas",
+    "score": 62,
+    "quarterScores": [
+      16,
+      10,
+      15,
+      21
+    ]
+  },
+  "away": {
+    "slug": "alcobendas",
+    "score": 72,
+    "quarterScores": [
+      14,
+      15,
+      23,
+      20
+    ]
+  }
+}

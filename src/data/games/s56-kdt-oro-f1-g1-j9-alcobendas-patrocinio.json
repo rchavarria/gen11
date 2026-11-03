@@ -1,0 +1,27 @@
+{
+  "slug": "s56-kdt-oro-f1-g1-j9-alcobendas-patrocinio",
+  "id": "720064005300660071004C003400370042004D005400480048004C00420053005500490059006700700077003D003D00",
+  "date": "2025-12-13",
+  "time": "13:15:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "alcobendas",
+    "score": 73,
+    "quarterScores": [
+      22,
+      18,
+      15,
+      18
+    ]
+  },
+  "away": {
+    "slug": "patrocinio",
+    "score": 80,
+    "quarterScores": [
+      27,
+      18,
+      20,
+      15
+    ]
+  }
+}

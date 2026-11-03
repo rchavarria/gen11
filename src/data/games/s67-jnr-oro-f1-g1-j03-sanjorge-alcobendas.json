@@ -1,0 +1,27 @@
+{
+  "slug": "s67-jnr-oro-f1-g1-j03-sanjorge-alcobendas",
+  "id": "3200770030002B006400480069007400520031004C005800650052004100380031007A0070006D00550067003D003D00",
+  "date": "2026-10-04",
+  "time": "13:30:00",
+  "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "sanjorge",
+    "score": 105,
+    "quarterScores": [
+      30,
+      25,
+      27,
+      23
+    ]
+  },
+  "away": {
+    "slug": "alcobendas",
+    "score": 90,
+    "quarterScores": [
+      26,
+      28,
+      20,
+      16
+    ]
+  }
+}

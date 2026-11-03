@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g1-j05-fuenlabrada-sanjorge",
+  "id": "52002B00670066005600520077005200350033007500550054004400680053004F00360064004B006A0067003D003D00",
+  "date": "2026-10-25",
+  "time": "16:30:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "fuenlabrada",
+    "score": 100,
+    "quarterScores": [
+      24,
+      23,
+      28,
+      25
+    ]
+  },
+  "away": {
+    "slug": "sanjorge",
+    "score": 62,
+    "quarterScores": [
+      18,
+      15,
+      21,
+      8
+    ]
+  }
+}

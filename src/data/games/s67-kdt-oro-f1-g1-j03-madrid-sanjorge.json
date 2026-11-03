@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g1-j03-madrid-sanjorge",
+  "id": "66006F005900700042005600330058004D006F0070003300430072005200300077004C0056005300700041003D003D00",
+  "date": "2026-10-03",
+  "time": "17:00:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "real-madrid",
+    "score": 91,
+    "quarterScores": [
+      25,
+      26,
+      23,
+      17
+    ]
+  },
+  "away": {
+    "slug": "sanjorge",
+    "score": 58,
+    "quarterScores": [
+      17,
+      18,
+      7,
+      16
+    ]
+  }
+}

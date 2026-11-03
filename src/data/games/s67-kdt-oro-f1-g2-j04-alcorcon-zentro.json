@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g2-j04-alcorcon-zentro",
+  "id": "54003800780050003500730059006C006B006B004A00760071003800430032003400410055003200380077003D003D00",
+  "date": "2026-10-18",
+  "time": "11:30:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "alcorcon",
+    "score": 49,
+    "quarterScores": [
+      5,
+      9,
+      17,
+      18
+    ]
+  },
+  "away": {
+    "slug": "zentro",
+    "score": 91,
+    "quarterScores": [
+      29,
+      20,
+      20,
+      22
+    ]
+  }
+}

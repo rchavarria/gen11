@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g1-j02-sba-canoe",
+  "id": "4F003900760055007800790069006D0049005500500073006900560048004F0035006F00350031006A0067003D003D00",
+  "date": "2026-09-26",
+  "time": "14:00:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "sba",
+    "score": 99,
+    "quarterScores": [
+      29,
+      23,
+      22,
+      25
+    ]
+  },
+  "away": {
+    "slug": "canoe",
+    "score": 77,
+    "quarterScores": [
+      18,
+      23,
+      10,
+      26
+    ]
+  }
+}

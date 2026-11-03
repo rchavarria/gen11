@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g1-j04-sanjorge-sba",
+  "id": "37004F0054007A00780068006100340039007700690077006400540042005A00300067007A0076006C0041003D003D00",
+  "date": "2026-10-18",
+  "time": "20:15:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "sanjorge",
+    "score": 86,
+    "quarterScores": [
+      21,
+      20,
+      22,
+      23
+    ]
+  },
+  "away": {
+    "slug": "sba",
+    "score": 105,
+    "quarterScores": [
+      21,
+      19,
+      35,
+      30
+    ]
+  }
+}

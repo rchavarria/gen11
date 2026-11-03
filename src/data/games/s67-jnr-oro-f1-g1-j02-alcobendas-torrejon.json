@@ -1,0 +1,27 @@
+{
+  "slug": "s67-jnr-oro-f1-g1-j02-alcobendas-torrejon",
+  "id": "78004B00300068005500730072002F0057007700750064006F0067006E004D004D00350047003200720041003D003D00",
+  "date": "2026-09-27",
+  "time": "20:00:00",
+  "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "alcobendas",
+    "score": 90,
+    "quarterScores": [
+      20,
+      24,
+      19,
+      27
+    ]
+  },
+  "away": {
+    "slug": "torrejon",
+    "score": 101,
+    "quarterScores": [
+      31,
+      27,
+      18,
+      25
+    ]
+  }
+}

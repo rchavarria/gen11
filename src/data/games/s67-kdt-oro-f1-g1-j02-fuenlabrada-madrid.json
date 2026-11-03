@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g1-j02-fuenlabrada-madrid",
+  "id": "6900330041004F006A00670067005A007600640058006500490053006400530059007600570059005A0041003D003D00",
+  "date": "2026-11-08",
+  "time": "13:30:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "fuenlabrada",
+    "score": 0,
+    "quarterScores": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "away": {
+    "slug": "real-madrid",
+    "score": 0,
+    "quarterScores": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

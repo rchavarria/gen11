@@ -1,0 +1,27 @@
+{
+  "slug": "s56-kdt-oro-f3-j5-alcobendas-fuenlabrada",
+  "id": "33003600780072006B006F007700640054003800550036003100330074004E007000610073004800620051003D003D00",
+  "date": "2026-05-14",
+  "time": "20:30:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "alcobendas",
+    "score": 79,
+    "quarterScores": [
+      14,
+      23,
+      24,
+      18
+    ]
+  },
+  "away": {
+    "slug": "fuenlabrada",
+    "score": 117,
+    "quarterScores": [
+      27,
+      21,
+      34,
+      35
+    ]
+  }
+}

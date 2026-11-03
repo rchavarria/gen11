@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g1-j05-sba-distrito",
+  "id": "55004D007100510063003000370077004B0053004500610065003800680070004B004400750077002B0051003D003D00",
+  "date": "2026-10-24",
+  "time": "14:00:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "sba",
+    "score": 76,
+    "quarterScores": [
+      20,
+      28,
+      14,
+      14
+    ]
+  },
+  "away": {
+    "slug": "distrito",
+    "score": 101,
+    "quarterScores": [
+      33,
+      21,
+      22,
+      25
+    ]
+  }
+}

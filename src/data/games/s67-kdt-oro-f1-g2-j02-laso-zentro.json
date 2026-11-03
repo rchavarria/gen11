@@ -1,0 +1,27 @@
+{
+  "slug": "s67-kdt-oro-f1-g2-j02-laso-zentro",
+  "id": "6E006E0049005A00520048006F00560033005600360033006D004A00530067005200580057003300380067003D003D00",
+  "date": "2026-10-08",
+  "time": "21:00:00",
+  "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "laso",
+    "score": 93,
+    "quarterScores": [
+      21,
+      22,
+      30,
+      20
+    ]
+  },
+  "away": {
+    "slug": "zentro",
+    "score": 79,
+    "quarterScores": [
+      23,
+      18,
+      20,
+      18
+    ]
+  }
+}

@@ -103,7 +103,10 @@ a.game-card:hover { border-color: var(--accent); }
 
 .game-card__side--winner { font-weight: 700; }
 
-.game-card__club { flex: 1; }
+.game-card__club {
+  flex: 1;
+  font-family: 'Montserrat', system-ui, sans-serif;
+}
 
 .game-card__score {
   min-width: 2.5rem;

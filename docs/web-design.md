@@ -8,7 +8,9 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 ## Privacidad
 
 - Jugadores: solo el **dorsal**, nunca el nombre
-- Tampoco se publican nombres de entrenadores ni ids de la fuente
+- Tampoco se publican nombres de entrenadores
+- El calendario omite ids de la fuente; los JSON de detalle conservan `id`,
+  publicado en los chunks de datos aunque no se muestra en pantalla
 - Equipos: se muestra el **nombre del club**
 - Sin buscadores: `<meta name="robots" content="noindex, nofollow">` y `robots.txt` con `Disallow: /`
 
@@ -33,6 +35,11 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   La web obtiene el nombre y el escudo desde `clubs.json`, sin duplicarlos en el calendario.
   El generador falla antes de escribir si no puede resolver un club; su nombre de la
   fuente debe estar en `sourceNames`.
+- También genera `src/data/games/<slug>.json` para partidos con ambos marcadores:
+  conserva los datos del partido (incluido `id`), omitiendo `homeClubName`,
+  `awayClubName`, `downloaded` y `scored`. Añade `home` y `away` con `slug`, `score`
+  y `quarterScores` ordenados por periodo, incluidas las prórrogas.
+  La página de detalle carga cada JSON de forma lazy mediante `import.meta.glob`.
 - Slug del partido: lo añades a mano en `dated-games.json` antes de procesarlo;
   es el id estable (el `id_partido` de la fuente caduca)
 - `src/data/clubs.json` (a mano): `slug`, `name` (el que se muestra), `logo` (fichero en
@@ -55,15 +62,19 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 - Fecha y hora
 - Categoría
 - Sin pabellón
+- Solo los partidos con ambos marcadores enlazan al detalle; los demás no son clicables
 
-## Página de detalle: `/#/partido/:slug`
+## Página de detalle: `/#/game/:slug`
 
-- Cabecera: igual que la tarjeta
-- Partido no jugado: solo la cabecera
+- Cabecera con categoría, fecha y hora (`HH:MM`; se omite si es desconocida)
+- Logos y nombres de ambos clubs, resueltos desde `clubs.json`
+- Marcador total en grande, con la puntuación ganadora en negrita
+- Tabla de parciales: Q1–Q4, OT/OT2… para las prórrogas y columna Total
+- Enlace de vuelta al calendario en el mes del partido
+- Estados de carga, partido no encontrado y error de carga
 
 ### Pendiente
 
-- Marcador completo por cuartos
 - Estadísticas de jugadores (por dorsal); columnas por decidir
 - Gráfica de evolución del marcador
 - Enlace o vídeo embebido

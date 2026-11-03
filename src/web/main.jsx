@@ -10,7 +10,7 @@ createRoot(document.getElementById('root')).render(
     <HashRouter>
       <Routes>
         <Route path="/" element={<CalendarPage />} />
-        <Route path="/partido/:slug" element={<GamePage />} />
+        <Route path="/game/:slug" element={<GamePage />} />
         <Route path="*" element={<CalendarPage />} />
       </Routes>
     </HashRouter>

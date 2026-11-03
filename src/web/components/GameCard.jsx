@@ -18,8 +18,9 @@ function Side({ side, winner }) {
   );
 }
 
-export default function GameCard({ game, link = true }) {
+export default function GameCard({ game }) {
   const { home, away, played } = game;
+  const hasScore = home.score != null && away.score != null;
   const homeWins = played && home.score > away.score;
   const awayWins = played && away.score > home.score;
 
@@ -34,7 +35,7 @@ export default function GameCard({ game, link = true }) {
     </>
   );
 
-  return link
-    ? <Link className="game-card" to={`/partido/${game.slug}`}>{content}</Link>
+  return hasScore
+    ? <Link className="game-card" to={`/game/${game.slug}`}>{content}</Link>
     : <div className="game-card">{content}</div>;
 }

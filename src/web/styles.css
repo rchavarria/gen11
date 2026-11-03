@@ -136,3 +136,67 @@ a.game-card:hover { border-color: var(--accent); }
   color: var(--accent);
   text-decoration: none;
 }
+
+.game-detail {
+  padding: 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.game-detail__header { text-align: center; }
+.game-detail__header h1 { margin: 0; font-size: 1.1rem; }
+.game-detail__header p { color: var(--muted); font-size: 0.9rem; }
+
+.game-detail__clubs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.game-detail__club .club-logo { width: 64px; height: 64px; font-size: 1.2rem; }
+.game-detail__club h2 { font-size: 1rem; overflow-wrap: anywhere; }
+
+.game-detail__score {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 1.5rem;
+  text-align: center;
+  font-size: clamp(2.5rem, 10vw, 4rem);
+  font-variant-numeric: tabular-nums;
+}
+
+.game-detail__separator { color: var(--muted); font-size: 0.6em; }
+.game-detail__winner { font-weight: 700; }
+.game-detail__table-scroll { overflow-x: auto; }
+
+.quarter-scores {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.quarter-scores caption {
+  padding-bottom: 0.75rem;
+  text-align: left;
+  color: var(--muted);
+}
+
+.quarter-scores th,
+.quarter-scores td {
+  padding: 0.6rem;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+.quarter-scores thead { color: var(--muted); }
+.quarter-scores th:first-child { text-align: left; }
+.quarter-scores tbody th { font-weight: 400; }
+.quarter-scores th:last-child,
+.quarter-scores td:last-child { border-left: 1px solid var(--border); }
+.quarter-scores__club { display: flex; align-items: center; gap: 0.5rem; min-width: 8rem; }

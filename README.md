@@ -55,6 +55,10 @@ These files preserve dated-game fields, including `id`, but omit `homeClubName`,
 `awayClubName`, `downloaded` and `scored`. They add `home` and `away` objects with the club `slug`, `score`, and numeric
 `quarterScores` ordered by period (including overtime). Club slugs are resolved
 through `sourceNames` in `clubs.json`; unknown clubs cause an error.
+If `games-stats/<slug>-<id>.json` exists, `home` and `away` also get `players`: one entry per player
+(the source's `TOTALES` row is excluded) with `jersey`, `msPlayed`, `starter`, `freeThrows`, `twoPointers`,
+`threePointers` (`made`/`attempted`), `rebounds` (`defensive`/`offensive`), `assists`, `turnovers`, `steals`,
+`blocks` (`made`/`received`), `fouls` (`committed`/`received`), `plusMinus` and `efficiency`.
 
 ## Web
 

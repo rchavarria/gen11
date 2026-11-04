@@ -44,12 +44,12 @@ function listJsonFiles(dir) {
 }
 
 /**
- * Indexes score files (<slug>-<id>.json) by game id.
+ * Indexes files (<slug>-<id>.json) in a directory by game id.
  * @returns {Map<string, string>} id -> file path
  */
-function indexScoreFiles(config) {
+function indexFilesById(dir) {
   const index = new Map();
-  for (const file of listJsonFiles(config.paths.gamesScores)) {
+  for (const file of listJsonFiles(dir)) {
     const match = path.basename(file, '.json').match(/-([0-9A-F]+)$/);
     if (match) index.set(match[1], file);
   }
@@ -111,7 +111,31 @@ function fromDatedGame(game, clubs, scoreFile) {
   };
 }
 
-function buildGameDetail(game, clubs, scoreData) {
+function toPlayer(raw) {
+  return {
+    jersey: raw.dorsal,
+    msPlayed: raw.milisegundos_jugados,
+    starter: raw.quintetotitular,
+    freeThrows: { made: raw.canasta1p, attempted: raw.tiro1p },
+    twoPointers: { made: raw.canasta2p, attempted: raw.tiro2p },
+    threePointers: { made: raw.canasta3p, attempted: raw.tiro3p },
+    rebounds: { defensive: raw.rebotedefensivo, offensive: raw.reboteofensivo },
+    assists: raw.asistencias,
+    turnovers: raw.perdidas,
+    steals: raw.recuperaciones,
+    blocks: { made: raw.taponescometidos, received: raw.taponesrecibidos },
+    fouls: { committed: raw.faltascometidas, received: raw.faltasrecibidas },
+    plusMinus: raw.masMenos,
+    efficiency: raw.valoracion,
+  };
+}
+
+// The source appends a "TOTALES" row (empty jersey, no player id) to each team.
+function toPlayers(list) {
+  return (list || []).filter((raw) => raw.nombre !== 'TOTALES').map(toPlayer);
+}
+
+function buildGameDetail(game, clubs, scoreData, statsData) {
   const match = scoreData?.partido || {};
   const homeScore = toScore(match.tanteo_local);
   const awayScore = toScore(match.tanteo_visitante);
@@ -122,24 +146,28 @@ function buildGameDetail(game, clubs, scoreData) {
   const away = buildSide(clubs, awayClubName, awayScore);
   const periods = [...(match.periodos || [])].sort((a, b) => a.periodo - b.periodo);
 
+  const stats = statsData?.estadisticas;
   return {
     ...metadata,
     home: {
       slug: home.club,
       score: home.score,
       quarterScores: periods.map((period) => toScore(period.tanteo_periodo_local)),
+      ...(stats && { players: toPlayers(stats.estadisticasequipolocal) }),
     },
     away: {
       slug: away.club,
       score: away.score,
       quarterScores: periods.map((period) => toScore(period.tanteo_periodo_visitante)),
+      ...(stats && { players: toPlayers(stats.estadisticasequipovisitante) }),
     },
   };
 }
 
 async function buildGameFiles(config) {
   const games = (await readDatedGamesFile(config))['dated-games'].filter(isValidGame);
-  const scoreIndex = indexScoreFiles(config);
+  const scoreIndex = indexFilesById(config.paths.gamesScores);
+  const statsIndex = indexFilesById(config.paths.gamesStats);
   const clubs = loadClubs();
   const slugs = [];
 
@@ -147,7 +175,8 @@ async function buildGameFiles(config) {
   for (const game of games) {
     const scoreFile = scoreIndex.get(game.id);
     if (!scoreFile) continue;
-    const detail = buildGameDetail(game, clubs, readJson(scoreFile));
+    const statsFile = statsIndex.get(game.id);
+    const detail = buildGameDetail(game, clubs, readJson(scoreFile), statsFile ? readJson(statsFile) : null);
     if (!detail) continue;
     fs.writeFileSync(path.join(GAMES_DIR, `${game.slug}.json`), `${JSON.stringify(detail, null, 2)}\n`, 'utf8');
     slugs.push(game.slug);
@@ -161,7 +190,7 @@ async function buildCalendar(config) {
   const allGames = (await readDatedGamesFile(config))['dated-games'];
   const games = allGames.filter(isValidGame);
   const skipped = allGames.filter((game) => !isValidGame(game)).map((game) => game.slug || '(no slug)');
-  const scoreIndex = indexScoreFiles(config);
+  const scoreIndex = indexFilesById(config.paths.gamesScores);
   const clubs = loadClubs();
 
   const calendar = games.map((game) => fromDatedGame(game, clubs, scoreIndex.get(game.id)));
@@ -179,7 +208,7 @@ async function buildCalendar(config) {
   return { count: calendar.length, skipped };
 }
 
-module.exports = { buildSide, fromDatedGame, buildGameDetail, buildGameFiles, buildCalendar };
+module.exports = { toPlayers, buildSide, fromDatedGame, buildGameDetail, buildGameFiles, buildCalendar };
 
 if (require.main === module) {
   Promise.resolve().then(async () => {

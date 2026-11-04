@@ -39,6 +39,11 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   conserva los datos del partido (incluido `id`), omitiendo `homeClubName`,
   `awayClubName`, `downloaded` y `scored`. Añade `home` y `away` con `slug`, `score`
   y `quarterScores` ordenados por periodo, incluidas las prórrogas.
+  Si existe el fichero de estadísticas del partido, añade también `players` a `home` y `away`
+  (sin la fila `TOTALES`): `jersey`, `msPlayed`, `starter`, `freeThrows`, `twoPointers`,
+  `threePointers` (`made`/`attempted`), `rebounds` (`defensive`/`offensive`), `assists`,
+  `turnovers`, `steals`, `blocks` (`made`/`received`), `fouls` (`committed`/`received`),
+  `plusMinus` y `efficiency`.
   La página de detalle carga cada JSON de forma lazy mediante `import.meta.glob`.
 - Slug del partido: lo añades a mano en `dated-games.json` antes de procesarlo;
   es el id estable (el `id_partido` de la fuente caduca)

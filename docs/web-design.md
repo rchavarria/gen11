@@ -89,13 +89,16 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 - Tabla de parciales: Q1–Q4, OT/OT2… para las prórrogas y columna Total
 - Debajo de los parciales, pestañas (estado local, no van en la URL): boxscore del club local,
   boxscore del club visitante (con el nombre del club), «Evolución del marcador» y
-  «Jugada a jugada». De momento cada una muestra un mensaje provisional
+  «Jugada a jugada». Los dos boxscores son una tabla con dorsal, minutos (`mm:ss`), puntos
+  (tiros libres + 2×dobles + 3×triples), valoración y +/-, ordenada por dorsal (los no numéricos,
+  al final) y con una fila de totales (puntos y valoración). Sin `players` muestran
+  «Estadísticas no disponibles.». Las otras dos muestran un mensaje provisional
 - Enlace de vuelta al calendario en el mes del partido
 - Estados de carga, partido no encontrado y error de carga
 
 ### Pendiente
 
-- Estadísticas de jugadores (por dorsal); columnas por decidir
+- Más columnas en el boxscore (tiros, rebotes, asistencias…)
 - Gráfica de evolución del marcador
 - Enlace o vídeo embebido
 - Filtro por categoría

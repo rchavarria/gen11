@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import clubs from '../../data/clubs.json';
+import Boxscore from '../components/Boxscore.jsx';
 import ClubLogo from '../components/ClubLogo.jsx';
 import Tabs from '../components/Tabs.jsx';
 import { formatDay } from '../lib/dates.js';
@@ -22,15 +23,21 @@ function GameDetail({ game }) {
     length: Math.max(game.home.quarterScores.length, game.away.quarterScores.length),
   }, (_, index) => index);
   const time = formatTime(game.time);
+  const placeholder = (title) => <p className="tabs__placeholder">{title}: próximamente.</p>;
   const tabs = [
-    { id: 'home', label: homeClub.name, title: `Boxscore de ${homeClub.name}` },
-    { id: 'away', label: awayClub.name, title: `Boxscore de ${awayClub.name}` },
-    { id: 'evolution', label: 'Evolución del marcador', title: 'Evolución del marcador' },
-    { id: 'play-by-play', label: 'Jugada a jugada', title: 'Jugada a jugada' },
-  ].map(({ title, ...tab }) => ({
-    ...tab,
-    content: <p className="tabs__placeholder">{title}: próximamente.</p>,
-  }));
+    {
+      id: 'home',
+      label: homeClub.initials,
+      content: <Boxscore players={game.home.players} clubName={homeClub.name} />,
+    },
+    {
+      id: 'away',
+      label: awayClub.initials,
+      content: <Boxscore players={game.away.players} clubName={awayClub.name} />,
+    },
+    { id: 'evolution', label: 'Evolución del marcador', content: placeholder('Evolución del marcador') },
+    { id: 'play-by-play', label: 'Jugada a jugada', content: placeholder('Jugada a jugada') },
+  ];
 
   return (
     <article className="game-detail">

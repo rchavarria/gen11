@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import clubs from '../../data/clubs.json';
 import ClubLogo from '../components/ClubLogo.jsx';
+import Tabs from '../components/Tabs.jsx';
 import { formatDay } from '../lib/dates.js';
 import { formatTime, periodLabel } from '../lib/game.js';
 
@@ -21,6 +22,15 @@ function GameDetail({ game }) {
     length: Math.max(game.home.quarterScores.length, game.away.quarterScores.length),
   }, (_, index) => index);
   const time = formatTime(game.time);
+  const tabs = [
+    { id: 'home', label: homeClub.name, title: `Boxscore de ${homeClub.name}` },
+    { id: 'away', label: awayClub.name, title: `Boxscore de ${awayClub.name}` },
+    { id: 'evolution', label: 'Evolución del marcador', title: 'Evolución del marcador' },
+    { id: 'play-by-play', label: 'Jugada a jugada', title: 'Jugada a jugada' },
+  ].map(({ title, ...tab }) => ({
+    ...tab,
+    content: <p className="tabs__placeholder">{title}: próximamente.</p>,
+  }));
 
   return (
     <article className="game-detail">
@@ -70,6 +80,8 @@ function GameDetail({ game }) {
           </tbody>
         </table>
       </div>
+
+      <Tabs label="Detalle del partido" tabs={tabs} />
     </article>
   );
 }

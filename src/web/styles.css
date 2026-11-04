@@ -305,3 +305,29 @@ a.game-card:hover { border-color: var(--accent); }
 .quarter-scores th:last-child,
 .quarter-scores td:last-child { border-left: 1px solid var(--border); }
 .quarter-scores__club { display: flex; align-items: center; gap: 0.5rem; min-width: 8rem; }
+
+.tabs { margin-top: 1.5rem; }
+
+.tabs__list {
+  display: flex;
+  gap: 0.25rem;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border);
+}
+
+.tabs__tab {
+  flex: none;
+  padding: 0.6rem 0.9rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.tabs__tab:hover { color: var(--text); }
+.tabs__tab--active { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+.tabs__panel { padding: 1.25rem 0.25rem; }
+.tabs__placeholder { margin: 0; text-align: center; color: var(--muted); }

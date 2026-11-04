@@ -5,9 +5,11 @@
 - `ApiClient`: renovar la key automáticamente (`renewKey()`) cuando la API responda "Faltan parámetros", y reintentar la petición una vez
 - web: añadir estadísticas por dorsal al detalle del partido
 - web: gráfica de evolución del marcador, enlace a vídeo, filtro por categoría
+- web: rellenar las pestañas del detalle (boxscore local y visitante, evolución del marcador, jugada a jugada), hoy son placeholders
 
 ## Done list
 
+- 2026-11-04: detalle web: sección con pestañas (boxscore local, boxscore visitante, evolución del marcador, jugada a jugada) con contenido provisional
 - 2026-11-03: detalle web en `/#/game/:slug`: categoría, fecha, hora, clubs, marcador total y tabla por cuartos con prórrogas; enlaces solo en partidos con marcador
 - 2026-11-03: paso 6 de `sync.js`: generar `src/data/games/<slug>.json` con datos del partido, slugs de clubs, marcador y parciales por periodo (incluidas prórrogas)
 - 2026-11-02: web: añadir escudos de los clubs en `src/web/public/logos/` y su `logo` en `src/data/clubs.json`

@@ -82,6 +82,9 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 - Logos y nombres de ambos clubs, resueltos desde `clubs.json`
 - Marcador total en grande, con la puntuación ganadora en negrita
 - Tabla de parciales: Q1–Q4, OT/OT2… para las prórrogas y columna Total
+- Debajo de los parciales, pestañas (estado local, no van en la URL): boxscore del club local,
+  boxscore del club visitante (con el nombre del club), «Evolución del marcador» y
+  «Jugada a jugada». De momento cada una muestra un mensaje provisional
 - Enlace de vuelta al calendario en el mes del partido
 - Estados de carga, partido no encontrado y error de carga
 

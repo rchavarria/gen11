@@ -43,22 +43,33 @@ function GameDetail({ game }) {
     <article className="game-detail">
       <header className="game-detail__header">
         <h1>{game.category}</h1>
-        <p>{formatDay(game.date)}{time ? ` · ${time}` : ''}</p>
       </header>
 
-      <div className="game-detail__clubs">
-        {sides.map((side, index) => (
-          <div className="game-detail__club" key={index}>
-            <ClubLogo club={side.club} />
-            <h2>{side.club.name}</h2>
-          </div>
-        ))}
-      </div>
+      <div className="game-detail__scoreboard">
+        <div className="game-detail__club">
+          <ClubLogo club={sides[0].club} />
+          <h2>{sides[0].club.name}</h2>
+        </div>
 
-      <div className="game-detail__score" aria-label="Marcador total">
-        <span className={sides[0].winner ? 'game-detail__winner' : undefined}>{game.home.score}</span>
-        <span className="game-detail__separator" aria-hidden="true">–</span>
-        <span className={sides[1].winner ? 'game-detail__winner' : undefined}>{game.away.score}</span>
+        <div className="game-detail__center">
+          <div className="game-detail__score" role="group" aria-label="Marcador total">
+            {sides.map((side, index) => (
+              <span
+                key={index}
+                className={`game-detail__score-cell${side.winner ? ' game-detail__score-cell--winner' : ''}`}
+                aria-label={`${side.club.name}: ${side.score}${side.winner ? ' (ganador)' : ''}`}
+              >
+                {side.score}
+              </span>
+            ))}
+          </div>
+          <p className="game-detail__when">{formatDay(game.date)}{time ? ` · ${time}` : ''}</p>
+        </div>
+
+        <div className="game-detail__club">
+          <ClubLogo club={sides[1].club} />
+          <h2>{sides[1].club.name}</h2>
+        </div>
       </div>
 
       <div className="game-detail__table-scroll" role="region" aria-label="Marcador por cuartos" tabIndex={0}>

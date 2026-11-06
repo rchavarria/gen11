@@ -6,10 +6,10 @@
 - web: ampliar el boxscore con más columnas (tiros, rebotes, asistencias…)
 - web: gráfica de evolución del marcador, enlace a vídeo, filtro por categoría
 - web: rellenar las pestañas «Evolución del marcador» y «Jugada a jugada», hoy son placeholders
-- app: linter y tests
 
 ## Done list
 
+- 2026-11-06: app: linter y tests
 - 2026-11-06: web: diseñar una paleta de colores
 - 2026-11-06: web: resaltar los partidos donde juegue el club del usuario (por ejemplo, con un borde rojo)
 - 2026-11-04: detalle web: boxscore local y visitante con dorsal, minutos, puntos, valoración y +/-

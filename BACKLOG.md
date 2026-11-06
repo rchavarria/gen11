@@ -8,6 +8,7 @@
 - web: ampliar el boxscore con más columnas (tiros, rebotes, asistencias…)
 - web: gráfica de evolución del marcador, enlace a vídeo, filtro por categoría
 - web: rellenar las pestañas «Evolución del marcador» y «Jugada a jugada», hoy son placeholders
+- app: linter y tests
 
 ## Done list
 

@@ -22,6 +22,12 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 - Datos procesados en `src/data/` (se comitean)
 - Escudos en `src/web/public/logos/<slug-del-club>.png|jpg`
 
+## Tipografías
+
+- Bricolage Grotesque
+- Montserrat
+- Coolvetica
+
 ## Datos
 
 - `src/build-data.js` lee los datos en bruto de `downloads/` y genera `src/data/calendar.json`

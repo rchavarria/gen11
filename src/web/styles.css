@@ -1,19 +1,26 @@
 :root {
-  --bg: #f4f5f7;
-  --card: #fff;
-  --text: #1d2330;
-  --muted: #6b7280;
-  --accent: #e8590c;
-  --highlight: #dc2626;
-  --border: #e3e5e8;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  color: var(--text);
-  background: var(--bg);
+  --color-background: #f7f7f7;
+  --color-surface: #fff;
+  --color-border: #e1e7ef;
+  --color-text: #1a1a1a;
+  --color-text-muted: #6b7280;
+  --color-surface-dark: #0a0a0b;
+  --color-primary: #fa2e00;
+  --color-secondary: #ff6600;
+  --color-tertiary: #f5b800;
+  --color-success: #00bd84;
+
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-weight: 300;
+  color: var(--color-text);
+  background: var(--color-background);
 }
 
 * { box-sizing: border-box; }
 
 body { margin: 0; }
+
+button { font-family: inherit; }
 
 .page {
   max-width: 720px;
@@ -29,14 +36,14 @@ body { margin: 0; }
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 0;
-  background: var(--bg);
+  background: var(--color-background);
 }
 
 .month-nav h1 { margin: 0; font-size: 1.3rem; }
 
 .month-nav button {
-  border: 1px solid var(--border);
-  background: var(--card);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
   border-radius: 8px;
   width: 2.5rem;
   height: 2.5rem;
@@ -53,19 +60,19 @@ body { margin: 0; }
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--muted);
+  color: var(--color-text-muted);
   margin: 0 0 0.5rem;
 }
 
-.week--current .week__title { color: var(--accent); }
+.week--current .week__title { color: var(--color-primary); }
 .week--current .week__title::after { content: ' · esta semana'; }
 
 .week__empty {
   margin: 0;
   padding: 0.75rem 1rem;
-  border: 1px dashed var(--border);
+  border: 1px dashed var(--color-border);
   border-radius: 10px;
-  color: var(--muted);
+  color: var(--color-text-muted);
 }
 
 .week__games {
@@ -76,21 +83,21 @@ body { margin: 0; }
 .game-card {
   display: block;
   padding: 0.75rem 1rem;
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 10px;
   color: inherit;
   text-decoration: none;
 }
 
-a.game-card:hover { border-color: var(--accent); }
+a.game-card:hover { border-color: var(--color-primary); }
 
 .game-card--highlighted,
 .upcoming-card--highlighted {
-  border-left: 4px solid var(--highlight);
+  border-left: 4px solid var(--color-primary);
 }
 
-a.game-card--highlighted:hover { border-left-color: var(--highlight); }
+a.game-card--highlighted:hover { border-left-color: var(--color-primary); }
 
 .game-card__meta {
   display: flex;
@@ -98,7 +105,7 @@ a.game-card--highlighted:hover { border-left-color: var(--highlight); }
   justify-content: space-between;
   gap: 0.25rem 1rem;
   font-size: 0.8rem;
-  color: var(--muted);
+  color: var(--color-text-muted);
   margin-bottom: 0.5rem;
 }
 
@@ -135,8 +142,8 @@ a.game-card--highlighted:hover { border-left-color: var(--highlight); }
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--border);
-  color: var(--muted);
+  background: var(--color-border);
+  color: var(--color-text-muted);
   font-size: 0.7rem;
   font-weight: 700;
 }
@@ -144,7 +151,7 @@ a.game-card--highlighted:hover { border-left-color: var(--highlight); }
 .back-link {
   display: inline-block;
   margin: 1rem 0;
-  color: var(--accent);
+  color: var(--color-primary);
   text-decoration: none;
 }
 
@@ -154,7 +161,7 @@ a.game-card--highlighted:hover { border-left-color: var(--highlight); }
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 0.5rem;
-  background: #111;
+  background: var(--color-surface-dark);
 }
 
 .upcoming__list {
@@ -175,10 +182,10 @@ a.game-card--highlighted:hover { border-left-color: var(--highlight); }
   flex-shrink: 0;
   width: 2.25rem;
   height: 2.25rem;
-  border: 1px solid var(--border);
+  border: 1px solid var(--color-border);
   border-radius: 50%;
-  background: var(--card);
-  color: var(--text);
+  background: var(--color-surface);
+  color: var(--color-text);
   font-size: 1.3rem;
   line-height: 1;
   cursor: pointer;
@@ -190,7 +197,7 @@ a.game-card--highlighted:hover { border-left-color: var(--highlight); }
   flex: 0 0 auto;
   min-width: 10.5rem;
   scroll-snap-align: start;
-  background: var(--card);
+  background: var(--color-surface);
   border-radius: 6px;
   overflow: hidden;
 }
@@ -198,7 +205,7 @@ a.game-card--highlighted:hover { border-left-color: var(--highlight); }
 .upcoming-card__header {
   min-height: 1.9rem;
   padding: 0.35rem 0.5rem;
-  background: var(--bg);
+  background: var(--color-background);
   text-align: center;
 }
 
@@ -206,14 +213,14 @@ a.game-card--highlighted:hover { border-left-color: var(--highlight); }
   display: inline-block;
   padding: 0.1rem 0.5rem;
   border-radius: 4px;
-  background: #333;
-  color: #fff;
+  background: var(--color-surface-dark);
+  color: var(--color-surface);
   font-size: 0.7rem;
   font-weight: 700;
 }
 
-.upcoming-card__category--cad { background: #1d6fd1; }
-.upcoming-card__category--jun { background: #c2410c; }
+.upcoming-card__category--cad { background: var(--color-primary); color: var(--color-text); }
+.upcoming-card__category--jun { background: var(--color-tertiary); color: var(--color-text); }
 
 .upcoming-card__body {
   display: flex;
@@ -228,11 +235,11 @@ a.game-card--highlighted:hover { border-left-color: var(--highlight); }
   flex-direction: column;
   align-items: center;
   font-size: 0.7rem;
-  color: var(--muted);
+  color: var(--color-text-muted);
   white-space: nowrap;
 }
 
-.upcoming-card__when strong { font-size: 1rem; color: var(--text); }
+.upcoming-card__when strong { font-size: 1rem; color: var(--color-text); }
 
 .upcoming-card__clubs { display: grid; gap: 0.3rem; }
 
@@ -252,13 +259,18 @@ a.game-card--highlighted:hover { border-left-color: var(--highlight); }
 
 .game-detail {
   padding: 1.25rem;
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 10px;
 }
 
 .game-detail__header { text-align: center; }
-.game-detail__header h1 { margin: 0; font-size: 1.1rem; }
+.game-detail__header h1 {
+  margin: 0;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
 .game-detail__scoreboard {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -274,7 +286,13 @@ a.game-card--highlighted:hover { border-left-color: var(--highlight); }
   height: clamp(44px, 12vw, 64px);
   font-size: 1.2rem;
 }
-.game-detail__club h2 { margin: 0.6rem 0 0; font-size: clamp(0.8rem, 2.8vw, 1rem); overflow-wrap: anywhere; }
+.game-detail__club h2 {
+  margin: 0.6rem 0 0;
+  font-family: 'Coolvetica', system-ui, sans-serif;
+  font-size: clamp(0.8rem, 2.8vw, 1rem);
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
 
 .game-detail__center { display: flex; flex-direction: column; align-items: center; }
 
@@ -282,7 +300,7 @@ a.game-card--highlighted:hover { border-left-color: var(--highlight); }
   display: grid;
   grid-template-columns: 1fr 1fr;
   overflow: hidden;
-  border: 3px solid var(--accent);
+  border: 3px solid var(--color-success);
   border-radius: 14px;
   font-size: clamp(1.75rem, 8vw, 3rem);
   font-variant-numeric: tabular-nums;
@@ -292,19 +310,20 @@ a.game-card--highlighted:hover { border-left-color: var(--highlight); }
 .game-detail__score-cell {
   min-width: 2.2em;
   padding: 0.3em 0.4em;
-  background: var(--card);
-  color: var(--muted);
-  font-weight: 600;
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-weight: 500;
 }
 
-.game-detail__score-cell--winner { background: var(--accent); color: #fff; font-weight: 800; }
+.game-detail__score-cell--winner { background: var(--color-success); color: var(--color-text); }
 
-.game-detail__when { margin: 0.6rem 0 0; color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
-.game-detail__winner { font-weight: 700; }
+.game-detail__when { margin: 0.6rem 0 0; color: var(--color-text-muted); font-size: 0.9rem; white-space: nowrap; }
+.game-detail__winner { background: var(--color-success); color: var(--color-text); font-weight: 700; }
 .game-detail__table-scroll { overflow-x: auto; }
 
 .quarter-scores {
   width: 100%;
+  background: var(--color-surface);
   border-collapse: collapse;
   font-size: 0.85rem;
   font-variant-numeric: tabular-nums;
@@ -313,21 +332,21 @@ a.game-card--highlighted:hover { border-left-color: var(--highlight); }
 .quarter-scores caption {
   padding-bottom: 0.75rem;
   text-align: left;
-  color: var(--muted);
+  color: var(--color-text-muted);
 }
 
 .quarter-scores th,
 .quarter-scores td {
   padding: 0.6rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--color-border);
   text-align: center;
 }
 
-.quarter-scores thead { color: var(--muted); }
+.quarter-scores thead { background: var(--color-surface-dark); color: var(--color-surface); }
 .quarter-scores th:first-child { text-align: left; }
 .quarter-scores tbody th { font-weight: 400; }
 .quarter-scores th:last-child,
-.quarter-scores td:last-child { border-left: 1px solid var(--border); }
+.quarter-scores td:last-child { border-left: 1px solid var(--color-border); }
 .quarter-scores__club { display: flex; align-items: center; gap: 0.5rem; min-width: 8rem; }
 
 .boxscore th:last-child,
@@ -342,7 +361,7 @@ a.game-card--highlighted:hover { border-left-color: var(--highlight); }
   display: flex;
   gap: 0.25rem;
   overflow-x: auto;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .tabs__tab {
@@ -351,13 +370,13 @@ a.game-card--highlighted:hover { border-left-color: var(--highlight); }
   border: 0;
   border-bottom: 2px solid transparent;
   background: none;
-  color: var(--muted);
+  color: var(--color-text-muted);
   font: inherit;
   font-size: 0.9rem;
   cursor: pointer;
 }
 
-.tabs__tab:hover { color: var(--text); }
-.tabs__tab--active { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+.tabs__tab:hover { color: var(--color-text); }
+.tabs__tab--active { color: var(--color-text); border-bottom-color: var(--color-primary); font-weight: 600; }
 .tabs__panel { padding: 1.25rem 0.25rem; }
-.tabs__placeholder { margin: 0; text-align: center; color: var(--muted); }
+.tabs__placeholder { margin: 0; text-align: center; color: var(--color-text-muted); }

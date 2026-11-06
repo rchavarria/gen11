@@ -62,6 +62,7 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   y escudo + `initials` de ambos clubs (local arriba)
 - Scroll horizontal con botones ‹ › a los lados (ocultos en móviles táctiles)
 - Las tarjetas no son clicables; si no hay próximos partidos no se muestra
+- Los partidos con el slug `alcobendas` en cualquiera de los clubs se resaltan con un borde izquierdo rojo
 
 ### Calendario
 
@@ -80,6 +81,7 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 - Categoría
 - Sin pabellón
 - Solo los partidos con ambos marcadores enlazan al detalle; los demás no son clicables
+- Los partidos con el slug `alcobendas` en cualquiera de los clubs se resaltan con un borde izquierdo rojo, jugados o pendientes
 
 ## Página de detalle: `/#/game/:slug`
 

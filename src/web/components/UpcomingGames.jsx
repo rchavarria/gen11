@@ -3,7 +3,7 @@ import calendar from '../../data/calendar.json';
 import clubs from '../../data/clubs.json';
 import ClubLogo from './ClubLogo.jsx';
 import { formatDay, toIsoDate } from '../lib/dates.js';
-import { formatTime, shortCategory } from '../lib/game.js';
+import { formatTime, isHighlighted, shortCategory } from '../lib/game.js';
 
 const clubsBySlug = new Map(clubs.map((club) => [club.slug, club]));
 
@@ -24,7 +24,7 @@ function UpcomingCard({ game }) {
   const category = shortCategory(game.category);
 
   return (
-    <li className="upcoming-card">
+    <li className={`upcoming-card${isHighlighted(game) ? ' upcoming-card--highlighted' : ''}`}>
       <div className="upcoming-card__header">
         {category && <span
             className={`upcoming-card__category upcoming-card__category--${category.toLowerCase()}`}

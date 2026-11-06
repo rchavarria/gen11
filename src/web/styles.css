@@ -4,6 +4,7 @@
   --text: #1d2330;
   --muted: #6b7280;
   --accent: #e8590c;
+  --highlight: #dc2626;
   --border: #e3e5e8;
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   color: var(--text);
@@ -83,6 +84,13 @@ body { margin: 0; }
 }
 
 a.game-card:hover { border-color: var(--accent); }
+
+.game-card--highlighted,
+.upcoming-card--highlighted {
+  border-left: 4px solid var(--highlight);
+}
+
+a.game-card--highlighted:hover { border-left-color: var(--highlight); }
 
 .game-card__meta {
   display: flex;

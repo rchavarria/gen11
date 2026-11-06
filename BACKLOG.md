@@ -3,7 +3,6 @@
 ## To Do list
 
 - `ApiClient`: renovar la key automáticamente (`renewKey()`) cuando la API responda "Faltan parámetros", y reintentar la petición una vez
-- web: diseñar una paleta de colores
 - web: ampliar el boxscore con más columnas (tiros, rebotes, asistencias…)
 - web: gráfica de evolución del marcador, enlace a vídeo, filtro por categoría
 - web: rellenar las pestañas «Evolución del marcador» y «Jugada a jugada», hoy son placeholders
@@ -11,6 +10,7 @@
 
 ## Done list
 
+- 2026-11-06: web: diseñar una paleta de colores
 - 2026-11-06: web: resaltar los partidos donde juegue el club del usuario (por ejemplo, con un borde rojo)
 - 2026-11-04: detalle web: boxscore local y visitante con dorsal, minutos, puntos, valoración y +/-
 - 2026-11-04: detalle web: sección con pestañas (boxscore local, boxscore visitante, evolución del marcador, jugada a jugada) con contenido provisional

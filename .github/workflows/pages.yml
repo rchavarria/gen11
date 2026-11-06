@@ -4,12 +4,13 @@ on:
   push:
     branches: [main]
     paths:
-      - 'src/web/**'
-      - 'src/data/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'vite.config.mjs'
-      - '.github/workflows/pages.yml'
+      - "src/**"
+      - "biome.json"
+      - "config.example.json"
+      - "package.json"
+      - "package-lock.json"
+      - "vite.config.mjs"
+      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:
@@ -31,6 +32,8 @@ jobs:
           node-version: 26
           cache: npm
       - run: npm clean-install --no-audit --no-fund --ignore-scripts
+      - run: npm run lint
+      - run: npm run test
       - run: npm run build
       - uses: actions/upload-pages-artifact@v5
         with:

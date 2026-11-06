@@ -769,14 +769,14 @@
     "date": "2026-11-05",
     "time": "21:00",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
+    "played": true,
     "home": {
       "club": "laso",
-      "score": null
+      "score": 94
     },
     "away": {
       "club": "estudiantes",
-      "score": null
+      "score": 75
     }
   },
   {

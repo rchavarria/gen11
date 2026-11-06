@@ -3,6 +3,8 @@
 ## To Do list
 
 - `ApiClient`: renovar la key automáticamente (`renewKey()`) cuando la API responda "Faltan parámetros", y reintentar la petición una vez
+- web: resaltar los partidos donde juegue el club del usuario (por ejemplo, con un borde rojo)
+- web: diseñar una paleta de colores
 - web: ampliar el boxscore con más columnas (tiros, rebotes, asistencias…)
 - web: gráfica de evolución del marcador, enlace a vídeo, filtro por categoría
 - web: rellenar las pestañas «Evolución del marcador» y «Jugada a jugada», hoy son placeholders

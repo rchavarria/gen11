@@ -22,8 +22,12 @@ function toIsoDate(ddmmyyyy) {
   const value = new Date(0);
   value.setUTCHours(0, 0, 0, 0);
   value.setUTCFullYear(Number(year), Number(month) - 1, Number(day));
-  if (value.getUTCFullYear() !== Number(year) || value.getUTCMonth() !== Number(month) - 1 ||
-      value.getUTCDate() !== Number(day)) return '';
+  if (
+    value.getUTCFullYear() !== Number(year) ||
+    value.getUTCMonth() !== Number(month) - 1 ||
+    value.getUTCDate() !== Number(day)
+  )
+    return '';
   return `${year}-${month}-${day}`;
 }
 
@@ -50,7 +54,7 @@ function mergeDatedGames(games, upcomingGames) {
   const added = [];
   const updated = [];
   for (const upcoming of upcomingGames) {
-    const id = upcoming && upcoming.IdPartido;
+    const id = upcoming?.IdPartido;
     if (typeof id !== 'string' || id === '') continue;
     const date = toIsoDate(upcoming.Fecha);
     const existing = byId.get(id);

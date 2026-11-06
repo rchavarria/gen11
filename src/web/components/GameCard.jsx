@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import ClubLogo from './ClubLogo.jsx';
+import clubs from '../../data/clubs.json';
 import { formatDay } from '../lib/dates.js';
 import { isHighlighted } from '../lib/game.js';
-import clubs from '../../data/clubs.json';
+import ClubLogo from './ClubLogo.jsx';
 
 const clubsBySlug = new Map(clubs.map((club) => [club.slug, club]));
 
@@ -29,7 +29,10 @@ export default function GameCard({ game }) {
   const content = (
     <>
       <div className="game-card__meta">
-        <span>{formatDay(game.date)}{game.time ? ` · ${game.time}` : ''}</span>
+        <span>
+          {formatDay(game.date)}
+          {game.time ? ` · ${game.time}` : ''}
+        </span>
         {game.category && <span className="game-card__category">{game.category}</span>}
       </div>
       <Side side={home} winner={homeWins} />
@@ -37,7 +40,11 @@ export default function GameCard({ game }) {
     </>
   );
 
-  return hasScore
-    ? <Link className={className} to={`/game/${game.slug}`}>{content}</Link>
-    : <div className={className}>{content}</div>;
+  return hasScore ? (
+    <Link className={className} to={`/game/${game.slug}`}>
+      {content}
+    </Link>
+  ) : (
+    <div className={className}>{content}</div>
+  );
 }

@@ -1,7 +1,8 @@
 // @vitest-environment jsdom
-import { expect, test } from 'vitest';
+
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { expect, test } from 'vitest';
 import Tabs from './Tabs.jsx';
 
 const tabs = [

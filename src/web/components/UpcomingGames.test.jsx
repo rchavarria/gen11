@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
-import { afterEach, beforeEach, expect, test, vi } from 'vitest';
+
 import { render, screen, within } from '@testing-library/react';
+import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import UpcomingGames from './UpcomingGames.jsx';
 
 const calendar = vi.hoisted(() => []);
@@ -15,7 +16,10 @@ vi.mock('../../data/clubs.json', () => ({
 
 function game(slug, date, time, overrides = {}) {
   return {
-    slug, date, time, category: 'Cadete Masculino',
+    slug,
+    date,
+    time,
+    category: 'Cadete Masculino',
     home: { club: 'madrid', score: null },
     away: { club: 'canoe', score: null },
     ...overrides,
@@ -37,7 +41,8 @@ test('only lists today and future games with incomplete scores, ordered by date 
     game('tomorrow-late', '2026-11-07', '18:30:00'),
     game('past', '2026-11-05', '17:00:00'),
     game('finished', '2026-11-08', '19:00:00', {
-      home: { club: 'madrid', score: 0 }, away: { club: 'canoe', score: 20 },
+      home: { club: 'madrid', score: 0 },
+      away: { club: 'canoe', score: 20 },
     }),
     game('today', '2026-11-06', '09:00:00'),
     game('tomorrow-early', '2026-11-07', '10:00:00'),
@@ -50,8 +55,7 @@ test('only lists today and future games with incomplete scores, ordered by date 
   expect(screen.getByRole('region', { name: 'Próximos partidos' })).toBeInTheDocument();
   const cards = screen.getAllByRole('listitem');
   expect(cards).toHaveLength(4);
-  expect(cards.map((card) => card.querySelector('strong').textContent))
-    .toEqual(['09:00', '10:00', '18:30', '12:00']);
+  expect(cards.map((card) => card.querySelector('strong').textContent)).toEqual(['09:00', '10:00', '18:30', '12:00']);
   expect(screen.queryByText('17:00')).not.toBeInTheDocument();
   expect(screen.queryByText('19:00')).not.toBeInTheDocument();
 });

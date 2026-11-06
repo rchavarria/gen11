@@ -38,4 +38,3 @@ function toDayString(date = new Date()) {
 }
 
 module.exports = { formatDuration, timestamp, toDayString };
-

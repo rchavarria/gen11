@@ -300,7 +300,7 @@ class ApiClient {
       });
       rawBody = await response.text();
     } catch (err) {
-      const reason = err && err.cause ? `${err.message} (${err.cause.message || err.cause})` : err.message;
+      const reason = err?.cause ? `${err.message} (${err.cause.message || err.cause})` : err.message;
       if (response) {
         throw new Error(`Network error while reading response body: ${reason}`);
       }
@@ -408,4 +408,3 @@ class ApiClient {
 }
 
 module.exports = { ApiClient, ApiError, isNoDataError };
-

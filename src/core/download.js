@@ -74,8 +74,14 @@ async function downloadGame(client, game, state) {
 async function processGames(client, games, state = { requestsSent: 0 }) {
   const { gamesStats: statsDir, gamesScores: scoresDir } = client.config.paths;
   const summary = {
-    skipped: 0, notPlayedYet: 0, alreadyDownloaded: 0, newlyDownloaded: 0, notPlayed: 0, ignored: 0,
-    downloadedSlugs: [], notPlayedSlugs: [],
+    skipped: 0,
+    notPlayedYet: 0,
+    alreadyDownloaded: 0,
+    newlyDownloaded: 0,
+    notPlayed: 0,
+    ignored: 0,
+    downloadedSlugs: [],
+    notPlayedSlugs: [],
   };
   const total = games.length;
 
@@ -111,7 +117,9 @@ async function processGames(client, games, state = { requestsSent: 0 }) {
 
     if (hasStats !== hasScore) {
       const missing = hasStats ? scoresDir : statsDir;
-      const error = new Error(`Game "${game.slug}" is only partially downloaded: missing ${path.join(missing, fileName)}`);
+      const error = new Error(
+        `Game "${game.slug}" is only partially downloaded: missing ${path.join(missing, fileName)}`,
+      );
       error.summary = summary;
       throw error;
     }

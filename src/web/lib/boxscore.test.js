@@ -1,8 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'vitest';
-import {
-  boxscoreTotals, formatPlayed, formatPlusMinus, playerPoints, sortByJersey,
-} from './boxscore.js';
+import { boxscoreTotals, formatPlayed, formatPlusMinus, playerPoints, sortByJersey } from './boxscore.js';
 
 const player = (jersey, made, efficiency = 0) => ({
   jersey,
@@ -29,15 +27,23 @@ test('plus/minus shows the sign of positive values', () => {
 });
 
 test('players are sorted by numeric jersey with non-numeric ones last', () => {
-  const sorted = sortByJersey([player('X', [0, 0, 0]), player('10', [0, 0, 0]), player('X', [1, 0, 0]), player('4', [0, 0, 0])]);
-  assert.deepEqual(sorted.map((p) => p.jersey), ['4', '10', 'X', 'X']);
+  const sorted = sortByJersey([
+    player('X', [0, 0, 0]),
+    player('10', [0, 0, 0]),
+    player('X', [1, 0, 0]),
+    player('4', [0, 0, 0]),
+  ]);
+  assert.deepEqual(
+    sorted.map((p) => p.jersey),
+    ['4', '10', 'X', 'X'],
+  );
   assert.equal(sorted[2].freeThrows.made, 0);
   assert.equal(sorted[3].freeThrows.made, 1);
 });
 
 test('totals sum points and efficiency', () => {
-  assert.deepEqual(
-    boxscoreTotals([player('1', [1, 1, 1], 4), player('2', [0, 2, 0], -1)]),
-    { points: 10, efficiency: 3 },
-  );
+  assert.deepEqual(boxscoreTotals([player('1', [1, 1, 1], 4), player('2', [0, 2, 0], -1)]), {
+    points: 10,
+    efficiency: 3,
+  });
 });

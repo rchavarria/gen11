@@ -1,7 +1,8 @@
 // @vitest-environment jsdom
-import { expect, test, vi } from 'vitest';
+
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { expect, test, vi } from 'vitest';
 import GameCard from './GameCard.jsx';
 
 vi.mock('../../data/clubs.json', () => ({
@@ -23,7 +24,11 @@ const game = {
 };
 
 function renderCard(overrides = {}) {
-  return render(<MemoryRouter><GameCard game={{ ...game, ...overrides }} /></MemoryRouter>);
+  return render(
+    <MemoryRouter>
+      <GameCard game={{ ...game, ...overrides }} />
+    </MemoryRouter>,
+  );
 }
 
 test('shows clubs, schedule, category and a link to the game detail', () => {
@@ -55,20 +60,21 @@ test.each([
   else expect(winningSide).toBeNull();
 });
 
-test.each([[null, null], [0, null], [null, 20]])(
-  'does not link games with incomplete scores (%s-%s)',
-  (home, away) => {
-    const { container } = renderCard({
-      played: false,
-      home: { club: 'madrid', score: home },
-      away: { club: 'canoe', score: away },
-    });
+test.each([
+  [null, null],
+  [0, null],
+  [null, 20],
+])('does not link games with incomplete scores (%s-%s)', (home, away) => {
+  const { container } = renderCard({
+    played: false,
+    home: { club: 'madrid', score: home },
+    away: { club: 'canoe', score: away },
+  });
 
-    expect(screen.queryByRole('link')).not.toBeInTheDocument();
-    expect(container.querySelector('.game-card')).toBeInTheDocument();
-    expect(container.querySelector('.game-card__side--winner')).toBeNull();
-  },
-);
+  expect(screen.queryByRole('link')).not.toBeInTheDocument();
+  expect(container.querySelector('.game-card')).toBeInTheDocument();
+  expect(container.querySelector('.game-card__side--winner')).toBeNull();
+});
 
 test.each([
   ['alcobendas', 'madrid', true],
@@ -86,6 +92,5 @@ test.each([
 });
 
 test('rejects unknown clubs instead of showing an incomplete card', () => {
-  expect(() => renderCard({ home: { club: 'unknown', score: 80 } }))
-    .toThrow('Club no encontrado: unknown');
+  expect(() => renderCard({ home: { club: 'unknown', score: 80 } })).toThrow('Club no encontrado: unknown');
 });

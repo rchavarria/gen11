@@ -37,7 +37,9 @@ export default function Tabs({ tabs, label }) {
             aria-controls={`${baseId}-panel-${tab.id}`}
             tabIndex={tab.id === active.id ? 0 : -1}
             className={`tabs__tab${tab.id === active.id ? ' tabs__tab--active' : ''}`}
-            ref={(node) => { tabRefs.current[tab.id] = node; }}
+            ref={(node) => {
+              tabRefs.current[tab.id] = node;
+            }}
             onClick={() => setActiveId(tab.id)}
             onKeyDown={(event) => onKeyDown(event, index)}
           >

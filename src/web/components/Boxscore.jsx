@@ -1,6 +1,4 @@
-import {
-  boxscoreTotals, formatPlayed, formatPlusMinus, playerPoints, sortByJersey,
-} from '../lib/boxscore.js';
+import { boxscoreTotals, formatPlayed, formatPlusMinus, playerPoints, sortByJersey } from '../lib/boxscore.js';
 
 export default function Boxscore({ players, clubName }) {
   if (!players) return <p className="tabs__placeholder">Estadísticas no disponibles.</p>;
@@ -8,7 +6,8 @@ export default function Boxscore({ players, clubName }) {
   const totals = boxscoreTotals(players);
 
   return (
-    <div className="game-detail__table-scroll" role="region" aria-label={`Boxscore de ${clubName}`} tabIndex={0}>
+    // biome-ignore lint/a11y/noNoninteractiveTabindex: Keyboard users need to scroll the table horizontally.
+    <section className="game-detail__table-scroll" aria-label={`Boxscore de ${clubName}`} tabIndex={0}>
       <table className="quarter-scores boxscore">
         <caption>Boxscore de {clubName}</caption>
         <thead>
@@ -22,6 +21,7 @@ export default function Boxscore({ players, clubName }) {
         </thead>
         <tbody>
           {sortByJersey(players).map((player, index) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: Jerseys can repeat and these rows have no local state.
             <tr key={index}>
               <th scope="row">{player.jersey}</th>
               <td>{formatPlayed(player.msPlayed)}</td>
@@ -41,6 +41,6 @@ export default function Boxscore({ players, clubName }) {
           </tr>
         </tfoot>
       </table>
-    </div>
+    </section>
   );
 }

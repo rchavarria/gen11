@@ -60,7 +60,9 @@ function step(text) {
  */
 function findPendingSlug(games) {
   return games
-    .filter((game) => game && typeof game.id === 'string' && game.id.trim() !== '' && String(game.slug || '').trim() === '')
+    .filter(
+      (game) => game && typeof game.id === 'string' && game.id.trim() !== '' && String(game.slug || '').trim() === '',
+    )
     .map((game) => ({
       id: game.id,
       date: game.date,
@@ -79,7 +81,13 @@ async function run(config, result) {
   await shorterWait();
 
   step(`2. Upcoming games (${DAYS} days)`);
-  const { data: next, fileName, added, updated, total } = await fetchNextGames(client, { days: DAYS, date: result.startedAt });
+  const {
+    data: next,
+    fileName,
+    added,
+    updated,
+    total,
+  } = await fetchNextGames(client, { days: DAYS, date: result.startedAt });
   console.log(`Games received: ${next.mispartidos.length} (saved to ${fileName})`);
   console.log(`Dated games added: ${added.length}`);
   console.log(`Dated games updated: ${updated.length}`);

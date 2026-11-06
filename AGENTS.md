@@ -1,5 +1,9 @@
 ## Tests
 
+Ejecutar `npm run lint` para revisar lint, formato y orden de imports con Biome.
+Usar `npm run lint:fix` para aplicar formato y correcciones seguras.
+Los JSON de `src/data/` quedan excluidos.
+
 Ejecutar `npm run test` para los tests unitarios con Vitest.
 Los tests de componentes React usan Testing Library y jsdom.
 
@@ -19,7 +23,7 @@ Haz las peticiones una a una, nunca en paralelo
 Espera un tiempo mínimo de ~3 o ~5 segundos entre peticiones
 
 Cada respuesta tiene una `key`, que va cambiando con cada petición.
-Guárdala para usarla en la siguiente petición. Si no la guardas, 
+Guárdala para usarla en la siguiente petición. Si no la guardas,
 la siguiente petición fallará con un error de «Faltan parámetros»
 (no muy descriptivo que digamos).
 

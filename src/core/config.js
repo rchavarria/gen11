@@ -49,7 +49,9 @@ function readRawConfig() {
     text = fs.readFileSync(CONFIG_FILE, 'utf8');
   } catch (err) {
     if (err.code === 'ENOENT') {
-      throw new Error(`Configuration file not found: ${CONFIG_FILE}.\nCopy ${EXAMPLE_FILE} to config.json and fill in your values.`);
+      throw new Error(
+        `Configuration file not found: ${CONFIG_FILE}.\nCopy ${EXAMPLE_FILE} to config.json and fill in your values.`,
+      );
     }
     throw new Error(`Cannot read ${CONFIG_FILE}: ${err.message}`);
   }

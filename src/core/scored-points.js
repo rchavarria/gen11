@@ -49,8 +49,7 @@ function getActionTimeMs(action) {
   }
 
   const [, hours, minutes, seconds, tenths = '0'] = match;
-  const timeMs =
-    (Number(hours) * 60 * 60 + Number(minutes) * 60 + Number(seconds)) * 1000 + Number(tenths) * 100;
+  const timeMs = (Number(hours) * 60 * 60 + Number(minutes) * 60 + Number(seconds)) * 1000 + Number(tenths) * 100;
   return getPeriodEndMs(period) - timeMs;
 }
 
@@ -63,7 +62,7 @@ function getActionScore(action) {
   let info;
   try {
     info = JSON.parse(action.informacion_adicional);
-  } catch (err) {
+  } catch {
     throw new Error(`informacion_adicional no válida: ${action.informacion_adicional}`);
   }
   if (!info || typeof info !== 'object' || info.tanteoLocal === undefined || info.tanteoVisitante === undefined) {
@@ -77,7 +76,7 @@ function getScoredPoints(data) {
     throw new Error('El JSON debe contener un objeto en la raíz.');
   }
 
-  const actions = data.envivo && data.envivo.historialacciones;
+  const actions = data.envivo?.historialacciones;
   if (!Array.isArray(actions)) {
     throw new Error('No se encontró el array envivo.historialacciones.');
   }
@@ -107,11 +106,7 @@ function getScoredPoints(data) {
       };
     })
     // Ascending by time; ties (e.g. free throws) ordered by total score.
-    .sort(
-      (a, b) =>
-        a.timestamp - b.timestamp ||
-        a.home_score + a.away_score - (b.home_score + b.away_score),
-    );
+    .sort((a, b) => a.timestamp - b.timestamp || a.home_score + a.away_score - (b.home_score + b.away_score));
 
   const homeData = [{ x: 0, y: 0 }];
   const awayData = [{ x: 0, y: 0 }];
@@ -126,10 +121,7 @@ function getScoredPoints(data) {
   return {
     type: 'line',
     data: {
-      datasets: [
-        buildDataset(game.local, HOME_COLORS, homeData),
-        buildDataset(game.visitante, AWAY_COLORS, awayData),
-      ],
+      datasets: [buildDataset(game.local, HOME_COLORS, homeData), buildDataset(game.visitante, AWAY_COLORS, awayData)],
     },
     options: {
       responsive: true,
@@ -244,5 +236,3 @@ function printSummary(summary, elapsedMs) {
 }
 
 module.exports = { getScoredPoints, generateScoredPoints, processGames, printSummary };
-
-

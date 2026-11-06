@@ -54,4 +54,3 @@ function saveScore(game, responseData, outputDir) {
 }
 
 module.exports = { writeJson, buildFileName, saveStats, saveScore };
-

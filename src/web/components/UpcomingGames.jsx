@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import calendar from '../../data/calendar.json';
 import clubs from '../../data/clubs.json';
-import ClubLogo from './ClubLogo.jsx';
 import { formatDay, toIsoDate } from '../lib/dates.js';
 import { formatTime, isHighlighted, shortCategory } from '../lib/game.js';
+import ClubLogo from './ClubLogo.jsx';
 
 const clubsBySlug = new Map(clubs.map((club) => [club.slug, club]));
 
@@ -26,10 +26,14 @@ function UpcomingCard({ game }) {
   return (
     <li className={`upcoming-card${isHighlighted(game) ? ' upcoming-card--highlighted' : ''}`}>
       <div className="upcoming-card__header">
-        {category && <span
+        {category && (
+          <span
             className={`upcoming-card__category upcoming-card__category--${category.toLowerCase()}`}
             title={game.category}
-          >{category}</span>}
+          >
+            {category}
+          </span>
+        )}
       </div>
       <div className="upcoming-card__body">
         <div className="upcoming-card__when">
@@ -50,9 +54,13 @@ export default function UpcomingGames() {
   const listRef = useRef(null);
   const [edges, setEdges] = useState({ start: true, end: true });
 
-  const games = useMemo(() => calendar
-    .filter((game) => game.date >= today && (game.home.score == null || game.away.score == null))
-    .sort((a, b) => `${a.date} ${a.time || ''}`.localeCompare(`${b.date} ${b.time || ''}`)), [today]);
+  const games = useMemo(
+    () =>
+      calendar
+        .filter((game) => game.date >= today && (game.home.score == null || game.away.score == null))
+        .sort((a, b) => `${a.date} ${a.time || ''}`.localeCompare(`${b.date} ${b.time || ''}`)),
+    [today],
+  );
 
   const updateEdges = useCallback(() => {
     const list = listRef.current;
@@ -63,6 +71,7 @@ export default function UpcomingGames() {
     });
   }, []);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Recalculate scroll edges when the number of cards changes.
   useEffect(() => {
     updateEdges();
     window.addEventListener('resize', updateEdges);
@@ -84,9 +93,13 @@ export default function UpcomingGames() {
         onClick={() => scroll(-1)}
         disabled={edges.start}
         aria-label="Anteriores"
-      >‹</button>
+      >
+        ‹
+      </button>
       <ul className="upcoming__list" ref={listRef} onScroll={updateEdges}>
-        {games.map((game) => <UpcomingCard key={game.slug} game={game} />)}
+        {games.map((game) => (
+          <UpcomingCard key={game.slug} game={game} />
+        ))}
       </ul>
       <button
         type="button"
@@ -94,7 +107,9 @@ export default function UpcomingGames() {
         onClick={() => scroll(1)}
         disabled={edges.end}
         aria-label="Siguientes"
-      >›</button>
+      >
+        ›
+      </button>
     </section>
   );
 }

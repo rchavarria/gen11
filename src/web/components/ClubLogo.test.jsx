@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
-import { afterAll, beforeAll, expect, test, vi } from 'vitest';
+
 import { render, screen } from '@testing-library/react';
+import { afterAll, beforeAll, expect, test, vi } from 'vitest';
 
 let ClubLogo;
 

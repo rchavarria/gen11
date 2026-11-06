@@ -19,9 +19,12 @@ function GameDetail({ game }) {
     { ...game.home, club: homeClub, winner: game.home.score > game.away.score },
     { ...game.away, club: awayClub, winner: game.away.score > game.home.score },
   ];
-  const periods = Array.from({
-    length: Math.max(game.home.quarterScores.length, game.away.quarterScores.length),
-  }, (_, index) => index);
+  const periods = Array.from(
+    {
+      length: Math.max(game.home.quarterScores.length, game.away.quarterScores.length),
+    },
+    (_, index) => index,
+  );
   const time = formatTime(game.time);
   const placeholder = (title) => <p className="tabs__placeholder">{title}: próximamente.</p>;
   const tabs = [
@@ -52,10 +55,12 @@ function GameDetail({ game }) {
         </div>
 
         <div className="game-detail__center">
+          {/* biome-ignore lint/a11y/useSemanticElements: This groups scores, not form controls. */}
           <div className="game-detail__score" role="group" aria-label="Marcador total">
-            {sides.map((side, index) => (
+            {sides.map((side) => (
               <span
-                key={index}
+                key={side.slug}
+                role="img"
                 className={`game-detail__score-cell${side.winner ? ' game-detail__score-cell--winner' : ''}`}
                 aria-label={`${side.club.name}: ${side.score}${side.winner ? ' (ganador)' : ''}`}
               >
@@ -63,7 +68,10 @@ function GameDetail({ game }) {
               </span>
             ))}
           </div>
-          <p className="game-detail__when">{formatDay(game.date)}{time ? ` · ${time}` : ''}</p>
+          <p className="game-detail__when">
+            {formatDay(game.date)}
+            {time ? ` · ${time}` : ''}
+          </p>
         </div>
 
         <div className="game-detail__club">
@@ -72,32 +80,39 @@ function GameDetail({ game }) {
         </div>
       </div>
 
-      <div className="game-detail__table-scroll" role="region" aria-label="Marcador por cuartos" tabIndex={0}>
+      {/* biome-ignore lint/a11y/noNoninteractiveTabindex: Keyboard users need to scroll the table horizontally. */}
+      <section className="game-detail__table-scroll" aria-label="Marcador por cuartos" tabIndex={0}>
         <table className="quarter-scores">
           <caption>Marcador por cuartos</caption>
           <thead>
             <tr>
               <th scope="col">Club</th>
-              {periods.map((index) => <th scope="col" key={index}>{periodLabel(index)}</th>)}
+              {periods.map((index) => (
+                <th scope="col" key={index}>
+                  {periodLabel(index)}
+                </th>
+              ))}
               <th scope="col">Total</th>
             </tr>
           </thead>
           <tbody>
-            {sides.map((side, index) => (
-              <tr key={index}>
+            {sides.map((side) => (
+              <tr key={side.slug}>
                 <th scope="row">
                   <span className="quarter-scores__club">
                     <ClubLogo club={side.club} />
                     {side.club.name}
                   </span>
                 </th>
-                {periods.map((period) => <td key={period}>{side.quarterScores[period] ?? '–'}</td>)}
+                {periods.map((period) => (
+                  <td key={period}>{side.quarterScores[period] ?? '–'}</td>
+                ))}
                 <td className={side.winner ? 'game-detail__winner' : undefined}>{side.score}</td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
+      </section>
 
       <Tabs label="Detalle del partido" tabs={tabs} />
     </article>
@@ -120,17 +135,23 @@ export default function GamePage() {
     }
 
     setState({ slug, status: 'loading', game: null });
-    loadGame().then((data) => {
-      if (active) setState({ slug, status: 'ready', game: data });
-    }).catch(() => {
-      if (active) setState({ slug, status: 'error', game: null });
-    });
-    return () => { active = false; };
+    loadGame()
+      .then((data) => {
+        if (active) setState({ slug, status: 'ready', game: data });
+      })
+      .catch(() => {
+        if (active) setState({ slug, status: 'error', game: null });
+      });
+    return () => {
+      active = false;
+    };
   }, [slug]);
 
   return (
     <main className="page">
-      <Link className="back-link" to={back}>‹ Calendario</Link>
+      <Link className="back-link" to={back}>
+        ‹ Calendario
+      </Link>
       {status === 'loading' && <p role="status">Cargando…</p>}
       {status === 'not-found' && <p>Partido no encontrado.</p>}
       {status === 'error' && <p role="alert">No se pudo cargar el partido.</p>}

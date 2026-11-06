@@ -34,7 +34,8 @@ function readJson(file) {
 
 function listJsonFiles(dir) {
   if (!fs.existsSync(dir)) return [];
-  return fs.readdirSync(dir, { withFileTypes: true })
+  return fs
+    .readdirSync(dir, { withFileTypes: true })
     .flatMap((entry) => {
       const full = path.join(dir, entry.name);
       if (entry.isDirectory()) return listJsonFiles(full);
@@ -57,7 +58,9 @@ function indexFilesById(dir) {
 }
 
 function normalizeName(name) {
-  return String(name || '').trim().toUpperCase();
+  return String(name || '')
+    .trim()
+    .toUpperCase();
 }
 
 /**
@@ -88,7 +91,9 @@ function toScore(value) {
 function buildSide(clubs, clubSourceName, score) {
   const club = clubs.get(normalizeName(clubSourceName));
   if (!club) {
-    throw new Error(`Club not found in ${CLUBS_FILE}: "${clubSourceName || '(missing name)'}". Add its source name to sourceNames.`);
+    throw new Error(
+      `Club not found in ${CLUBS_FILE}: "${clubSourceName || '(missing name)'}". Add its source name to sourceNames.`,
+    );
   }
   return {
     club: club.slug,
@@ -211,12 +216,14 @@ async function buildCalendar(config) {
 module.exports = { toPlayers, buildSide, fromDatedGame, buildGameDetail, buildGameFiles, buildCalendar };
 
 if (require.main === module) {
-  Promise.resolve().then(async () => {
-    const config = loadConfig();
-    await buildCalendar(config);
-    await buildGameFiles(config);
-  }).catch((err) => {
-    console.error(err.message);
-    process.exitCode = 1;
-  });
+  Promise.resolve()
+    .then(async () => {
+      const config = loadConfig();
+      await buildCalendar(config);
+      await buildGameFiles(config);
+    })
+    .catch((err) => {
+      console.error(err.message);
+      process.exitCode = 1;
+    });
 }

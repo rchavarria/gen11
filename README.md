@@ -12,7 +12,7 @@ cp config.example.json config.json
 ```
 
 | Key         | Required | Description                                                                               |
-|-------------|----------|-------------------------------------------------------------------------------------------|
+| ----------- | -------- | ----------------------------------------------------------------------------------------- |
 | `baseUrl`   | yes      | Base URL of the API                                                                       |
 | `deviceId`  | yes      | Registered device id, sent as `id_dispositivo`                                            |
 | `key`       | yes      | Key sent as `key` (`api-client.js` rotates the key whenever a response returns a new one) |
@@ -20,14 +20,14 @@ cp config.example.json config.json
 
 Each script writes into its own subfolder of `outputDir`:
 
-| Script               | Output                                                                          |
-|----------------------|---------------------------------------------------------------------------------|
-| `previous-games.js`  | `<outputDir>/games/`                                                            |
-| `download-games.js`  | `<outputDir>/dated-games.json`, `games-stats/`, `games-scores/`                 |
-| `next-games.js`      | `<outputDir>/next-games/<YYYY-MM-DD>.json`, `dated-games.json`                  |
-| `scored-points.js`   | `<outputDir>/game-scored-points/<slug>-<id>.json`, `dated-games.json`           |
-| `build-data.js`      | `src/data/calendar.json`, `src/data/games/<slug>.json` (data for the web)        |
-| `sync.js`            | `<outputDir>/sync-reports/<YYYY-MM-DD>.md` (plus everything above, see below)   |
+| Script              | Output                                                                        |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `previous-games.js` | `<outputDir>/games/`                                                          |
+| `download-games.js` | `<outputDir>/dated-games.json`, `games-stats/`, `games-scores/`               |
+| `next-games.js`     | `<outputDir>/next-games/<YYYY-MM-DD>.json`, `dated-games.json`                |
+| `scored-points.js`  | `<outputDir>/game-scored-points/<slug>-<id>.json`, `dated-games.json`         |
+| `build-data.js`     | `src/data/calendar.json`, `src/data/games/<slug>.json` (data for the web)     |
+| `sync.js`           | `<outputDir>/sync-reports/<YYYY-MM-DD>.md` (plus everything above, see below) |
 
 ## Usage
 
@@ -75,28 +75,33 @@ npm run build        # dist/
 - Clubs (display name, logo, names used by the source): `src/data/clubs.json`
 - Club logos: `src/web/public/logos/<club-slug>.png|jpg`
 
-## Tests
+## Lint and tests
 
 ```bash
+npm run lint       # check lint rules, formatting and import order
+npm run lint:fix   # apply formatting and safe fixes
 npm run test
 ```
 
 Runs all unit tests with Vitest, including React component tests with Testing
 Library and jsdom. Tests use local fixtures and do not call the API.
 
+Biome handles linting and formatting; generated data in `src/data/` is excluded.
+GitHub Pages checks lint and tests before building.
+
 ## Shared modules
 
-| Module                   | Contents                                                                                             |
-|--------------------------|------------------------------------------------------------------------------------------------------|
-| `src/core/config.js`     | `loadConfig()`, `updateConfigKey()`: read/validate/update `config.json`                              |
-| `src/core/wait.js`       | `sleep`, `randomDelay`, `waitBeforeNextRequest`, `shortWait()` (100–200 s), `longWait()` (10–15 min) |
-| `src/core/format.js`     | `formatDuration`, `timestamp`                                                                        |
-| `src/core/validate.js`   | `isEmptyValue`, `isPlainObject`, `fileExists`                                                        |
-| `src/core/games.js`      | `isValidGame`                                                                                      |
-| `src/core/dated-games.js` | `readDatedGamesFile`, `writeDatedGamesFile`                                                         |
-| `src/core/files.js`      | `writeJson`, `buildFileName`, `saveStats`, `saveScore`                                               |
-| `src/core/api-client.js` | `ApiClient` (API calls, validation, key rotation), `ApiError`, `isNoDataError`                       |
-| `src/core/download.js`   | `processGames` (stats + scores download), `downloadGame`, `isAfterToday`                             |
-| `src/core/scored-points.js` | `getScoredPoints`, `generateScoredPoints`, `processGames`                                         |
-| `src/core/next-games.js` | `fetchNextGames`, `mergeDatedGames`, `toIsoDate`                                                     |
-| `src/core/report.js`     | `buildReport`, `writeReport` (sync report)                                                           |
+| Module                      | Contents                                                                                             |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `src/core/config.js`        | `loadConfig()`, `updateConfigKey()`: read/validate/update `config.json`                              |
+| `src/core/wait.js`          | `sleep`, `randomDelay`, `waitBeforeNextRequest`, `shortWait()` (100–200 s), `longWait()` (10–15 min) |
+| `src/core/format.js`        | `formatDuration`, `timestamp`                                                                        |
+| `src/core/validate.js`      | `isEmptyValue`, `isPlainObject`, `fileExists`                                                        |
+| `src/core/games.js`         | `isValidGame`                                                                                        |
+| `src/core/dated-games.js`   | `readDatedGamesFile`, `writeDatedGamesFile`                                                          |
+| `src/core/files.js`         | `writeJson`, `buildFileName`, `saveStats`, `saveScore`                                               |
+| `src/core/api-client.js`    | `ApiClient` (API calls, validation, key rotation), `ApiError`, `isNoDataError`                       |
+| `src/core/download.js`      | `processGames` (stats + scores download), `downloadGame`, `isAfterToday`                             |
+| `src/core/scored-points.js` | `getScoredPoints`, `generateScoredPoints`, `processGames`                                            |
+| `src/core/next-games.js`    | `fetchNextGames`, `mergeDatedGames`, `toIsoDate`                                                     |
+| `src/core/report.js`        | `buildReport`, `writeReport` (sync report)                                                           |

@@ -840,21 +840,6 @@
     }
   },
   {
-    "slug": "s67-kdt-oro-f1-g1-j06-sanjorge-canoe",
-    "date": "2026-11-08",
-    "time": null,
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
-    "home": {
-      "club": "sanjorge",
-      "score": null
-    },
-    "away": {
-      "club": "canoe",
-      "score": null
-    }
-  },
-  {
     "slug": "s67-kdt-oro-f1-g2-j01-alcorcon-laso",
     "date": "2026-11-08",
     "time": "09:30",
@@ -915,24 +900,9 @@
     }
   },
   {
-    "slug": "s67-kdt-oro-f1-g1-j07-distrito-sanjorge",
-    "date": "2026-11-14",
-    "time": null,
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
-    "home": {
-      "club": "distrito",
-      "score": null
-    },
-    "away": {
-      "club": "sanjorge",
-      "score": null
-    }
-  },
-  {
     "slug": "s67-kdt-oro-f1-g1-j07-madrid-fuenlabrada",
     "date": "2026-11-14",
-    "time": null,
+    "time": "10:00",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
@@ -945,47 +915,17 @@
     }
   },
   {
-    "slug": "s67-kdt-oro-f1-g2-j07-alcorcon-estudiantes",
-    "date": "2026-11-15",
-    "time": null,
+    "slug": "s67-kdt-oro-f1-g1-j07-distrito-sanjorge",
+    "date": "2026-11-14",
+    "time": "13:30",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "alcorcon",
+      "club": "distrito",
       "score": null
     },
     "away": {
-      "club": "estudiantes",
-      "score": null
-    }
-  },
-  {
-    "slug": "s67-kdt-oro-f1-g2-j07-zentro-laso",
-    "date": "2026-11-15",
-    "time": null,
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
-    "home": {
-      "club": "zentro",
-      "score": null
-    },
-    "away": {
-      "club": "laso",
-      "score": null
-    }
-  },
-  {
-    "slug": "s67-jnr-oro-f1-g1-j07-torrejon-alcobendas",
-    "date": "2026-11-15",
-    "time": null,
-    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
-    "home": {
-      "club": "torrejon",
-      "score": null
-    },
-    "away": {
-      "club": "alcobendas",
+      "club": "sanjorge",
       "score": null
     }
   },
@@ -1005,6 +945,21 @@
     }
   },
   {
+    "slug": "s67-kdt-oro-f1-g2-j07-alcorcon-estudiantes",
+    "date": "2026-11-15",
+    "time": "11:30",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "alcorcon",
+      "score": null
+    },
+    "away": {
+      "club": "estudiantes",
+      "score": null
+    }
+  },
+  {
     "slug": "s67-kdt-oro-f1-g2-j07-alcobendas-torrelodones",
     "date": "2026-11-15",
     "time": "13:30",
@@ -1016,6 +971,36 @@
     },
     "away": {
       "club": "torrelodones",
+      "score": null
+    }
+  },
+  {
+    "slug": "s67-jnr-oro-f1-g1-j07-torrejon-alcobendas",
+    "date": "2026-11-15",
+    "time": "16:00",
+    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "torrejon",
+      "score": null
+    },
+    "away": {
+      "club": "alcobendas",
+      "score": null
+    }
+  },
+  {
+    "slug": "s67-kdt-oro-f1-g2-j07-zentro-laso",
+    "date": "2026-11-15",
+    "time": "18:15",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "zentro",
+      "score": null
+    },
+    "away": {
+      "club": "laso",
       "score": null
     }
   },
@@ -1121,6 +1106,21 @@
     },
     "away": {
       "club": "sanjorge",
+      "score": null
+    }
+  },
+  {
+    "slug": "s67-kdt-oro-f1-g1-j06-sanjorge-canoe",
+    "date": "2026-11-26",
+    "time": "21:15",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "sanjorge",
+      "score": null
+    },
+    "away": {
+      "club": "canoe",
       "score": null
     }
   }

@@ -1,8 +1,6 @@
-'use strict';
-
-const assert = require('node:assert/strict');
-const { test } = require('node:test');
-const { buildGameDetail, toPlayers } = require('./build-data');
+import assert from 'node:assert/strict';
+import { test } from 'vitest';
+import { buildGameDetail, toPlayers } from './build-data.js';
 
 const clubs = new Map([
   ['HOME CLUB', { slug: 'home' }],

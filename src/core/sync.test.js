@@ -1,13 +1,11 @@
-'use strict';
-
-const assert = require('node:assert/strict');
-const fs = require('node:fs/promises');
-const os = require('node:os');
-const path = require('node:path');
-const { test } = require('node:test');
-const { mergeDatedGames, fetchNextGames } = require('./next-games');
-const { isAfterToday, processGames: processDownloads } = require('./download');
-const { buildReport } = require('./report');
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import { test } from 'vitest';
+import { mergeDatedGames, fetchNextGames } from './next-games.js';
+import { isAfterToday, processGames as processDownloads } from './download.js';
+import { buildReport } from './report.js';
 
 test('mergeDatedGames adds mapped entries in date/time order and updates only date and time', () => {
   const known = {
@@ -55,7 +53,7 @@ test('mergeDatedGames keeps existing date for invalid incoming dates and sorts i
 
 test('fetchNextGames saves raw responses and consolidates dated-games.json', async (t) => {
   const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gen11-next-games-'));
-  t.after(() => fs.rm(dir, { recursive: true, force: true }));
+  t.onTestFinished(() => fs.rm(dir, { recursive: true, force: true }));
   const nextGames = path.join(dir, 'next-games');
   const datedGamesFile = path.join(dir, 'dated-games.json');
   let response = { mispartidos: [
@@ -101,7 +99,7 @@ test('fetchNextGames saves raw responses and consolidates dated-games.json', asy
 
 test('fetchNextGames rejects invalid dated-games.json without overwriting it', async (t) => {
   const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gen11-next-games-'));
-  t.after(() => fs.rm(dir, { recursive: true, force: true }));
+  t.onTestFinished(() => fs.rm(dir, { recursive: true, force: true }));
   const client = {
     config: { paths: { nextGames: path.join(dir, 'next-games'), datedGamesFile: path.join(dir, 'dated-games.json') } },
     getNextGames: async () => ({ mispartidos: [] }),

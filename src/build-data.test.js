@@ -1,11 +1,12 @@
-'use strict';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { createRequire } from 'node:module';
+import { test } from 'vitest';
+import { buildSide, fromDatedGame, buildGameDetail } from './build-data.js';
 
-const assert = require('node:assert/strict');
-const fs = require('node:fs');
-const os = require('node:os');
-const path = require('node:path');
-const { test } = require('node:test');
-const { buildSide, fromDatedGame, buildGameDetail } = require('./build-data');
+const require = createRequire(import.meta.url);
 
 const clubs = new Map([
   ['HOME CLUB', { slug: 'home', name: 'Home', logo: 'home.png' }],
@@ -43,7 +44,7 @@ test('dated games preserve metadata without scores and normalize unknown times',
 
 test('scores and played status come only from score files', (t) => {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'gen11-build-data-'));
-  t.after(() => fs.rmSync(directory, { recursive: true }));
+  t.onTestFinished(() => fs.rmSync(directory, { recursive: true }));
   const file = path.join(directory, 'score.json');
 
   fs.writeFileSync(file, JSON.stringify({ partido: {
@@ -128,11 +129,11 @@ test('game details reject unknown clubs', () => {
 
 test('calendar builds from dated games without legacy files, sorting and skipping incomplete entries', async (t) => {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'gen11-calendar-'));
-  t.after(() => fs.rmSync(directory, { recursive: true }));
+  t.onTestFinished(() => fs.rmSync(directory, { recursive: true }));
   fs.mkdirSync(path.join(directory, 'core'));
   fs.mkdirSync(path.join(directory, 'data'));
   for (const file of ['build-data.js', 'core/config.js', 'core/games.js', 'core/dated-games.js', 'core/files.js']) {
-    fs.copyFileSync(path.join(__dirname, file), path.join(directory, file));
+    fs.copyFileSync(path.join(import.meta.dirname, file), path.join(directory, file));
   }
   fs.writeFileSync(path.join(directory, 'data/clubs.json'), JSON.stringify([
     { slug: 'home', sourceNames: ['HOME CLUB'] },

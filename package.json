@@ -9,6 +9,7 @@
     "sync": "node src/sync.js",
     "dev": "vite",
     "build": "vite build",
+    "test": "vitest run",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -17,7 +18,12 @@
     "react-router-dom": "^7.18.5"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.8",
     "@vitejs/plugin-react": "^6.1.2",
-    "vite": "^8.3.5"
+    "jsdom": "^31.0.0",
+    "vite": "^8.3.5",
+    "vitest": "^5.1.0"
   }
 }

@@ -75,6 +75,15 @@ npm run build        # dist/
 - Clubs (display name, logo, names used by the source): `src/data/clubs.json`
 - Club logos: `src/web/public/logos/<club-slug>.png|jpg`
 
+## Tests
+
+```bash
+npm run test
+```
+
+Runs all unit tests with Vitest, including React component tests with Testing
+Library and jsdom. Tests use local fixtures and do not call the API.
+
 ## Shared modules
 
 | Module                   | Contents                                                                                             |

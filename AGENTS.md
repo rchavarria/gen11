@@ -1,3 +1,8 @@
+## Tests
+
+Ejecutar `npm run test` para los tests unitarios con Vitest.
+Los tests de componentes React usan Testing Library y jsdom.
+
 ## Configuración
 
 Los scripts leen la configuración de `config.json` en la raíz del proyecto

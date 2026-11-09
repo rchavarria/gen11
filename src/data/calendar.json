@@ -784,14 +784,14 @@
     "date": "2026-11-07",
     "time": "11:30",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
+    "played": true,
     "home": {
       "club": "torrelodones",
-      "score": null
+      "score": 56
     },
     "away": {
       "club": "zentro",
-      "score": null
+      "score": 90
     }
   },
   {
@@ -799,14 +799,14 @@
     "date": "2026-11-07",
     "time": "13:30",
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
+    "played": true,
     "home": {
       "club": "alcobendas",
-      "score": null
+      "score": 95
     },
     "away": {
       "club": "canoe",
-      "score": null
+      "score": 94
     }
   },
   {
@@ -814,14 +814,14 @@
     "date": "2026-11-07",
     "time": "13:30",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
+    "played": true,
     "home": {
       "club": "fuenlabrada",
-      "score": null
+      "score": 69
     },
     "away": {
       "club": "distrito",
-      "score": null
+      "score": 102
     }
   },
   {
@@ -829,14 +829,14 @@
     "date": "2026-11-07",
     "time": "14:00",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
+    "played": true,
     "home": {
       "club": "sba",
-      "score": null
+      "score": 63
     },
     "away": {
       "club": "real-madrid",
-      "score": null
+      "score": 140
     }
   },
   {
@@ -844,14 +844,14 @@
     "date": "2026-11-08",
     "time": "09:30",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
+    "played": true,
     "home": {
       "club": "alcorcon",
-      "score": null
+      "score": 72
     },
     "away": {
       "club": "laso",
-      "score": null
+      "score": 111
     }
   },
   {
@@ -859,14 +859,14 @@
     "date": "2026-11-08",
     "time": "11:30",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
+    "played": true,
     "home": {
       "club": "alcobendas",
-      "score": null
+      "score": 71
     },
     "away": {
       "club": "estudiantes",
-      "score": null
+      "score": 78
     }
   },
   {
@@ -889,14 +889,14 @@
     "date": "2026-11-08",
     "time": "13:30",
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
+    "played": true,
     "home": {
       "club": "alcobendas",
-      "score": null
+      "score": 90
     },
     "away": {
       "club": "sba",
-      "score": null
+      "score": 110
     }
   },
   {
@@ -977,7 +977,7 @@
   {
     "slug": "s67-jnr-oro-f1-g1-j07-torrejon-alcobendas",
     "date": "2026-11-15",
-    "time": "16:00",
+    "time": "15:00",
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {

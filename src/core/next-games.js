@@ -8,7 +8,7 @@ const { writeJson } = require('./files');
 const { toDayString } = require('./format');
 const { readDatedGamesFile, writeDatedGamesFile } = require('./dated-games');
 
-const DAYS = 21;
+const DAYS = 100;
 
 /**
  * Converts "dd/mm/yyyy" to "YYYY-MM-DD". Returns "" when it is not valid.

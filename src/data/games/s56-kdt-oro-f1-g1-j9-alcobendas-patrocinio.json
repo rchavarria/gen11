@@ -388,6 +388,223 @@
         "plusMinus": 2,
         "efficiency": 8
       }
+    ],
+    "timelyScores": [
+      {
+        "time": 0,
+        "score": 0,
+        "jersey": null
+      },
+      {
+        "time": 26400,
+        "score": 1,
+        "jersey": "11"
+      },
+      {
+        "time": 57500,
+        "score": 3,
+        "jersey": "6"
+      },
+      {
+        "time": 110700,
+        "score": 5,
+        "jersey": "11"
+      },
+      {
+        "time": 126900,
+        "score": 7,
+        "jersey": "11"
+      },
+      {
+        "time": 163900,
+        "score": 9,
+        "jersey": "30"
+      },
+      {
+        "time": 186100,
+        "score": 11,
+        "jersey": "16"
+      },
+      {
+        "time": 261300,
+        "score": 13,
+        "jersey": "16"
+      },
+      {
+        "time": 374600,
+        "score": 15,
+        "jersey": "11"
+      },
+      {
+        "time": 421700,
+        "score": 18,
+        "jersey": "X"
+      },
+      {
+        "time": 434700,
+        "score": 20,
+        "jersey": "34"
+      },
+      {
+        "time": 513900,
+        "score": 22,
+        "jersey": "4"
+      },
+      {
+        "time": 634400,
+        "score": 24,
+        "jersey": "30"
+      },
+      {
+        "time": 669500,
+        "score": 26,
+        "jersey": "30"
+      },
+      {
+        "time": 669500,
+        "score": 27,
+        "jersey": "30"
+      },
+      {
+        "time": 850300,
+        "score": 28,
+        "jersey": "16"
+      },
+      {
+        "time": 850300,
+        "score": 29,
+        "jersey": "16"
+      },
+      {
+        "time": 891500,
+        "score": 30,
+        "jersey": "16"
+      },
+      {
+        "time": 932700,
+        "score": 32,
+        "jersey": "16"
+      },
+      {
+        "time": 945900,
+        "score": 33,
+        "jersey": "11"
+      },
+      {
+        "time": 945900,
+        "score": 34,
+        "jersey": "11"
+      },
+      {
+        "time": 958000,
+        "score": 35,
+        "jersey": "11"
+      },
+      {
+        "time": 991100,
+        "score": 37,
+        "jersey": "11"
+      },
+      {
+        "time": 1034200,
+        "score": 39,
+        "jersey": "11"
+      },
+      {
+        "time": 1182600,
+        "score": 40,
+        "jersey": "30"
+      },
+      {
+        "time": 1236400,
+        "score": 42,
+        "jersey": "16"
+      },
+      {
+        "time": 1310900,
+        "score": 44,
+        "jersey": "6"
+      },
+      {
+        "time": 1433300,
+        "score": 47,
+        "jersey": "6"
+      },
+      {
+        "time": 1482500,
+        "score": 49,
+        "jersey": "X"
+      },
+      {
+        "time": 1524800,
+        "score": 51,
+        "jersey": "16"
+      },
+      {
+        "time": 1597100,
+        "score": 53,
+        "jersey": "16"
+      },
+      {
+        "time": 1649300,
+        "score": 54,
+        "jersey": "X"
+      },
+      {
+        "time": 1649300,
+        "score": 55,
+        "jersey": "X"
+      },
+      {
+        "time": 1905700,
+        "score": 56,
+        "jersey": "30"
+      },
+      {
+        "time": 1943900,
+        "score": 57,
+        "jersey": "4"
+      },
+      {
+        "time": 2024300,
+        "score": 58,
+        "jersey": "11"
+      },
+      {
+        "time": 2024300,
+        "score": 59,
+        "jersey": "11"
+      },
+      {
+        "time": 2052400,
+        "score": 61,
+        "jersey": "16"
+      },
+      {
+        "time": 2073400,
+        "score": 63,
+        "jersey": "16"
+      },
+      {
+        "time": 2139600,
+        "score": 65,
+        "jersey": "11"
+      },
+      {
+        "time": 2218900,
+        "score": 68,
+        "jersey": "11"
+      },
+      {
+        "time": 2238900,
+        "score": 71,
+        "jersey": "X"
+      },
+      {
+        "time": 2378700,
+        "score": 73,
+        "jersey": "30"
+      }
     ]
   },
   "away": {
@@ -807,6 +1024,238 @@
         },
         "plusMinus": 0,
         "efficiency": 0
+      }
+    ],
+    "timelyScores": [
+      {
+        "time": 0,
+        "score": 0,
+        "jersey": null
+      },
+      {
+        "time": 19300,
+        "score": 2,
+        "jersey": "38"
+      },
+      {
+        "time": 146900,
+        "score": 5,
+        "jersey": "38"
+      },
+      {
+        "time": 176000,
+        "score": 7,
+        "jersey": "X"
+      },
+      {
+        "time": 215100,
+        "score": 9,
+        "jersey": "X"
+      },
+      {
+        "time": 267300,
+        "score": 11,
+        "jersey": "38"
+      },
+      {
+        "time": 374600,
+        "score": 13,
+        "jersey": "X"
+      },
+      {
+        "time": 374600,
+        "score": 14,
+        "jersey": "X"
+      },
+      {
+        "time": 383700,
+        "score": 15,
+        "jersey": "X"
+      },
+      {
+        "time": 383700,
+        "score": 16,
+        "jersey": "X"
+      },
+      {
+        "time": 394700,
+        "score": 17,
+        "jersey": "X"
+      },
+      {
+        "time": 443700,
+        "score": 19,
+        "jersey": "12"
+      },
+      {
+        "time": 463800,
+        "score": 21,
+        "jersey": "X"
+      },
+      {
+        "time": 493800,
+        "score": 24,
+        "jersey": "X"
+      },
+      {
+        "time": 529000,
+        "score": 26,
+        "jersey": "X"
+      },
+      {
+        "time": 573700,
+        "score": 27,
+        "jersey": "X"
+      },
+      {
+        "time": 684600,
+        "score": 29,
+        "jersey": "17"
+      },
+      {
+        "time": 709700,
+        "score": 30,
+        "jersey": "X"
+      },
+      {
+        "time": 709700,
+        "score": 31,
+        "jersey": "X"
+      },
+      {
+        "time": 785000,
+        "score": 33,
+        "jersey": "X"
+      },
+      {
+        "time": 810200,
+        "score": 34,
+        "jersey": "X"
+      },
+      {
+        "time": 973000,
+        "score": 36,
+        "jersey": "12"
+      },
+      {
+        "time": 1013200,
+        "score": 38,
+        "jersey": "X"
+      },
+      {
+        "time": 1042300,
+        "score": 40,
+        "jersey": "38"
+      },
+      {
+        "time": 1097600,
+        "score": 41,
+        "jersey": "X"
+      },
+      {
+        "time": 1123700,
+        "score": 43,
+        "jersey": "38"
+      },
+      {
+        "time": 1168100,
+        "score": 45,
+        "jersey": "X"
+      },
+      {
+        "time": 1301800,
+        "score": 47,
+        "jersey": "X"
+      },
+      {
+        "time": 1328900,
+        "score": 49,
+        "jersey": "X"
+      },
+      {
+        "time": 1357000,
+        "score": 52,
+        "jersey": "X"
+      },
+      {
+        "time": 1442400,
+        "score": 55,
+        "jersey": "X"
+      },
+      {
+        "time": 1474500,
+        "score": 57,
+        "jersey": "17"
+      },
+      {
+        "time": 1504600,
+        "score": 60,
+        "jersey": "17"
+      },
+      {
+        "time": 1544900,
+        "score": 62,
+        "jersey": "X"
+      },
+      {
+        "time": 1625200,
+        "score": 64,
+        "jersey": "17"
+      },
+      {
+        "time": 1728900,
+        "score": 65,
+        "jersey": "X"
+      },
+      {
+        "time": 1818300,
+        "score": 67,
+        "jersey": "X"
+      },
+      {
+        "time": 1818300,
+        "score": 68,
+        "jersey": "X"
+      },
+      {
+        "time": 1988100,
+        "score": 70,
+        "jersey": "X"
+      },
+      {
+        "time": 2086500,
+        "score": 71,
+        "jersey": "X"
+      },
+      {
+        "time": 2086500,
+        "score": 72,
+        "jersey": "X"
+      },
+      {
+        "time": 2118600,
+        "score": 74,
+        "jersey": "X"
+      },
+      {
+        "time": 2160700,
+        "score": 76,
+        "jersey": "X"
+      },
+      {
+        "time": 2200800,
+        "score": 78,
+        "jersey": "17"
+      },
+      {
+        "time": 2275100,
+        "score": 79,
+        "jersey": "X"
+      },
+      {
+        "time": 2275100,
+        "score": 80,
+        "jersey": "X"
       }
     ]
   }

@@ -45,32 +45,32 @@ async function waitBeforeNextRequest(minMs, maxMs) {
 }
 
 /**
- * Waits a random time between 35 and 45 seconds.
+ * Waits a random time between, less than 15 seconds
  * @returns {Promise<void>}
  */
 function shorterWait() {
-  const MIN_DELAY_MS = 35 * 1000;
-  const MAX_DELAY_MS = 45 * 1000;
+  const MIN_DELAY_MS = 5 * 1000;
+  const MAX_DELAY_MS = 15 * 1000;
   return waitBeforeNextRequest(MIN_DELAY_MS, MAX_DELAY_MS);
 }
 
 /**
- * Waits a random time between 100 and 200 seconds.
+ * Waits a random time, around half a minute
  * @returns {Promise<void>}
  */
 function shortWait() {
-  const MIN_DELAY_MS = 100 * 1000;
-  const MAX_DELAY_MS = 200 * 1000;
+  const MIN_DELAY_MS = 25 * 1000;
+  const MAX_DELAY_MS = 35 * 1000;
   return waitBeforeNextRequest(MIN_DELAY_MS, MAX_DELAY_MS);
 }
 
 /**
- * Waits a random time between 10 and 15 minutes.
+ * Waits a random time in the minutes range
  * @returns {Promise<void>}
  */
 function longWait() {
-  const MIN_DELAY_MS = 10 * 60 * 1000;
-  const MAX_DELAY_MS = 15 * 60 * 1000;
+  const MIN_DELAY_MS = 2 * 60 * 1000;
+  const MAX_DELAY_MS = 3 * 60 * 1000;
   return waitBeforeNextRequest(MIN_DELAY_MS, MAX_DELAY_MS);
 }
 

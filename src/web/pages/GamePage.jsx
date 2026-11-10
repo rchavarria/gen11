@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import clubs from '../../data/clubs.json';
 import Boxscore from '../components/Boxscore.jsx';
 import ClubLogo from '../components/ClubLogo.jsx';
+import ScoreEvolution from '../components/ScoreEvolution.jsx';
 import Tabs from '../components/Tabs.jsx';
 import { formatDay } from '../lib/dates.js';
 import { formatTime, periodLabel } from '../lib/game.js';
@@ -38,7 +39,11 @@ function GameDetail({ game }) {
       label: awayClub.initials,
       content: <Boxscore players={game.away.players} clubName={awayClub.name} />,
     },
-    { id: 'evolution', label: 'Evolución del marcador', content: placeholder('Evolución del marcador') },
+    {
+      id: 'evolution',
+      label: 'Evolución del marcador',
+      content: <ScoreEvolution home={game.home} away={game.away} homeName={homeClub.name} awayName={awayClub.name} />,
+    },
     { id: 'play-by-play', label: 'Jugada a jugada', content: placeholder('Jugada a jugada') },
   ];
 

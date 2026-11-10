@@ -106,13 +106,21 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   «Jugada a jugada». Los dos boxscores son una tabla con dorsal, minutos (`mm:ss`), puntos
   (tiros libres + 2×dobles + 3×triples), valoración y +/-, ordenada por dorsal (los no numéricos,
   al final) y con una fila de totales (puntos y valoración). Sin `players` muestran
-  «Estadísticas no disponibles.». Las otras dos muestran un mensaje provisional
+  «Estadísticas no disponibles.».
+- «Evolución del marcador» muestra dos líneas Chart.js suavizadas: local roja y
+  visitante azul, con leyenda con los nombres de los clubs. Usa `home.timelyScores`
+  y `away.timelyScores`, sin nuevas peticiones. El eje X muestra minutos transcurridos
+  (0–40, ampliado por prórrogas) y el Y, puntos acumulados. Los tooltips muestran
+  tiempo `mm:ss`, club, tanteo y dorsal (salvo el punto inicial sin dorsal).
+  El gráfico se adapta al ancho disponible y se destruye al abandonar la pestaña.
+  Sin canastas en ambos equipos muestra «Evolución del marcador no disponible.»;
+  si solo hay datos de uno, muestra los disponibles.
+- «Jugada a jugada» mantiene el mensaje provisional.
 - Enlace de vuelta al calendario en el mes del partido
 - Estados de carga, partido no encontrado y error de carga
 
 ### Pendiente
 
 - Más columnas en el boxscore (tiros, rebotes, asistencias…)
-- Gráfica de evolución del marcador
 - Enlace o vídeo embebido
 - Filtro por categoría

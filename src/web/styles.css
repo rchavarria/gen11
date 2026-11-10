@@ -481,3 +481,10 @@ a.game-card--highlighted:hover {
   text-align: center;
   color: var(--color-text-muted);
 }
+
+.score-evolution {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: clamp(18rem, 55vw, 26rem);
+}

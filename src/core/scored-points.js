@@ -71,7 +71,7 @@ function getActionScore(action) {
   return { home_score: info.tanteoLocal, away_score: info.tanteoVisitante };
 }
 
-function getScoredPoints(data) {
+function getScoringActions(data) {
   if (!data || typeof data !== 'object' || Array.isArray(data)) {
     throw new Error('El JSON debe contener un objeto en la raíz.');
   }
@@ -91,23 +91,44 @@ function getScoredPoints(data) {
   const homeId = Number(game.idlocal);
   const awayId = Number(game.idvisitante);
 
-  const scoringActions = actions
-    .filter((action) => action && SCORING_ACTION_TYPES.has(action.accion_tipo))
-    .map((action) => {
-      const teamId = Number(action.equipo_id);
-      if (teamId !== homeId && teamId !== awayId) {
-        throw new Error(`equipo_id no coincide con ningún equipo: ${action.equipo_id}`);
-      }
-      return {
-        timestamp: getActionTimeMs(action),
-        jersey: action.dorsal,
-        isHome: teamId === homeId,
-        ...getActionScore(action),
-      };
-    })
-    // Ascending by time; ties (e.g. free throws) ordered by total score.
-    .sort((a, b) => a.timestamp - b.timestamp || a.home_score + a.away_score - (b.home_score + b.away_score));
+  return (
+    actions
+      .filter((action) => action && SCORING_ACTION_TYPES.has(action.accion_tipo))
+      .map((action) => {
+        const teamId = Number(action.equipo_id);
+        if (teamId !== homeId && teamId !== awayId) {
+          throw new Error(`equipo_id no coincide con ningún equipo: ${action.equipo_id}`);
+        }
+        return {
+          timestamp: getActionTimeMs(action),
+          jersey: action.dorsal,
+          isHome: teamId === homeId,
+          ...getActionScore(action),
+        };
+      })
+      // Ascending by time; ties (e.g. free throws) ordered by total score.
+      .sort((a, b) => a.timestamp - b.timestamp || a.home_score + a.away_score - (b.home_score + b.away_score))
+  );
+}
 
+function getTimelyScores(data) {
+  const actions = getScoringActions(data);
+  const home = [{ time: 0, score: 0, jersey: null }];
+  const away = [{ time: 0, score: 0, jersey: null }];
+  for (const action of actions) {
+    const points = action.isHome ? home : away;
+    points.push({
+      time: action.timestamp,
+      score: action.isHome ? action.home_score : action.away_score,
+      jersey: action.jersey,
+    });
+  }
+  return { home, away };
+}
+
+function getScoredPoints(data) {
+  const scoringActions = getScoringActions(data);
+  const game = data.partido;
   const homeData = [{ x: 0, y: 0 }];
   const awayData = [{ x: 0, y: 0 }];
   for (const action of scoringActions) {
@@ -235,4 +256,11 @@ function printSummary(summary, elapsedMs) {
   console.log('='.repeat(50));
 }
 
-module.exports = { getScoredPoints, generateScoredPoints, processGames, printSummary };
+module.exports = {
+  getScoringActions,
+  getTimelyScores,
+  getScoredPoints,
+  generateScoredPoints,
+  processGames,
+  printSummary,
+};

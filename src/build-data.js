@@ -12,7 +12,7 @@
  *
  * The calendar only includes whitelisted fields (no ids). Per-game files keep
  * dated-game fields, including ids but excluding source club names and internal
- * download/scoring flags, and add scores and period scores.
+ * download/scoring flags, and add scores, period scores and score evolution.
  *
  * Usage: node src/build-data.js
  */
@@ -22,6 +22,7 @@ const path = require('node:path');
 const { loadConfig } = require('./core/config');
 const { isValidGame } = require('./core/games');
 const { readDatedGamesFile } = require('./core/dated-games');
+const { getTimelyScores } = require('./core/scored-points');
 
 const DATA_DIR = path.join(__dirname, 'data');
 const CLUBS_FILE = path.join(DATA_DIR, 'clubs.json');
@@ -152,6 +153,13 @@ function buildGameDetail(game, clubs, scoreData, statsData) {
   const periods = [...(match.periodos || [])].sort((a, b) => a.periodo - b.periodo);
 
   const stats = statsData?.estadisticas;
+  let timelyScores;
+  try {
+    timelyScores = getTimelyScores(scoreData);
+  } catch (err) {
+    timelyScores = { home: [], away: [] };
+    console.warn(`Cannot build timely scores for ${game.slug}: ${err.message}`);
+  }
   return {
     ...metadata,
     home: {
@@ -159,12 +167,14 @@ function buildGameDetail(game, clubs, scoreData, statsData) {
       score: home.score,
       quarterScores: periods.map((period) => toScore(period.tanteo_periodo_local)),
       ...(stats && { players: toPlayers(stats.estadisticasequipolocal) }),
+      timelyScores: timelyScores.home,
     },
     away: {
       slug: away.club,
       score: away.score,
       quarterScores: periods.map((period) => toScore(period.tanteo_periodo_visitante)),
       ...(stats && { players: toPlayers(stats.estadisticasequipovisitante) }),
+      timelyScores: timelyScores.away,
     },
   };
 }

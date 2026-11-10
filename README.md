@@ -59,6 +59,12 @@ If `games-stats/<slug>-<id>.json` exists, `home` and `away` also get `players`: 
 (the source's `TOTALES` row is excluded) with `jersey`, `msPlayed`, `starter`, `freeThrows`, `twoPointers`,
 `threePointers` (`made`/`attempted`), `rebounds` (`defensive`/`offensive`), `assists`, `turnovers`, `steals`,
 `blocks` (`made`/`received`), `fouls` (`committed`/`received`), `plusMinus` and `efficiency`.
+Each side also gets `timelyScores`: `{time, score, jersey}` entries extracted from
+`games-scores/` actions, with elapsed game time in milliseconds, accumulated team score
+and the scorer's jersey. Entries start at `{time: 0, score: 0, jersey: null}` and are
+ordered by time, then total score for ties. Regular periods last 10 minutes and overtime
+periods 5 minutes. Missing or invalid action data produces empty arrays for both teams
+and a warning identifying the game. A valid empty history retains only the initial points.
 
 ## Web
 

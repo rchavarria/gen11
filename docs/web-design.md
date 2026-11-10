@@ -50,6 +50,12 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   `threePointers` (`made`/`attempted`), `rebounds` (`defensive`/`offensive`), `assists`,
   `turnovers`, `steals`, `blocks` (`made`/`received`), `fouls` (`committed`/`received`),
   `plusMinus` y `efficiency`.
+  Cada equipo incluye también `timelyScores`: objetos `{time, score, jersey}` extraídos
+  de las acciones de `games-scores/`, con tiempo transcurrido en ms, tanteo acumulado
+  y dorsal. Comienzan con `{time: 0, score: 0, jersey: null}` y se ordenan por tiempo
+  y, en los empates, por tanteo total. Los cuartos duran 10 minutos y las prórrogas 5.
+  Si falta el historial o sus datos son inválidos, ambos arrays quedan vacíos y el
+  generador emite un aviso con el slug. Un historial válido vacío conserva solo los puntos iniciales.
   La página de detalle carga cada JSON de forma lazy mediante `import.meta.glob`.
 - Slug del partido: lo añades a mano en `dated-games.json` antes de procesarlo;
   es el id estable (el `id_partido` de la fuente caduca)

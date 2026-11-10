@@ -20,7 +20,8 @@
  *   5. Generates the Chart.js scored points of the downloaded games
  *      (same rules as scored-points.js).
  *   6. Rebuilds src/data/calendar.json (build-data.js).
- *   7. Rebuilds src/data/games/<slug>.json for games with scores.
+ *   7. Rebuilds src/data/games/<slug>.json for games with scores, including
+ *      each team's timelyScores (score evolution from the raw actions).
  *   8. Writes the report to <outputDir>/sync-reports/<YYYY-MM-DD>.md (an
  *      existing report of the same day is overwritten) and prints it.
  *

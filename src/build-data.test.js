@@ -122,8 +122,8 @@ test('game details omit source names and internal flags and sort numeric period 
   assert.deepEqual(buildGameDetail(game, clubs, scoreData), {
     ...detailMetadata,
     extra: 'preserved',
-    home: { slug: 'home', score: 85, quarterScores: [10, 20, 20, 30, 5] },
-    away: { slug: 'away', score: 80, quarterScores: [20, 15, 25, 20, 0] },
+    home: { slug: 'home', score: 85, quarterScores: [10, 20, 20, 30, 5], timelyScores: [] },
+    away: { slug: 'away', score: 80, quarterScores: [20, 15, 25, 20, 0], timelyScores: [] },
   });
   assert.equal(JSON.stringify(scoreData), original);
   assert.equal(JSON.stringify(game), originalGame);
@@ -146,8 +146,8 @@ test('game details require both scores, accept zero and handle missing periods',
     }),
     {
       ...detailMetadata,
-      home: { slug: 'home', score: 0, quarterScores: [] },
-      away: { slug: 'away', score: 20, quarterScores: [] },
+      home: { slug: 'home', score: 0, quarterScores: [], timelyScores: [] },
+      away: { slug: 'away', score: 20, quarterScores: [], timelyScores: [] },
     },
   );
 });
@@ -175,7 +175,16 @@ test('calendar builds from dated games without legacy files, sorting and skippin
   t.onTestFinished(() => fs.rmSync(directory, { recursive: true }));
   fs.mkdirSync(path.join(directory, 'core'));
   fs.mkdirSync(path.join(directory, 'data'));
-  for (const file of ['build-data.js', 'core/config.js', 'core/games.js', 'core/dated-games.js', 'core/files.js']) {
+  for (const file of [
+    'build-data.js',
+    'core/config.js',
+    'core/games.js',
+    'core/dated-games.js',
+    'core/files.js',
+    'core/scored-points.js',
+    'core/validate.js',
+    'core/format.js',
+  ]) {
     fs.copyFileSync(path.join(import.meta.dirname, file), path.join(directory, file));
   }
   fs.writeFileSync(
@@ -203,7 +212,19 @@ test('calendar builds from dated games without legacy files, sorting and skippin
   fs.writeFileSync(
     path.join(gamesScores, 'game-ABC.json'),
     JSON.stringify({
-      partido: { tanteo_local: '80', tanteo_visitante: '70', estado_partido: 'FINALIZADO' },
+      partido: { tanteo_local: '80', tanteo_visitante: '70', estado_partido: 'FINALIZADO', idlocal: 1, idvisitante: 2 },
+      envivo: {
+        historialacciones: [
+          {
+            accion_tipo: 'CANASTA-2P',
+            equipo_id: 1,
+            numero_periodo: 1,
+            tiempo_partido: '00:09:00.0',
+            dorsal: '5',
+            informacion_adicional: '{"tanteoLocal":2,"tanteoVisitante":0}',
+          },
+        ],
+      },
     }),
   );
   const { buildCalendar, buildGameFiles } = require(path.join(directory, 'build-data.js'));
@@ -235,8 +256,21 @@ test('calendar builds from dated games without legacy files, sorting and skippin
   const gameFile = path.join(gamesDir, 'game.json');
   assert.deepEqual(JSON.parse(fs.readFileSync(gameFile, 'utf8')), {
     ...detailMetadata,
-    home: { slug: 'home', score: 80, quarterScores: [] },
-    away: { slug: 'away', score: 70, quarterScores: [] },
+    home: {
+      slug: 'home',
+      score: 80,
+      quarterScores: [],
+      timelyScores: [
+        { time: 0, score: 0, jersey: null },
+        { time: 60000, score: 2, jersey: '5' },
+      ],
+    },
+    away: {
+      slug: 'away',
+      score: 70,
+      quarterScores: [],
+      timelyScores: [{ time: 0, score: 0, jersey: null }],
+    },
   });
   fs.writeFileSync(
     path.join(gamesScores, 'game-ABC.json'),
@@ -247,6 +281,8 @@ test('calendar builds from dated games without legacy files, sorting and skippin
   assert.deepEqual(await buildGameFiles(config), { count: 1, slugs: ['game'] });
   const rewritten = fs.readFileSync(gameFile, 'utf8');
   assert.equal(JSON.parse(rewritten).home.score, 81);
+  assert.deepEqual(JSON.parse(rewritten).home.timelyScores, []);
+  assert.deepEqual(JSON.parse(rewritten).away.timelyScores, []);
   await buildGameFiles(config);
   assert.equal(fs.readFileSync(gameFile, 'utf8'), rewritten);
 });

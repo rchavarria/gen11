@@ -4,10 +4,12 @@
 
 - `ApiClient`: renovar la key automáticamente (`renewKey()`) cuando la API responda "Faltan parámetros", y reintentar la petición una vez
 - web: los partidos sin marcador, deben mostrar el lugar del partido
-- web: ampliar el boxscore con más columnas (tiros, rebotes, asistencias…)
-- web: enlace a vídeo, filtro por categoría
-- web: rellenar la pestaña «Jugada a jugada», hoy es placeholder
+- web: enlace a vídeo
+- sync: eliminar el paso de scored-games
 - sync: primero, analizar qué y cuántos partidos hay que descargar, y luego descargar solo los partidos que no estén en `dated-games.json`, de forma que el contador/progeso de partidos descargados es "real", muestra el total de los que habría que descargar, no el total de los dated-games.json
+- web: ampliar el boxscore con más columnas (tiros, rebotes, asistencias…)
+- web: filtro por categoría
+- web: rellenar la pestaña «Jugada a jugada», hoy es placeholder
 
 ## Done list
 

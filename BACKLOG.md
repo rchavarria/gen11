@@ -3,6 +3,7 @@
 ## To Do list
 
 - `ApiClient`: renovar la key automáticamente (`renewKey()`) cuando la API responda "Faltan parámetros", y reintentar la petición una vez
+- web: los partidos sin marcador, deben mostrar el lugar del partido
 - web: ampliar el boxscore con más columnas (tiros, rebotes, asistencias…)
 - web: enlace a vídeo, filtro por categoría
 - web: rellenar la pestaña «Jugada a jugada», hoy es placeholder

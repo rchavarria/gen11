@@ -77,7 +77,7 @@ function mergeDatedGames(games, upcomingGames, venues = new Map()) {
         existing.time = time;
         changed = true;
       }
-      if (existing.venue !== venue) {
+      if (venue && existing.venue !== venue) {
         existing.venue = venue;
         changed = true;
       }

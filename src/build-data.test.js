@@ -247,6 +247,29 @@ test('calendar builds from dated games without legacy files, sorting and skippin
   assert.equal(calendar[0].played, false);
   assert.equal(calendar[2].played, false);
 
+  const calendarFile = path.join(directory, 'data/calendar.json');
+  fs.writeFileSync(
+    calendarFile,
+    JSON.stringify([...calendar].reverse().map((game) => ({ ...game, venue: `manual-${game.slug}`, time: '00:01' }))),
+  );
+  const datedGames = JSON.parse(fs.readFileSync(datedGamesFile, 'utf8'));
+  datedGames['dated-games'].find((game) => game.slug === 'earlier').venue = 'manual-earlier';
+  datedGames['dated-games'].find((game) => game.slug === 'later').venue = '';
+  fs.writeFileSync(datedGamesFile, JSON.stringify(datedGames));
+
+  await buildCalendar(config);
+  const rebuilt = JSON.parse(fs.readFileSync(calendarFile, 'utf8'));
+  assert.deepEqual(
+    rebuilt.map(({ slug, venue, time }) => ({ slug, venue, time })),
+    [
+      { slug: 'earlier', venue: 'manual-earlier', time: '09:00' },
+      { slug: 'game', venue: '', time: '11:30' },
+      { slug: 'later', venue: '', time: '11:30' },
+    ],
+  );
+  await buildCalendar(config);
+  assert.deepEqual(JSON.parse(fs.readFileSync(calendarFile, 'utf8')), rebuilt);
+
   fs.writeFileSync(
     path.join(gamesScores, 'earlier-CDE.json'),
     JSON.stringify({

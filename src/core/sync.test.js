@@ -55,7 +55,6 @@ test('mergeDatedGames adds mapped entries in date/time order and updates date, t
     id: 'AA',
     date: '2026-11-04',
     time: '09:15:00',
-    venue: '',
     category: 'Cat',
     homeClubName: 'Home',
     awayClubName: 'Away',
@@ -95,10 +94,15 @@ test('mergeDatedGames resolves exact venue names and refreshes venues without ot
   assert.deepEqual(result.unmatchedVenues, ['LA CANALEJA, PABELLON PISTA 1', '(missing CampoJuego)']);
   assert.deepEqual(mergeDatedGames(games, upcoming, venues).updated, []);
 
-  const cleared = mergeDatedGames(games, [{ ...upcoming[0], CampoJuego: 'UNKNOWN' }], venues);
-  assert.equal(known.venue, '');
-  assert.deepEqual(cleared.updated, [known]);
-  assert.deepEqual(cleared.unmatchedVenues, ['UNKNOWN']);
+  const unmatched = mergeDatedGames(games, [{ ...upcoming[0], CampoJuego: 'UNKNOWN' }], venues);
+  assert.equal(known.venue, 'central');
+  assert.deepEqual(unmatched.updated, []);
+  assert.deepEqual(unmatched.unmatchedVenues, ['UNKNOWN']);
+
+  const missing = mergeDatedGames(games, [{ ...upcoming[0], CampoJuego: '' }], venues);
+  assert.equal(known.venue, 'central');
+  assert.deepEqual(missing.updated, []);
+  assert.deepEqual(missing.unmatchedVenues, ['(missing CampoJuego)']);
 });
 
 test.each(['pabellon central', ' PABELLON CENTRAL', 'PABELLON CENTRAL ', 'PABELLON  CENTRAL', 'PABELLÓN CENTRAL'])(

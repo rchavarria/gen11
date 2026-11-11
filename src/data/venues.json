@@ -20,6 +20,11 @@
     "address": "AVENIDA CIRCUNVALACION NORTE, 1, Alcorcón, Madrid"
   },
   {
+    "slug": "canaleja",
+    "name": "LA CANALEJA, PABELLON PISTA 3",
+    "address": "AVENIDA CIRCUNVALACION NORTE, 1, Alcorcón, Madrid"
+  },
+  {
     "slug": "canoe",
     "name": "REAL CANOE N.C.",
     "address": "CALLE PEZ VOLADOR, 30, Madrid, Madrid"

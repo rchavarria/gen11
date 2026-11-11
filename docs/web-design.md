@@ -32,6 +32,8 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 
 - `src/build-data.js` lee los datos en bruto de `downloads/` y genera `src/data/calendar.json`
   - lee `dated-games.json` para obtener slug, fecha, hora, categoría, clubs y `venue` (slug del pabellón)
+  - las correcciones manuales de `venue` se hacen en `dated-games.json`;
+    el calendario se regenera desde ese origen, sin leer sus valores anteriores
   - combina esos datos con su marcador (`games-scores/`) por id de partido;
     considera jugado un partido finalizado o con ambas puntuaciones presentes
   - sin fichero de marcador, lo considera no jugado y deja las puntuaciones vacías
@@ -65,7 +67,9 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 - `src/data/venues.json` (a mano): `slug`, `name` (campo de juego) y `address`.
   Al obtener los próximos partidos, `CampoJuego` se compara literalmente con `name`,
   sin normalizar espacios, mayúsculas ni acentos. Se guarda o actualiza `venue` en `dated-games.json`; si no
-  hay coincidencia, se guarda `""` y se avisa sin abortar. No se usan coincidencias
+  hay coincidencia, se conserva el valor existente (o `""` en partidos nuevos) y se
+  avisa sin abortar. Solo se actualiza un slug existente si el nuevo es distinto y
+  no está vacío. No se usan coincidencias
   parciales: «PISTA 1» no coincide con «PISTA 1-3».
 - Vídeos: enlaces añadidos a mano (pendiente)
 

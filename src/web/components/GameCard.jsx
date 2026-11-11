@@ -16,7 +16,7 @@ function Side({ side, winner }) {
     <div className={`game-card__side${winner ? ' game-card__side--winner' : ''}`}>
       <ClubLogo club={club} />
       <span className="game-card__club">{club.name}</span>
-      <span className="game-card__score">{side.score ?? ''}</span>
+      {side.score != null && <span className="game-card__score">{side.score}</span>}
     </div>
   );
 }
@@ -29,22 +29,35 @@ export default function GameCard({ game }) {
   const homeWins = played && home.score > away.score;
   const awayWins = played && away.score > home.score;
 
-  const content = (
-    <>
-      <div className="game-card__meta">
+  const meta = (
+    <div className={`game-card__meta${venue ? ' game-card__meta--with-venue' : ''}`}>
+      {!venue && (
         <span>
           {formatDay(game.date)}
           {game.time ? ` · ${game.time}` : ''}
         </span>
-        {game.category && <span className="game-card__category">{game.category}</span>}
-      </div>
-      <Side side={home} winner={homeWins} />
-      <Side side={away} winner={awayWins} />
-      {venue && (
-        <div className="game-card__venue" title={[venue.name, venue.address].filter(Boolean).join(' — ')}>
-          {venue.name}
-        </div>
       )}
+      {game.category && <span className="game-card__category">{game.category}</span>}
+    </div>
+  );
+
+  const content = (
+    <>
+      {!venue && meta}
+      <div className={`game-card__body${venue ? ' game-card__body--with-venue' : ''}`}>
+        {venue && (
+          <div className="game-card__venue" title={[venue.name, venue.address].filter(Boolean).join(' — ')}>
+            <span>{formatDay(game.date)}</span>
+            {game.time && <strong>{game.time}</strong>}
+            <span>{venue.name}</span>
+          </div>
+        )}
+        <div className="game-card__clubs">
+          {venue && meta}
+          <Side side={home} winner={homeWins} />
+          <Side side={away} winner={awayWins} />
+        </div>
+      </div>
     </>
   );
 

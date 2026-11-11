@@ -96,8 +96,11 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 - Resultado (si se ha jugado)
 - Fecha y hora
 - Categoría
-- En partidos sin marcador completo, nombre del pabellón desde `venues.json` debajo
-  de los clubs; el tooltip incluye nombre y dirección. Se omite si falta el pabellón.
+- En partidos sin marcador completo, nombre del pabellón desde `venues.json` en un
+  bloque a la izquierda (aproximadamente un cuarto del ancho y la misma altura que la categoría y ambos clubs), con los clubs
+  a la derecha. El bloque muestra tres líneas: fecha, hora en negrita (si se conoce)
+  y nombre del pabellón; fecha y hora se ocultan en la cabecera cuando aparece este
+  bloque. El tooltip incluye nombre y dirección. Se omite si falta el pabellón.
 - Solo los partidos con ambos marcadores enlazan al detalle; los demás no son clicables
 - Los partidos con el slug `alcobendas` en cualquiera de los clubs se resaltan con un borde izquierdo rojo, jugados o pendientes
 

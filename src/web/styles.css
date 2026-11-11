@@ -126,11 +126,22 @@ a.game-card--highlighted:hover {
   margin-bottom: 0.5rem;
 }
 
+.game-card__meta--with-venue {
+  justify-content: flex-end;
+}
+
 .game-card__side {
   display: flex;
   align-items: center;
   gap: 0.6rem;
   padding: 0.2rem 0;
+}
+
+.game-card__body--with-venue {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  align-items: stretch;
+  gap: 0.75rem;
 }
 
 .game-card__side--winner {
@@ -142,6 +153,11 @@ a.game-card--highlighted:hover {
   font-family: "Montserrat", system-ui, sans-serif;
 }
 
+.game-card__body--with-venue .game-card__club {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .game-card__score {
   min-width: 2.5rem;
   text-align: right;
@@ -150,10 +166,23 @@ a.game-card--highlighted:hover {
 }
 
 .game-card__venue {
-  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-background);
   color: var(--color-text-muted);
   font-size: 0.8rem;
+  text-align: center;
   overflow-wrap: anywhere;
+}
+
+.game-card__venue strong {
+  font-size: 1rem;
 }
 
 .club-logo {

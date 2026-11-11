@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { expect, test, vi } from 'vitest';
 import GameCard from './GameCard.jsx';
@@ -110,7 +110,20 @@ test.each([
     away: { club: 'canoe', score: away },
   });
 
-  expect(screen.getByText('Pabellón Central')).toHaveAttribute('title', 'Pabellón Central — Calle Central, 1');
+  const venue = screen.getByText('Pabellón Central').closest('.game-card__venue');
+  expect(venue).toHaveAttribute('title', 'Pabellón Central — Calle Central, 1');
+  expect(Array.from(venue.children, (line) => line.textContent)).toEqual(['vie 6 nov', '18:30', 'Pabellón Central']);
+  expect(within(venue).getByText('18:30').tagName).toBe('STRONG');
+  expect(screen.getAllByText('vie 6 nov')).toHaveLength(1);
+  expect(venue.closest('.game-card').querySelector('.game-card__meta')).not.toHaveTextContent('vie 6 nov');
+  expect(venue.closest('.game-card').querySelector('.game-card__meta')).not.toHaveTextContent('18:30');
+  expect(venue.parentElement).toHaveClass('game-card__body--with-venue');
+  expect(venue.parentElement.firstElementChild).toBe(venue);
+  const clubs = venue.nextElementSibling;
+  expect(within(clubs).getByText('Cadete Masculino')).toBeInTheDocument();
+  expect(within(clubs).getByText('Madrid')).toBeInTheDocument();
+  expect(within(clubs).getByText('Canoe')).toBeInTheDocument();
+  expect(clubs.querySelectorAll('.game-card__score')).toHaveLength(home != null || away != null ? 1 : 0);
 });
 
 test.each(['', undefined, 'unknown'])('omits missing or unknown calendar venues (%s)', (venue) => {
@@ -122,6 +135,21 @@ test.each(['', undefined, 'unknown'])('omits missing or unknown calendar venues 
   });
 
   expect(container.querySelector('.game-card__venue')).toBeNull();
+  expect(container.querySelector('.game-card__meta')).toHaveTextContent('vie 6 nov · 18:30');
+});
+
+test('omits the time line when the venue is known but the time is unknown', () => {
+  renderCard({
+    venue: 'central',
+    time: null,
+    played: false,
+    home: { club: 'madrid', score: null },
+    away: { club: 'canoe', score: null },
+  });
+
+  const venue = screen.getByText('Pabellón Central').closest('.game-card__venue');
+  expect(Array.from(venue.children, (line) => line.textContent)).toEqual(['vie 6 nov', 'Pabellón Central']);
+  expect(venue.querySelector('strong')).toBeNull();
 });
 
 test('omits the venue on calendar cards with complete scores, including zero', () => {

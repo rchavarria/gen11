@@ -3,7 +3,6 @@
 ## To Do list
 
 - web: enlace a vídeo
-- sync: eliminar el paso de scored-games
 - sync: primero, analizar qué y cuántos partidos hay que descargar, y luego descargar solo los partidos que no estén en `dated-games.json`, de forma que el contador/progeso de partidos descargados es "real", muestra el total de los que habría que descargar, no el total de los dated-games.json
 - sync: generar ficheros sobre jugadores, con estadísticas de cada jugador en cada partido (puntos, rebotes, asistencias, valoración…)
 - web: el recuadro del nombre del pabellon, incluye un enlace a Google Maps
@@ -13,6 +12,7 @@
 
 ## Done list
 
+- 2026-11-11: sync: eliminar la generación de scored-points; `build-data.js` genera `timelyScores` al procesar cada partido
 - 2026-11-11: web: los partidos sin marcador, deben mostrar el lugar del partido
 - 2026-11-11: `ApiClient`: renovar la key automáticamente (`renewKey()`) cuando la API responda "Faltan parámetros", y reintentar la petición una vez
 - 2026-11-10: web: rellenar pestaña «Evolución del marcador»

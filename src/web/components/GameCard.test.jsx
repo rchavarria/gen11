@@ -12,6 +12,9 @@ vi.mock('../../data/clubs.json', () => ({
     { slug: 'canoe', name: 'Canoe', logo: null },
   ],
 }));
+vi.mock('../../data/venues.json', () => ({
+  default: [{ slug: 'central', name: 'Pabellón Central', address: 'Calle Central, 1' }],
+}));
 
 const game = {
   slug: 'madrid-canoe',
@@ -93,4 +96,39 @@ test.each([
 
 test('rejects unknown clubs instead of showing an incomplete card', () => {
   expect(() => renderCard({ home: { club: 'unknown', score: 80 } })).toThrow('Club no encontrado: unknown');
+});
+
+test.each([
+  [null, null],
+  [0, null],
+  [null, 20],
+])('shows the venue on calendar cards with incomplete scores (%s-%s)', (home, away) => {
+  renderCard({
+    venue: 'central',
+    played: false,
+    home: { club: 'madrid', score: home },
+    away: { club: 'canoe', score: away },
+  });
+
+  expect(screen.getByText('Pabellón Central')).toHaveAttribute('title', 'Pabellón Central — Calle Central, 1');
+});
+
+test.each(['', undefined, 'unknown'])('omits missing or unknown calendar venues (%s)', (venue) => {
+  const { container } = renderCard({
+    venue,
+    played: false,
+    home: { club: 'madrid', score: null },
+    away: { club: 'canoe', score: null },
+  });
+
+  expect(container.querySelector('.game-card__venue')).toBeNull();
+});
+
+test('omits the venue on calendar cards with complete scores, including zero', () => {
+  renderCard({
+    venue: 'central',
+    home: { club: 'madrid', score: 0 },
+  });
+
+  expect(screen.queryByText('Pabellón Central')).not.toBeInTheDocument();
 });

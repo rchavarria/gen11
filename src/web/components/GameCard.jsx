@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import clubs from '../../data/clubs.json';
+import venues from '../../data/venues.json';
 import { formatDay } from '../lib/dates.js';
 import { isHighlighted } from '../lib/game.js';
 import ClubLogo from './ClubLogo.jsx';
 
 const clubsBySlug = new Map(clubs.map((club) => [club.slug, club]));
+const venuesBySlug = new Map(venues.map((venue) => [venue.slug, venue]));
 
 function Side({ side, winner }) {
   const club = clubsBySlug.get(side.club);
@@ -23,6 +25,7 @@ export default function GameCard({ game }) {
   const { home, away, played } = game;
   const className = `game-card${isHighlighted(game) ? ' game-card--highlighted' : ''}`;
   const hasScore = home.score != null && away.score != null;
+  const venue = !hasScore && venuesBySlug.get(game.venue);
   const homeWins = played && home.score > away.score;
   const awayWins = played && away.score > home.score;
 
@@ -37,6 +40,11 @@ export default function GameCard({ game }) {
       </div>
       <Side side={home} winner={homeWins} />
       <Side side={away} winner={awayWins} />
+      {venue && (
+        <div className="game-card__venue" title={[venue.name, venue.address].filter(Boolean).join(' — ')}>
+          {venue.name}
+        </div>
+      )}
     </>
   );
 

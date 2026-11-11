@@ -31,7 +31,7 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 ## Datos
 
 - `src/build-data.js` lee los datos en bruto de `downloads/` y genera `src/data/calendar.json`
-  - lee `dated-games.json` para obtener slug, fecha, hora, categoría y clubs
+  - lee `dated-games.json` para obtener slug, fecha, hora, categoría, clubs y `venue` (slug del pabellón)
   - combina esos datos con su marcador (`games-scores/`) por id de partido;
     considera jugado un partido finalizado o con ambas puntuaciones presentes
   - sin fichero de marcador, lo considera no jugado y deja las puntuaciones vacías
@@ -63,6 +63,10 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   próximos partidos), `name` (el que se muestra), `logo` (fichero en
   `public/logos/`, o `null`) y `sourceNames` (nombres del club en la fuente)
 - `src/data/venues.json` (a mano): `slug`, `name` (campo de juego) y `address`.
+  Al obtener los próximos partidos, `CampoJuego` se compara literalmente con `name`,
+  sin normalizar espacios, mayúsculas ni acentos. Se guarda o actualiza `venue` en `dated-games.json`; si no
+  hay coincidencia, se guarda `""` y se avisa sin abortar. No se usan coincidencias
+  parciales: «PISTA 1» no coincide con «PISTA 1-3».
 - Vídeos: enlaces añadidos a mano (pendiente)
 
 ## Página principal: calendario
@@ -92,7 +96,8 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 - Resultado (si se ha jugado)
 - Fecha y hora
 - Categoría
-- Sin pabellón
+- En partidos sin marcador completo, nombre del pabellón desde `venues.json` debajo
+  de los clubs; el tooltip incluye nombre y dirección. Se omite si falta el pabellón.
 - Solo los partidos con ambos marcadores enlazan al detalle; los demás no son clicables
 - Los partidos con el slug `alcobendas` en cualquiera de los clubs se resaltan con un borde izquierdo rojo, jugados o pendientes
 

@@ -13,6 +13,9 @@ vi.mock('../../data/clubs.json', () => ({
     { slug: 'canoe', name: 'Canoe', initials: 'CAN', logo: null },
   ],
 }));
+vi.mock('../../data/venues.json', () => ({
+  default: [{ slug: 'central', name: 'Pabellón Central', address: 'Calle Central, 1' }],
+}));
 
 function game(slug, date, time, overrides = {}) {
   return {
@@ -89,4 +92,11 @@ test('renders nothing when no upcoming games qualify', () => {
   const { container } = render(<UpcomingGames />);
 
   expect(container).toBeEmptyDOMElement();
+});
+
+test('does not show the venue in the upcoming strip', () => {
+  calendar.push(game('known', '2026-11-06', '18:30:00', { venue: 'central' }));
+  render(<UpcomingGames />);
+
+  expect(screen.queryByText('Pabellón Central')).not.toBeInTheDocument();
 });

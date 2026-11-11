@@ -1,0 +1,92 @@
+[
+  {
+    "slug": "antela",
+    "name": "ANTELA PARADA, PABELLON (PISTA CENTRAL)",
+    "address": "FRANCISCO CHICO MENDES, 8, Alcobendas, Madrid"
+  },
+  {
+    "slug": "arroyo",
+    "name": "EL ARROYO, PABELLON",
+    "address": "FUENTESAUCO, 1, Fuenlabrada, Madrid"
+  },
+  {
+    "slug": "caja-magica",
+    "name": "LA CAJA MAGICA INDOOR NORTE Pista 5",
+    "address": "CAMINO DE PERALES, 23, Madrid, Madrid"
+  },
+  {
+    "slug": "canaleja",
+    "name": "LA CANALEJA, PABELLON PISTA 1-3",
+    "address": "AVENIDA CIRCUNVALACION NORTE, 1, Alcorcón, Madrid"
+  },
+  {
+    "slug": "canoe",
+    "name": "REAL CANOE N.C.",
+    "address": "CALLE PEZ VOLADOR, 30, Madrid, Madrid"
+  },
+  {
+    "slug": "circular",
+    "name": "SAN BLAS, PABELLON CIRCULAR",
+    "address": "CALLE ARCOS DE JALON, 59, Madrid, Madrid"
+  },
+  {
+    "slug": "diaz-miguel",
+    "name": "ANTONIO DIAZ MIGUEL, PDVO. MPAL.",
+    "address": "JOAQUIN DICENTA, 1, Madrid, Madrid"
+  },
+  {
+    "slug": "espiniella",
+    "name": "ALFREDO ESPINIELLA, PABELLON (PISTA CENTRAL)",
+    "address": "COMUNIDAD DE LA RIOJA, 4, Rozas de Madrid, Las, Madrid"
+  },
+  {
+    "slug": "fernando-martin",
+    "name": "FERNANDO MARTIN, PABELLON",
+    "address": "GRECIA, S/N, Fuenlabrada, Madrid"
+  },
+  {
+    "slug": "ferrandiz",
+    "name": "PEDRO FERRANDIZ, PABELLON",
+    "address": "AVDA. OLIMPICA, 20, Alcobendas, Madrid"
+  },
+  {
+    "slug": "limones",
+    "name": "JAVI LIMONES, PABELLON (PISTA CENTRAL)",
+    "address": "JOAQUIN BLUME, S/N, Torrejón de Ardoz, Madrid"
+  },
+  {
+    "slug": "magariños",
+    "name": "MOVISTAR ACADEMY MAGARIÑOS, PABELLON",
+    "address": "SERRANO, 129, Madrid, Madrid"
+  },
+  {
+    "slug": "retamar",
+    "name": "RETAMAR, PABELLON COLEGIO",
+    "address": "PAJARES, 22 (vía de servicio M-502), Pozuelo de Alarcón, Madrid"
+  },
+  {
+    "slug": "sba",
+    "name": "SBA ARENA",
+    "address": "FRAGUAS, 26, Alcorcón, Madrid"
+  },
+  {
+    "slug": "torrelodones",
+    "name": "TORRELODONES, PABELLON GENERACION DE ORO",
+    "address": "PLAZA JOSE Mª UNCETA, 4, Torrelodones, Madrid"
+  },
+  {
+    "slug": "torrelodones-pequeno",
+    "name": "TORRELODONES, PABELLON pequeño",
+    "address": "PLAZA JOSE MARIA UNCETA, 4, Torrelodones, Madrid"
+  },
+  {
+    "slug": "triangulo-oro",
+    "name": "TRIANGULO DE ORO, PABELLON",
+    "address": "BRAVO MURILLO, 376, Madrid, Madrid"
+  },
+  {
+    "slug": "valdebebas",
+    "name": "CIUDAD REAL MADRID VALDEBEBAS",
+    "address": "AVENIDA ALEJANDRO DE LA SOTA, S/N, Madrid, Madrid"
+  }
+]

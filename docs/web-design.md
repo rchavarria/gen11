@@ -62,6 +62,7 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 - `src/data/clubs.json` (a mano): `slug`, `initials` (3 letras, se muestran en la tira de
   próximos partidos), `name` (el que se muestra), `logo` (fichero en
   `public/logos/`, o `null`) y `sourceNames` (nombres del club en la fuente)
+- `src/data/venues.json` (a mano): `slug`, `name` (campo de juego) y `address`.
 - Vídeos: enlaces añadidos a mano (pendiente)
 
 ## Página principal: calendario

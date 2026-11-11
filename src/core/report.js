@@ -25,7 +25,7 @@ function describeGame(game) {
 /**
  * Builds the markdown report.
  * @param {{
- *   startedAt: Date, finishedAt: Date, error?: string|null,
+ *   startedAt: Date, finishedAt: Date, error?: string|null, keyRenewed?: boolean,
  *   newGames: object[], pendingSlug: object[],
  *   downloaded: string[], notPlayed: string[], scored: string[],
  *   calendarCount?: number|null, gameFilesCount?: number|null
@@ -40,6 +40,7 @@ function buildReport(result) {
     `- Finished: ${timestamp(result.finishedAt)}`,
     `- Duration: ${formatDuration(result.finishedAt - result.startedAt)}`,
     `- Status: ${result.error ? 'FAILED' : 'OK'}`,
+    `- Key renewed: ${result.keyRenewed ? 'yes' : 'no'}`,
   ];
   if (result.error) lines.push(`- Error: ${result.error}`);
   lines.push('');

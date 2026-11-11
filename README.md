@@ -41,12 +41,14 @@ node src/build-data.js
 npm run sync   # same as: node src/sync.js
 ```
 
-`sync.js` runs the whole pipeline: renew key, fetch upcoming games and add the
-new ones to `dated-games.json` (empty `slug`), update dates and times of known
-games, download stats/scores, generate the scored points, rebuild `calendar.json`
-and per-game files, and write a report. Setting the `slug` of new games in `dated-games.json` is a
-manual step: games without slug are ignored and listed in the report as pending
-until you fill it in and run `sync` again.
+`sync.js` runs the whole pipeline: fetch upcoming games and add the new ones
+to `dated-games.json` (empty `slug`); if that request fails with an API error,
+it renews the key and retries once. It also updates dates and times of known
+games, downloads stats/scores, generates the scored points, rebuilds
+`calendar.json` and per-game files, and writes a report. Setting the `slug` of
+new games in `dated-games.json` is a manual step: games without a slug are
+ignored and listed in the report as pending until you fill it in and run
+`sync` again.
 
 `build-data.js` reads game metadata from `dated-games.json` and scores from
 `games-scores/`. Without a score file, games are shown as not played.

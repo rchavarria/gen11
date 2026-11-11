@@ -3,8 +3,9 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { test } from 'vitest';
+import { ApiError } from './api-client.js';
 import { isAfterToday, processGames as processDownloads } from './download.js';
-import { fetchNextGames, mergeDatedGames } from './next-games.js';
+import { DAYS, fetchNextGames, fetchNextGamesRenewingKey, mergeDatedGames } from './next-games.js';
 import { buildReport } from './report.js';
 
 test('mergeDatedGames adds mapped entries in date/time order and updates only date and time', () => {
@@ -101,7 +102,7 @@ test('fetchNextGames saves raw responses and consolidates dated-games.json', asy
   const client = {
     config: { paths: { nextGames, datedGamesFile } },
     getNextGames: async ({ days }) => {
-      assert.equal(days, 21);
+      assert.equal(days, DAYS);
       return response;
     },
   };
@@ -158,6 +159,119 @@ test('fetchNextGames rejects invalid dated-games.json without overwriting it', a
   }
 });
 
+test('fetchNextGamesRenewingKey skips renewal when the first request succeeds', async (t) => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gen11-next-games-'));
+  t.onTestFinished(() => fs.rm(dir, { recursive: true, force: true }));
+  let renewals = 0;
+  const result = await fetchNextGamesRenewingKey(
+    {
+      config: {
+        paths: { nextGames: path.join(dir, 'next-games'), datedGamesFile: path.join(dir, 'dated-games.json') },
+      },
+      getNextGames: async () => ({ mispartidos: [] }),
+      renewKey: async () => {
+        renewals += 1;
+      },
+    },
+    { date: new Date(2026, 10, 1) },
+    { wait: async () => {} },
+  );
+  assert.equal(renewals, 0);
+  assert.equal(result.keyRenewed, false);
+});
+
+test('fetchNextGamesRenewingKey renews once on ApiError and retries', async (t) => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gen11-next-games-'));
+  t.onTestFinished(() => fs.rm(dir, { recursive: true, force: true }));
+  let calls = 0;
+  let renewals = 0;
+  let waits = 0;
+  let renewalReported = false;
+  const client = {
+    config: {
+      paths: { nextGames: path.join(dir, 'next-games'), datedGamesFile: path.join(dir, 'dated-games.json') },
+    },
+    getNextGames: async () => {
+      calls += 1;
+      if (calls === 1) throw new ApiError('API error');
+      return { mispartidos: [] };
+    },
+    renewKey: async () => {
+      renewals += 1;
+    },
+  };
+  const result = await fetchNextGamesRenewingKey(
+    client,
+    { date: new Date(2026, 10, 1) },
+    {
+      wait: async () => {
+        waits += 1;
+      },
+      onKeyRenewed: () => {
+        renewalReported = true;
+      },
+    },
+  );
+  assert.equal(calls, 2);
+  assert.equal(renewals, 1);
+  assert.equal(waits, 2);
+  assert.equal(renewalReported, true);
+  assert.equal(result.keyRenewed, true);
+});
+
+test('fetchNextGamesRenewingKey does not renew on non-API errors', async () => {
+  const error = new Error('network error');
+  let renewals = 0;
+  await assert.rejects(
+    fetchNextGamesRenewingKey(
+      {
+        getNextGames: async () => {
+          throw error;
+        },
+        renewKey: async () => {
+          renewals += 1;
+        },
+      },
+      {},
+      { wait: async () => {} },
+    ),
+    error,
+  );
+  assert.equal(renewals, 0);
+});
+
+test('fetchNextGamesRenewingKey reports renewal and propagates a second ApiError', async () => {
+  const error = new ApiError('second API error');
+  let renewals = 0;
+  let waits = 0;
+  let renewalReported = false;
+  await assert.rejects(
+    fetchNextGamesRenewingKey(
+      {
+        getNextGames: async () => {
+          throw error;
+        },
+        renewKey: async () => {
+          renewals += 1;
+        },
+      },
+      {},
+      {
+        wait: async () => {
+          waits += 1;
+        },
+        onKeyRenewed: () => {
+          renewalReported = true;
+        },
+      },
+    ),
+    error,
+  );
+  assert.equal(renewals, 1);
+  assert.equal(waits, 2);
+  assert.equal(renewalReported, true);
+});
+
 test('download processing skips future games without adding a played field', async () => {
   const games = [
     {
@@ -184,6 +298,7 @@ test('buildReport lists sections, empty ones and the error', () => {
     startedAt: new Date(2026, 10, 1, 10),
     finishedAt: new Date(2026, 10, 1, 11),
     error: 'boom',
+    keyRenewed: true,
     newGames: [{ id: 'BB', date: '2026-11-08', home: 'Home', away: 'Away' }],
     pendingSlug: [],
     downloaded: ['game-1'],
@@ -194,6 +309,7 @@ test('buildReport lists sections, empty ones and the error', () => {
   });
   assert.match(text, /# Sync report 2026-11-01/);
   assert.match(text, /Status: FAILED/);
+  assert.match(text, /Key renewed: yes/);
   assert.match(text, /Error: boom/);
   assert.match(text, /## New games \(1\)\n\n- 2026-11-08 — Home vs Away/);
   assert.match(text, /## Downloaded games \(1\)\n\n- game-1/);

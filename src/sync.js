@@ -9,20 +9,20 @@
  * Runs the whole data pipeline in one go, reusing the code of the individual
  * scripts (src/core/):
  *
- *   1. Renews the API key (ApiClient.renewKey).
- *   2. Requests the upcoming games (21 days), saves the raw response to
+ *   1. Requests the upcoming games (`DAYS` days), renewing the API key and
+ *      retrying once if the API returns an error. Saves the raw response to
  *      <outputDir>/next-games/<YYYY-MM-DD>.json and consolidates upcoming
  *      games into <outputDir>/dated-games.json.
- *   3. Manual step (outside this script): put a `slug` to the new games in
+ *   2. Manual step (outside this script): put a `slug` to the new games in
  *      dated-games.json. Games without slug are ignored and listed in the report.
- *   4. Downloads stats and score of the games with id and slug not downloaded
+ *   3. Downloads stats and score of the games with id and slug not downloaded
  *      yet (same rules as download-games.js).
- *   5. Generates the Chart.js scored points of the downloaded games
+ *   4. Generates the Chart.js scored points of the downloaded games
  *      (same rules as scored-points.js).
- *   6. Rebuilds src/data/calendar.json (build-data.js).
- *   7. Rebuilds src/data/games/<slug>.json for games with scores, including
+ *   5. Rebuilds src/data/calendar.json (build-data.js).
+ *   6. Rebuilds src/data/games/<slug>.json for games with scores, including
  *      each team's timelyScores (score evolution from the raw actions).
- *   8. Writes the report to <outputDir>/sync-reports/<YYYY-MM-DD>.md (an
+ *   7. Writes the report to <outputDir>/sync-reports/<YYYY-MM-DD>.md (an
  *      existing report of the same day is overwritten) and prints it.
  *
  * Requests are sent strictly sequentially, with a random pause between them
@@ -39,9 +39,8 @@
 
 const { ApiClient } = require('./core/api-client');
 const { loadConfig } = require('./core/config');
-const { shorterWait } = require('./core/wait');
 const { readDatedGamesFile, writeDatedGamesFile } = require('./core/dated-games');
-const { fetchNextGames, DAYS } = require('./core/next-games');
+const { fetchNextGamesRenewingKey, DAYS } = require('./core/next-games');
 const download = require('./core/download');
 const scoredPoints = require('./core/scored-points');
 const { buildCalendar, buildGameFiles } = require('./build-data');
@@ -75,20 +74,24 @@ function findPendingSlug(games) {
 async function run(config, result) {
   const client = new ApiClient(config);
 
-  step('1. Renewing the API key');
-  await client.renewKey();
-  console.log('Key renewed.');
-
-  await shorterWait();
-
-  step(`2. Upcoming games (${DAYS} days)`);
+  step(`1. Upcoming games (${DAYS} days)`);
   const {
     data: next,
     fileName,
     added,
     updated,
     total,
-  } = await fetchNextGames(client, { days: DAYS, date: result.startedAt });
+    keyRenewed,
+  } = await fetchNextGamesRenewingKey(
+    client,
+    { days: DAYS, date: result.startedAt },
+    {
+      onKeyRenewed: () => {
+        result.keyRenewed = true;
+      },
+    },
+  );
+  result.keyRenewed = keyRenewed;
   console.log(`Games received: ${next.mispartidos.length} (saved to ${fileName})`);
   console.log(`Dated games added: ${added.length}`);
   console.log(`Dated games updated: ${updated.length}`);
@@ -106,7 +109,7 @@ async function run(config, result) {
   console.log(`New games added to dated-games.json: ${result.newGames.length}`);
   console.log(`Games pending a slug: ${result.pendingSlug.length}`);
 
-  step('3. Download stats and scores');
+  step('2. Download stats and scores');
   try {
     // A request was just sent, so the first download waits first.
     const summary = await download.processGames(client, games, { requestsSent: 1 });
@@ -122,7 +125,7 @@ async function run(config, result) {
     throw err;
   }
 
-  step('4. Scored points');
+  step('3. Scored points');
   try {
     const summary = await scoredPoints.processGames(config, games);
     result.scored = summary.scoredSlugs;
@@ -133,10 +136,10 @@ async function run(config, result) {
     throw err;
   }
 
-  step('5. Calendar (build-data)');
+  step('4. Calendar (build-data)');
   result.calendarCount = (await buildCalendar(config)).count;
 
-  step('6. Game files');
+  step('5. Game files');
   result.gameFilesCount = (await buildGameFiles(config)).count;
 }
 
@@ -145,6 +148,7 @@ async function main() {
     startedAt: new Date(),
     finishedAt: null,
     error: null,
+    keyRenewed: false,
     newGames: [],
     pendingSlug: [],
     downloaded: [],

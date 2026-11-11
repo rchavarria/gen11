@@ -7,6 +7,8 @@
 const { writeJson } = require('./files');
 const { toDayString } = require('./format');
 const { readDatedGamesFile, writeDatedGamesFile } = require('./dated-games');
+const { ApiError } = require('./api-client');
+const { shorterWait } = require('./wait');
 
 const DAYS = 100;
 
@@ -118,4 +120,26 @@ async function fetchNextGames(client, { days = DAYS, date = new Date() } = {}) {
   return { data, fileName, added, updated, total: datedGames['dated-games'].length };
 }
 
-module.exports = { DAYS, toIsoDate, mergeDatedGames, fetchNextGames };
+/**
+ * Fetches upcoming games, renewing the key and retrying once on an API error.
+ * @param {import('./api-client').ApiClient} client
+ * @param {{days?: number, date?: Date}} [options]
+ * @param {{wait?: () => Promise<void>, onKeyRenewed?: () => void}} [hooks]
+ * @returns {Promise<{data: object, fileName: string, added: object[], updated: object[], total: number, keyRenewed: boolean}>}
+ */
+async function fetchNextGamesRenewingKey(client, options = {}, { wait = shorterWait, onKeyRenewed = () => {} } = {}) {
+  try {
+    return { ...(await fetchNextGames(client, options)), keyRenewed: false };
+  } catch (err) {
+    if (!(err instanceof ApiError) && err?.name !== 'ApiError') throw err;
+  }
+
+  await wait();
+  await client.renewKey();
+  onKeyRenewed();
+  console.log('Key renewed.');
+  await wait();
+  return { ...(await fetchNextGames(client, options)), keyRenewed: true };
+}
+
+module.exports = { DAYS, toIsoDate, mergeDatedGames, fetchNextGames, fetchNextGamesRenewingKey };

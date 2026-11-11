@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test, vi } from 'vitest';
 import { buildGameDetail } from './build-data.js';
-import { getScoredPoints, getTimelyScores } from './core/scored-points.js';
+import { getTimelyScores } from './core/timely-scores.js';
 
 const clubs = new Map([
   ['HOME CLUB', { slug: 'home' }],
@@ -135,42 +135,4 @@ test('missing or invalid actions produce empty arrays for both teams and a warni
     assert.match(warn.mock.lastCall[0], /game:/);
   }
   assert.equal(warn.mock.calls.length, cases.length);
-});
-
-test('Chart.js output retains its datasets, initial points, jerseys and options', () => {
-  const chart = getScoredPoints({ partido: match, envivo: { historialacciones: [basket] } });
-  assert.deepEqual(chart, {
-    type: 'line',
-    data: {
-      datasets: [
-        {
-          label: 'Home',
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
-          borderColor: 'rgb(255, 99, 132)',
-          fill: false,
-          tension: 0.4,
-          data: [
-            { x: 0, y: 0 },
-            { x: 33000, y: 2, jersey: '05' },
-          ],
-        },
-        {
-          label: 'Away',
-          backgroundColor: 'rgba(54, 162, 235, 0.5)',
-          borderColor: 'rgb(54, 162, 235)',
-          fill: false,
-          tension: 0.4,
-          data: [{ x: 0, y: 0 }],
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      plugins: { title: { display: true, text: 'Home vs Away' } },
-      scales: {
-        x: { type: 'linear', display: true, title: { display: true, text: 'ms' } },
-        y: { display: true, title: { display: true, text: 'puntos' } },
-      },
-    },
-  });
 });

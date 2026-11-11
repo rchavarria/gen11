@@ -22,7 +22,7 @@ const path = require('node:path');
 const { loadConfig } = require('./core/config');
 const { isValidGame } = require('./core/games');
 const { readDatedGamesFile } = require('./core/dated-games');
-const { getTimelyScores } = require('./core/scored-points');
+const { getTimelyScores } = require('./core/timely-scores');
 
 const DATA_DIR = path.join(__dirname, 'data');
 const CLUBS_FILE = path.join(DATA_DIR, 'clubs.json');

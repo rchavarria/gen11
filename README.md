@@ -25,7 +25,6 @@ Each script writes into its own subfolder of `outputDir`:
 | `previous-games.js` | `<outputDir>/games/`                                                          |
 | `download-games.js` | `<outputDir>/dated-games.json`, `games-stats/`, `games-scores/`               |
 | `next-games.js`     | `<outputDir>/next-games/<YYYY-MM-DD>.json`, `dated-games.json`                |
-| `scored-points.js`  | `<outputDir>/game-scored-points/<slug>-<id>.json`, `dated-games.json`         |
 | `build-data.js`     | `src/data/calendar.json`, `src/data/games/<slug>.json` (data for the web)     |
 | `sync.js`           | `<outputDir>/sync-reports/<YYYY-MM-DD>.md` (plus everything above, see below) |
 
@@ -35,7 +34,6 @@ Each script writes into its own subfolder of `outputDir`:
 node src/previous-games.js <startPage> <totalPages>
 node src/download-games.js
 node src/next-games.js
-node src/scored-points.js
 node src/renew-key.js
 node src/build-data.js
 npm run sync   # same as: node src/sync.js
@@ -44,8 +42,8 @@ npm run sync   # same as: node src/sync.js
 `sync.js` runs the whole pipeline: fetch upcoming games and add the new ones
 to `dated-games.json` (empty `slug`); if that request fails with an API error,
 it renews the key and retries once. It also updates dates and times of known
-games, downloads stats/scores, generates the scored points, rebuilds
-`calendar.json` and per-game files, and writes a report. Setting the `slug` of
+games, downloads stats/scores, rebuilds `calendar.json` and per-game files,
+including each game's score evolution, and writes a report. Setting the `slug` of
 new games in `dated-games.json` is a manual step: games without a slug are
 ignored and listed in the report as pending until you fill it in and run
 `sync` again.
@@ -110,6 +108,6 @@ GitHub Pages checks lint and tests before building.
 | `src/core/files.js`         | `writeJson`, `buildFileName`, `saveStats`, `saveScore`                                               |
 | `src/core/api-client.js`    | `ApiClient` (API calls, validation, key rotation), `ApiError`, `isNoDataError`                       |
 | `src/core/download.js`      | `processGames` (stats + scores download), `downloadGame`, `isAfterToday`                             |
-| `src/core/scored-points.js` | `getScoredPoints`, `generateScoredPoints`, `processGames`                                            |
+| `src/core/timely-scores.js` | `getScoringActions`, `getTimelyScores`                                                               |
 | `src/core/next-games.js`    | `fetchNextGames`, `mergeDatedGames`, `toIsoDate`                                                     |
 | `src/core/report.js`        | `buildReport`, `writeReport` (sync report)                                                           |

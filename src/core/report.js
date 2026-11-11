@@ -27,7 +27,7 @@ function describeGame(game) {
  * @param {{
  *   startedAt: Date, finishedAt: Date, error?: string|null, keyRenewed?: boolean,
  *   newGames: object[], pendingSlug: object[],
- *   downloaded: string[], notPlayed: string[], scored: string[],
+ *   downloaded: string[], notPlayed: string[],
  *   calendarCount?: number|null, gameFilesCount?: number|null
  * }} result
  * @returns {string}
@@ -49,7 +49,6 @@ function buildReport(result) {
   lines.push(...section('Games pending a slug (edit dated-games.json)', result.pendingSlug.map(describeGame)));
   lines.push(...section('Downloaded games', result.downloaded));
   lines.push(...section('Games without data yet ("sin datos")', result.notPlayed));
-  lines.push(...section('Scored points generated', result.scored));
   if (result.calendarCount != null) lines.push(`Calendar: ${result.calendarCount} game(s) written.`, '');
   if (result.gameFilesCount != null) lines.push(`Game files: ${result.gameFilesCount} written.`, '');
 

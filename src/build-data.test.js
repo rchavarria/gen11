@@ -184,7 +184,7 @@ test('calendar builds from dated games without legacy files, sorting and skippin
     'core/games.js',
     'core/dated-games.js',
     'core/files.js',
-    'core/scored-points.js',
+    'core/timely-scores.js',
     'core/validate.js',
     'core/format.js',
   ]) {

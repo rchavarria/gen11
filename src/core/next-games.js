@@ -95,7 +95,6 @@ function mergeDatedGames(games, upcomingGames, venues = new Map()) {
       homeClubName: upcoming.NombreClubLocal ?? '',
       awayClubName: upcoming.NombreClubVisitante ?? '',
       downloaded: false,
-      scored: false,
     };
     games.push(game);
     byId.set(id, game);

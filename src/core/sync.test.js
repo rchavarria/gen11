@@ -46,7 +46,6 @@ test('mergeDatedGames adds mapped entries in date/time order and updates date, t
       homeClubName: 'Local',
       awayClubName: 'Visitante',
       downloaded: false,
-      scored: false,
     },
   ]);
   assert.deepEqual(updated, [known]);
@@ -198,7 +197,6 @@ test('fetchNextGames saves raw responses and consolidates dated-games.json', asy
     homeClubName: 'Home',
     awayClubName: 'Away',
     downloaded: false,
-    scored: false,
   });
 });
 
@@ -360,7 +358,6 @@ test('buildReport lists sections, empty ones and the error', () => {
     pendingSlug: [],
     downloaded: ['game-1'],
     notPlayed: [],
-    scored: [],
     calendarCount: null,
     gameFilesCount: 0,
   });

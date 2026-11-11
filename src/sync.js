@@ -17,12 +17,10 @@
  *      dated-games.json. Games without slug are ignored and listed in the report.
  *   3. Downloads stats and score of the games with id and slug not downloaded
  *      yet (same rules as download-games.js).
- *   4. Generates the Chart.js scored points of the downloaded games
- *      (same rules as scored-points.js).
- *   5. Rebuilds src/data/calendar.json (build-data.js).
- *   6. Rebuilds src/data/games/<slug>.json for games with scores, including
+ *   4. Rebuilds src/data/calendar.json (build-data.js).
+ *   5. Rebuilds src/data/games/<slug>.json for games with scores, including
  *      each team's timelyScores (score evolution from the raw actions).
- *   7. Writes the report to <outputDir>/sync-reports/<YYYY-MM-DD>.md (an
+ *   6. Writes the report to <outputDir>/sync-reports/<YYYY-MM-DD>.md (an
  *      existing report of the same day is overwritten) and prints it.
  *
  * Requests are sent strictly sequentially, with a random pause between them
@@ -42,7 +40,6 @@ const { loadConfig } = require('./core/config');
 const { readDatedGamesFile, writeDatedGamesFile } = require('./core/dated-games');
 const { fetchNextGamesRenewingKey, DAYS } = require('./core/next-games');
 const download = require('./core/download');
-const scoredPoints = require('./core/scored-points');
 const { buildCalendar, buildGameFiles } = require('./build-data');
 const { buildReport, writeReport } = require('./core/report');
 
@@ -129,21 +126,10 @@ async function run(config, result) {
     throw err;
   }
 
-  step('3. Scored points');
-  try {
-    const summary = await scoredPoints.processGames(config, games);
-    result.scored = summary.scoredSlugs;
-    await writeDatedGamesFile(config, data);
-    scoredPoints.printSummary(summary, Date.now() - result.startedAt);
-  } catch (err) {
-    if (err.summary) result.scored = err.summary.scoredSlugs;
-    throw err;
-  }
-
-  step('4. Calendar (build-data)');
+  step('3. Calendar (build-data)');
   result.calendarCount = (await buildCalendar(config)).count;
 
-  step('5. Game files');
+  step('4. Game files');
   result.gameFilesCount = (await buildGameFiles(config)).count;
 }
 
@@ -157,7 +143,6 @@ async function main() {
     pendingSlug: [],
     downloaded: [],
     notPlayed: [],
-    scored: [],
     calendarCount: null,
     gameFilesCount: null,
   };

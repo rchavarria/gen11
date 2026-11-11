@@ -110,6 +110,7 @@ function fromDatedGame(game, clubs, scoreFile) {
     slug: game.slug,
     date: game.date,
     time: toTime(game.time),
+    venue: game.venue || '',
     category: (game.category || '').trim(),
     played: match.estado_partido === 'FINALIZADO' || (home !== null && away !== null),
     home: buildSide(clubs, game.homeClubName, home),

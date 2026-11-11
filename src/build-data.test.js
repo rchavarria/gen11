@@ -45,6 +45,7 @@ test('dated games preserve metadata without scores and normalize unknown times',
     slug: 'game',
     date: '2026-09-21',
     time: '11:30',
+    venue: '',
     category: 'Cadete',
     played: false,
     home: { club: 'home', score: null },
@@ -53,6 +54,7 @@ test('dated games preserve metadata without scores and normalize unknown times',
   for (const time of ['00:00:00', '', undefined]) {
     assert.equal(fromDatedGame({ ...datedGame, time }, clubs).time, null);
   }
+  assert.equal(fromDatedGame({ ...datedGame, venue: 'ferrandiz' }, clubs).venue, 'ferrandiz');
 });
 
 test('scores and played status come only from score files', (t) => {
@@ -74,6 +76,7 @@ test('scores and played status come only from score files', (t) => {
     slug: 'game',
     date: '2026-09-21',
     time: '11:30',
+    venue: '',
     category: 'Cadete',
     played: true,
     home: { club: 'home', score: 80 },

@@ -9,6 +9,7 @@ const { toDayString } = require('./format');
 const { readDatedGamesFile, writeDatedGamesFile } = require('./dated-games');
 const { ApiError } = require('./api-client');
 const { shorterWait } = require('./wait');
+const { loadVenues } = require('./venues');
 
 const DAYS = 100;
 
@@ -39,13 +40,14 @@ function isValidIsoDate(value) {
 }
 
 /**
- * Adds new upcoming games and refreshes the date and time of known games.
+ * Adds new upcoming games and refreshes the date, time and venue of known games.
  * Mutates and sorts `games`.
  * @param {object[]} games
  * @param {object[]} upcomingGames The `mispartidos` array of the response.
- * @returns {{added: object[], updated: object[]}}
+ * @param {Map<string, string>} venues Exact venue name -> slug.
+ * @returns {{added: object[], updated: object[], unmatchedVenues: string[]}}
  */
-function mergeDatedGames(games, upcomingGames) {
+function mergeDatedGames(games, upcomingGames, venues = new Map()) {
   const byId = new Map();
   for (const game of games) {
     if (game && typeof game.id === 'string' && game.id !== '' && !byId.has(game.id)) {
@@ -55,10 +57,14 @@ function mergeDatedGames(games, upcomingGames) {
 
   const added = [];
   const updated = [];
+  const unmatchedVenues = new Set();
   for (const upcoming of upcomingGames) {
     const id = upcoming?.IdPartido;
     if (typeof id !== 'string' || id === '') continue;
     const date = toIsoDate(upcoming.Fecha);
+    const venueName = upcoming.CampoJuego;
+    const venue = venues.get(venueName) || '';
+    if (!venue) unmatchedVenues.add(venueName || '(missing CampoJuego)');
     const existing = byId.get(id);
     if (existing) {
       let changed = false;
@@ -71,6 +77,10 @@ function mergeDatedGames(games, upcomingGames) {
         existing.time = time;
         changed = true;
       }
+      if (existing.venue !== venue) {
+        existing.venue = venue;
+        changed = true;
+      }
       if (changed && !updated.includes(existing)) updated.push(existing);
       continue;
     }
@@ -80,6 +90,7 @@ function mergeDatedGames(games, upcomingGames) {
       id,
       date,
       time: upcoming.Hora ?? '',
+      venue,
       category: upcoming.Categoria ?? '',
       homeClubName: upcoming.NombreClubLocal ?? '',
       awayClubName: upcoming.NombreClubVisitante ?? '',
@@ -97,7 +108,7 @@ function mergeDatedGames(games, upcomingGames) {
     if (aDate !== bDate) return aDate ? -1 : 1;
     return `${a.date || ''} ${a.time || ''}`.localeCompare(`${b.date || ''} ${b.time || ''}`);
   });
-  return { added, updated };
+  return { added, updated, unmatchedVenues: [...unmatchedVenues] };
 }
 
 /**
@@ -106,7 +117,7 @@ function mergeDatedGames(games, upcomingGames) {
  * into <outputDir>/dated-games.json.
  * @param {import('./api-client').ApiClient} client
  * @param {{days?: number, date?: Date}} [options]
- * @returns {Promise<{data: object, fileName: string, added: object[], updated: object[], total: number}>}
+ * @returns {Promise<{data: object, fileName: string, added: object[], updated: object[], unmatchedVenues: string[], total: number}>}
  */
 async function fetchNextGames(client, { days = DAYS, date = new Date() } = {}) {
   const fileName = `${toDayString(date)}.json`;
@@ -115,9 +126,10 @@ async function fetchNextGames(client, { days = DAYS, date = new Date() } = {}) {
   await writeJson(client.config.paths.nextGames, fileName, data);
 
   const datedGames = await readDatedGamesFile(client.config);
-  const { added, updated } = mergeDatedGames(datedGames['dated-games'], data.mispartidos);
+  const venues = await loadVenues();
+  const { added, updated, unmatchedVenues } = mergeDatedGames(datedGames['dated-games'], data.mispartidos, venues);
   await writeDatedGamesFile(client.config, datedGames);
-  return { data, fileName, added, updated, total: datedGames['dated-games'].length };
+  return { data, fileName, added, updated, unmatchedVenues, total: datedGames['dated-games'].length };
 }
 
 /**
@@ -125,7 +137,7 @@ async function fetchNextGames(client, { days = DAYS, date = new Date() } = {}) {
  * @param {import('./api-client').ApiClient} client
  * @param {{days?: number, date?: Date}} [options]
  * @param {{wait?: () => Promise<void>, onKeyRenewed?: () => void}} [hooks]
- * @returns {Promise<{data: object, fileName: string, added: object[], updated: object[], total: number, keyRenewed: boolean}>}
+ * @returns {Promise<{data: object, fileName: string, added: object[], updated: object[], unmatchedVenues: string[], total: number, keyRenewed: boolean}>}
  */
 async function fetchNextGamesRenewingKey(client, options = {}, { wait = shorterWait, onKeyRenewed = () => {} } = {}) {
   try {

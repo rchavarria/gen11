@@ -44,8 +44,9 @@
  * <outputDir>/next-games/<YYYY-MM-DD>.json  (local date of execution)
  * An existing file for the same date is overwritten.
  * <outputDir>/dated-games.json accumulates games by IdPartido. New games are
- * added; existing games have only date and time refreshed. Entries are sorted
- * by date and time.
+ * added; existing games have date, time and venue refreshed. The venue slug
+ * is resolved from CampoJuego using src/data/venues.json. Unknown venues are
+ * left empty and reported as warnings. Entries are sorted by date and time.
  *
  * ERROR HANDLING RULES
  * --------------------
@@ -142,6 +143,9 @@ async function main() {
   console.log(`Dated games added: ${summary.added.length}`);
   console.log(`Dated games updated: ${summary.updated.length}`);
   console.log(`Total dated games: ${summary.total}`);
+  for (const name of summary.unmatchedVenues) {
+    console.warn(`Venue not found in src/data/venues.json: "${name}"`);
+  }
   console.log(`Output file: ${fileName}`);
   console.log(`Started: ${timestamp(started)}`);
   console.log(`Finished: ${timestamp(finished)}`);

@@ -80,6 +80,7 @@ async function run(config, result) {
     fileName,
     added,
     updated,
+    unmatchedVenues,
     total,
     keyRenewed,
   } = await fetchNextGamesRenewingKey(
@@ -96,6 +97,9 @@ async function run(config, result) {
   console.log(`Dated games added: ${added.length}`);
   console.log(`Dated games updated: ${updated.length}`);
   console.log(`Total dated games: ${total}`);
+  for (const name of unmatchedVenues) {
+    console.warn(`Venue not found in src/data/venues.json: "${name}"`);
+  }
 
   const data = await readDatedGamesFile(config);
   const games = data['dated-games'];

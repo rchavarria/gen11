@@ -8,7 +8,7 @@ import { isAfterToday, processGames as processDownloads } from './download.js';
 import { DAYS, fetchNextGames, fetchNextGamesRenewingKey, mergeDatedGames } from './next-games.js';
 import { buildReport } from './report.js';
 
-test('mergeDatedGames adds mapped entries in date/time order and updates only date and time', () => {
+test('mergeDatedGames adds mapped entries in date/time order and updates date, time and venue', () => {
   const known = {
     slug: 'existing',
     id: 'AA',
@@ -41,6 +41,7 @@ test('mergeDatedGames adds mapped entries in date/time order and updates only da
       id: 'BB',
       date: '2026-11-03',
       time: '08:30:00',
+      venue: '',
       category: 'New Cat',
       homeClubName: 'Local',
       awayClubName: 'Visitante',
@@ -54,6 +55,7 @@ test('mergeDatedGames adds mapped entries in date/time order and updates only da
     id: 'AA',
     date: '2026-11-04',
     time: '09:15:00',
+    venue: '',
     category: 'Cat',
     homeClubName: 'Home',
     awayClubName: 'Away',
@@ -65,6 +67,53 @@ test('mergeDatedGames adds mapped entries in date/time order and updates only da
     ['BB', 'AA'],
   );
 });
+
+test('mergeDatedGames resolves exact venue names and refreshes venues without other changes', () => {
+  const known = { id: 'AA', date: '2026-11-05', time: '12:00:00', venue: 'old', scored: true };
+  const untouched = { id: 'BB', date: '2026-11-06', time: '', venue: 'old' };
+  const games = [known, untouched];
+  const venues = new Map([
+    ['PABELLON CENTRAL', 'central'],
+    ['LA CANALEJA, PABELLON PISTA 1-3', 'canaleja'],
+  ]);
+  const upcoming = [
+    { IdPartido: 'AA', Fecha: '05/11/2026', Hora: '12:00:00', CampoJuego: 'PABELLON CENTRAL' },
+    { IdPartido: 'CC', Fecha: '07/11/2026', CampoJuego: 'PABELLON CENTRAL' },
+    { IdPartido: 'DD', CampoJuego: 'LA CANALEJA, PABELLON PISTA 1' },
+    { IdPartido: 'EE', CampoJuego: 'LA CANALEJA, PABELLON PISTA 1' },
+    { IdPartido: 'FF' },
+  ];
+  const result = mergeDatedGames(games, upcoming, venues);
+  assert.equal(known.venue, 'central');
+  assert.equal(known.scored, true);
+  assert.equal(untouched.venue, 'old');
+  assert.deepEqual(result.updated, [known]);
+  assert.deepEqual(
+    result.added.map((game) => game.venue),
+    ['central', '', '', ''],
+  );
+  assert.deepEqual(result.unmatchedVenues, ['LA CANALEJA, PABELLON PISTA 1', '(missing CampoJuego)']);
+  assert.deepEqual(mergeDatedGames(games, upcoming, venues).updated, []);
+
+  const cleared = mergeDatedGames(games, [{ ...upcoming[0], CampoJuego: 'UNKNOWN' }], venues);
+  assert.equal(known.venue, '');
+  assert.deepEqual(cleared.updated, [known]);
+  assert.deepEqual(cleared.unmatchedVenues, ['UNKNOWN']);
+});
+
+test.each(['pabellon central', ' PABELLON CENTRAL', 'PABELLON CENTRAL ', 'PABELLON  CENTRAL', 'PABELLÓN CENTRAL'])(
+  'mergeDatedGames does not normalize venue names: "%s"',
+  (name) => {
+    const games = [];
+    const result = mergeDatedGames(
+      games,
+      [{ IdPartido: 'AA', CampoJuego: name }],
+      new Map([['PABELLON CENTRAL', 'central']]),
+    );
+    assert.equal(games[0].venue, '');
+    assert.deepEqual(result.unmatchedVenues, [name]);
+  },
+);
 
 test('mergeDatedGames keeps existing date for invalid incoming dates and sorts invalid dates last', () => {
   const existing = { slug: '', id: 'AA', date: '2026-11-01', time: '10:00:00' };
@@ -95,6 +144,7 @@ test('fetchNextGames saves raw responses and consolidates dated-games.json', asy
         Categoria: 'Cat',
         NombreClubLocal: 'Home',
         NombreClubVisitante: 'Away',
+        CampoJuego: 'PEDRO FERRANDIZ, PABELLON',
       },
     ],
     resultado: 'correcto',
@@ -114,10 +164,11 @@ test('fetchNextGames saves raw responses and consolidates dated-games.json', asy
   assert.deepEqual(await readDaily('2026-11-01.json'), response);
   await assert.rejects(fs.access(path.join(nextGames, 'next-games.json')), { code: 'ENOENT' });
   assert.equal((await readDated())['dated-games'].length, 2);
+  assert.equal((await readDated())['dated-games'].find((game) => game.id === 'BB').venue, 'ferrandiz');
 
   response = {
     mispartidos: [
-      { IdPartido: 'BB', Fecha: '01/11/2026', Hora: '13:15:00' },
+      { IdPartido: 'BB', Fecha: '01/11/2026', Hora: '13:15:00', CampoJuego: 'REAL CANOE N.C.' },
       { IdPartido: 'CC', Fecha: '07/11/2026', Hora: '14:00:00' },
     ],
     resultado: 'correcto',
@@ -126,6 +177,7 @@ test('fetchNextGames saves raw responses and consolidates dated-games.json', asy
   assert.equal(second.total, 3);
   assert.equal(second.added.length, 1);
   assert.equal(second.updated.length, 1);
+  assert.deepEqual(second.unmatchedVenues, ['(missing CampoJuego)']);
   assert.deepEqual(await readDaily('2026-11-02.json'), response);
   const dated = (await readDated())['dated-games'];
   assert.deepEqual(
@@ -137,6 +189,7 @@ test('fetchNextGames saves raw responses and consolidates dated-games.json', asy
     id: 'BB',
     date: '2026-11-01',
     time: '13:15:00',
+    venue: 'canoe',
     category: 'Cat',
     homeClubName: 'Home',
     awayClubName: 'Away',

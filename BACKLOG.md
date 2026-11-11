@@ -2,7 +2,6 @@
 
 ## To Do list
 
-- `ApiClient`: renovar la key automáticamente (`renewKey()`) cuando la API responda "Faltan parámetros", y reintentar la petición una vez
 - web: los partidos sin marcador, deben mostrar el lugar del partido
 - web: enlace a vídeo
 - sync: eliminar el paso de scored-games
@@ -14,6 +13,7 @@
 
 ## Done list
 
+- 2026-11-11: `ApiClient`: renovar la key automáticamente (`renewKey()`) cuando la API responda "Faltan parámetros", y reintentar la petición una vez
 - 2026-11-10: web: rellenar pestaña «Evolución del marcador»
 - 2026-11-10: web: gráfica de evolución del marcador
 - 2026-11-06: app: linter y tests

@@ -47,6 +47,12 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   conserva los datos del partido (incluido `id`), omitiendo `homeClubName`,
   `awayClubName`, `downloaded` y `scored`. Añade `home` y `away` con `slug`, `score`
   y `quarterScores` ordenados por periodo, incluidas las prórrogas.
+  El campo opcional `video` también se conserva. En el detalle se muestra debajo
+  del marcador por cuartos, antes de las pestañas: un reproductor de YouTube
+  (`youtube-nocookie.com`, sin reproducción automática), respetando el tiempo de
+  inicio de la URL. Si no se reconoce la URL, se muestra un enlace en un recuadro
+  a todo el ancho, con el texto «<club local> Vs <club visitante>».
+  Solo se admiten URLs HTTP(S); si no hay video, no se muestra ningún bloque.
   Si existe el fichero de estadísticas del partido, añade también `players` a `home` y `away`
   (sin la fila `TOTALES`): `jersey`, `msPlayed`, `starter`, `freeThrows`, `twoPointers`,
   `threePointers` (`made`/`attempted`), `rebounds` (`defensive`/`offensive`), `assists`,

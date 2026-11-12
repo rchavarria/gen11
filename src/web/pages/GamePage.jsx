@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import clubs from '../../data/clubs.json';
 import Boxscore from '../components/Boxscore.jsx';
 import ClubLogo from '../components/ClubLogo.jsx';
+import GameVideo from '../components/GameVideo.jsx';
 import ScoreEvolution from '../components/ScoreEvolution.jsx';
 import Tabs from '../components/Tabs.jsx';
 import { formatDay } from '../lib/dates.js';
@@ -118,6 +119,8 @@ function GameDetail({ game }) {
           </tbody>
         </table>
       </section>
+
+      <GameVideo url={game.video} homeName={homeClub.name} awayName={awayClub.name} />
 
       <Tabs label="Detalle del partido" tabs={tabs} />
     </article>

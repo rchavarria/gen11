@@ -466,6 +466,26 @@ a.game-card--highlighted:hover {
   min-width: 8rem;
 }
 
+.game-video {
+  margin-top: 1.25rem;
+}
+
+.game-video__frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+.game-video__link {
+  display: block;
+  padding: 1.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  text-align: center;
+}
+
 .boxscore th:last-child,
 .boxscore td:last-child {
   border-left: 0;

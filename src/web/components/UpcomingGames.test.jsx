@@ -20,8 +20,10 @@ vi.mock('../../data/venues.json', () => ({
 function game(slug, date, time, overrides = {}) {
   return {
     slug,
-    date,
-    time,
+    date:
+      time && time !== '00:00:00'
+        ? new Date(`${date}T${time}+01:00`).toISOString().replace('.000Z', 'Z')
+        : `${date}T00:00:00Z`,
     category: 'Cadete Masculino',
     home: { club: 'madrid', score: null },
     away: { club: 'canoe', score: null },
@@ -31,7 +33,7 @@ function game(slug, date, time, overrides = {}) {
 
 beforeEach(() => {
   vi.useFakeTimers({ toFake: ['Date'] });
-  vi.setSystemTime(new Date(2026, 10, 6, 15));
+  vi.setSystemTime(new Date('2026-11-06T14:00:00Z'));
   calendar.length = 0;
 });
 

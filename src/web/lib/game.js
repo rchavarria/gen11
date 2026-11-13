@@ -4,11 +4,6 @@ export function isHighlighted(game) {
   return game.home.club === HIGHLIGHTED_CLUB || game.away.club === HIGHLIGHTED_CLUB;
 }
 
-export function formatTime(time) {
-  const hhmm = time?.slice(0, 5);
-  return hhmm && hhmm !== '00:00' ? hhmm : null;
-}
-
 /** "Cadete Masculino …" -> "CAD", "Junior Masculino …" -> "JUN" */
 export function shortCategory(category) {
   if (!category) return null;

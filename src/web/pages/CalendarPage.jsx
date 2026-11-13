@@ -3,12 +3,21 @@ import { useSearchParams } from 'react-router-dom';
 import calendar from '../../data/calendar.json';
 import GameCard from '../components/GameCard.jsx';
 import UpcomingGames from '../components/UpcomingGames.jsx';
-import { formatMonth, formatWeek, monthKey, parseMonthKey, shiftMonth, toIsoDate, weeksOfMonth } from '../lib/dates.js';
+import {
+  formatMonth,
+  formatWeek,
+  gameDay,
+  madridToday,
+  monthKey,
+  parseMonthKey,
+  shiftMonth,
+  weeksOfMonth,
+} from '../lib/dates.js';
 
 export default function CalendarPage() {
   const [params, setParams] = useSearchParams();
-  const today = toIsoDate(new Date());
-  const month = parseMonthKey(params.get('mes')) ?? parseMonthKey(monthKey(new Date()));
+  const today = madridToday();
+  const month = parseMonthKey(params.get('mes')) ?? parseMonthKey(today.slice(0, 7));
   const { year, month: monthIndex } = month;
   const currentWeekRef = useRef(null);
 
@@ -17,7 +26,7 @@ export default function CalendarPage() {
       weeksOfMonth({ year, month: monthIndex }).map((week) => ({
         ...week,
         isCurrent: week.start <= today && today <= week.end,
-        games: calendar.filter((game) => week.start <= game.date && game.date <= week.end),
+        games: calendar.filter((game) => week.start <= gameDay(game.date) && gameDay(game.date) <= week.end),
       })),
     [year, monthIndex, today],
   );

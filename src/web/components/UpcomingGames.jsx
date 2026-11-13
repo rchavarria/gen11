@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import calendar from '../../data/calendar.json';
 import clubs from '../../data/clubs.json';
-import { formatDay, toIsoDate } from '../lib/dates.js';
-import { formatTime, isHighlighted, shortCategory } from '../lib/game.js';
+import { formatDay, gameDay, gameTime, madridToday } from '../lib/dates.js';
+import { isHighlighted, shortCategory } from '../lib/game.js';
 import ClubLogo from './ClubLogo.jsx';
 
 const clubsBySlug = new Map(clubs.map((club) => [club.slug, club]));
@@ -20,7 +20,7 @@ function Club({ slug }) {
 }
 
 function UpcomingCard({ game }) {
-  const time = formatTime(game.time);
+  const time = gameTime(game.date);
   const category = shortCategory(game.category);
 
   return (
@@ -38,7 +38,7 @@ function UpcomingCard({ game }) {
       <div className="upcoming-card__body">
         <div className="upcoming-card__when">
           {time && <strong>{time}</strong>}
-          <span>{formatDay(game.date)}</span>
+          <span>{formatDay(gameDay(game.date))}</span>
         </div>
         <div className="upcoming-card__clubs">
           <Club slug={game.home.club} />
@@ -50,15 +50,15 @@ function UpcomingCard({ game }) {
 }
 
 export default function UpcomingGames() {
-  const today = toIsoDate(new Date());
+  const today = madridToday();
   const listRef = useRef(null);
   const [edges, setEdges] = useState({ start: true, end: true });
 
   const games = useMemo(
     () =>
       calendar
-        .filter((game) => game.date >= today && (game.home.score == null || game.away.score == null))
-        .sort((a, b) => `${a.date} ${a.time || ''}`.localeCompare(`${b.date} ${b.time || ''}`)),
+        .filter((game) => gameDay(game.date) >= today && (game.home.score == null || game.away.score == null))
+        .sort((a, b) => a.date.localeCompare(b.date)),
     [today],
   );
 

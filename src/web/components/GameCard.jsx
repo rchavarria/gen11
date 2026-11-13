@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import clubs from '../../data/clubs.json';
 import venues from '../../data/venues.json';
-import { formatDay } from '../lib/dates.js';
+import { formatDay, gameDay, gameTime } from '../lib/dates.js';
 import { isHighlighted } from '../lib/game.js';
 import ClubLogo from './ClubLogo.jsx';
 
@@ -28,13 +28,14 @@ export default function GameCard({ game }) {
   const venue = !hasScore && venuesBySlug.get(game.venue);
   const homeWins = played && home.score > away.score;
   const awayWins = played && away.score > home.score;
+  const time = gameTime(game.date);
 
   const meta = (
     <div className={`game-card__meta${venue ? ' game-card__meta--with-venue' : ''}`}>
       {!venue && (
         <span>
-          {formatDay(game.date)}
-          {game.time ? ` · ${game.time}` : ''}
+          {formatDay(gameDay(game.date))}
+          {time ? ` · ${time}` : ''}
         </span>
       )}
       {game.category && <span className="game-card__category">{game.category}</span>}
@@ -47,8 +48,8 @@ export default function GameCard({ game }) {
       <div className={`game-card__body${venue ? ' game-card__body--with-venue' : ''}`}>
         {venue && (
           <div className="game-card__venue" title={[venue.name, venue.address].filter(Boolean).join(' — ')}>
-            <span>{formatDay(game.date)}</span>
-            {game.time && <strong>{game.time}</strong>}
+            <span>{formatDay(gameDay(game.date))}</span>
+            {time && <strong>{time}</strong>}
             <span>{venue.name}</span>
           </div>
         )}

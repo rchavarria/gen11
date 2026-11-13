@@ -6,8 +6,8 @@ import ClubLogo from '../components/ClubLogo.jsx';
 import GameVideo from '../components/GameVideo.jsx';
 import ScoreEvolution from '../components/ScoreEvolution.jsx';
 import Tabs from '../components/Tabs.jsx';
-import { formatDay } from '../lib/dates.js';
-import { formatTime, periodLabel } from '../lib/game.js';
+import { formatDay, gameDay, gameTime } from '../lib/dates.js';
+import { periodLabel } from '../lib/game.js';
 
 const gameFiles = import.meta.glob('../../data/games/*.json', { import: 'default' });
 const clubsBySlug = new Map(clubs.map((club) => [club.slug, club]));
@@ -27,7 +27,7 @@ function GameDetail({ game }) {
     },
     (_, index) => index,
   );
-  const time = formatTime(game.time);
+  const time = gameTime(game.date);
   const placeholder = (title) => <p className="tabs__placeholder">{title}: próximamente.</p>;
   const tabs = [
     {
@@ -75,7 +75,7 @@ function GameDetail({ game }) {
             ))}
           </div>
           <p className="game-detail__when">
-            {formatDay(game.date)}
+            {formatDay(gameDay(game.date))}
             {time ? ` · ${time}` : ''}
           </p>
         </div>
@@ -132,7 +132,7 @@ export default function GamePage() {
   const [state, setState] = useState({ slug: null, status: 'loading', game: null });
   const game = state.slug === slug ? state.game : null;
   const status = state.slug === slug ? state.status : 'loading';
-  const back = game ? `/?mes=${game.date.slice(0, 7)}` : '/';
+  const back = game ? `/?mes=${gameDay(game.date).slice(0, 7)}` : '/';
 
   useEffect(() => {
     let active = true;

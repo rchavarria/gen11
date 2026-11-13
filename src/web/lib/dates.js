@@ -1,4 +1,33 @@
-// Dates are handled as local "YYYY-MM-DD" strings to avoid time zone shifts.
+// Calendar days use Madrid time; midnight UTC marks an unknown game time.
+
+const madridFormatter = new Intl.DateTimeFormat('en-GB', {
+  timeZone: 'Europe/Madrid',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  hourCycle: 'h23',
+});
+
+function madridParts(date) {
+  return Object.fromEntries(madridFormatter.formatToParts(date).map(({ type, value }) => [type, value]));
+}
+
+export function madridToday(now = new Date()) {
+  const { year, month, day } = madridParts(now);
+  return `${year}-${month}-${day}`;
+}
+
+export function gameDay(iso) {
+  return iso.endsWith('T00:00:00Z') ? iso.slice(0, 10) : madridToday(new Date(iso));
+}
+
+export function gameTime(iso) {
+  if (iso.endsWith('T00:00:00Z')) return null;
+  const { hour, minute } = madridParts(new Date(iso));
+  return `${hour}:${minute}`;
+}
 
 const MONTHS = [
   'enero',

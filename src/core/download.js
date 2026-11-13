@@ -53,26 +53,14 @@ async function downloadGame(client, game, state) {
 }
 
 /**
- * Processes games, first identifying downloads and then downloading them.
- * `summary.downloadedSlugs` and `summary.notPlayedSlugs` list the affected games.
- * @param {import('./api-client').ApiClient} client
+ * Identifies games to download and updates the analysis counts in the summary.
  * @param {object[]} games
- * @param {{requestsSent?: number}} [state] Pass requestsSent > 0 when a request
- *   was already sent, so the first download waits first.
+ * @param {string} statsDir
+ * @param {string} scoresDir
+ * @param {{ignored: number, skipped: number, notPlayedYet: number, alreadyDownloaded: number, toDownload: number}} summary
+ * @returns {Promise<object[]>}
  */
-async function processGames(client, games, state = { requestsSent: 0 }) {
-  const { gamesStats: statsDir, gamesScores: scoresDir } = client.config.paths;
-  const summary = {
-    skipped: 0,
-    notPlayedYet: 0,
-    alreadyDownloaded: 0,
-    toDownload: 0,
-    newlyDownloaded: 0,
-    notPlayed: 0,
-    ignored: 0,
-    downloadedSlugs: [],
-    notPlayedSlugs: [],
-  };
+async function analyzeGames(games, summary, statsDir, scoresDir) {
   const toDownload = [];
   let partialDownloadError;
 
@@ -125,10 +113,22 @@ async function processGames(client, games, state = { requestsSent: 0 }) {
     throw partialDownloadError;
   }
 
-  for (let i = 0; i < toDownload.length; i += 1) {
-    const game = toDownload[i];
+  return toDownload;
+}
+
+/**
+ * Downloads analyzed games and updates the download counts in the summary.
+ * @param {import('./api-client').ApiClient} client
+ * @param {object[]} games
+ * @param {{requestsSent: number}} state
+ * @param {{notPlayed: number, newlyDownloaded: number, downloadedSlugs: string[], notPlayedSlugs: string[]}} summary
+ * @returns {Promise<void>}
+ */
+async function downloadGames(client, games, state, summary) {
+  for (let i = 0; i < games.length; i += 1) {
+    const game = games[i];
     console.log(SEPARATOR);
-    console.log(`Game: ${i + 1}/${toDownload.length}`);
+    console.log(`Game: ${i + 1}/${games.length}`);
     console.log(`Slug: ${game.slug}`);
     console.log(`Id: ${game.id}`);
     const started = new Date();
@@ -155,7 +155,31 @@ async function processGames(client, games, state = { requestsSent: 0 }) {
     summary.newlyDownloaded += 1;
     summary.downloadedSlugs.push(game.slug);
   }
+}
 
+/**
+ * Processes games, first identifying downloads and then downloading them.
+ * `summary.downloadedSlugs` and `summary.notPlayedSlugs` list the affected games.
+ * @param {import('./api-client').ApiClient} client
+ * @param {object[]} games
+ * @param {{requestsSent?: number}} [state] Pass requestsSent > 0 when a request
+ *   was already sent, so the first download waits first.
+ */
+async function processGames(client, games, state = { requestsSent: 0 }) {
+  const { gamesStats: statsDir, gamesScores: scoresDir } = client.config.paths;
+  const summary = {
+    skipped: 0,
+    notPlayedYet: 0,
+    alreadyDownloaded: 0,
+    toDownload: 0,
+    newlyDownloaded: 0,
+    notPlayed: 0,
+    ignored: 0,
+    downloadedSlugs: [],
+    notPlayedSlugs: [],
+  };
+  const toDownload = await analyzeGames(games, summary, statsDir, scoresDir);
+  await downloadGames(client, toDownload, state, summary);
   return summary;
 }
 

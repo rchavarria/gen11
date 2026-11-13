@@ -2,15 +2,15 @@
 
 ## To Do list
 
-- sync: primero, analizar qué y cuántos partidos hay que descargar, y luego descargar solo los partidos que no estén en `dated-games.json`, de forma que el contador/progeso de partidos descargados es "real", muestra el total de los que habría que descargar, no el total de los dated-games.json
 - sync: generar ficheros sobre jugadores, con estadísticas de cada jugador en cada partido (puntos, rebotes, asistencias, valoración…)
-- web: el recuadro del nombre del pabellon, incluye un enlace a Google Maps
+- web: el recuadro del nombre del pabellón, incluye un enlace a Google Maps
 - web: ampliar el boxscore con más columnas (tiros, rebotes, asistencias…)
 - web: filtro por categoría
 - web: rellenar la pestaña «Jugada a jugada», hoy es placeholder
 
 ## Done list
 
+- 2026-11-13: sync: primero, analizar qué y cuántos partidos hay que descargar, y luego descargar solo los partidos que no estén en `dated-games.json`, de forma que el contador/progeso de partidos descargados es "real", muestra el total de los que habría que descargar, no el total de los dated-games.json
 - 2026-11-13: web: debajo del marcador del detalle, mostrar pabellón con enlace a Google Maps
 - 2026-11-13: sync: tanto dated-games.json como calendar.json deben tener date y time como un solo campo, date, en formato ISO 8601, y no como dos campos separados
 - 2026-11-12: web: enlace a vídeo

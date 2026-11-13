@@ -34,10 +34,10 @@ async function readDatedGamesFile(config) {
     throw new Error(`Invalid structure in ${file}: "dated-games" array is missing.`);
   }
   if (data['dated-games'].some((game) => game && Object.hasOwn(game, 'time'))) {
-    throw new Error(`Legacy dates in ${file}; run node src/migrate-dated-games.js first.`);
+    throw new Error(`Legacy dates in ${file}; use a single UTC ISO 8601 "date" field without "time".`);
   }
   if (data['dated-games'].some((game) => game && !isUtcIsoDateTime(game.date))) {
-    throw new Error(`Invalid UTC date in ${file}; run node src/migrate-dated-games.js or correct the date.`);
+    throw new Error(`Invalid UTC date in ${file}; use YYYY-MM-DDTHH:mm:ssZ.`);
   }
   return data;
 }

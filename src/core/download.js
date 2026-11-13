@@ -13,19 +13,19 @@ const { formatDuration, timestamp } = require('./format');
 const { fileExists } = require('./validate');
 const { buildFileName, saveStats, saveScore } = require('./files');
 const { isValidGame } = require('./games');
-const { madridDay, madridToday } = require('./dates');
+const { isUtcIsoDateTime } = require('./dates');
 
 const SEPARATOR = '-'.repeat(50);
+const THREE_HOURS_MS = 3 * 60 * 60 * 1000;
 
 /**
- * Returns true when `value` is a valid date whose day is strictly after today.
+ * Returns true until strictly more than three hours after the game starts.
  * Accepts UTC ISO 8601 date-times. Missing or invalid values return false.
  * @param {unknown} value
  * @returns {boolean}
  */
-function isAfterToday(value) {
-  const day = madridDay(value);
-  return Boolean(day && day > madridToday());
+function isAfterGameSchedule(value) {
+  return isUtcIsoDateTime(value) && Date.now() <= Date.parse(value) + THREE_HOURS_MS;
 }
 
 /**
@@ -88,8 +88,8 @@ async function processGames(client, games, state = { requestsSent: 0 }) {
       continue;
     }
 
-    // Games scheduled after today are never downloaded.
-    if (isAfterToday(game.date)) {
+    // Wait until more than three hours have passed since the scheduled start.
+    if (isAfterGameSchedule(game.date)) {
       summary.notPlayedYet += 1;
       continue;
     }
@@ -151,7 +151,7 @@ function printSummary(summary, elapsedMs) {
   console.log('Summary');
   console.log('='.repeat(50));
   console.log(`Skipped (marked as downloaded): ${summary.skipped}`);
-  console.log(`Skipped (date after today): ${summary.notPlayedYet}`);
+  console.log(`Skipped (less than or exactly 3 hours since start): ${summary.notPlayedYet}`);
   console.log(`Already downloaded: ${summary.alreadyDownloaded}`);
   console.log(`Newly downloaded: ${summary.newlyDownloaded}`);
   console.log(`Not played ("sin datos"): ${summary.notPlayed}`);
@@ -160,4 +160,4 @@ function printSummary(summary, elapsedMs) {
   console.log('='.repeat(50));
 }
 
-module.exports = { isAfterToday, downloadGame, processGames, printSummary };
+module.exports = { isAfterGameSchedule, downloadGame, processGames, printSummary };

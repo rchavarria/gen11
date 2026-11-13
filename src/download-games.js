@@ -25,7 +25,7 @@
  * Games whose id is empty or not hexadecimal are ignored.
  * Games already marked with `downloaded: true` are skipped (no file checks,
  * no requests).
- * Games whose UTC `date` falls after today in Madrid are skipped.
+ * Games are skipped until more than three hours after their UTC `date`.
  * Requests are sent strictly sequentially, with a random pause between them
  * (shortWait() in src/core/wait.js: between 100 and 200 seconds).
  * <outputDir>/dated-games.json is rewritten only when the whole process succeeds.

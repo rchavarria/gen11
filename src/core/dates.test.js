@@ -1,7 +1,6 @@
 import assert from 'node:assert/strict';
-import { test, vi } from 'vitest';
+import { test } from 'vitest';
 import { isUtcIsoDateTime, madridDay, madridToUtcIso, toIsoDate } from './dates.js';
-import { isAfterToday } from './download.js';
 
 test.each([
   ['2026-11-06', '18:30:00', '2026-11-06T17:30:00Z'],
@@ -25,16 +24,4 @@ test('validates UTC dates and extracts Madrid game days including the unknown-ti
   assert.equal(isUtcIsoDateTime('2026-11-09T00:00:00Z'), true);
   assert.equal(madridDay('2026-11-08T23:30:00Z'), '2026-11-09');
   assert.equal(madridDay('2026-11-09T00:00:00Z'), '2026-11-09');
-});
-
-test('future downloads use Madrid calendar days independently of system time zone', () => {
-  vi.useFakeTimers();
-  try {
-    vi.setSystemTime(new Date('2026-11-08T23:15:00Z'));
-    assert.equal(isAfterToday('2026-11-08T23:30:00Z'), false);
-    assert.equal(isAfterToday('2026-11-09T00:00:00Z'), false);
-    assert.equal(isAfterToday('2026-11-10T00:00:00Z'), true);
-  } finally {
-    vi.useRealTimers();
-  }
 });

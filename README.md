@@ -54,6 +54,8 @@ unknown time on that calendar day; a real time converting to midnight UTC is
 indistinguishable from that marker. Missing or invalid source dates for new games
 are reported and skipped. Ambiguous Madrid times during the autumn clock change
 use the earlier occurrence; nonexistent times during the spring change are rejected.
+Downloads are skipped until more than three hours after the stored UTC `date`.
+For unknown times, this rule uses the stored `00:00:00Z` marker.
 
 To migrate an existing `<outputDir>/dated-games.json`, run
 `node src/migrate-dated-games.js` before sync or build-data. It saves a backup next
@@ -119,7 +121,7 @@ GitHub Pages checks lint and tests before building.
 | `src/core/dated-games.js`   | `readDatedGamesFile`, `writeDatedGamesFile`                                                          |
 | `src/core/files.js`         | `writeJson`, `buildFileName`, `saveStats`, `saveScore`                                               |
 | `src/core/api-client.js`    | `ApiClient` (API calls, validation, key rotation), `ApiError`, `isNoDataError`                       |
-| `src/core/download.js`      | `processGames` (stats + scores download), `downloadGame`, `isAfterToday`                             |
+| `src/core/download.js`      | `processGames` (stats + scores download), `downloadGame`, `isAfterGameSchedule`                      |
 | `src/core/timely-scores.js` | `getScoringActions`, `getTimelyScores`                                                               |
 | `src/core/next-games.js`    | `fetchNextGames`, `mergeDatedGames`, `toIsoDate`                                                     |
 | `src/core/dates.js`         | Madrid/UTC conversion and date helpers                                                               |

@@ -2,9 +2,9 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { test } from 'vitest';
+import { test, vi } from 'vitest';
 import { ApiError } from './api-client.js';
-import { isAfterToday, processGames as processDownloads } from './download.js';
+import { isAfterGameSchedule, processGames as processDownloads } from './download.js';
 import { DAYS, fetchNextGames, fetchNextGamesRenewingKey, mergeDatedGames } from './next-games.js';
 import { buildReport } from './report.js';
 
@@ -363,7 +363,50 @@ test('download processing skips future games without adding a played field', asy
   );
   assert.equal(summary.notPlayedYet, 1);
   assert.equal(games[0].played, undefined);
-  assert.equal(isAfterToday('2099-99-99'), false);
+  assert.equal(isAfterGameSchedule('2099-99-99'), false);
+});
+
+test('download eligibility uses the UTC start and the strict three-hour boundary', () => {
+  vi.useFakeTimers();
+  try {
+    vi.setSystemTime(new Date('2026-11-09T02:00:00Z'));
+    assert.equal(isAfterGameSchedule('2026-11-09T03:00:00Z'), true);
+    assert.equal(isAfterGameSchedule('2026-11-09T01:00:00Z'), true);
+    assert.equal(isAfterGameSchedule('2026-11-08T23:00:00Z'), true);
+    assert.equal(isAfterGameSchedule('2026-11-08T22:59:59Z'), false);
+    assert.equal(isAfterGameSchedule('2026-11-09T00:00:00Z'), true);
+    assert.equal(isAfterGameSchedule('invalid'), false);
+    vi.setSystemTime(new Date('2026-11-09T03:00:00.001Z'));
+    assert.equal(isAfterGameSchedule('2026-11-09T00:00:00Z'), false);
+  } finally {
+    vi.useRealTimers();
+  }
+});
+
+test('download processing skips games at the boundary but processes older games', async (t) => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gen11-download-window-'));
+  t.onTestFinished(() => fs.rm(dir, { recursive: true, force: true }));
+  const stats = path.join(dir, 'stats');
+  const scores = path.join(dir, 'scores');
+  await fs.mkdir(stats);
+  await fs.mkdir(scores);
+  await fs.writeFile(path.join(stats, 'older-BB.json'), '{}');
+  await fs.writeFile(path.join(scores, 'older-BB.json'), '{}');
+  const games = [
+    { slug: 'boundary', id: 'AA', date: '2026-11-08T23:00:00Z' },
+    { slug: 'older', id: 'BB', date: '2026-11-08T22:59:59Z' },
+  ];
+  vi.useFakeTimers();
+  try {
+    vi.setSystemTime(new Date('2026-11-09T02:00:00Z'));
+    const summary = await processDownloads({ config: { paths: { gamesStats: stats, gamesScores: scores } } }, games);
+    assert.equal(summary.notPlayedYet, 1);
+    assert.equal(summary.alreadyDownloaded, 1);
+    assert.equal(games[0].downloaded, undefined);
+    assert.equal(games[1].downloaded, true);
+  } finally {
+    vi.useRealTimers();
+  }
 });
 
 test('buildReport lists sections, empty ones and the error', () => {

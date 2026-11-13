@@ -5,7 +5,7 @@ import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import UpcomingGames from './UpcomingGames.jsx';
 
 const calendar = vi.hoisted(() => []);
-vi.mock('../../data/calendar.json', () => ({ default: calendar }));
+vi.mock('../lib/calendar.js', () => ({ default: calendar }));
 vi.mock('../../data/clubs.json', () => ({
   default: [
     { slug: 'alcobendas', name: 'Alcobendas', initials: 'ALC', logo: null },
@@ -20,10 +20,7 @@ vi.mock('../../data/venues.json', () => ({
 function game(slug, date, time, overrides = {}) {
   return {
     slug,
-    date:
-      time && time !== '00:00:00'
-        ? new Date(`${date}T${time}+01:00`).toISOString().replace('.000Z', 'Z')
-        : `${date}T00:00:00Z`,
+    date: time && time !== '00:00:00' ? new Date(`${date}T${time}+01:00`) : new Date(`${date}T00:00:00Z`),
     category: 'Cadete Masculino',
     home: { club: 'madrid', score: null },
     away: { club: 'canoe', score: null },

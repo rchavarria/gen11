@@ -34,6 +34,7 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   - lee `dated-games.json` para obtener slug, `date`, categoría, clubs y `venue` (slug del pabellón)
   - `date` es ISO 8601 UTC (`YYYY-MM-DDTHH:mm:ssZ`); la web muestra el día y la hora en Europe/Madrid.
     `T00:00:00Z` indica hora desconocida y conserva el día del partido
+  - al cargar el calendario o un partido, la web convierte `date` en un objeto `Date`
   - las correcciones manuales de `venue` se hacen en `dated-games.json`;
     el calendario se regenera desde ese origen, sin leer sus valores anteriores
   - combina esos datos con su marcador (`games-scores/`) por id de partido;

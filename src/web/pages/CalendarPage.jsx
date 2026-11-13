@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import calendar from '../../data/calendar.json';
 import GameCard from '../components/GameCard.jsx';
 import UpcomingGames from '../components/UpcomingGames.jsx';
+import calendar from '../lib/calendar.js';
 import {
   formatMonth,
   formatWeek,

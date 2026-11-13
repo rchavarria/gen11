@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import calendar from '../../data/calendar.json';
 import clubs from '../../data/clubs.json';
+import calendar from '../lib/calendar.js';
 import { formatDay, gameDay, gameTime, madridToday } from '../lib/dates.js';
 import { isHighlighted, shortCategory } from '../lib/game.js';
 import ClubLogo from './ClubLogo.jsx';
@@ -58,7 +58,7 @@ export default function UpcomingGames() {
     () =>
       calendar
         .filter((game) => gameDay(game.date) >= today && (game.home.score == null || game.away.score == null))
-        .sort((a, b) => a.date.localeCompare(b.date)),
+        .sort((a, b) => a.date - b.date),
     [today],
   );
 

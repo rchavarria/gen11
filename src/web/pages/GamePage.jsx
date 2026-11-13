@@ -145,7 +145,7 @@ export default function GamePage() {
     setState({ slug, status: 'loading', game: null });
     loadGame()
       .then((data) => {
-        if (active) setState({ slug, status: 'ready', game: data });
+        if (active) setState({ slug, status: 'ready', game: { ...data, date: new Date(data.date) } });
       })
       .catch(() => {
         if (active) setState({ slug, status: 'error', game: null });

@@ -19,13 +19,25 @@ export function madridToday(now = new Date()) {
   return `${year}-${month}-${day}`;
 }
 
-export function gameDay(iso) {
-  return iso.endsWith('T00:00:00Z') ? iso.slice(0, 10) : madridToday(new Date(iso));
+function hasUnknownTime(date) {
+  return (
+    date.getUTCHours() === 0 &&
+    date.getUTCMinutes() === 0 &&
+    date.getUTCSeconds() === 0 &&
+    date.getUTCMilliseconds() === 0
+  );
 }
 
-export function gameTime(iso) {
-  if (iso.endsWith('T00:00:00Z')) return null;
-  const { hour, minute } = madridParts(new Date(iso));
+export function gameDay(date) {
+  if (hasUnknownTime(date)) {
+    return `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())}`;
+  }
+  return madridToday(date);
+}
+
+export function gameTime(date) {
+  if (hasUnknownTime(date)) return null;
+  const { hour, minute } = madridParts(date);
   return `${hour}:${minute}`;
 }
 

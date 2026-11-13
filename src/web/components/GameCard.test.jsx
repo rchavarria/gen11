@@ -18,7 +18,7 @@ vi.mock('../../data/venues.json', () => ({
 
 const game = {
   slug: 'madrid-canoe',
-  date: '2026-11-06T17:30:00Z',
+  date: new Date('2026-11-06T17:30:00Z'),
   category: 'Cadete Masculino',
   played: true,
   home: { club: 'madrid', score: 80 },
@@ -140,7 +140,7 @@ test.each(['', undefined, 'unknown'])('omits missing or unknown calendar venues 
 test('omits the time line when the venue is known but the time is unknown', () => {
   renderCard({
     venue: 'central',
-    date: '2026-11-06T00:00:00Z',
+    date: new Date('2026-11-06T00:00:00Z'),
     played: false,
     home: { club: 'madrid', score: null },
     away: { club: 'canoe', score: null },

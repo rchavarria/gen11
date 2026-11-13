@@ -2,27 +2,32 @@
   {
     "slug": "antela",
     "name": "ANTELA PARADA, PABELLON (PISTA CENTRAL)",
-    "address": "FRANCISCO CHICO MENDES, 8, Alcobendas, Madrid"
+    "address": "FRANCISCO CHICO MENDES, 8, Alcobendas, Madrid",
+    "maps": "https://maps.app.goo.gl/NbqDdrLkJhzSXW1s8"
   },
   {
     "slug": "arroyo",
     "name": "EL ARROYO, PABELLON",
-    "address": "FUENTESAUCO, 1, Fuenlabrada, Madrid"
+    "address": "FUENTESAUCO, 1, Fuenlabrada, Madrid",
+    "maps": "https://maps.app.goo.gl/kXPkNNQREQmXUcit6"
   },
   {
     "slug": "caja-magica",
     "name": "LA CAJA MAGICA INDOOR NORTE Pista 5",
-    "address": "CAMINO DE PERALES, 23, Madrid, Madrid"
+    "address": "CAMINO DE PERALES, 23, Madrid, Madrid",
+    "maps": "https://maps.app.goo.gl/vXg8X8bE22Vd9PVWA"
   },
   {
     "slug": "canaleja",
     "name": "LA CANALEJA, PABELLON PISTA 1",
-    "address": "AVENIDA CIRCUNVALACION NORTE, 1, Alcorcón, Madrid"
+    "address": "AVENIDA CIRCUNVALACION NORTE, 1, Alcorcón, Madrid",
+    "maps": "https://maps.app.goo.gl/NL1Ss1cHx6ePvxAM8"
   },
   {
     "slug": "canaleja",
     "name": "LA CANALEJA, PABELLON PISTA 3",
-    "address": "AVENIDA CIRCUNVALACION NORTE, 1, Alcorcón, Madrid"
+    "address": "AVENIDA CIRCUNVALACION NORTE, 1, Alcorcón, Madrid",
+    "maps": "https://maps.app.goo.gl/NL1Ss1cHx6ePvxAM8"
   },
   {
     "slug": "canoe",
@@ -32,17 +37,20 @@
   {
     "slug": "circular",
     "name": "SAN BLAS, PABELLON CIRCULAR",
-    "address": "CALLE ARCOS DE JALON, 59, Madrid, Madrid"
+    "address": "CALLE ARCOS DE JALON, 59, Madrid, Madrid",
+    "maps": "https://maps.app.goo.gl/iUNpmyC491SGmAdM8"
   },
   {
     "slug": "diaz-miguel",
     "name": "ANTONIO DIAZ MIGUEL, PDVO. MPAL.",
-    "address": "JOAQUIN DICENTA, 1, Madrid, Madrid"
+    "address": "JOAQUIN DICENTA, 1, Madrid, Madrid",
+    "maps": "https://maps.app.goo.gl/96DUrWd9EPtoDiuR6"
   },
   {
     "slug": "espiniella",
     "name": "ALFREDO ESPINIELLA, PABELLON (PISTA CENTRAL)",
-    "address": "COMUNIDAD DE LA RIOJA, 4, Rozas de Madrid, Las, Madrid"
+    "address": "COMUNIDAD DE LA RIOJA, 4, Rozas de Madrid, Las, Madrid",
+    "maps": "https://maps.app.goo.gl/vxTZoM83ScD9AjkU9"
   },
   {
     "slug": "fernando-martin",
@@ -52,17 +60,20 @@
   {
     "slug": "ferrandiz",
     "name": "PEDRO FERRANDIZ, PABELLON",
-    "address": "AVDA. OLIMPICA, 20, Alcobendas, Madrid"
+    "address": "AVDA. OLIMPICA, 20, Alcobendas, Madrid",
+    "maps": "https://maps.app.goo.gl/LSdx5g85nvRf4yye8"
   },
   {
     "slug": "limones",
     "name": "JAVI LIMONES, PABELLON (PISTA CENTRAL)",
-    "address": "JOAQUIN BLUME, S/N, Torrejón de Ardoz, Madrid"
+    "address": "JOAQUIN BLUME, S/N, Torrejón de Ardoz, Madrid",
+    "maps": "https://maps.app.goo.gl/mb741XvChQkkQkiK6"
   },
   {
     "slug": "ceip-san-jose",
     "name": "CEIP San José",
-    "address": "C. Colegios, 2, 28290 Las Rozas de Madrid, Madrid"
+    "address": "C. Colegios, 2, 28290 Las Rozas de Madrid, Madrid",
+    "maps": "https://maps.app.goo.gl/aCQ6brmapSkCopko7"
   },
   {
     "slug": "magariños",
@@ -82,7 +93,8 @@
   {
     "slug": "torrelodones",
     "name": "TORRELODONES, PABELLON GENERACION DE ORO",
-    "address": "PLAZA JOSE Mª UNCETA, 4, Torrelodones, Madrid"
+    "address": "PLAZA JOSE Mª UNCETA, 4, Torrelodones, Madrid",
+    "maps": "https://maps.app.goo.gl/iUnZhjReYBsBe4vi9"
   },
   {
     "slug": "torrelodones-pequeno",
@@ -92,11 +104,13 @@
   {
     "slug": "triangulo-oro",
     "name": "TRIANGULO DE ORO, PABELLON",
-    "address": "BRAVO MURILLO, 376, Madrid, Madrid"
+    "address": "BRAVO MURILLO, 376, Madrid, Madrid",
+    "maps": "https://maps.app.goo.gl/GeTR1VyHre3BrNwQA"
   },
   {
     "slug": "valdebebas",
     "name": "CIUDAD REAL MADRID VALDEBEBAS",
-    "address": "AVENIDA ALEJANDRO DE LA SOTA, S/N, Madrid, Madrid"
+    "address": "AVENIDA ALEJANDRO DE LA SOTA, S/N, Madrid, Madrid",
+    "maps": "https://maps.app.goo.gl/fFvrcjJjE7FvPuMq8"
   }
 ]

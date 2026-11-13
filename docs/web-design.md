@@ -104,6 +104,11 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   al cambiar de mes, se muestra su inicio
 - Se muestran todos los partidos, pasados y próximos
 
+En el detalle, debajo del marcador y la fecha/hora, se muestra 📍 y el nombre
+del pabellón. Si tiene `maps`, el nombre enlaza a Google Maps en nueva pestaña;
+sin URL HTTP(S) válida se muestra como texto. Si no se conoce el pabellón,
+no se muestra el bloque.
+
 ### Tarjeta de partido
 
 - Nombre y escudo de ambos clubs (iniciales si no hay escudo)

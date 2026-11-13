@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import clubs from '../../data/clubs.json';
+import venues from '../../data/venues.json';
 import Boxscore from '../components/Boxscore.jsx';
 import ClubLogo from '../components/ClubLogo.jsx';
 import GameVideo from '../components/GameVideo.jsx';
@@ -11,11 +12,22 @@ import { periodLabel } from '../lib/game.js';
 
 const gameFiles = import.meta.glob('../../data/games/*.json', { import: 'default' });
 const clubsBySlug = new Map(clubs.map((club) => [club.slug, club]));
+const venuesBySlug = new Map(venues.map((venue) => [venue.slug, venue]));
 
 function GameDetail({ game }) {
   const homeClub = clubsBySlug.get(game.home.slug);
   const awayClub = clubsBySlug.get(game.away.slug);
   if (!homeClub || !awayClub) throw new Error('Club no encontrado.');
+  const venue = venuesBySlug.get(game.venue);
+  let maps;
+  if (venue?.maps) {
+    try {
+      const url = new URL(venue.maps);
+      if (['http:', 'https:'].includes(url.protocol)) maps = venue.maps;
+    } catch {
+      // Keep the venue name visible when its URL is invalid.
+    }
+  }
 
   const sides = [
     { ...game.home, club: homeClub, winner: game.home.score > game.away.score },
@@ -74,10 +86,6 @@ function GameDetail({ game }) {
               </span>
             ))}
           </div>
-          <p className="game-detail__when">
-            {formatDay(gameDay(game.date))}
-            {time ? ` · ${time}` : ''}
-          </p>
         </div>
 
         <div className="game-detail__club">
@@ -85,6 +93,23 @@ function GameDetail({ game }) {
           <h2>{sides[1].club.name}</h2>
         </div>
       </div>
+
+      <p className="game-detail__when">
+        <strong className="game-detail__date">{formatDay(gameDay(game.date))}</strong>
+        {time && <span>{time}</span>}
+      </p>
+      {venue && (
+        <p className="game-detail__venue">
+          <span aria-hidden="true">📍</span>{' '}
+          {maps ? (
+            <a href={maps} target="_blank" rel="noopener noreferrer">
+              {venue.name}
+            </a>
+          ) : (
+            venue.name
+          )}
+        </p>
+      )}
 
       {/* biome-ignore lint/a11y/noNoninteractiveTabindex: Keyboard users need to scroll the table horizontally. */}
       <section className="game-detail__table-scroll" aria-label="Marcador por cuartos" tabIndex={0}>

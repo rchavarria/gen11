@@ -427,11 +427,32 @@ a.game-card--highlighted:hover {
 }
 
 .game-detail__when {
-  margin: 0.6rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin: -0.75rem 0 1.5rem;
+  text-align: center;
   color: var(--color-text-muted);
   font-size: 0.9rem;
   white-space: nowrap;
 }
+
+.game-detail__date {
+  font-size: 1.2rem;
+  color: var(--color-text);
+}
+
+.game-detail__venue {
+  margin: -1rem 0 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.game-detail__venue a {
+  color: var(--color-primary);
+}
+
 .game-detail__winner {
   background: var(--color-success);
   color: var(--color-text);

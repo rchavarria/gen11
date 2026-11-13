@@ -15,7 +15,7 @@ function madridParts(date) {
   return Object.fromEntries(madridFormatter.formatToParts(date).map(({ type, value }) => [type, value]));
 }
 
-function madridDateTime(date) {
+function localDateTime(date) {
   const { year, month, day, hour, minute, second } = madridParts(date);
   return `${year}-${month}-${day}T${hour}:${minute}:${second}`;
 }
@@ -40,33 +40,28 @@ function downloadedToUtcIso(fecha, hora) {
 
   // Try the previous day's offset first to select the earlier repeated autumn hour.
   for (const instant of [date.getTime() - 86400000, date.getTime()]) {
-    const offset = Date.parse(`${madridDateTime(new Date(instant))}Z`) - instant;
+    const offset = Date.parse(`${localDateTime(new Date(instant))}Z`) - instant;
     const utc = new Date(date.getTime() - offset);
-    if (madridDateTime(utc) === local) return utc.toISOString().replace('.000Z', 'Z');
+    if (localDateTime(utc) === local) return utc.toISOString().replace('.000Z', 'Z');
   }
   return null;
 }
 
-function madridDay(value) {
+/**
+ * Returns the Europe/Madrid day of a UTC ISO string, preserving unknown-time midnight markers.
+ * '2026-11-08T23:30:00Z' -> '2026-11-09'
+ * '2026-11-09T00:00:00Z' -> '2026-11-09' (unknown time)
+ * '2026-11-09T14:00:00Z' -> '2026-11-09' (typical case)
+ * null, '' or '2026-02-31T12:00:00Z' -> '' (invalid date)
+ */
+function localDay(value) {
   if (!isUtcIsoDateTime(value)) return '';
   if (value.endsWith('T00:00:00Z')) return value.slice(0, 10);
-  return madridDateTime(new Date(value)).slice(0, 10);
-}
-
-function madridToday(now = new Date()) {
-  return madridDateTime(now).slice(0, 10);
-}
-
-function formatGameDate(value) {
-  const day = madridDay(value);
-  if (!day) return '(no date)';
-  return value.endsWith('T00:00:00Z') ? day : madridDateTime(new Date(value)).replace('T', ' ').slice(0, 16);
+  return localDateTime(new Date(value)).slice(0, 10);
 }
 
 module.exports = {
   isUtcIsoDateTime,
   downloadedToUtcIso,
-  madridDay,
-  madridToday,
-  formatGameDate,
+  localDay,
 };

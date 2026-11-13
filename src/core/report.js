@@ -8,7 +8,18 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 
 const { formatDuration, timestamp, toDayString } = require('./format');
-const { formatGameDate } = require('./dates');
+const { localDay } = require('./dates');
+
+function formatGameDate(value) {
+  const day = localDay(value);
+  if (!day) return '(no date)';
+  if (value.endsWith('T00:00:00Z')) return day;
+  return new Date(value).toLocaleString('es-ES', {
+    timeZone: 'Europe/Madrid',
+    dateStyle: 'short',
+    timeStyle: 'short',
+  });
+}
 
 function section(title, items) {
   const lines = [`## ${title} (${items.length})`, ''];

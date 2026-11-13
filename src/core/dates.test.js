@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'vitest';
-import { downloadedToUtcIso, isUtcIsoDateTime, madridDay } from './dates.js';
+import { downloadedToUtcIso, isUtcIsoDateTime, localDay } from './dates.js';
 
 test.each([
   ['06/11/2026', '18:30:00', '2026-11-06T17:30:00Z'],
@@ -18,9 +18,14 @@ test.each([
   assert.equal(downloadedToUtcIso(day, time), expected);
 });
 
+test('rejects null as a UTC date', () => {
+  assert.equal(isUtcIsoDateTime(null), false);
+});
+
 test('validates UTC dates and extracts Madrid game days including the unknown-time marker', () => {
   assert.equal(isUtcIsoDateTime('2026-02-31T12:00:00Z'), false);
   assert.equal(isUtcIsoDateTime('2026-11-09T00:00:00Z'), true);
-  assert.equal(madridDay('2026-11-08T23:30:00Z'), '2026-11-09');
-  assert.equal(madridDay('2026-11-09T00:00:00Z'), '2026-11-09');
+  assert.equal(localDay('2026-11-08T23:30:00Z'), '2026-11-09');
+  assert.equal(localDay('2026-11-09T00:00:00Z'), '2026-11-09');
+  assert.equal(localDay('2026-11-09T12:00:00Z'), '2026-11-09');
 });

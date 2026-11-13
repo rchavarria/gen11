@@ -409,6 +409,24 @@ test('download processing skips games at the boundary but processes older games'
   }
 });
 
+test.each([
+  ['2026-11-08T23:30:00Z', '9/11/26, 0:30'],
+  ['2026-05-10T09:30:00Z', '10/5/26, 11:30'],
+  ['2026-11-09T00:00:00Z', '2026-11-09'],
+  [null, '(no date)'],
+  ['2026-02-31T12:00:00Z', '(no date)'],
+])('buildReport formats game date %s as %s', (date, expected) => {
+  const text = buildReport({
+    startedAt: new Date('2026-11-01T10:00:00Z'),
+    finishedAt: new Date('2026-11-01T11:00:00Z'),
+    newGames: [{ id: 'BB', date, home: 'Home', away: 'Away' }],
+    pendingSlug: [],
+    downloaded: [],
+    notPlayed: [],
+  });
+  assert.ok(text.includes(`- ${expected} — Home vs Away — \`BB\``));
+});
+
 test('buildReport lists sections, empty ones and the error', () => {
   const text = buildReport({
     startedAt: new Date(2026, 10, 1, 10),

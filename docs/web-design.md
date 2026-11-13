@@ -95,11 +95,11 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 
 ### Calendario
 
-- Selector de mes arriba (‹ Octubre 2026 ›); el mes va en la URL (`/#/?mes=2026-10`)
+- Selector de mes arriba (‹ Octubre 2026 ›); el mes va en la URL (`/#/?m=2026-10`)
 - Bloques por semana, de lunes a domingo
 - Una semana que cruza dos meses aparece en ambos
 - Semanas sin partidos: se muestra «Sin partidos»
-- Al abrir, se muestra la semana actual (solo hace scroll si no está visible, para no ocultar la tira)
+- Al abrir o cambiar de mes, se muestra el inicio de la página para no ocultar la tira
 - Se muestran todos los partidos, pasados y próximos
 
 ### Tarjeta de partido

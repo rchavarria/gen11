@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { fireEvent, render, screen, within } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, useLocation } from 'react-router-dom';
 import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import CalendarPage from './CalendarPage.jsx';
 
@@ -42,13 +42,21 @@ beforeEach(() => {
 
 afterEach(() => vi.useRealTimers());
 
+function Location() {
+  const { search } = useLocation();
+  return <output data-testid="location">{search}</output>;
+}
+
 test('uses the Madrid month, groups local days in the correct week and navigates months', () => {
   render(
     <MemoryRouter initialEntries={['/']}>
       <CalendarPage />
+      <Location />
     </MemoryRouter>,
   );
   expect(screen.getByRole('heading', { name: 'Noviembre 2026' })).toBeInTheDocument();
+  expect(window.scrollTo).toHaveBeenLastCalledWith(0, 0);
+  expect(Element.prototype.scrollIntoView).not.toHaveBeenCalled();
   const monday = screen.getByText('Prueba lunes').closest('section');
   const sunday = screen.getByText('Prueba domingo').closest('section');
   expect(monday).toBe(sunday);
@@ -57,14 +65,18 @@ test('uses the Madrid month, groups local days in the correct week and navigates
 
   fireEvent.click(screen.getByRole('button', { name: 'Mes anterior' }));
   expect(screen.getByRole('heading', { name: 'Octubre 2026' })).toBeInTheDocument();
+  expect(screen.getByTestId('location')).toHaveTextContent('?m=2026-10');
   fireEvent.click(screen.getByRole('button', { name: 'Mes siguiente' }));
   fireEvent.click(screen.getByRole('button', { name: 'Mes siguiente' }));
   expect(screen.getByRole('heading', { name: 'Diciembre 2026' })).toBeInTheDocument();
+  expect(screen.getByTestId('location')).toHaveTextContent('?m=2026-12');
+  expect(window.scrollTo).toHaveBeenCalledTimes(4);
+  expect(Element.prototype.scrollIntoView).not.toHaveBeenCalled();
 });
 
 test('honors the requested month', () => {
   render(
-    <MemoryRouter initialEntries={['/?mes=2027-01']}>
+    <MemoryRouter initialEntries={['/?m=2027-01']}>
       <CalendarPage />
     </MemoryRouter>,
   );

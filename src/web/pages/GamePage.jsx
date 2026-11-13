@@ -132,7 +132,7 @@ export default function GamePage() {
   const [state, setState] = useState({ slug: null, status: 'loading', game: null });
   const game = state.slug === slug ? state.game : null;
   const status = state.slug === slug ? state.status : 'loading';
-  const back = game ? `/?mes=${gameDay(game.date).slice(0, 7)}` : '/';
+  const back = game ? `/?m=${gameDay(game.date).slice(0, 7)}` : '/';
 
   useEffect(() => {
     let active = true;

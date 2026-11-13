@@ -29,5 +29,5 @@ test('returns to the Madrid month when the UTC date is in the previous month', a
     </MemoryRouter>,
   );
   expect(await screen.findByText('dom 1 nov · 00:30')).toBeInTheDocument();
-  expect(screen.getByRole('link', { name: /Calendario/ })).toHaveAttribute('href', '/?mes=2026-11');
+  expect(screen.getByRole('link', { name: /Calendario/ })).toHaveAttribute('href', '/?m=2026-11');
 });

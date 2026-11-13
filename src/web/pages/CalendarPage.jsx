@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import calendar from '../../data/calendar.json';
 import GameCard from '../components/GameCard.jsx';
@@ -17,9 +17,8 @@ import {
 export default function CalendarPage() {
   const [params, setParams] = useSearchParams();
   const today = madridToday();
-  const month = parseMonthKey(params.get('mes')) ?? parseMonthKey(today.slice(0, 7));
+  const month = parseMonthKey(params.get('m')) ?? parseMonthKey(today.slice(0, 7));
   const { year, month: monthIndex } = month;
-  const currentWeekRef = useRef(null);
 
   const weeks = useMemo(
     () =>
@@ -31,15 +30,14 @@ export default function CalendarPage() {
     [year, monthIndex, today],
   );
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: Month changes must trigger scrolling after the calendar renders.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Reset scrolling whenever the displayed month changes.
   useEffect(() => {
-    if (currentWeekRef.current) currentWeekRef.current.scrollIntoView({ block: 'nearest' });
-    else window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }, [month.year, month.month]);
 
   const goTo = (delta) => {
     const next = shiftMonth(month, delta);
-    setParams({ mes: monthKey(new Date(next.year, next.month, 1)) });
+    setParams({ m: monthKey(new Date(next.year, next.month, 1)) });
   };
 
   return (
@@ -57,11 +55,7 @@ export default function CalendarPage() {
         </header>
 
         {weeks.map((week) => (
-          <section
-            key={week.start}
-            ref={week.isCurrent ? currentWeekRef : undefined}
-            className={`week${week.isCurrent ? ' week--current' : ''}`}
-          >
+          <section key={week.start} className={`week${week.isCurrent ? ' week--current' : ''}`}>
             <h2 className="week__title">{formatWeek(week)}</h2>
             {week.games.length === 0 ? (
               <p className="week__empty">Sin partidos</p>

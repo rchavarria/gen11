@@ -10,7 +10,7 @@ const { readDatedGamesFile, writeDatedGamesFile } = require('./dated-games');
 const { ApiError } = require('./api-client');
 const { shorterWait } = require('./wait');
 const { loadVenues } = require('./venues');
-const { toIsoDate, madridToUtcIso, isUtcIsoDateTime } = require('./dates');
+const { downloadedToUtcIso, isUtcIsoDateTime } = require('./dates');
 
 const DAYS = 100;
 
@@ -37,7 +37,7 @@ function mergeDatedGames(games, upcomingGames, venues = new Map()) {
   for (const upcoming of upcomingGames) {
     const id = upcoming?.IdPartido;
     if (typeof id !== 'string' || id === '') continue;
-    const date = madridToUtcIso(toIsoDate(upcoming.Fecha), upcoming.Hora);
+    const date = downloadedToUtcIso(upcoming.Fecha, upcoming.Hora);
     const venueName = upcoming.CampoJuego;
     const venue = venues.get(venueName) || '';
     if (!venue) unmatchedVenues.add(venueName || '(missing CampoJuego)');
@@ -137,4 +137,4 @@ async function fetchNextGamesRenewingKey(client, options = {}, { wait = shorterW
   return { ...(await fetchNextGames(client, options)), keyRenewed: true };
 }
 
-module.exports = { DAYS, toIsoDate, mergeDatedGames, fetchNextGames, fetchNextGamesRenewingKey };
+module.exports = { DAYS, mergeDatedGames, fetchNextGames, fetchNextGamesRenewingKey };

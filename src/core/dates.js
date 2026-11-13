@@ -20,48 +20,31 @@ function madridDateTime(date) {
   return `${year}-${month}-${day}T${hour}:${minute}:${second}`;
 }
 
-function isValidIsoDate(value) {
-  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
-  const date = new Date(`${value}T00:00:00Z`);
-  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
-}
-
-function toIsoDate(value) {
-  const match = typeof value === 'string' && /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(value);
-  if (!match) return '';
-  const date = `${match[3]}-${match[2]}-${match[1]}`;
-  return isValidIsoDate(date) ? date : '';
-}
-
 function isUtcIsoDateTime(value) {
   if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(value)) return false;
   const date = new Date(value);
   return !Number.isNaN(date.getTime()) && date.toISOString().replace('.000Z', 'Z') === value;
 }
 
-function madridToUtcIso(day, time) {
-  if (!isValidIsoDate(day)) return '';
-  const match = typeof time === 'string' && /^(\d{2}):(\d{2})(?::(\d{2}))?$/.exec(time);
-  if (!match || Number(match[1]) > 23 || Number(match[2]) > 59 || Number(match[3] || 0) > 59) {
-    return `${day}T00:00:00Z`;
-  }
-  const clock = `${match[1]}:${match[2]}:${match[3] || '00'}`;
-  if (clock === '00:00:00') return `${day}T00:00:00Z`;
+/**
+ * Converts downloaded Fecha (dd/mm/yyyy) and Hora (HH:mm:ss) from Madrid to UTC.
+ * Accounts for daylight saving time; midnight UTC marks an unknown game time.
+ * Returns null for invalid dates or nonexistent Madrid times.
+ */
+function downloadedToUtcIso(fecha, hora) {
+  const [day, month, year] = (fecha || '').split('/');
+  const local = `${year}-${month}-${day}T${hora || '00:00:00'}`;
+  const date = new Date(`${local}Z`);
+  if (Number.isNaN(date.getTime()) || date.toISOString().slice(0, 19) !== local) return null;
+  if (!hora || hora === '00:00:00') return date.toISOString().replace('.000Z', 'Z');
 
-  const local = `${day}T${clock}`;
-  const guess = Date.parse(`${local}Z`);
-  // Both offsets are sampled to detect gaps and repeated hours at DST transitions.
-  const offsets = new Set(
-    [-86400000, 0, 86400000].map((delta) => {
-      const instant = guess + delta;
-      return Date.parse(`${madridDateTime(new Date(instant))}Z`) - instant;
-    }),
-  );
-  const candidates = [...offsets]
-    .map((offset) => guess - offset)
-    .filter((value) => madridDateTime(new Date(value)) === local)
-    .sort((a, b) => a - b);
-  return candidates.length ? new Date(candidates[0]).toISOString().replace('.000Z', 'Z') : '';
+  // Try the previous day's offset first to select the earlier repeated autumn hour.
+  for (const instant of [date.getTime() - 86400000, date.getTime()]) {
+    const offset = Date.parse(`${madridDateTime(new Date(instant))}Z`) - instant;
+    const utc = new Date(date.getTime() - offset);
+    if (madridDateTime(utc) === local) return utc.toISOString().replace('.000Z', 'Z');
+  }
+  return null;
 }
 
 function madridDay(value) {
@@ -81,10 +64,8 @@ function formatGameDate(value) {
 }
 
 module.exports = {
-  toIsoDate,
-  isValidIsoDate,
   isUtcIsoDateTime,
-  madridToUtcIso,
+  downloadedToUtcIso,
   madridDay,
   madridToday,
   formatGameDate,

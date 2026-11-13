@@ -118,6 +118,6 @@ GitHub Pages checks lint and tests before building.
 | `src/core/api-client.js`    | `ApiClient` (API calls, validation, key rotation), `ApiError`, `isNoDataError`                       |
 | `src/core/download.js`      | `processGames` (stats + scores download), `downloadGame`, `isAfterGameSchedule`                      |
 | `src/core/timely-scores.js` | `getScoringActions`, `getTimelyScores`                                                               |
-| `src/core/next-games.js`    | `fetchNextGames`, `mergeDatedGames`, `toIsoDate`                                                     |
+| `src/core/next-games.js`    | `fetchNextGames`, `mergeDatedGames`                                                                  |
 | `src/core/dates.js`         | Madrid/UTC conversion and date helpers                                                               |
 | `src/core/report.js`        | `buildReport`, `writeReport` (sync report)                                                           |

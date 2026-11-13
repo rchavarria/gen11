@@ -2,7 +2,6 @@
 
 ## To Do list
 
-- web: debajo del marcador grande en la página de detalle del partido, mostrar nombre del pabellón y enlace a Google Maps
 - sync: primero, analizar qué y cuántos partidos hay que descargar, y luego descargar solo los partidos que no estén en `dated-games.json`, de forma que el contador/progeso de partidos descargados es "real", muestra el total de los que habría que descargar, no el total de los dated-games.json
 - sync: generar ficheros sobre jugadores, con estadísticas de cada jugador en cada partido (puntos, rebotes, asistencias, valoración…)
 - web: el recuadro del nombre del pabellon, incluye un enlace a Google Maps
@@ -12,6 +11,7 @@
 
 ## Done list
 
+- 2026-11-13: web: debajo del marcador del detalle, mostrar pabellón con enlace a Google Maps
 - 2026-11-13: sync: tanto dated-games.json como calendar.json deben tener date y time como un solo campo, date, en formato ISO 8601, y no como dos campos separados
 - 2026-11-12: web: enlace a vídeo
 - 2026-11-11: sync: eliminar la generación de scored-points; `build-data.js` genera `timelyScores` al procesar cada partido

@@ -78,8 +78,6 @@ export default function UpcomingGames() {
     return () => window.removeEventListener('resize', updateEdges);
   }, [updateEdges, games.length]);
 
-  if (games.length === 0) return null;
-
   const scroll = (direction) => {
     const list = listRef.current;
     list.scrollBy({ left: direction * list.clientWidth * 0.8, behavior: 'smooth' });
@@ -87,29 +85,35 @@ export default function UpcomingGames() {
 
   return (
     <section className="upcoming" aria-label="Próximos partidos">
-      <button
-        type="button"
-        className="upcoming__nav upcoming__nav--prev"
-        onClick={() => scroll(-1)}
-        disabled={edges.start}
-        aria-label="Anteriores"
-      >
-        ‹
-      </button>
-      <ul className="upcoming__list" ref={listRef} onScroll={updateEdges}>
-        {games.map((game) => (
-          <UpcomingCard key={game.slug} game={game} />
-        ))}
-      </ul>
-      <button
-        type="button"
-        className="upcoming__nav upcoming__nav--next"
-        onClick={() => scroll(1)}
-        disabled={edges.end}
-        aria-label="Siguientes"
-      >
-        ›
-      </button>
+      {games.length === 0 ? (
+        <p className="upcoming__empty">No hay próximos partidos</p>
+      ) : (
+        <>
+          <button
+            type="button"
+            className="upcoming__nav upcoming__nav--prev"
+            onClick={() => scroll(-1)}
+            disabled={edges.start}
+            aria-label="Anteriores"
+          >
+            ‹
+          </button>
+          <ul className="upcoming__list" ref={listRef} onScroll={updateEdges}>
+            {games.map((game) => (
+              <UpcomingCard key={game.slug} game={game} />
+            ))}
+          </ul>
+          <button
+            type="button"
+            className="upcoming__nav upcoming__nav--next"
+            onClick={() => scroll(1)}
+            disabled={edges.end}
+            aria-label="Siguientes"
+          >
+            ›
+          </button>
+        </>
+      )}
     </section>
   );
 }

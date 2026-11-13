@@ -86,11 +86,13 @@ test('shows category badges and highlights Alcobendas in either position', () =>
   expect(away.querySelector('strong')).toBeNull();
 });
 
-test('renders nothing when no upcoming games qualify', () => {
+test('keeps the strip visible when no upcoming games qualify', () => {
   calendar.push(game('past', '2026-11-05', '17:00:00'));
-  const { container } = render(<UpcomingGames />);
+  render(<UpcomingGames />);
 
-  expect(container).toBeEmptyDOMElement();
+  const strip = screen.getByRole('region', { name: 'Próximos partidos' });
+  expect(within(strip).getByText('No hay próximos partidos')).toBeInTheDocument();
+  expect(within(strip).queryByRole('button')).not.toBeInTheDocument();
 });
 
 test('does not show the venue in the upcoming strip', () => {

@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 
 import { fireEvent, render, screen, within } from '@testing-library/react';
+import { StrictMode } from 'react';
 import { MemoryRouter, useLocation } from 'react-router-dom';
 import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import CalendarPage from './CalendarPage.jsx';
@@ -38,9 +39,17 @@ beforeEach(() => {
   vi.setSystemTime(new Date('2026-10-31T23:30:00Z'));
   window.scrollTo = vi.fn();
   Element.prototype.scrollIntoView = vi.fn();
+  vi.spyOn(Element.prototype, 'getBoundingClientRect').mockImplementation(function () {
+    if (this.classList.contains('calendar-header')) return { height: 150 };
+    if (this.classList.contains('week--current')) return { top: 600 };
+    return { top: 0, height: 0 };
+  });
 });
 
-afterEach(() => vi.useRealTimers());
+afterEach(() => {
+  vi.useRealTimers();
+  vi.restoreAllMocks();
+});
 
 function Location() {
   const { search } = useLocation();
@@ -49,14 +58,18 @@ function Location() {
 
 test('uses the Madrid month, groups local days in the correct week and navigates months', () => {
   render(
-    <MemoryRouter initialEntries={['/']}>
-      <CalendarPage />
-      <Location />
-    </MemoryRouter>,
+    <StrictMode>
+      <MemoryRouter initialEntries={['/']}>
+        <CalendarPage />
+        <Location />
+      </MemoryRouter>
+    </StrictMode>,
   );
   expect(screen.getByRole('heading', { name: 'Noviembre 2026' })).toBeInTheDocument();
-  expect(window.scrollTo).toHaveBeenLastCalledWith(0, 0);
-  expect(Element.prototype.scrollIntoView).not.toHaveBeenCalled();
+  expect(window.scrollTo).toHaveBeenCalledTimes(1);
+  expect(window.scrollTo).toHaveBeenLastCalledWith({ top: 434, behavior: 'auto' });
+  const header = screen.getByRole('region', { name: 'Próximos partidos' }).closest('.calendar-header');
+  expect(within(header).getByRole('heading', { name: 'Noviembre 2026' })).toBeInTheDocument();
   const monday = screen.getByText('Prueba lunes').closest('section');
   const sunday = screen.getByText('Prueba domingo').closest('section');
   expect(monday).toBe(sunday);
@@ -71,7 +84,7 @@ test('uses the Madrid month, groups local days in the correct week and navigates
   expect(screen.getByRole('heading', { name: 'Diciembre 2026' })).toBeInTheDocument();
   expect(screen.getByTestId('location')).toHaveTextContent('?m=2026-12');
   expect(window.scrollTo).toHaveBeenCalledTimes(4);
-  expect(Element.prototype.scrollIntoView).not.toHaveBeenCalled();
+  expect(window.scrollTo).toHaveBeenLastCalledWith(0, 0);
 });
 
 test('honors the requested month', () => {
@@ -81,4 +94,5 @@ test('honors the requested month', () => {
     </MemoryRouter>,
   );
   expect(screen.getByRole('heading', { name: 'Enero 2027' })).toBeInTheDocument();
+  expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
 });

@@ -86,12 +86,12 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 
 ### Tira de próximos partidos
 
-- Arriba del todo, a todo el ancho y con fondo oscuro
+- Fija arriba, a todo el ancho y con fondo oscuro, también al desplazarse
 - Partidos sin marcador con fecha de hoy en adelante, ordenados por fecha y hora
 - Tarjetas pequeñas: categoría corta (`CAD`, `JUN`), hora (si se conoce), fecha,
   y escudo + `initials` de ambos clubs (local arriba)
 - Scroll horizontal con botones ‹ › a los lados (ocultos en móviles táctiles)
-- Las tarjetas no son clicables; si no hay próximos partidos no se muestra
+- Las tarjetas no son clicables; si no hay próximos partidos se indica en la tira
 - Los partidos con el slug `alcobendas` en cualquiera de los clubs se resaltan con un borde izquierdo rojo
 
 ### Calendario
@@ -100,7 +100,8 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 - Bloques por semana, de lunes a domingo
 - Una semana que cruza dos meses aparece en ambos
 - Semanas sin partidos: se muestra «Sin partidos»
-- Al abrir o cambiar de mes, se muestra el inicio de la página para no ocultar la tira
+- Al abrir el mes actual, se desplaza a la semana actual sin ocultarla tras la cabecera;
+  al cambiar de mes, se muestra su inicio
 - Se muestran todos los partidos, pasados y próximos
 
 ### Tarjeta de partido

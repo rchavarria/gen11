@@ -34,10 +34,20 @@ button {
   padding: 0 1rem 2rem;
 }
 
-.month-nav {
+.calendar-header {
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 2;
+  background: var(--color-background);
+}
+
+.calendar-header__nav {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.month-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -219,6 +229,13 @@ a.game-card--highlighted:hover {
   background: var(--color-surface-dark);
 }
 
+.upcoming__empty {
+  margin: 0;
+  color: var(--color-surface);
+  text-align: center;
+  flex: 1;
+}
+
 .upcoming__list {
   display: flex;
   gap: 0.5rem;
@@ -255,7 +272,7 @@ a.game-card--highlighted:hover {
 
 .upcoming-card {
   flex: 0 0 auto;
-  min-width: 10.5rem;
+  min-width: 9rem;
   scroll-snap-align: start;
   background: var(--color-surface);
   border-radius: 6px;

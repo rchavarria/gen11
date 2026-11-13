@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useLayoutEffect, useMemo, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import GameCard from '../components/GameCard.jsx';
 import UpcomingGames from '../components/UpcomingGames.jsx';
@@ -19,6 +19,9 @@ export default function CalendarPage() {
   const today = madridToday();
   const month = parseMonthKey(params.get('m')) ?? parseMonthKey(today.slice(0, 7));
   const { year, month: monthIndex } = month;
+  const headerRef = useRef(null);
+  const currentWeekRef = useRef(null);
+  const previousMonthRef = useRef(null);
 
   const weeks = useMemo(
     () =>
@@ -30,10 +33,19 @@ export default function CalendarPage() {
     [year, monthIndex, today],
   );
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: Reset scrolling whenever the displayed month changes.
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [month.year, month.month]);
+  useLayoutEffect(() => {
+    const key = `${year}-${String(monthIndex + 1).padStart(2, '0')}`;
+    if (previousMonthRef.current === key) return;
+    const initial = previousMonthRef.current === null;
+    previousMonthRef.current = key;
+    if (initial && key === today.slice(0, 7) && currentWeekRef.current && headerRef.current) {
+      const top = window.scrollY + currentWeekRef.current.getBoundingClientRect().top;
+      const headerHeight = headerRef.current.getBoundingClientRect().height;
+      window.scrollTo({ top: Math.max(0, top - headerHeight - 16), behavior: 'auto' });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [year, monthIndex, today]);
 
   const goTo = (delta) => {
     const next = shiftMonth(month, delta);
@@ -41,21 +53,28 @@ export default function CalendarPage() {
   };
 
   return (
-    <>
-      <UpcomingGames />
-      <main className="page">
-        <header className="month-nav">
-          <button type="button" onClick={() => goTo(-1)} aria-label="Mes anterior">
-            ‹
-          </button>
-          <h1>{formatMonth(month)}</h1>
-          <button type="button" onClick={() => goTo(1)} aria-label="Mes siguiente">
-            ›
-          </button>
-        </header>
-
+    <main>
+      <div className="calendar-header" ref={headerRef}>
+        <UpcomingGames />
+        <div className="calendar-header__nav">
+          <header className="month-nav">
+            <button type="button" onClick={() => goTo(-1)} aria-label="Mes anterior">
+              ‹
+            </button>
+            <h1>{formatMonth(month)}</h1>
+            <button type="button" onClick={() => goTo(1)} aria-label="Mes siguiente">
+              ›
+            </button>
+          </header>
+        </div>
+      </div>
+      <div className="page">
         {weeks.map((week) => (
-          <section key={week.start} className={`week${week.isCurrent ? ' week--current' : ''}`}>
+          <section
+            key={week.start}
+            ref={week.isCurrent ? currentWeekRef : undefined}
+            className={`week${week.isCurrent ? ' week--current' : ''}`}
+          >
             <h2 className="week__title">{formatWeek(week)}</h2>
             {week.games.length === 0 ? (
               <p className="week__empty">Sin partidos</p>
@@ -68,7 +87,7 @@ export default function CalendarPage() {
             )}
           </section>
         ))}
-      </main>
-    </>
+      </div>
+    </main>
   );
 }

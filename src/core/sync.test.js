@@ -12,8 +12,7 @@ test('mergeDatedGames adds mapped entries in date/time order and updates date, t
   const known = {
     slug: 'existing',
     id: 'AA',
-    date: '2026-11-05',
-    time: '12:00:00',
+    date: '2026-11-05T11:00:00Z',
     category: 'Cat',
     homeClubName: 'Home',
     awayClubName: 'Away',
@@ -39,8 +38,7 @@ test('mergeDatedGames adds mapped entries in date/time order and updates date, t
     {
       slug: '',
       id: 'BB',
-      date: '2026-11-03',
-      time: '08:30:00',
+      date: '2026-11-03T07:30:00Z',
       venue: '',
       category: 'New Cat',
       homeClubName: 'Local',
@@ -52,8 +50,7 @@ test('mergeDatedGames adds mapped entries in date/time order and updates date, t
   assert.deepEqual(known, {
     slug: 'existing',
     id: 'AA',
-    date: '2026-11-04',
-    time: '09:15:00',
+    date: '2026-11-04T08:15:00Z',
     category: 'Cat',
     homeClubName: 'Home',
     awayClubName: 'Away',
@@ -67,8 +64,8 @@ test('mergeDatedGames adds mapped entries in date/time order and updates date, t
 });
 
 test('mergeDatedGames resolves exact venue names and refreshes venues without other changes', () => {
-  const known = { id: 'AA', date: '2026-11-05', time: '12:00:00', venue: 'old', scored: true };
-  const untouched = { id: 'BB', date: '2026-11-06', time: '', venue: 'old' };
+  const known = { id: 'AA', date: '2026-11-05T11:00:00Z', venue: 'old', scored: true };
+  const untouched = { id: 'BB', date: '2026-11-06T00:00:00Z', venue: 'old' };
   const games = [known, untouched];
   const venues = new Map([
     ['PABELLON CENTRAL', 'central'],
@@ -77,9 +74,9 @@ test('mergeDatedGames resolves exact venue names and refreshes venues without ot
   const upcoming = [
     { IdPartido: 'AA', Fecha: '05/11/2026', Hora: '12:00:00', CampoJuego: 'PABELLON CENTRAL' },
     { IdPartido: 'CC', Fecha: '07/11/2026', CampoJuego: 'PABELLON CENTRAL' },
-    { IdPartido: 'DD', CampoJuego: 'LA CANALEJA, PABELLON PISTA 1' },
-    { IdPartido: 'EE', CampoJuego: 'LA CANALEJA, PABELLON PISTA 1' },
-    { IdPartido: 'FF' },
+    { IdPartido: 'DD', Fecha: '08/11/2026', CampoJuego: 'LA CANALEJA, PABELLON PISTA 1' },
+    { IdPartido: 'EE', Fecha: '09/11/2026', CampoJuego: 'LA CANALEJA, PABELLON PISTA 1' },
+    { IdPartido: 'FF', Fecha: '10/11/2026' },
   ];
   const result = mergeDatedGames(games, upcoming, venues);
   assert.equal(known.venue, 'central');
@@ -110,7 +107,7 @@ test.each(['pabellon central', ' PABELLON CENTRAL', 'PABELLON CENTRAL ', 'PABELL
     const games = [];
     const result = mergeDatedGames(
       games,
-      [{ IdPartido: 'AA', CampoJuego: name }],
+      [{ IdPartido: 'AA', Fecha: '01/11/2026', CampoJuego: name }],
       new Map([['PABELLON CENTRAL', 'central']]),
     );
     assert.equal(games[0].venue, '');
@@ -119,17 +116,33 @@ test.each(['pabellon central', ' PABELLON CENTRAL', 'PABELLON CENTRAL ', 'PABELL
 );
 
 test('mergeDatedGames keeps existing date for invalid incoming dates and sorts invalid dates last', () => {
-  const existing = { slug: '', id: 'AA', date: '2026-11-01', time: '10:00:00' };
-  const noDate = { slug: '', id: 'BB', date: '', time: '' };
+  const existing = { slug: '', id: 'AA', date: '2026-11-01T09:00:00Z' };
+  const noDate = { slug: '', id: 'BB', date: '' };
   const games = [noDate, existing];
-  const { updated } = mergeDatedGames(games, [{ IdPartido: 'AA', Fecha: '31/02/2026', Hora: '11:00:00' }]);
-  assert.equal(existing.date, '2026-11-01');
-  assert.equal(existing.time, '11:00:00');
-  assert.deepEqual(updated, [existing]);
+  const { updated, invalidDates } = mergeDatedGames(games, [
+    { IdPartido: 'AA', Fecha: '31/02/2026', Hora: '11:00:00' },
+    { IdPartido: 'CC', Fecha: '31/02/2026' },
+  ]);
+  assert.equal(existing.date, '2026-11-01T09:00:00Z');
+  assert.deepEqual(updated, []);
+  assert.equal(invalidDates[0].id, 'CC');
   assert.deepEqual(
     games.map((game) => game.id),
     ['AA', 'BB'],
   );
+});
+
+test('mergeDatedGames updates the time and reports new games with invalid dates', () => {
+  const game = { id: 'AA', date: '2026-11-06T09:00:00Z' };
+  const games = [game];
+  const result = mergeDatedGames(games, [
+    { IdPartido: 'AA', Fecha: '06/11/2026', Hora: '12:30:00' },
+    { IdPartido: 'BB', Fecha: '31/02/2026', NombreClubLocal: 'Home', NombreClubVisitante: 'Away' },
+  ]);
+  assert.equal(game.date, '2026-11-06T11:30:00Z');
+  assert.deepEqual(result.updated, [game]);
+  assert.equal(result.added.length, 0);
+  assert.deepEqual(result.invalidDates, [{ id: 'BB', home: 'Home', away: 'Away', fecha: '31/02/2026', hora: '' }]);
 });
 
 test('fetchNextGames saves raw responses and consolidates dated-games.json', async (t) => {
@@ -190,8 +203,7 @@ test('fetchNextGames saves raw responses and consolidates dated-games.json', asy
   assert.deepEqual(dated[0], {
     slug: '',
     id: 'BB',
-    date: '2026-11-01',
-    time: '13:15:00',
+    date: '2026-11-01T12:15:00Z',
     venue: 'canoe',
     category: 'Cat',
     homeClubName: 'Home',
@@ -207,7 +219,13 @@ test('fetchNextGames rejects invalid dated-games.json without overwriting it', a
     config: { paths: { nextGames: path.join(dir, 'next-games'), datedGamesFile: path.join(dir, 'dated-games.json') } },
     getNextGames: async () => ({ mispartidos: [] }),
   };
-  for (const content of ['invalid JSON', '{}', '[]']) {
+  for (const content of [
+    'invalid JSON',
+    '{}',
+    '[]',
+    '{"dated-games":[{"date":"2026-11-01","time":"10:00:00"}]}',
+    '{"dated-games":[{"date":"2026-11-01"}]}',
+  ]) {
     await fs.writeFile(client.config.paths.datedGamesFile, content);
     await assert.rejects(fetchNextGames(client));
     assert.equal(await fs.readFile(client.config.paths.datedGamesFile, 'utf8'), content);
@@ -332,7 +350,7 @@ test('download processing skips future games without adding a played field', asy
     {
       slug: 'future',
       id: 'AA',
-      date: '2099-12-31',
+      date: '2099-12-31T00:00:00Z',
       downloaded: false,
       scored: false,
     },
@@ -354,7 +372,8 @@ test('buildReport lists sections, empty ones and the error', () => {
     finishedAt: new Date(2026, 10, 1, 11),
     error: 'boom',
     keyRenewed: true,
-    newGames: [{ id: 'BB', date: '2026-11-08', home: 'Home', away: 'Away' }],
+    newGames: [{ id: 'BB', date: '2026-11-08T00:00:00Z', home: 'Home', away: 'Away' }],
+    invalidDates: [{ id: 'CC', fecha: '31/02/2026', hora: '', home: 'Home', away: 'Away' }],
     pendingSlug: [],
     downloaded: ['game-1'],
     notPlayed: [],
@@ -366,6 +385,7 @@ test('buildReport lists sections, empty ones and the error', () => {
   assert.match(text, /Key renewed: yes/);
   assert.match(text, /Error: boom/);
   assert.match(text, /## New games \(1\)\n\n- 2026-11-08 — Home vs Away/);
+  assert.match(text, /## New games skipped due to invalid dates \(1\)[\s\S]*31\/02\/2026/);
   assert.match(text, /## Downloaded games \(1\)\n\n- game-1/);
   assert.match(text, /Games pending a slug \(edit dated-games\.json\)/);
   assert.match(text, /## Games pending a slug.*\(0\)\n\n_None\._/);

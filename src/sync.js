@@ -78,6 +78,7 @@ async function run(config, result) {
     added,
     updated,
     unmatchedVenues,
+    invalidDates,
     total,
     keyRenewed,
   } = await fetchNextGamesRenewingKey(
@@ -90,12 +91,16 @@ async function run(config, result) {
     },
   );
   result.keyRenewed = keyRenewed;
+  result.invalidDates = invalidDates;
   console.log(`Games received: ${next.mispartidos.length} (saved to ${fileName})`);
   console.log(`Dated games added: ${added.length}`);
   console.log(`Dated games updated: ${updated.length}`);
   console.log(`Total dated games: ${total}`);
   for (const name of unmatchedVenues) {
     console.warn(`Venue not found in src/data/venues.json: "${name}"`);
+  }
+  for (const game of invalidDates) {
+    console.warn(`New game skipped due to invalid date: ${game.id} (${game.fecha} ${game.hora})`);
   }
 
   const data = await readDatedGamesFile(config);
@@ -140,6 +145,7 @@ async function main() {
     error: null,
     keyRenewed: false,
     newGames: [],
+    invalidDates: [],
     pendingSlug: [],
     downloaded: [],
     notPlayed: [],

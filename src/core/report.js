@@ -8,6 +8,7 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 
 const { formatDuration, timestamp, toDayString } = require('./format');
+const { formatGameDate } = require('./dates');
 
 function section(title, items) {
   const lines = [`## ${title} (${items.length})`, ''];
@@ -19,7 +20,7 @@ function section(title, items) {
 
 function describeGame(game) {
   const teams = game.home || game.away ? `${game.home} vs ${game.away}` : '(unknown teams)';
-  return `${game.date || '(no date)'} — ${teams} — \`${game.id}\``;
+  return `${formatGameDate(game.date)} — ${teams} — \`${game.id}\``;
 }
 
 /**
@@ -46,6 +47,14 @@ function buildReport(result) {
   lines.push('');
 
   lines.push(...section('New games', result.newGames.map(describeGame)));
+  lines.push(
+    ...section(
+      'New games skipped due to invalid dates',
+      (result.invalidDates || []).map(
+        (game) => `${game.fecha || '(no date)'} ${game.hora || ''} — ${game.home} vs ${game.away} — \`${game.id}\``,
+      ),
+    ),
+  );
   lines.push(...section('Games pending a slug (edit dated-games.json)', result.pendingSlug.map(describeGame)));
   lines.push(...section('Downloaded games', result.downloaded));
   lines.push(...section('Games without data yet ("sin datos")', result.notPlayed));

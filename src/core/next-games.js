@@ -10,34 +10,9 @@ const { readDatedGamesFile, writeDatedGamesFile } = require('./dated-games');
 const { ApiError } = require('./api-client');
 const { shorterWait } = require('./wait');
 const { loadVenues } = require('./venues');
+const { toIsoDate, madridToUtcIso, isUtcIsoDateTime } = require('./dates');
 
 const DAYS = 100;
-
-/**
- * Converts "dd/mm/yyyy" to "YYYY-MM-DD". Returns "" when it is not valid.
- * @param {unknown} ddmmyyyy
- * @returns {string}
- */
-function toIsoDate(ddmmyyyy) {
-  const match = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(ddmmyyyy || '');
-  if (!match) return '';
-  const [, day, month, year] = match;
-  const value = new Date(0);
-  value.setUTCHours(0, 0, 0, 0);
-  value.setUTCFullYear(Number(year), Number(month) - 1, Number(day));
-  if (
-    value.getUTCFullYear() !== Number(year) ||
-    value.getUTCMonth() !== Number(month) - 1 ||
-    value.getUTCDate() !== Number(day)
-  )
-    return '';
-  return `${year}-${month}-${day}`;
-}
-
-function isValidIsoDate(value) {
-  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || '');
-  return Boolean(match && toIsoDate(`${match[3]}/${match[2]}/${match[1]}`) === value);
-}
 
 /**
  * Adds new upcoming games and refreshes the date, time and venue of known games.
@@ -45,7 +20,7 @@ function isValidIsoDate(value) {
  * @param {object[]} games
  * @param {object[]} upcomingGames The `mispartidos` array of the response.
  * @param {Map<string, string>} venues Exact venue name -> slug.
- * @returns {{added: object[], updated: object[], unmatchedVenues: string[]}}
+ * @returns {{added: object[], updated: object[], unmatchedVenues: string[], invalidDates: object[]}}
  */
 function mergeDatedGames(games, upcomingGames, venues = new Map()) {
   const byId = new Map();
@@ -58,10 +33,11 @@ function mergeDatedGames(games, upcomingGames, venues = new Map()) {
   const added = [];
   const updated = [];
   const unmatchedVenues = new Set();
+  const invalidDates = [];
   for (const upcoming of upcomingGames) {
     const id = upcoming?.IdPartido;
     if (typeof id !== 'string' || id === '') continue;
-    const date = toIsoDate(upcoming.Fecha);
+    const date = madridToUtcIso(toIsoDate(upcoming.Fecha), upcoming.Hora);
     const venueName = upcoming.CampoJuego;
     const venue = venues.get(venueName) || '';
     if (!venue) unmatchedVenues.add(venueName || '(missing CampoJuego)');
@@ -72,11 +48,6 @@ function mergeDatedGames(games, upcomingGames, venues = new Map()) {
         existing.date = date;
         changed = true;
       }
-      const time = upcoming.Hora ?? '';
-      if (existing.time !== time) {
-        existing.time = time;
-        changed = true;
-      }
       if (venue && existing.venue !== venue) {
         existing.venue = venue;
         changed = true;
@@ -84,12 +55,21 @@ function mergeDatedGames(games, upcomingGames, venues = new Map()) {
       if (changed && !updated.includes(existing)) updated.push(existing);
       continue;
     }
+    if (!date) {
+      invalidDates.push({
+        id,
+        home: upcoming.NombreClubLocal ?? '',
+        away: upcoming.NombreClubVisitante ?? '',
+        fecha: upcoming.Fecha ?? '',
+        hora: upcoming.Hora ?? '',
+      });
+      continue;
+    }
 
     const game = {
       slug: '',
       id,
       date,
-      time: upcoming.Hora ?? '',
       venue,
       category: upcoming.Categoria ?? '',
       homeClubName: upcoming.NombreClubLocal ?? '',
@@ -102,12 +82,12 @@ function mergeDatedGames(games, upcomingGames, venues = new Map()) {
   }
 
   games.sort((a, b) => {
-    const aDate = isValidIsoDate(a.date);
-    const bDate = isValidIsoDate(b.date);
+    const aDate = isUtcIsoDateTime(a.date);
+    const bDate = isUtcIsoDateTime(b.date);
     if (aDate !== bDate) return aDate ? -1 : 1;
-    return `${a.date || ''} ${a.time || ''}`.localeCompare(`${b.date || ''} ${b.time || ''}`);
+    return (a.date || '').localeCompare(b.date || '');
   });
-  return { added, updated, unmatchedVenues: [...unmatchedVenues] };
+  return { added, updated, unmatchedVenues: [...unmatchedVenues], invalidDates };
 }
 
 /**
@@ -116,7 +96,7 @@ function mergeDatedGames(games, upcomingGames, venues = new Map()) {
  * into <outputDir>/dated-games.json.
  * @param {import('./api-client').ApiClient} client
  * @param {{days?: number, date?: Date}} [options]
- * @returns {Promise<{data: object, fileName: string, added: object[], updated: object[], unmatchedVenues: string[], total: number}>}
+ * @returns {Promise<{data: object, fileName: string, added: object[], updated: object[], unmatchedVenues: string[], invalidDates: object[], total: number}>}
  */
 async function fetchNextGames(client, { days = DAYS, date = new Date() } = {}) {
   const fileName = `${toDayString(date)}.json`;
@@ -126,9 +106,13 @@ async function fetchNextGames(client, { days = DAYS, date = new Date() } = {}) {
 
   const datedGames = await readDatedGamesFile(client.config);
   const venues = await loadVenues();
-  const { added, updated, unmatchedVenues } = mergeDatedGames(datedGames['dated-games'], data.mispartidos, venues);
+  const { added, updated, unmatchedVenues, invalidDates } = mergeDatedGames(
+    datedGames['dated-games'],
+    data.mispartidos,
+    venues,
+  );
   await writeDatedGamesFile(client.config, datedGames);
-  return { data, fileName, added, updated, unmatchedVenues, total: datedGames['dated-games'].length };
+  return { data, fileName, added, updated, unmatchedVenues, invalidDates, total: datedGames['dated-games'].length };
 }
 
 /**
@@ -136,7 +120,7 @@ async function fetchNextGames(client, { days = DAYS, date = new Date() } = {}) {
  * @param {import('./api-client').ApiClient} client
  * @param {{days?: number, date?: Date}} [options]
  * @param {{wait?: () => Promise<void>, onKeyRenewed?: () => void}} [hooks]
- * @returns {Promise<{data: object, fileName: string, added: object[], updated: object[], unmatchedVenues: string[], total: number, keyRenewed: boolean}>}
+ * @returns {Promise<{data: object, fileName: string, added: object[], updated: object[], unmatchedVenues: string[], invalidDates: object[], total: number, keyRenewed: boolean}>}
  */
 async function fetchNextGamesRenewingKey(client, options = {}, { wait = shorterWait, onKeyRenewed = () => {} } = {}) {
   try {

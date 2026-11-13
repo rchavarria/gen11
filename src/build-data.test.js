@@ -5,6 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { test } from 'vitest';
 import { buildGameDetail, buildSide, fromDatedGame } from './build-data.js';
+import { fetchNextGames } from './core/next-games.js';
 
 const require = createRequire(import.meta.url);
 
@@ -16,8 +17,7 @@ const clubs = new Map([
 const datedGame = {
   slug: 'game',
   id: 'ABC',
-  date: '2026-09-21',
-  time: '11:30:00',
+  date: '2026-09-21T09:30:00Z',
   category: ' Cadete ',
   homeClubName: 'HOME CLUB',
   awayClubName: 'AWAY CLUB',
@@ -28,8 +28,7 @@ const datedGame = {
 const detailMetadata = {
   slug: 'game',
   id: 'ABC',
-  date: '2026-09-21',
-  time: '11:30:00',
+  date: '2026-09-21T09:30:00Z',
   category: ' Cadete ',
 };
 
@@ -40,20 +39,17 @@ test('sides reference clubs without duplicating names, teams or logos', () => {
   assert.throws(() => buildSide(clubs, null, null), /missing name/);
 });
 
-test('dated games preserve metadata without scores and normalize unknown times', () => {
+test('dated games preserve UTC dates without scores', () => {
   assert.deepEqual(fromDatedGame(datedGame, clubs), {
     slug: 'game',
-    date: '2026-09-21',
-    time: '11:30',
+    date: '2026-09-21T09:30:00Z',
     venue: '',
     category: 'Cadete',
     played: false,
     home: { club: 'home', score: null },
     away: { club: 'away', score: null },
   });
-  for (const time of ['00:00:00', '', undefined]) {
-    assert.equal(fromDatedGame({ ...datedGame, time }, clubs).time, null);
-  }
+  assert.equal(fromDatedGame({ ...datedGame, date: '2026-09-21T00:00:00Z' }, clubs).date, '2026-09-21T00:00:00Z');
   assert.equal(fromDatedGame({ ...datedGame, venue: 'ferrandiz' }, clubs).venue, 'ferrandiz');
 });
 
@@ -74,8 +70,7 @@ test('scores and played status come only from score files', (t) => {
   );
   assert.deepEqual(fromDatedGame(datedGame, clubs, file), {
     slug: 'game',
-    date: '2026-09-21',
-    time: '11:30',
+    date: '2026-09-21T09:30:00Z',
     venue: '',
     category: 'Cadete',
     played: true,
@@ -183,6 +178,7 @@ test('calendar builds from dated games without legacy files, sorting and skippin
     'core/config.js',
     'core/games.js',
     'core/dated-games.js',
+    'core/dates.js',
     'core/files.js',
     'core/timely-scores.js',
     'core/validate.js',
@@ -202,9 +198,9 @@ test('calendar builds from dated games without legacy files, sorting and skippin
     datedGamesFile,
     JSON.stringify({
       'dated-games': [
-        { ...datedGame, slug: 'later', id: 'BCD', date: '2026-09-22' },
+        { ...datedGame, slug: 'later', id: 'BCD', date: '2026-09-22T09:30:00Z' },
         datedGame,
-        { ...datedGame, slug: 'earlier', id: 'CDE', time: '09:00:00' },
+        { ...datedGame, slug: 'earlier', id: 'CDE', date: '2026-09-21T06:00:00Z' },
         { ...datedGame, slug: '' },
         { ...datedGame, slug: 'invalid-id', id: '' },
       ],
@@ -237,6 +233,13 @@ test('calendar builds from dated games without legacy files, sorting and skippin
       gamesScores: path.dirname(gamesScores),
     },
   };
+  const sync = await fetchNextGames({
+    config: { paths: { ...config.paths, nextGames: path.join(directory, 'next-games') } },
+    getNextGames: async () => ({
+      mispartidos: [{ IdPartido: 'CDE', Fecha: '21/09/2026', Hora: '09:00:00' }],
+    }),
+  });
+  assert.equal(sync.updated[0].date, '2026-09-21T07:00:00Z');
   assert.deepEqual(await buildCalendar(config), { count: 3, skipped: ['(no slug)', 'invalid-id'] });
   const calendar = JSON.parse(fs.readFileSync(path.join(directory, 'data/calendar.json'), 'utf8'));
   assert.deepEqual(
@@ -260,11 +263,11 @@ test('calendar builds from dated games without legacy files, sorting and skippin
   await buildCalendar(config);
   const rebuilt = JSON.parse(fs.readFileSync(calendarFile, 'utf8'));
   assert.deepEqual(
-    rebuilt.map(({ slug, venue, time }) => ({ slug, venue, time })),
+    rebuilt.map(({ slug, venue, date }) => ({ slug, venue, date })),
     [
-      { slug: 'earlier', venue: 'manual-earlier', time: '09:00' },
-      { slug: 'game', venue: '', time: '11:30' },
-      { slug: 'later', venue: '', time: '11:30' },
+      { slug: 'earlier', venue: 'manual-earlier', date: '2026-09-21T07:00:00Z' },
+      { slug: 'game', venue: '', date: '2026-09-21T09:30:00Z' },
+      { slug: 'later', venue: '', date: '2026-09-22T09:30:00Z' },
     ],
   );
   await buildCalendar(config);

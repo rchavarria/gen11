@@ -78,12 +78,6 @@ function loadClubs() {
   return bySourceName;
 }
 
-function toTime(hhmmss) {
-  const match = /^(\d{2}):(\d{2})/.exec(hhmmss || '');
-  if (!match || (match[1] === '00' && match[2] === '00')) return null;
-  return `${match[1]}:${match[2]}`;
-}
-
 function toScore(value) {
   const number = Number.parseInt(value, 10);
   return Number.isFinite(number) ? number : null;
@@ -109,7 +103,6 @@ function fromDatedGame(game, clubs, scoreFile) {
   return {
     slug: game.slug,
     date: game.date,
-    time: toTime(game.time),
     venue: game.venue || '',
     category: (game.category || '').trim(),
     played: match.estado_partido === 'FINALIZADO' || (home !== null && away !== null),
@@ -211,7 +204,7 @@ async function buildCalendar(config) {
 
   const calendar = games.map((game) => fromDatedGame(game, clubs, scoreIndex.get(game.id)));
 
-  calendar.sort((a, b) => `${a.date} ${a.time || ''}`.localeCompare(`${b.date} ${b.time || ''}`));
+  calendar.sort((a, b) => a.date.localeCompare(b.date));
 
   fs.mkdirSync(DATA_DIR, { recursive: true });
   fs.writeFileSync(CALENDAR_FILE, `${JSON.stringify(calendar, null, 2)}\n`, 'utf8');

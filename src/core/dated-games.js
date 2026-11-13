@@ -7,6 +7,7 @@
 const fs = require('node:fs/promises');
 const path = require('node:path');
 const { writeJson } = require('./files');
+const { isUtcIsoDateTime } = require('./dates');
 
 /**
  * Reads <outputDir>/dated-games.json, returning an empty list when it does not exist.
@@ -31,6 +32,12 @@ async function readDatedGamesFile(config) {
   }
   if (data === null || typeof data !== 'object' || !Array.isArray(data['dated-games'])) {
     throw new Error(`Invalid structure in ${file}: "dated-games" array is missing.`);
+  }
+  if (data['dated-games'].some((game) => game && Object.hasOwn(game, 'time'))) {
+    throw new Error(`Legacy dates in ${file}; run node src/migrate-dated-games.js first.`);
+  }
+  if (data['dated-games'].some((game) => game && !isUtcIsoDateTime(game.date))) {
+    throw new Error(`Invalid UTC date in ${file}; run node src/migrate-dated-games.js or correct the date.`);
   }
   return data;
 }

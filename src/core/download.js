@@ -9,34 +9,23 @@ const path = require('node:path');
 
 const { isNoDataError } = require('./api-client');
 const { shortWait } = require('./wait');
-const { formatDuration, timestamp, toDayString } = require('./format');
+const { formatDuration, timestamp } = require('./format');
 const { fileExists } = require('./validate');
 const { buildFileName, saveStats, saveScore } = require('./files');
 const { isValidGame } = require('./games');
+const { madridDay, madridToday } = require('./dates');
 
 const SEPARATOR = '-'.repeat(50);
 
 /**
  * Returns true when `value` is a valid date whose day is strictly after today.
- * Accepts "YYYY-MM-DD" or any ISO 8601 date-time. Missing or invalid values
- * return false.
+ * Accepts UTC ISO 8601 date-times. Missing or invalid values return false.
  * @param {unknown} value
  * @returns {boolean}
  */
 function isAfterToday(value) {
-  if (typeof value !== 'string' || value.trim() === '') return false;
-  const text = value.trim();
-  let day;
-  if (/^\d{4}-\d{2}-\d{2}$/.test(text)) {
-    const parsed = new Date(`${text}T00:00:00Z`);
-    if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== text) return false;
-    day = text;
-  } else {
-    const parsed = new Date(text);
-    if (Number.isNaN(parsed.getTime())) return false;
-    day = toDayString(parsed);
-  }
-  return day > toDayString(new Date());
+  const day = madridDay(value);
+  return Boolean(day && day > madridToday());
 }
 
 /**

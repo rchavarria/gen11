@@ -53,10 +53,10 @@ async function downloadGame(client, game, state) {
 }
 
 /**
- * Processes every game of the data object, mutating it in memory.
+ * Processes games, first identifying downloads and then downloading them.
  * `summary.downloadedSlugs` and `summary.notPlayedSlugs` list the affected games.
  * @param {import('./api-client').ApiClient} client
- * @param {{dated-games: object[]}} data
+ * @param {object[]} games
  * @param {{requestsSent?: number}} [state] Pass requestsSent > 0 when a request
  *   was already sent, so the first download waits first.
  */
@@ -66,17 +66,17 @@ async function processGames(client, games, state = { requestsSent: 0 }) {
     skipped: 0,
     notPlayedYet: 0,
     alreadyDownloaded: 0,
+    toDownload: 0,
     newlyDownloaded: 0,
     notPlayed: 0,
     ignored: 0,
     downloadedSlugs: [],
     notPlayedSlugs: [],
   };
-  const total = games.length;
+  const toDownload = [];
+  let partialDownloadError;
 
-  for (let i = 0; i < total; i += 1) {
-    const game = games[i];
-
+  for (const game of games) {
     if (!isValidGame(game)) {
       summary.ignored += 1;
       continue;
@@ -106,15 +106,29 @@ async function processGames(client, games, state = { requestsSent: 0 }) {
 
     if (hasStats !== hasScore) {
       const missing = hasStats ? scoresDir : statsDir;
-      const error = new Error(
+      partialDownloadError ??= new Error(
         `Game "${game.slug}" is only partially downloaded: missing ${path.join(missing, fileName)}`,
       );
-      error.summary = summary;
-      throw error;
+      continue;
     }
 
+    toDownload.push(game);
+  }
+
+  summary.toDownload = toDownload.length;
+  console.log(
+    `To download: ${summary.toDownload} (skipped ${summary.skipped}, not played yet ${summary.notPlayedYet}, already downloaded ${summary.alreadyDownloaded}, ignored ${summary.ignored})`,
+  );
+
+  if (partialDownloadError) {
+    partialDownloadError.summary = summary;
+    throw partialDownloadError;
+  }
+
+  for (let i = 0; i < toDownload.length; i += 1) {
+    const game = toDownload[i];
     console.log(SEPARATOR);
-    console.log(`Game: ${i + 1}/${total}`);
+    console.log(`Game: ${i + 1}/${toDownload.length}`);
     console.log(`Slug: ${game.slug}`);
     console.log(`Id: ${game.id}`);
     const started = new Date();
@@ -153,6 +167,7 @@ function printSummary(summary, elapsedMs) {
   console.log(`Skipped (marked as downloaded): ${summary.skipped}`);
   console.log(`Skipped (less than or exactly 3 hours since start): ${summary.notPlayedYet}`);
   console.log(`Already downloaded: ${summary.alreadyDownloaded}`);
+  console.log(`To download: ${summary.toDownload}`);
   console.log(`Newly downloaded: ${summary.newlyDownloaded}`);
   console.log(`Not played ("sin datos"): ${summary.notPlayed}`);
   console.log(`Ignored (empty/invalid id): ${summary.ignored}`);

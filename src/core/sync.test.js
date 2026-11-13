@@ -366,6 +366,87 @@ test('download processing skips future games without adding a played field', asy
   assert.equal(isAfterGameSchedule('2099-99-99'), false);
 });
 
+test('download progress counts only games that need downloading', async (t) => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gen11-download-progress-'));
+  t.onTestFinished(() => fs.rm(dir, { recursive: true, force: true }));
+  const stats = path.join(dir, 'stats');
+  const scores = path.join(dir, 'scores');
+  await fs.mkdir(stats);
+  await fs.mkdir(scores);
+  await fs.writeFile(path.join(stats, 'existing-CC.json'), '{}');
+  await fs.writeFile(path.join(scores, 'existing-CC.json'), '{}');
+
+  const log = vi.spyOn(console, 'log').mockImplementation(() => {});
+  const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+  try {
+    const summary = await processDownloads(
+      {
+        config: { paths: { gamesStats: stats, gamesScores: scores } },
+        getGameStats: async () => {
+          throw new ApiError('No data', { apiError: 'sin datos' });
+        },
+        getGameScore: vi.fn(),
+      },
+      [
+        { slug: 'marked', id: 'AA', downloaded: true },
+        { slug: 'future', id: 'BB', date: '2099-12-31T00:00:00Z' },
+        { slug: 'existing', id: 'CC' },
+        { slug: 'pending', id: 'DD' },
+        { slug: '', id: 'EE' },
+      ],
+    );
+
+    assert.equal(summary.toDownload, 1);
+    assert.ok(
+      log.mock.calls.some(
+        ([line]) => line === 'To download: 1 (skipped 1, not played yet 1, already downloaded 1, ignored 1)',
+      ),
+    );
+    assert.ok(log.mock.calls.some(([line]) => line === 'Game: 1/1'));
+  } finally {
+    log.mockRestore();
+    warn.mockRestore();
+  }
+});
+
+test('download analysis fails on partial files before making API requests', async (t) => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gen11-download-partial-'));
+  t.onTestFinished(() => fs.rm(dir, { recursive: true, force: true }));
+  const stats = path.join(dir, 'stats');
+  const scores = path.join(dir, 'scores');
+  await fs.mkdir(stats);
+  await fs.mkdir(scores);
+  await fs.writeFile(path.join(stats, 'partial-BB.json'), '{}');
+
+  const getGameStats = vi.fn();
+  const getGameScore = vi.fn();
+  const log = vi.spyOn(console, 'log').mockImplementation(() => {});
+  try {
+    await assert.rejects(
+      processDownloads(
+        {
+          config: { paths: { gamesStats: stats, gamesScores: scores } },
+          getGameStats,
+          getGameScore,
+        },
+        [
+          { slug: 'pending', id: 'AA' },
+          { slug: 'partial', id: 'BB' },
+        ],
+      ),
+      (error) => {
+        assert.match(error.message, /only partially downloaded/);
+        assert.equal(error.summary.toDownload, 1);
+        return true;
+      },
+    );
+    assert.equal(getGameStats.mock.calls.length, 0);
+    assert.equal(getGameScore.mock.calls.length, 0);
+  } finally {
+    log.mockRestore();
+  }
+});
+
 test('download eligibility uses the UTC start and the strict three-hour boundary', () => {
   vi.useFakeTimers();
   try {

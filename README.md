@@ -48,6 +48,18 @@ new games in `dated-games.json` is a manual step: games without a slug are
 ignored and listed in the report as pending until you fill it in and run
 `sync` again.
 
+Game `date` fields use UTC ISO 8601 (`YYYY-MM-DDTHH:mm:ssZ`), converted from
+Europe/Madrid. The UI displays Madrid dates and times. `T00:00:00Z` represents an
+unknown time on that calendar day; a real time converting to midnight UTC is
+indistinguishable from that marker. Missing or invalid source dates for new games
+are reported and skipped. Ambiguous Madrid times during the autumn clock change
+use the earlier occurrence; nonexistent times during the spring change are rejected.
+
+To migrate an existing `<outputDir>/dated-games.json`, run
+`node src/migrate-dated-games.js` before sync or build-data. It saves a backup next
+to the original, converts all legacy `date`/`time` entries, and can be run again
+safely. Invalid dates abort the migration without replacing the original.
+
 `build-data.js` reads game metadata from `dated-games.json` and scores from
 `games-scores/`. Without a score file, games are shown as not played.
 For games with both numeric scores, it also rewrites `src/data/games/<slug>.json`.
@@ -110,4 +122,5 @@ GitHub Pages checks lint and tests before building.
 | `src/core/download.js`      | `processGames` (stats + scores download), `downloadGame`, `isAfterToday`                             |
 | `src/core/timely-scores.js` | `getScoringActions`, `getTimelyScores`                                                               |
 | `src/core/next-games.js`    | `fetchNextGames`, `mergeDatedGames`, `toIsoDate`                                                     |
+| `src/core/dates.js`         | Madrid/UTC conversion and date helpers                                                               |
 | `src/core/report.js`        | `buildReport`, `writeReport` (sync report)                                                           |

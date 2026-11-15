@@ -1,0 +1,81 @@
+{
+  "competitions": [
+    {
+      "id": "s67-kdt-oro",
+      "season": "s67",
+      "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+      "shortName": "Cadete Oro",
+      "phases": [
+        {
+          "id": "f1",
+          "name": "Primera fase",
+          "type": "league",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Grupo 1",
+              "teams": ["real-madrid", "sba", "distrito", "fuenlabrada", "canoe", "sanjorge"]
+            },
+            {
+              "id": "g2",
+              "name": "Grupo 2",
+              "teams": ["alcobendas", "estudiantes", "alcorcon", "laso", "zentro", "torrelodones"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s67-jnr-oro",
+      "season": "s67",
+      "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+      "shortName": "Junior Oro",
+      "phases": [
+        {
+          "id": "f1",
+          "name": "Primera fase",
+          "type": "league",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Grupo 1",
+              "teams": ["alcobendas", "sba", "torrejon", "sanjorge", "canoe", "real-madrid"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s56-kdt-oro",
+      "season": "s56",
+      "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+      "shortName": "Cadete Oro",
+      "phases": [
+        {
+          "id": "f1",
+          "name": "Primera fase",
+          "type": "league",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Grupo 1",
+              "teams": ["real-madrid", "alcobendas", "rozas", "patrocinio", "estudiantes", "fuenlabrada"]
+            }
+          ]
+        },
+        {
+          "id": "f3",
+          "name": "Tercera fase",
+          "type": "league",
+          "teams": ["torrelodones", "alcobendas", "fuenlabrada", "distrito"]
+        },
+        {
+          "id": "playoffs",
+          "name": "Playoffs",
+          "type": "knockout",
+          "teams": ["zentro", "alcobendas"]
+        }
+      ]
+    }
+  ]
+}

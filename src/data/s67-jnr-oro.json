@@ -1,0 +1,147 @@
+{
+  "phases": [
+    {
+      "id": "f1",
+      "groups": [
+        {
+          "id": "g1",
+          "rounds": [
+            {
+              "id": "j01",
+              "games": [
+                {
+                  "id": "2B0066007A0045006A005A0050006B006100790032006400390038006B0049007200560053004D00750051003D003D00",
+                  "date": "2026-09-20T10:30:00Z",
+                  "venue": "sba",
+                  "homeClubName": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                  "awayClubName": "BALONCESTO ALCOBENDAS",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j02",
+              "games": [
+                {
+                  "id": "78004B00300068005500730072002F0057007700750064006F0067006E004D004D00350047003200720041003D003D00",
+                  "date": "2026-09-27T18:00:00Z",
+                  "venue": "antela",
+                  "homeClubName": "BALONCESTO ALCOBENDAS",
+                  "awayClubName": "BASKET TORREJON CDE",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j03",
+              "games": [
+                {
+                  "id": "3200770030002B006400480069007400520031004C005800650052004100380031007A0070006D00550067003D003D00",
+                  "date": "2026-10-04T11:30:00Z",
+                  "venue": "diaz-miguel",
+                  "homeClubName": "SAN JORGE BALONCESTO",
+                  "awayClubName": "BALONCESTO ALCOBENDAS",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j04",
+              "games": [
+                {
+                  "id": "6C00730072005300430074007200790066006700680057005A0037003600380030006B004B006D006F0077003D003D00",
+                  "date": "2026-10-18T11:00:00Z",
+                  "venue": "canoe",
+                  "homeClubName": "REAL CANOE N.C.",
+                  "awayClubName": "BALONCESTO ALCOBENDAS",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j05",
+              "games": [
+                {
+                  "id": "2F0046007A006B006A00510035006B0035006900370033005A0070006F0065006F004F00530042004C0041003D003D00",
+                  "date": "2026-10-25T12:15:00Z",
+                  "venue": "antela",
+                  "homeClubName": "BALONCESTO ALCOBENDAS",
+                  "awayClubName": "REAL MADRID C.F.",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j06",
+              "games": [
+                {
+                  "id": "65004C004B006300640073004500570039006F0043004800390065004F0071005000710031004900630051003D003D00",
+                  "date": "2026-11-08T12:30:00Z",
+                  "venue": "antela",
+                  "video": "https://youtu.be/go9AWn84-pg",
+                  "homeClubName": "BALONCESTO ALCOBENDAS",
+                  "awayClubName": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j07",
+              "games": [
+                {
+                  "id": "61006D0070007A00410049004600540073006F006A006C004C004500640065006B00730069007800530051003D003D00",
+                  "date": "2026-11-15T14:00:00Z",
+                  "venue": "limones",
+                  "homeClubName": "BASKET TORREJON CDE",
+                  "awayClubName": "BALONCESTO ALCOBENDAS",
+                  "downloaded": false
+                }
+              ]
+            },
+            {
+              "id": "j08",
+              "games": [
+                {
+                  "id": "7A0063006B003900500056006C0047006B0075006400570035003100630070003800450044004100460041003D003D00",
+                  "date": "2026-11-22T17:30:00Z",
+                  "venue": "antela",
+                  "homeClubName": "BALONCESTO ALCOBENDAS",
+                  "awayClubName": "SAN JORGE BALONCESTO",
+                  "downloaded": false
+                }
+              ]
+            },
+            {
+              "id": "j09",
+              "games": [
+                {
+                  "id": "2B00740030006A00360054005A0053004300750038004D0050006A0066003900320079002B003000740051003D003D00",
+                  "date": "2026-11-07T12:30:00Z",
+                  "venue": "antela",
+                  "video": "https://youtu.be/xS8Smxr4KSM",
+                  "homeClubName": "BALONCESTO ALCOBENDAS",
+                  "awayClubName": "REAL CANOE N.C.",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j10",
+              "games": [
+                {
+                  "id": "4C007100470043006A005300350073002F0045004D0052005100690065006200710042004A005400660077003D003D00",
+                  "date": "2026-12-13T00:00:00Z",
+                  "venue": "valdebebas",
+                  "homeClubName": "REAL MADRID C.F.",
+                  "awayClubName": "BALONCESTO ALCOBENDAS",
+                  "downloaded": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pending-games": []
+}

@@ -1,0 +1,602 @@
+{
+  "phases": [
+    {
+      "id": "f1",
+      "groups": [
+        {
+          "id": "g1",
+          "rounds": [
+            {
+              "id": "j01",
+              "games": [
+                {
+                  "id": "41006B0058002B004C00500062006C00530053004D0058003300730075006200760030007A006400490067003D003D00",
+                  "date": "2026-09-19T16:00:00Z",
+                  "venue": "valdebebas",
+                  "homeClubName": "REAL MADRID C.F.",
+                  "awayClubName": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                  "downloaded": true
+                },
+                {
+                  "id": "5A007A004E00410059003800560077006800700069004200780034004F0048005A006B0066006200630041003D003D00",
+                  "date": "2026-09-19T16:30:00Z",
+                  "venue": "circular",
+                  "homeClubName": "DISTRITO OLIMPICO",
+                  "awayClubName": "BALONCESTO FUENLABRADA",
+                  "downloaded": true
+                },
+                {
+                  "id": "74004D00530062006D007400440031005900410072006A00380045004F0034005600680074003700350067003D003D00",
+                  "date": "2026-09-20T09:15:00Z",
+                  "venue": "canoe",
+                  "homeClubName": "REAL CANOE N.C.",
+                  "awayClubName": "SAN JORGE BALONCESTO",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j02",
+              "games": [
+                {
+                  "id": "4F003900760055007800790069006D0049005500500073006900560048004F0035006F00350031006A0067003D003D00",
+                  "date": "2026-09-26T12:00:00Z",
+                  "venue": "sba",
+                  "homeClubName": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                  "awayClubName": "REAL CANOE N.C.",
+                  "downloaded": true
+                },
+                {
+                  "id": "330034006E0070004D0052004A005800730069006400500059007100640044004A006E0051006300740077003D003D00",
+                  "date": "2026-10-11T14:00:00Z",
+                  "venue": "diaz-miguel",
+                  "homeClubName": "SAN JORGE BALONCESTO",
+                  "awayClubName": "DISTRITO OLIMPICO",
+                  "downloaded": true
+                },
+                {
+                  "id": "6900330041004F006A00670067005A007600640058006500490053006400530059007600570059005A0041003D003D00",
+                  "date": "2026-11-08T12:30:00Z",
+                  "venue": "fernando-martin",
+                  "homeClubName": "BALONCESTO FUENLABRADA",
+                  "awayClubName": "REAL MADRID C.F.",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j03",
+              "games": [
+                {
+                  "id": "520044004F00540044006F007A00470032005A004E00450066005600580042002B006100520042004F0041003D003D00",
+                  "date": "2026-10-03T12:00:00Z",
+                  "venue": "sba",
+                  "homeClubName": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                  "awayClubName": "BALONCESTO FUENLABRADA",
+                  "downloaded": true
+                },
+                {
+                  "id": "74004D006C00460058007A0044004500650037006D006F0061004700570056005600640036004B00660041003D003D00",
+                  "date": "2026-10-03T14:30:00Z",
+                  "venue": "canoe",
+                  "homeClubName": "REAL CANOE N.C.",
+                  "awayClubName": "DISTRITO OLIMPICO",
+                  "downloaded": true
+                },
+                {
+                  "id": "66006F005900700042005600330058004D006F0070003300430072005200300077004C0056005300700041003D003D00",
+                  "date": "2026-10-03T15:00:00Z",
+                  "venue": "valdebebas",
+                  "homeClubName": "REAL MADRID C.F.",
+                  "awayClubName": "SAN JORGE BALONCESTO",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j04",
+              "games": [
+                {
+                  "id": "3300760067006C00620077006E0079004F004B006100780050005600500047004300420039006800790077003D003D00",
+                  "date": "2026-10-17T14:30:00Z",
+                  "venue": "circular",
+                  "homeClubName": "DISTRITO OLIMPICO",
+                  "awayClubName": "REAL MADRID C.F.",
+                  "downloaded": true
+                },
+                {
+                  "id": "750052004E0068005000530050002F00790049004A006D00580034006A00370050005A0044005700360077003D003D00",
+                  "date": "2026-10-18T09:15:00Z",
+                  "venue": "canoe",
+                  "homeClubName": "REAL CANOE N.C.",
+                  "awayClubName": "BALONCESTO FUENLABRADA",
+                  "downloaded": true
+                },
+                {
+                  "id": "37004F0054007A00780068006100340039007700690077006400540042005A00300067007A0076006C0041003D003D00",
+                  "date": "2026-10-18T18:15:00Z",
+                  "venue": "diaz-miguel",
+                  "homeClubName": "SAN JORGE BALONCESTO",
+                  "awayClubName": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j05",
+              "games": [
+                {
+                  "id": "55004D007100510063003000370077004B0053004500610065003800680070004B004400750077002B0051003D003D00",
+                  "date": "2026-10-24T12:00:00Z",
+                  "venue": "sba",
+                  "homeClubName": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                  "awayClubName": "DISTRITO OLIMPICO",
+                  "downloaded": true
+                },
+                {
+                  "id": "460055007400690034005000520050007A00510072002F004D007000550037004900370048004500440041003D003D00",
+                  "date": "2026-10-24T15:00:00Z",
+                  "venue": "valdebebas",
+                  "homeClubName": "REAL MADRID C.F.",
+                  "awayClubName": "REAL CANOE N.C.",
+                  "downloaded": true
+                },
+                {
+                  "id": "52002B00670066005600520077005200350033007500550054004400680053004F00360064004B006A0067003D003D00",
+                  "date": "2026-10-25T15:30:00Z",
+                  "venue": "fernando-martin",
+                  "homeClubName": "BALONCESTO FUENLABRADA",
+                  "awayClubName": "SAN JORGE BALONCESTO",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j06",
+              "games": [
+                {
+                  "id": "6A004E004D006A004900370033006D004A00780076004B004D005800730074006800320051003600360041003D003D00",
+                  "date": "2026-11-07T12:30:00Z",
+                  "venue": "fernando-martin",
+                  "homeClubName": "BALONCESTO FUENLABRADA",
+                  "awayClubName": "DISTRITO OLIMPICO",
+                  "downloaded": true
+                },
+                {
+                  "id": "79004D007600780032004E0052006B00430068006E00670046007500510069003000430073003200330041003D003D00",
+                  "date": "2026-11-07T13:00:00Z",
+                  "venue": "sba",
+                  "homeClubName": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                  "awayClubName": "REAL MADRID C.F.",
+                  "downloaded": true
+                },
+                {
+                  "id": "69006E004A006D007A004E007800690068006300640036007900770067006B007300380058003400310041003D003D00",
+                  "date": "2026-11-26T20:15:00Z",
+                  "venue": "diaz-miguel",
+                  "homeClubName": "SAN JORGE BALONCESTO",
+                  "awayClubName": "REAL CANOE N.C.",
+                  "downloaded": false
+                }
+              ]
+            },
+            {
+              "id": "j07",
+              "games": [
+                {
+                  "id": "470042003100520070004F007300650047004200630072006300790078007A004D0042006B002B00740041003D003D00",
+                  "date": "2026-11-14T09:00:00Z",
+                  "venue": "valdebebas",
+                  "homeClubName": "REAL MADRID C.F.",
+                  "awayClubName": "BALONCESTO FUENLABRADA",
+                  "downloaded": false
+                },
+                {
+                  "id": "3800490072002B0076006400410038004600490070004C002B0054005700630075004C0055002F006C0067003D003D00",
+                  "date": "2026-11-14T12:30:00Z",
+                  "venue": "circular",
+                  "homeClubName": "DISTRITO OLIMPICO",
+                  "awayClubName": "SAN JORGE BALONCESTO",
+                  "downloaded": false
+                },
+                {
+                  "id": "45006400750041002B00690048004500550030006200310073006400450055006300750048006900320051003D003D00",
+                  "date": "2026-11-15T10:15:00Z",
+                  "venue": "canoe",
+                  "homeClubName": "REAL CANOE N.C.",
+                  "awayClubName": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                  "downloaded": false
+                }
+              ]
+            },
+            {
+              "id": "j08",
+              "games": [
+                {
+                  "id": "66006900420039005A004B00670075004200720077006100770035004300740065006F0043004D00690041003D003D00",
+                  "date": "2026-11-22T19:15:00Z",
+                  "venue": "diaz-miguel",
+                  "homeClubName": "SAN JORGE BALONCESTO",
+                  "awayClubName": "REAL MADRID C.F.",
+                  "downloaded": false
+                },
+                {
+                  "id": "35005600380059003400560067004A0039004500300037004F00770055003000440066004C006E00730041003D003D00",
+                  "date": "2026-11-21T08:00:00Z",
+                  "venue": "arroyo",
+                  "homeClubName": "BALONCESTO FUENLABRADA",
+                  "awayClubName": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                  "downloaded": false
+                },
+                {
+                  "id": "47006B006E00730054007A005400710074004E00360044006F00320078002B005A0041004D005500320077003D003D00",
+                  "date": "2026-11-21T17:30:00Z",
+                  "venue": "circular",
+                  "homeClubName": "DISTRITO OLIMPICO",
+                  "awayClubName": "REAL CANOE N.C.",
+                  "downloaded": false
+                }
+              ]
+            },
+            {
+              "id": "j09",
+              "games": [
+                {
+                  "id": "640048002B004C004C00610032004D004A006700580041002B004A0062003500430051002F004A004C0077003D003D00",
+                  "date": "2026-11-28T13:00:00Z",
+                  "venue": "sba",
+                  "homeClubName": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                  "awayClubName": "SAN JORGE BALONCESTO",
+                  "downloaded": false
+                },
+                {
+                  "id": "33006D004200650064004D002B00730067005A004D00660053006B00780065006B0064002B004E00730077003D003D00",
+                  "date": "2026-11-28T00:00:00Z",
+                  "venue": "arroyo",
+                  "homeClubName": "BALONCESTO FUENLABRADA",
+                  "awayClubName": "REAL CANOE N.C.",
+                  "downloaded": false
+                },
+                {
+                  "id": "31006F00470039007700740076004E00320071005A006C0031005000690077004F00700056004300540067003D003D00",
+                  "date": "2026-11-28T00:00:00Z",
+                  "venue": "valdebebas",
+                  "homeClubName": "REAL MADRID C.F.",
+                  "awayClubName": "DISTRITO OLIMPICO",
+                  "downloaded": false
+                }
+              ]
+            },
+            {
+              "id": "j10",
+              "games": [
+                {
+                  "id": "590030007A004A004D0079006D00690036004B004D004300740069004100790044002F0067003600490051003D003D00",
+                  "date": "2026-12-12T00:00:00Z",
+                  "venue": "circular",
+                  "homeClubName": "DISTRITO OLIMPICO",
+                  "awayClubName": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                  "downloaded": false
+                },
+                {
+                  "id": "7700740053006200520066007100330063007000480045006E0039002B0034007500370037005500590041003D003D00",
+                  "date": "2026-12-13T00:00:00Z",
+                  "venue": "diaz-miguel",
+                  "homeClubName": "SAN JORGE BALONCESTO",
+                  "awayClubName": "BALONCESTO FUENLABRADA",
+                  "downloaded": false
+                },
+                {
+                  "id": "720068002F00420052003300700053007200790056006300420078007200560066004A0031005300730067003D003D00",
+                  "date": "2026-12-13T00:00:00Z",
+                  "venue": "canoe",
+                  "homeClubName": "REAL CANOE N.C.",
+                  "awayClubName": "REAL MADRID C.F.",
+                  "downloaded": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "g2",
+          "rounds": [
+            {
+              "id": "j01",
+              "games": [
+                {
+                  "id": "64006600750068002F00360052005600370066005200420065002B0043006F004100330035007600660041003D003D00",
+                  "date": "2026-10-27T18:30:00Z",
+                  "venue": "diaz-miguel",
+                  "homeClubName": "ZENTRO C.B.",
+                  "awayClubName": "TORRELODONES A.D.",
+                  "downloaded": true
+                },
+                {
+                  "id": "49004C00440045007800770045007900630071006A0031006E0047006C00500069006E006C003400570041003D003D00",
+                  "date": "2026-11-08T08:30:00Z",
+                  "venue": "canaleja",
+                  "homeClubName": "ALCORCON BASKET",
+                  "awayClubName": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                  "downloaded": true
+                },
+                {
+                  "id": "6D006B0075002B0034006400580065006F004500650070004C0050006600690052002F0036004B00460051003D003D00",
+                  "date": "2026-11-08T10:30:00Z",
+                  "venue": "antela",
+                  "video": "https://youtu.be/u8AJw0atlZ4",
+                  "homeClubName": "BALONCESTO ALCOBENDAS",
+                  "awayClubName": "ESTUDIANTES",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j02",
+              "games": [
+                {
+                  "id": "6200450062007A004A00670078007700630074007A007900470049006100330050005A0056005A00740077003D003D00",
+                  "date": "2026-09-26T17:30:00Z",
+                  "venue": "torrelodones",
+                  "homeClubName": "TORRELODONES A.D.",
+                  "awayClubName": "BALONCESTO ALCOBENDAS",
+                  "downloaded": true
+                },
+                {
+                  "id": "6900680032002B00730032006700720053007000680063004B0045003200350064003800540061004F0041003D003D00",
+                  "date": "2026-09-27T18:30:00Z",
+                  "venue": "magariños",
+                  "homeClubName": "ESTUDIANTES",
+                  "awayClubName": "ALCORCON BASKET",
+                  "downloaded": true
+                },
+                {
+                  "id": "6E006E0049005A00520048006F00560033005600360033006D004A00530067005200580057003300380067003D003D00",
+                  "date": "2026-10-08T19:00:00Z",
+                  "venue": "retamar",
+                  "homeClubName": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                  "awayClubName": "ZENTRO C.B.",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j03",
+              "games": [
+                {
+                  "id": "2B0043003600640044004D006F006100710051005000490038004F00710032007900350034006500790077003D003D00",
+                  "date": "2026-10-03T10:30:00Z",
+                  "venue": "torrelodones",
+                  "homeClubName": "TORRELODONES A.D.",
+                  "awayClubName": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                  "downloaded": true
+                },
+                {
+                  "id": "6C0055006300460049006B004D006E0049006C0070006400770066007A004B003700770072005000300077003D003D00",
+                  "date": "2026-10-04T11:15:00Z",
+                  "venue": "antela",
+                  "homeClubName": "BALONCESTO ALCOBENDAS",
+                  "awayClubName": "ALCORCON BASKET",
+                  "downloaded": true
+                },
+                {
+                  "id": "56004700700065007500300068004600640077007100750044007900420071007800620078007700340051003D003D00",
+                  "date": "2026-10-04T16:15:00Z",
+                  "venue": "diaz-miguel",
+                  "homeClubName": "ZENTRO C.B.",
+                  "awayClubName": "ESTUDIANTES",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j04",
+              "games": [
+                {
+                  "id": "54003800780050003500730059006C006B006B004A00760071003800430032003400410055003200380077003D003D00",
+                  "date": "2026-10-18T09:30:00Z",
+                  "venue": "canaleja",
+                  "homeClubName": "ALCORCON BASKET",
+                  "awayClubName": "ZENTRO C.B.",
+                  "downloaded": true
+                },
+                {
+                  "id": "79006A006800500068006A00590059006D004F004C00680054006E0068006B003500370058005400550041003D003D00",
+                  "date": "2026-10-18T16:30:00Z",
+                  "venue": "magariños",
+                  "homeClubName": "ESTUDIANTES",
+                  "awayClubName": "TORRELODONES A.D.",
+                  "downloaded": true
+                },
+                {
+                  "id": "48006900570049006D006C0039004300770073006F00710049005A00730062003000410048006D00410051003D003D00",
+                  "date": "2026-10-18T18:00:00Z",
+                  "venue": "antela",
+                  "homeClubName": "BALONCESTO ALCOBENDAS",
+                  "awayClubName": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j05",
+              "games": [
+                {
+                  "id": "6F005900320065005800690071002B004F00410062003100500042004600580056006400490079004E0077003D003D00",
+                  "date": "2026-10-24T17:30:00Z",
+                  "venue": "torrelodones",
+                  "homeClubName": "TORRELODONES A.D.",
+                  "awayClubName": "ALCORCON BASKET",
+                  "downloaded": true
+                },
+                {
+                  "id": "710059003300380057006C00730054006600380062004800350063004D006C004A00320063005100590041003D003D00",
+                  "date": "2026-10-25T17:15:00Z",
+                  "venue": "diaz-miguel",
+                  "homeClubName": "ZENTRO C.B.",
+                  "awayClubName": "BALONCESTO ALCOBENDAS",
+                  "downloaded": true
+                },
+                {
+                  "id": "6E00430041006100680053006F0037006D003300530068006C004A00430056007900470075005900480051003D003D00",
+                  "date": "2026-11-05T20:00:00Z",
+                  "venue": "retamar",
+                  "homeClubName": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                  "awayClubName": "ESTUDIANTES",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j06",
+              "games": [
+                {
+                  "id": "7800580075004E0059005800670034007800700065005A0051006200620064004F006F0054005000460067003D003D00",
+                  "date": "2026-09-20T16:00:00Z",
+                  "venue": "retamar",
+                  "homeClubName": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                  "awayClubName": "ALCORCON BASKET",
+                  "downloaded": true
+                },
+                {
+                  "id": "6F00530055006B00390061006F004600530072003800630066002B004A006400700051006F007500520041003D003D00",
+                  "date": "2026-09-29T17:00:00Z",
+                  "venue": "caja-magica",
+                  "homeClubName": "ESTUDIANTES",
+                  "awayClubName": "BALONCESTO ALCOBENDAS",
+                  "downloaded": true
+                },
+                {
+                  "id": "7300480075006D004200520048003900480066005900770031004200300049006D003000530057002F0077003D003D00",
+                  "date": "2026-11-07T10:30:00Z",
+                  "venue": "torrelodones",
+                  "homeClubName": "TORRELODONES A.D.",
+                  "awayClubName": "ZENTRO C.B.",
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j07",
+              "games": [
+                {
+                  "id": "4E007500560054004E005600560074004C00770044006A0071007800590032007A00470065005100320051003D003D00",
+                  "date": "2026-11-15T12:30:00Z",
+                  "venue": "antela",
+                  "homeClubName": "BALONCESTO ALCOBENDAS",
+                  "awayClubName": "TORRELODONES A.D.",
+                  "downloaded": false
+                },
+                {
+                  "id": "48007900790031005900490042004F005A004F00620049002F00560052006D005300660056005900300077003D003D00",
+                  "date": "2026-11-15T14:30:00Z",
+                  "venue": "canaleja",
+                  "homeClubName": "ALCORCON BASKET",
+                  "awayClubName": "ESTUDIANTES",
+                  "downloaded": false
+                },
+                {
+                  "id": "4E0073006700560045004F004A006600550054004700310033004F0046007100720073004A004200520041003D003D00",
+                  "date": "2026-11-15T17:15:00Z",
+                  "venue": "diaz-miguel",
+                  "homeClubName": "ZENTRO C.B.",
+                  "awayClubName": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                  "downloaded": false
+                }
+              ]
+            },
+            {
+              "id": "j08",
+              "games": [
+                {
+                  "id": "440054005100580064004F0076007700330043007700420041006A006600620072007500590069004F0051003D003D00",
+                  "date": "2026-11-22T10:30:00Z",
+                  "venue": "canaleja",
+                  "homeClubName": "ALCORCON BASKET",
+                  "awayClubName": "BALONCESTO ALCOBENDAS",
+                  "downloaded": false
+                },
+                {
+                  "id": "670042006900790065007200320035003500670065005300560036006B0063004300390036006A00540067003D003D00",
+                  "date": "2026-11-22T17:15:00Z",
+                  "venue": "retamar",
+                  "homeClubName": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                  "awayClubName": "TORRELODONES A.D.",
+                  "downloaded": false
+                },
+                {
+                  "id": "49006500610066006E004600410071004D00660045006F0046002B004200570034007000750069006D0051003D003D00",
+                  "date": "2026-11-22T19:30:00Z",
+                  "venue": "magariños",
+                  "homeClubName": "ESTUDIANTES",
+                  "awayClubName": "ZENTRO C.B.",
+                  "downloaded": false
+                }
+              ]
+            },
+            {
+              "id": "j09",
+              "games": [
+                {
+                  "id": "430067003600580031005000360051007000660033004400490034004B006100540030006B004300650051003D003D00",
+                  "date": "2026-11-28T00:00:00Z",
+                  "venue": "torrelodones",
+                  "homeClubName": "TORRELODONES A.D.",
+                  "awayClubName": "ESTUDIANTES",
+                  "downloaded": false
+                },
+                {
+                  "id": "650030005400370033004C00790039004A004700560032005300760062002F006C0046006F005300610077003D003D00",
+                  "date": "2026-11-29T00:00:00Z",
+                  "venue": "diaz-miguel",
+                  "homeClubName": "ZENTRO C.B.",
+                  "awayClubName": "ALCORCON BASKET",
+                  "downloaded": false
+                },
+                {
+                  "id": "4F005A00780056006D0051006100310072004500360056003900340035006B003400540044006E00740067003D003D00",
+                  "date": "2026-11-29T00:00:00Z",
+                  "venue": "retamar",
+                  "homeClubName": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                  "awayClubName": "BALONCESTO ALCOBENDAS",
+                  "downloaded": false
+                }
+              ]
+            },
+            {
+              "id": "j10",
+              "games": [
+                {
+                  "id": "6200370038004E004B007000710061006C00420067007900520037006E0048004B006A0072006400550041003D003D00",
+                  "date": "2026-12-13T00:00:00Z",
+                  "venue": "canaleja",
+                  "homeClubName": "ALCORCON BASKET",
+                  "awayClubName": "TORRELODONES A.D.",
+                  "downloaded": false
+                },
+                {
+                  "id": "340048003400760032006900480035006D006C0057005900570072004E0044004400620069004700520077003D003D00",
+                  "date": "2026-12-13T00:00:00Z",
+                  "venue": "magariños",
+                  "homeClubName": "ESTUDIANTES",
+                  "awayClubName": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                  "downloaded": false
+                },
+                {
+                  "id": "710047004F004E004B00310047004B007000370035006400470068004E004800420057006A0054004A0041003D003D00",
+                  "date": "2026-12-13T12:15:00Z",
+                  "venue": "antela",
+                  "homeClubName": "BALONCESTO ALCOBENDAS",
+                  "awayClubName": "ZENTRO C.B.",
+                  "downloaded": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pending-games": [
+  ]
+}

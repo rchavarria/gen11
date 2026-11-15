@@ -26,7 +26,7 @@ vi.mock('../../data/venues.json', () => ({
     { slug: 'unsafe-maps', name: 'Pabellón URL No HTTP', maps: 'javascript:alert(1)' },
   ],
 }));
-vi.mock('../../data/games/s56-kdt-oro-f1-g1-j1-madrid-alcobendas.json', () => ({
+vi.mock('../../data/games/s56-kdt-oro-f1-g1-j1-real-madrid-alcobendas.json', () => ({
   default: game,
 }));
 
@@ -36,7 +36,7 @@ beforeEach(() => {
 
 function renderPage() {
   return render(
-    <MemoryRouter initialEntries={['/game/s56-kdt-oro-f1-g1-j1-madrid-alcobendas']}>
+    <MemoryRouter initialEntries={['/game/s56-kdt-oro-f1-g1-j1-real-madrid-alcobendas']}>
       <Routes>
         <Route path="/game/:slug" element={<GamePage />} />
       </Routes>

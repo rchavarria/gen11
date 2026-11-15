@@ -57,9 +57,6 @@ Games are organised as seasons › competitions › phases › groups › rounds
 - The game slug is not stored: it is computed as
   `<competition>-<phase>[-<group>]-<round>-<home>-<away>`, using club slugs from `clubs.json`.
 
-`src/migrate-dated-games.js` is the one-off migration from the old
-`downloads/dated-games.json` (it reads it but never modifies it).
-
 `sync.js` runs the whole pipeline: fetch upcoming games and add the new ones
 to the competition trees; if that request fails with an API error,
 it renews the key and retries once. It also updates dates and times of known

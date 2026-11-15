@@ -22,35 +22,34 @@ async function writeJson(dir, fileName, data) {
 }
 
 /**
- * Returns the output file name for a game. The title is used as-is.
- * @param {string} title
+ * Returns the output file name for a game: <id>.json.
  * @param {string} id
  * @returns {string}
  */
-function buildFileName(title, id) {
-  return `${title}-${id}.json`;
+function buildFileName(id) {
+  return `${id}.json`;
 }
 
 /**
  * Saves the complete stats response of a game to disk.
- * @param {{title: string, id: string}} game
+ * @param {{id: string}} game
  * @param {object} responseData
  * @param {string} outputDir Target directory.
  * @returns {Promise<string>} The generated file name.
  */
 function saveStats(game, responseData, outputDir) {
-  return writeJson(outputDir, buildFileName(game.title, game.id), responseData);
+  return writeJson(outputDir, buildFileName(game.id), responseData);
 }
 
 /**
  * Saves the complete score response of a game to disk.
- * @param {{title: string, id: string}} game
+ * @param {{id: string}} game
  * @param {object} responseData
  * @param {string} outputDir Target directory.
  * @returns {Promise<string>} The generated file name.
  */
 function saveScore(game, responseData, outputDir) {
-  return writeJson(outputDir, buildFileName(game.title, game.id), responseData);
+  return writeJson(outputDir, buildFileName(game.id), responseData);
 }
 
 module.exports = { writeJson, buildFileName, saveStats, saveScore };

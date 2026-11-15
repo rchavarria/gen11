@@ -31,14 +31,15 @@ function section(title, items) {
 
 function describeGame(game) {
   const teams = game.home || game.away ? `${game.home} vs ${game.away}` : '(unknown teams)';
-  return `${formatGameDate(game.date)} — ${teams} — \`${game.id}\``;
+  const competition = game.competition ? `${game.competition} — ` : '';
+  return `${competition}${formatGameDate(game.date)} — ${teams} — \`${game.id}\``;
 }
 
 /**
  * Builds the markdown report.
  * @param {{
  *   startedAt: Date, finishedAt: Date, error?: string|null, keyRenewed?: boolean,
- *   newGames: object[], pendingSlug: object[],
+ *   newGames: object[], invalidDates?: object[], discarded?: object[], pendingGames: object[],
  *   downloaded: string[], notPlayed: string[],
  *   calendarCount?: number|null, gameFilesCount?: number|null
  * }} result
@@ -66,7 +67,18 @@ function buildReport(result) {
       ),
     ),
   );
-  lines.push(...section('Games pending a slug (edit dated-games.json)', result.pendingSlug.map(describeGame)));
+  lines.push(
+    ...section(
+      'New games discarded (no competition for their category)',
+      (result.discarded || []).map((game) => `${describeGame(game)} — ${game.category || '(no category)'}`),
+    ),
+  );
+  lines.push(
+    ...section(
+      'Games pending placement (edit src/data/<competitionId>.json)',
+      (result.pendingGames || []).map(describeGame),
+    ),
+  );
   lines.push(...section('Downloaded games', result.downloaded));
   lines.push(...section('Games without data yet ("sin datos")', result.notPlayed));
   if (result.calendarCount != null) lines.push(`Calendar: ${result.calendarCount} game(s) written.`, '');

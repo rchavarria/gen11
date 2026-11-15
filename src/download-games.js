@@ -6,10 +6,11 @@
  *
  * PURPOSE
  * -------
- * Synchronizes the downloaded data of the games listed in <outputDir>/dated-games.json.
+ * Synchronizes the downloaded data of the games of the competition trees
+ * (src/data/<competitionId>.json), both placed and pending games.
  * For every game with a valid id, it checks whether both of these files exist:
- *   1. <outputDir>/games-stats/<slug>-<id>.json
- *   2. <outputDir>/games-scores/<slug>-<id>.json
+ *   1. <outputDir>/games-stats/<id>.json
+ *   2. <outputDir>/games-scores/<id>.json
  *
  * - Both exist:    the game is marked with `downloaded: true`.
  * - Only one:      an error is printed and execution aborts.
@@ -28,7 +29,7 @@
  * Games are skipped until more than three hours after their UTC `date`.
  * Requests are sent strictly sequentially, with a random pause between them
  * (shortWait() in src/core/wait.js: between 100 and 200 seconds).
- * <outputDir>/dated-games.json is rewritten only when the whole process succeeds.
+ * The competition trees are rewritten only when the whole process succeeds.
  *
  * The download logic lives in src/core/download.js (shared with sync.js).
  *
@@ -45,8 +46,7 @@
  * key          (required) Key sent as `key`. Replaced by a key received in a
  *              stats or score response, if any (handled by ApiClient).
  * outputDir    (optional) Root download directory, resolved against the
- *              project root. Contains dated-games.json, games-stats/ and
- *              games-scores/.
+ *              project root. Contains games-stats/ and games-scores/.
  *
  * EXECUTION EXAMPLE
  * -----------------
@@ -59,38 +59,44 @@
 const { ApiClient } = require('./core/api-client');
 const { loadConfig } = require('./core/config');
 const { processGames, printSummary } = require('./core/download');
-const { readDatedGamesFile, writeDatedGamesFile } = require('./core/dated-games');
+const { listGames, loadClubs, readCompetitionTrees, writeCompetitionTree } = require('./core/competitions');
 
 async function main() {
   const startTime = Date.now();
 
-  let config;
   let client;
-  let data;
+  let trees;
+  let entries;
   try {
-    config = loadConfig();
-    client = new ApiClient(config);
-    data = await readDatedGamesFile(config);
+    client = new ApiClient(loadConfig());
+    trees = await readCompetitionTrees();
+    entries = listGames(trees, await loadClubs());
   } catch (err) {
     console.error(`Error: ${err.message}`);
     process.exitCode = 1;
     return;
   }
 
-  console.log(`Games file: ${config.paths.datedGamesFile}`);
-  console.log(`Stats directory: ${config.paths.gamesStats}`);
-  console.log(`Scores directory: ${config.paths.gamesScores}`);
-  console.log(`Processing ${data['dated-games'].length} game(s).`);
+  console.log(`Competitions: ${trees.map(({ competition }) => competition.id).join(', ')}`);
+  console.log(`Stats directory: ${client.config.paths.gamesStats}`);
+  console.log(`Scores directory: ${client.config.paths.gamesScores}`);
+  console.log(`Processing ${entries.length} game(s).`);
 
+  const labels = new Map(entries.map((entry) => [entry.game, entry.label]));
   try {
-    const summary = await processGames(client, data['dated-games']);
-    // Only persist the games file when everything succeeded.
-    await writeDatedGamesFile(config, data);
-    console.log(`Games file updated: ${config.paths.datedGamesFile}`);
+    const summary = await processGames(
+      client,
+      entries.map((entry) => entry.game),
+      undefined,
+      { label: (game) => labels.get(game) },
+    );
+    // Only persist the trees when everything succeeded.
+    for (const { competition, tree } of trees) await writeCompetitionTree(competition, tree);
+    console.log('Competition trees updated.');
     printSummary(summary, Date.now() - startTime);
   } catch (err) {
     console.error(`Error: ${err.message}`);
-    console.error('Execution aborted. Games file NOT updated.');
+    console.error('Execution aborted. Competition trees NOT updated.');
     if (err.summary) {
       printSummary(err.summary, Date.now() - startTime);
     }

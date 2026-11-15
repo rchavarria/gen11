@@ -4,155 +4,174 @@ import os from 'node:os';
 import path from 'node:path';
 import { test, vi } from 'vitest';
 import { ApiError } from './api-client.js';
+import { allGames, emptyTree, PENDING } from './competitions.js';
 import { isAfterGameSchedule, processGames as processDownloads } from './download.js';
-import { DAYS, fetchNextGames, fetchNextGamesRenewingKey, mergeDatedGames } from './next-games.js';
+import { DAYS, fetchNextGames, fetchNextGamesRenewingKey, mergeNextGames } from './next-games.js';
 import { buildReport } from './report.js';
 
-test('mergeDatedGames adds mapped entries in date/time order and updates date, time and venue', () => {
+const competition = {
+  id: 's67-c',
+  season: 's67',
+  category: 'Cat',
+  phases: [{ id: 'f1', type: 'league', groups: [{ id: 'g1', teams: [] }] }],
+};
+const oldCompetition = { ...competition, id: 's56-c', season: 's56' };
+
+function makeTrees({ placed = [], pending = [] } = {}) {
+  const tree = emptyTree(competition);
+  tree.phases[0].groups[0].rounds.push({ id: 'j01', games: placed });
+  tree[PENDING].push(...pending);
+  return [
+    { competition: oldCompetition, tree: emptyTree(oldCompetition) },
+    { competition, tree },
+  ];
+}
+
+test('mergeNextGames adds new games to pending-games and updates placed games by id', () => {
   const known = {
-    slug: 'existing',
     id: 'AA',
     date: '2026-11-05T11:00:00Z',
-    category: 'Cat',
     homeClubName: 'Home',
     awayClubName: 'Away',
     downloaded: true,
-    scored: true,
   };
-  const games = [known];
-  const { added, updated } = mergeDatedGames(games, [
+  const trees = makeTrees({ placed: [known] });
+  const { added, updated, discarded, changed } = mergeNextGames(trees, [
     { IdPartido: 'AA', Fecha: '04/11/2026', Hora: '09:15:00', Categoria: 'new category' },
     {
       IdPartido: 'BB',
       Fecha: '03/11/2026',
       Hora: '08:30:00',
-      Categoria: 'New Cat',
+      Categoria: ' Cat ',
       NombreClubLocal: 'Local',
       NombreClubVisitante: 'Visitante',
     },
     { IdPartido: 'BB', Fecha: '03/11/2026', Hora: '08:30:00' },
+    { IdPartido: 'CC', Fecha: '03/11/2026', Categoria: 'Other', NombreClubLocal: 'X', NombreClubVisitante: 'Y' },
     { IdPartido: '', Fecha: '01/11/2026' },
   ]);
 
-  assert.deepEqual(added, [
-    {
-      slug: '',
-      id: 'BB',
-      date: '2026-11-03T07:30:00Z',
-      venue: '',
-      category: 'New Cat',
-      homeClubName: 'Local',
-      awayClubName: 'Visitante',
-      downloaded: false,
-    },
-  ]);
+  const newGame = {
+    id: 'BB',
+    date: '2026-11-03T07:30:00Z',
+    venue: '',
+    homeClubName: 'Local',
+    awayClubName: 'Visitante',
+    downloaded: false,
+  };
+  assert.deepEqual(added, [{ competition: 's67-c', game: newGame }]);
+  assert.deepEqual(trees[1].tree[PENDING], [newGame]);
+  assert.deepEqual(trees[0].tree[PENDING], []);
   assert.deepEqual(updated, [known]);
   assert.deepEqual(known, {
-    slug: 'existing',
     id: 'AA',
     date: '2026-11-04T08:15:00Z',
-    category: 'Cat',
     homeClubName: 'Home',
     awayClubName: 'Away',
     downloaded: true,
-    scored: true,
   });
-  assert.deepEqual(
-    games.map((game) => game.id),
-    ['BB', 'AA'],
-  );
+  assert.deepEqual(discarded, [{ id: 'CC', date: '2026-11-03T00:00:00Z', home: 'X', away: 'Y', category: 'Other' }]);
+  assert.deepEqual([...changed], [trees[1]]);
 });
 
-test('mergeDatedGames resolves exact venue names and refreshes venues without other changes', () => {
-  const known = { id: 'AA', date: '2026-11-05T11:00:00Z', venue: 'old', scored: true };
+test('mergeNextGames updates pending games and leaves unchanged trees untouched', () => {
+  const pending = { id: 'AA', date: '2026-11-05T11:00:00Z', venue: '' };
+  const placed = { id: 'BB', date: '2026-11-01T11:00:00Z', venue: '' };
+  const trees = makeTrees({ placed: [placed], pending: [pending] });
+  const result = mergeNextGames(trees, [{ IdPartido: 'AA', Fecha: '02/11/2026', Hora: '10:00:00' }]);
+  assert.deepEqual(result.updated, [pending]);
+  assert.equal(pending.date, '2026-11-02T09:00:00Z');
+  assert.deepEqual(result.added, []);
+  assert.deepEqual(
+    allGames(trees[1].tree).map((game) => game.id),
+    ['BB', 'AA'],
+  );
+  assert.equal(mergeNextGames(trees, [{ IdPartido: 'AA', Fecha: '02/11/2026', Hora: '10:00:00' }]).changed.size, 0);
+});
+
+test('mergeNextGames resolves exact venue names and refreshes venues without other changes', () => {
+  const known = { id: 'AA', date: '2026-11-05T11:00:00Z', venue: 'old', downloaded: true };
   const untouched = { id: 'BB', date: '2026-11-06T00:00:00Z', venue: 'old' };
-  const games = [known, untouched];
+  const trees = makeTrees({ placed: [known, untouched] });
   const venues = new Map([
     ['PABELLON CENTRAL', 'central'],
     ['LA CANALEJA, PABELLON PISTA 1-3', 'canaleja'],
   ]);
   const upcoming = [
     { IdPartido: 'AA', Fecha: '05/11/2026', Hora: '12:00:00', CampoJuego: 'PABELLON CENTRAL' },
-    { IdPartido: 'CC', Fecha: '07/11/2026', CampoJuego: 'PABELLON CENTRAL' },
-    { IdPartido: 'DD', Fecha: '08/11/2026', CampoJuego: 'LA CANALEJA, PABELLON PISTA 1' },
-    { IdPartido: 'EE', Fecha: '09/11/2026', CampoJuego: 'LA CANALEJA, PABELLON PISTA 1' },
-    { IdPartido: 'FF', Fecha: '10/11/2026' },
+    { IdPartido: 'CC', Fecha: '07/11/2026', Categoria: 'Cat', CampoJuego: 'PABELLON CENTRAL' },
+    { IdPartido: 'DD', Fecha: '08/11/2026', Categoria: 'Cat', CampoJuego: 'LA CANALEJA, PABELLON PISTA 1' },
+    { IdPartido: 'EE', Fecha: '09/11/2026', Categoria: 'Cat', CampoJuego: 'LA CANALEJA, PABELLON PISTA 1' },
+    { IdPartido: 'FF', Fecha: '10/11/2026', Categoria: 'Cat' },
   ];
-  const result = mergeDatedGames(games, upcoming, venues);
+  const result = mergeNextGames(trees, upcoming, venues);
   assert.equal(known.venue, 'central');
-  assert.equal(known.scored, true);
+  assert.equal(known.downloaded, true);
   assert.equal(untouched.venue, 'old');
   assert.deepEqual(result.updated, [known]);
   assert.deepEqual(
-    result.added.map((game) => game.venue),
+    result.added.map(({ game }) => game.venue),
     ['central', '', '', ''],
   );
   assert.deepEqual(result.unmatchedVenues, ['LA CANALEJA, PABELLON PISTA 1', '(missing CampoJuego)']);
-  assert.deepEqual(mergeDatedGames(games, upcoming, venues).updated, []);
+  assert.deepEqual(mergeNextGames(trees, upcoming, venues).updated, []);
 
-  const unmatched = mergeDatedGames(games, [{ ...upcoming[0], CampoJuego: 'UNKNOWN' }], venues);
+  const unmatched = mergeNextGames(trees, [{ ...upcoming[0], CampoJuego: 'UNKNOWN' }], venues);
   assert.equal(known.venue, 'central');
   assert.deepEqual(unmatched.updated, []);
   assert.deepEqual(unmatched.unmatchedVenues, ['UNKNOWN']);
 
-  const missing = mergeDatedGames(games, [{ ...upcoming[0], CampoJuego: '' }], venues);
+  const missing = mergeNextGames(trees, [{ ...upcoming[0], CampoJuego: '' }], venues);
   assert.equal(known.venue, 'central');
   assert.deepEqual(missing.updated, []);
   assert.deepEqual(missing.unmatchedVenues, ['(missing CampoJuego)']);
 });
 
 test.each(['pabellon central', ' PABELLON CENTRAL', 'PABELLON CENTRAL ', 'PABELLON  CENTRAL', 'PABELLÓN CENTRAL'])(
-  'mergeDatedGames does not normalize venue names: "%s"',
+  'mergeNextGames does not normalize venue names: "%s"',
   (name) => {
-    const games = [];
-    const result = mergeDatedGames(
-      games,
-      [{ IdPartido: 'AA', Fecha: '01/11/2026', CampoJuego: name }],
+    const trees = makeTrees();
+    const result = mergeNextGames(
+      trees,
+      [{ IdPartido: 'AA', Fecha: '01/11/2026', Categoria: 'Cat', CampoJuego: name }],
       new Map([['PABELLON CENTRAL', 'central']]),
     );
-    assert.equal(games[0].venue, '');
+    assert.equal(trees[1].tree[PENDING][0].venue, '');
     assert.deepEqual(result.unmatchedVenues, [name]);
   },
 );
 
-test('mergeDatedGames keeps existing date for invalid incoming dates and sorts invalid dates last', () => {
-  const existing = { slug: '', id: 'AA', date: '2026-11-01T09:00:00Z' };
-  const noDate = { slug: '', id: 'BB', date: '' };
-  const games = [noDate, existing];
-  const { updated, invalidDates } = mergeDatedGames(games, [
+test('mergeNextGames keeps existing dates for invalid incoming dates and reports invalid new games', () => {
+  const existing = { id: 'AA', date: '2026-11-01T09:00:00Z' };
+  const trees = makeTrees({ placed: [existing] });
+  const { updated, added, invalidDates } = mergeNextGames(trees, [
     { IdPartido: 'AA', Fecha: '31/02/2026', Hora: '11:00:00' },
-    { IdPartido: 'CC', Fecha: '31/02/2026' },
+    { IdPartido: 'BB', Fecha: '31/02/2026', Categoria: 'Cat', NombreClubLocal: 'Home', NombreClubVisitante: 'Away' },
   ]);
   assert.equal(existing.date, '2026-11-01T09:00:00Z');
   assert.deepEqual(updated, []);
-  assert.equal(invalidDates[0].id, 'CC');
-  assert.deepEqual(
-    games.map((game) => game.id),
-    ['AA', 'BB'],
-  );
+  assert.deepEqual(added, []);
+  assert.deepEqual(invalidDates, [{ id: 'BB', home: 'Home', away: 'Away', fecha: '31/02/2026', hora: '' }]);
 });
 
-test('mergeDatedGames updates the time and reports new games with invalid dates', () => {
-  const game = { id: 'AA', date: '2026-11-06T09:00:00Z' };
-  const games = [game];
-  const result = mergeDatedGames(games, [
-    { IdPartido: 'AA', Fecha: '06/11/2026', Hora: '12:30:00' },
-    { IdPartido: 'BB', Fecha: '31/02/2026', NombreClubLocal: 'Home', NombreClubVisitante: 'Away' },
-  ]);
-  assert.equal(game.date, '2026-11-06T11:30:00Z');
-  assert.deepEqual(result.updated, [game]);
-  assert.equal(result.added.length, 0);
-  assert.deepEqual(result.invalidDates, [{ id: 'BB', home: 'Home', away: 'Away', fecha: '31/02/2026', hora: '' }]);
-});
-
-test('fetchNextGames saves raw responses and consolidates dated-games.json', async (t) => {
+async function tempDataDir(t) {
   const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gen11-next-games-'));
   t.onTestFinished(() => fs.rm(dir, { recursive: true, force: true }));
+  const dataDir = path.join(dir, 'data');
+  await fs.mkdir(dataDir);
+  await fs.writeFile(
+    path.join(dataDir, 'competitions.json'),
+    JSON.stringify({ competitions: [oldCompetition, competition] }),
+  );
+  return { dir, dataDir };
+}
+
+test('fetchNextGames saves raw responses and writes only modified trees', async (t) => {
+  const { dir, dataDir } = await tempDataDir(t);
   const nextGames = path.join(dir, 'next-games');
-  const datedGamesFile = path.join(dir, 'dated-games.json');
   let response = {
     mispartidos: [
-      { IdPartido: 'AA', Fecha: '05/11/2026', Hora: '11:00:00', NombreClubLocal: 'A' },
+      { IdPartido: 'AA', Fecha: '05/11/2026', Hora: '11:00:00', Categoria: 'Cat', NombreClubLocal: 'A' },
       {
         IdPartido: 'BB',
         Fecha: '06/11/2026',
@@ -166,69 +185,72 @@ test('fetchNextGames saves raw responses and consolidates dated-games.json', asy
     resultado: 'correcto',
   };
   const client = {
-    config: { paths: { nextGames, datedGamesFile } },
+    config: { paths: { nextGames } },
     getNextGames: async ({ days }) => {
       assert.equal(days, DAYS);
       return response;
     },
   };
-  const first = await fetchNextGames(client, { date: new Date(2026, 10, 1) });
+  const first = await fetchNextGames(client, { date: new Date(2026, 10, 1), dataDir });
   assert.equal(first.total, 2);
   assert.equal(first.added.length, 2);
   const readDaily = async (name) => JSON.parse(await fs.readFile(path.join(nextGames, name), 'utf8'));
-  const readDated = async () => JSON.parse(await fs.readFile(datedGamesFile, 'utf8'));
+  const treeFile = path.join(dataDir, 's67-c.json');
+  const readTree = async () => JSON.parse(await fs.readFile(treeFile, 'utf8'));
   assert.deepEqual(await readDaily('2026-11-01.json'), response);
-  await assert.rejects(fs.access(path.join(nextGames, 'next-games.json')), { code: 'ENOENT' });
-  assert.equal((await readDated())['dated-games'].length, 2);
-  assert.equal((await readDated())['dated-games'].find((game) => game.id === 'BB').venue, 'ferrandiz');
+  await assert.rejects(fs.access(path.join(dataDir, 's56-c.json')), { code: 'ENOENT' });
+  assert.equal((await readTree())[PENDING].length, 2);
+  assert.equal((await readTree())[PENDING].find((game) => game.id === 'BB').venue, 'ferrandiz');
 
   response = {
     mispartidos: [
       { IdPartido: 'BB', Fecha: '01/11/2026', Hora: '13:15:00', CampoJuego: 'REAL CANOE N.C.' },
-      { IdPartido: 'CC', Fecha: '07/11/2026', Hora: '14:00:00' },
+      { IdPartido: 'CC', Fecha: '07/11/2026', Hora: '14:00:00', Categoria: 'Cat' },
+      { IdPartido: 'DD', Fecha: '07/11/2026', Hora: '14:00:00', Categoria: 'Other' },
     ],
     resultado: 'correcto',
   };
-  const second = await fetchNextGames(client, { date: new Date(2026, 10, 2) });
+  const second = await fetchNextGames(client, { date: new Date(2026, 10, 2), dataDir });
   assert.equal(second.total, 3);
   assert.equal(second.added.length, 1);
   assert.equal(second.updated.length, 1);
+  assert.deepEqual(
+    second.discarded.map((game) => game.id),
+    ['DD'],
+  );
   assert.deepEqual(second.unmatchedVenues, ['(missing CampoJuego)']);
   assert.deepEqual(await readDaily('2026-11-02.json'), response);
-  const dated = (await readDated())['dated-games'];
+  const pending = (await readTree())[PENDING];
   assert.deepEqual(
-    dated.map((game) => game.id),
+    pending.map((game) => game.id),
     ['BB', 'AA', 'CC'],
   );
-  assert.deepEqual(dated[0], {
-    slug: '',
+  assert.deepEqual(pending[0], {
     id: 'BB',
     date: '2026-11-01T12:15:00Z',
     venue: 'canoe',
-    category: 'Cat',
     homeClubName: 'Home',
     awayClubName: 'Away',
     downloaded: false,
   });
 });
 
-test('fetchNextGames rejects invalid dated-games.json without overwriting it', async (t) => {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gen11-next-games-'));
-  t.onTestFinished(() => fs.rm(dir, { recursive: true, force: true }));
+test('fetchNextGames rejects invalid trees without overwriting them', async (t) => {
+  const { dir, dataDir } = await tempDataDir(t);
   const client = {
-    config: { paths: { nextGames: path.join(dir, 'next-games'), datedGamesFile: path.join(dir, 'dated-games.json') } },
-    getNextGames: async () => ({ mispartidos: [] }),
+    config: { paths: { nextGames: path.join(dir, 'next-games') } },
+    getNextGames: async () => ({ mispartidos: [{ IdPartido: 'AA', Fecha: '01/11/2026', Categoria: 'Cat' }] }),
   };
+  const treeFile = path.join(dataDir, 's67-c.json');
   for (const content of [
     'invalid JSON',
     '{}',
     '[]',
-    '{"dated-games":[{"date":"2026-11-01","time":"10:00:00"}]}',
-    '{"dated-games":[{"date":"2026-11-01"}]}',
+    '{"phases":[],"pending-games":[{"id":"BB","date":"2026-11-01"}]}',
   ]) {
-    await fs.writeFile(client.config.paths.datedGamesFile, content);
-    await assert.rejects(fetchNextGames(client));
-    assert.equal(await fs.readFile(client.config.paths.datedGamesFile, 'utf8'), content);
+    await fs.writeFile(treeFile, content);
+    await assert.rejects(fetchNextGames(client, { dataDir }));
+    assert.equal(await fs.readFile(treeFile, 'utf8'), content);
   }
 });
 
@@ -239,7 +261,7 @@ test('fetchNextGamesRenewingKey skips renewal when the first request succeeds', 
   const result = await fetchNextGamesRenewingKey(
     {
       config: {
-        paths: { nextGames: path.join(dir, 'next-games'), datedGamesFile: path.join(dir, 'dated-games.json') },
+        paths: { nextGames: path.join(dir, 'next-games') },
       },
       getNextGames: async () => ({ mispartidos: [] }),
       renewKey: async () => {
@@ -262,7 +284,7 @@ test('fetchNextGamesRenewingKey renews once on ApiError and retries', async (t) 
   let renewalReported = false;
   const client = {
     config: {
-      paths: { nextGames: path.join(dir, 'next-games'), datedGamesFile: path.join(dir, 'dated-games.json') },
+      paths: { nextGames: path.join(dir, 'next-games') },
     },
     getNextGames: async () => {
       calls += 1;
@@ -373,8 +395,8 @@ test('download progress counts only games that need downloading', async (t) => {
   const scores = path.join(dir, 'scores');
   await fs.mkdir(stats);
   await fs.mkdir(scores);
-  await fs.writeFile(path.join(stats, 'existing-CC.json'), '{}');
-  await fs.writeFile(path.join(scores, 'existing-CC.json'), '{}');
+  await fs.writeFile(path.join(stats, 'CC.json'), '{}');
+  await fs.writeFile(path.join(scores, 'CC.json'), '{}');
 
   const log = vi.spyOn(console, 'log').mockImplementation(() => {});
   const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
@@ -392,7 +414,7 @@ test('download progress counts only games that need downloading', async (t) => {
         { slug: 'future', id: 'BB', date: '2099-12-31T00:00:00Z' },
         { slug: 'existing', id: 'CC' },
         { slug: 'pending', id: 'DD' },
-        { slug: '', id: 'EE' },
+        { slug: 'invalid', id: 'XYZ' },
       ],
     );
 
@@ -416,7 +438,7 @@ test('download analysis fails on partial files before making API requests', asyn
   const scores = path.join(dir, 'scores');
   await fs.mkdir(stats);
   await fs.mkdir(scores);
-  await fs.writeFile(path.join(stats, 'partial-BB.json'), '{}');
+  await fs.writeFile(path.join(stats, 'BB.json'), '{}');
 
   const getGameStats = vi.fn();
   const getGameScore = vi.fn();
@@ -471,8 +493,8 @@ test('download processing skips games at the boundary but processes older games'
   const scores = path.join(dir, 'scores');
   await fs.mkdir(stats);
   await fs.mkdir(scores);
-  await fs.writeFile(path.join(stats, 'older-BB.json'), '{}');
-  await fs.writeFile(path.join(scores, 'older-BB.json'), '{}');
+  await fs.writeFile(path.join(stats, 'BB.json'), '{}');
+  await fs.writeFile(path.join(scores, 'BB.json'), '{}');
   const games = [
     { slug: 'boundary', id: 'AA', date: '2026-11-08T23:00:00Z' },
     { slug: 'older', id: 'BB', date: '2026-11-08T22:59:59Z' },
@@ -501,7 +523,7 @@ test.each([
     startedAt: new Date('2026-11-01T10:00:00Z'),
     finishedAt: new Date('2026-11-01T11:00:00Z'),
     newGames: [{ id: 'BB', date, home: 'Home', away: 'Away' }],
-    pendingSlug: [],
+    pendingGames: [],
     downloaded: [],
     notPlayed: [],
   });
@@ -516,7 +538,8 @@ test('buildReport lists sections, empty ones and the error', () => {
     keyRenewed: true,
     newGames: [{ id: 'BB', date: '2026-11-08T00:00:00Z', home: 'Home', away: 'Away' }],
     invalidDates: [{ id: 'CC', fecha: '31/02/2026', hora: '', home: 'Home', away: 'Away' }],
-    pendingSlug: [],
+    pendingGames: [],
+    discarded: [{ id: 'DD', date: '2026-11-09T00:00:00Z', home: 'X', away: 'Y', category: 'Other' }],
     downloaded: ['game-1'],
     notPlayed: [],
     calendarCount: null,
@@ -528,8 +551,23 @@ test('buildReport lists sections, empty ones and the error', () => {
   assert.match(text, /Error: boom/);
   assert.match(text, /## New games \(1\)\n\n- 2026-11-08 — Home vs Away/);
   assert.match(text, /## New games skipped due to invalid dates \(1\)[\s\S]*31\/02\/2026/);
+  assert.match(
+    text,
+    /## New games discarded \(no competition for their category\) \(1\)\n\n- 2026-11-09 — X vs Y — `DD` — Other/,
+  );
   assert.match(text, /## Downloaded games \(1\)\n\n- game-1/);
-  assert.match(text, /Games pending a slug \(edit dated-games\.json\)/);
-  assert.match(text, /## Games pending a slug.*\(0\)\n\n_None\._/);
+  assert.match(text, /## Games pending placement \(edit src\/data\/<competitionId>\.json\) \(0\)\n\n_None\._/);
   assert.match(text, /Game files: 0 written\./);
+});
+
+test('buildReport lists pending games with their competition', () => {
+  const text = buildReport({
+    startedAt: new Date(2026, 10, 1, 10),
+    finishedAt: new Date(2026, 10, 1, 11),
+    newGames: [],
+    pendingGames: [{ competition: 's67-c', id: 'EE', date: '2026-11-08T00:00:00Z', home: 'Home', away: 'Away' }],
+    downloaded: [],
+    notPlayed: [],
+  });
+  assert.match(text, /## Games pending placement .* \(1\)\n\n- s67-c — 2026-11-08 — Home vs Away — `EE`/);
 });

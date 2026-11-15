@@ -4,15 +4,19 @@
  * Builds the web calendar and per-game files from the raw downloads.
  * It makes no API requests.
  *
- * - Games, dates, times, categories and clubs come from
- *   <outputDir>/dated-games.json (slugs added by hand).
- * - Scores and played status come from score files, matched by game id.
+ * - Games come from the competition trees (src/data/<competitionId>.json),
+ *   whose structure is described in src/data/competitions.json. Only games
+ *   placed in a round are used; `pending-games` are ignored.
+ * - Slugs are computed from the position of each game in the tree:
+ *   <competitionId>-<phaseId>[-<groupId>]-<roundId>-<homeClub>-<awayClub>.
+ * - The category is the one of the competition.
+ * - Scores and played status come from score files (<id>.json), matched by game id.
  * - Club slugs come from src/data/clubs.json (maintained by hand).
  *   The web resolves club names and logos from that file.
  *
  * The calendar only includes whitelisted fields (no ids). Per-game files keep
- * dated-game fields, including ids but excluding source club names and internal
- * download/scoring flags, and add scores, period scores and score evolution.
+ * game fields, including ids but excluding source club names and internal
+ * download flags, and add scores, period scores and score evolution.
  *
  * Usage: node src/build-data.js
  */
@@ -21,13 +25,17 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { loadConfig } = require('./core/config');
 const { isValidGame } = require('./core/games');
-const { readDatedGamesFile } = require('./core/dated-games');
 const { getTimelyScores } = require('./core/timely-scores');
+const {
+  DATA_DIR,
+  computeSlug,
+  loadClubs,
+  normalizeName,
+  placedGames,
+  readCompetitionTrees,
+} = require('./core/competitions');
 
-const DATA_DIR = path.join(__dirname, 'data');
-const CLUBS_FILE = path.join(DATA_DIR, 'clubs.json');
-const CALENDAR_FILE = path.join(DATA_DIR, 'calendar.json');
-const GAMES_DIR = path.join(DATA_DIR, 'games');
+const CLUBS_FILE = 'src/data/clubs.json';
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -46,36 +54,40 @@ function listJsonFiles(dir) {
 }
 
 /**
- * Indexes files (<slug>-<id>.json) in a directory by game id.
+ * Indexes files (<id>.json) in a directory by game id.
  * @returns {Map<string, string>} id -> file path
  */
 function indexFilesById(dir) {
   const index = new Map();
   for (const file of listJsonFiles(dir)) {
-    const match = path.basename(file, '.json').match(/-([0-9A-F]+)$/);
+    const match = path.basename(file, '.json').match(/(?:^|-)([0-9A-F]+)$/);
     if (match) index.set(match[1], file);
   }
   return index;
 }
 
-function normalizeName(name) {
-  return String(name || '')
-    .trim()
-    .toUpperCase();
-}
-
 /**
- * @returns {Map<string, {slug: string, name: string, logo: string|null}>} source name -> club
+ * Reads the placed games of every competition as flat games with their
+ * computed slug and the competition category.
+ * @param {string} dataDir
+ * @returns {Promise<{games: object[], skipped: string[], clubs: Map<string, object>}>}
  */
-function loadClubs() {
-  const clubs = readJson(CLUBS_FILE);
-  const bySourceName = new Map();
-  for (const club of clubs) {
-    for (const sourceName of club.sourceNames || []) {
-      bySourceName.set(normalizeName(sourceName), club);
+async function loadGames(dataDir) {
+  const trees = await readCompetitionTrees(dataDir);
+  const clubs = await loadClubs(dataDir);
+  const games = [];
+  const skipped = [];
+  for (const { competition, tree } of trees) {
+    for (const { game, position } of placedGames(tree)) {
+      const slug = computeSlug(competition.id, position, game, clubs);
+      if (!isValidGame(game)) {
+        skipped.push(slug);
+        continue;
+      }
+      games.push({ slug, venue: game.venue, ...game, category: competition.category });
     }
   }
-  return bySourceName;
+  return { games, skipped, clubs };
 }
 
 function toScore(value) {
@@ -173,45 +185,43 @@ function buildGameDetail(game, clubs, scoreData, statsData) {
   };
 }
 
-async function buildGameFiles(config) {
-  const games = (await readDatedGamesFile(config))['dated-games'].filter(isValidGame);
+async function buildGameFiles(config, { dataDir = DATA_DIR } = {}) {
+  const { games, clubs } = await loadGames(dataDir);
   const scoreIndex = indexFilesById(config.paths.gamesScores);
   const statsIndex = indexFilesById(config.paths.gamesStats);
-  const clubs = loadClubs();
+  const gamesDir = path.join(dataDir, 'games');
   const slugs = [];
 
-  fs.mkdirSync(GAMES_DIR, { recursive: true });
+  fs.mkdirSync(gamesDir, { recursive: true });
   for (const game of games) {
     const scoreFile = scoreIndex.get(game.id);
     if (!scoreFile) continue;
     const statsFile = statsIndex.get(game.id);
     const detail = buildGameDetail(game, clubs, readJson(scoreFile), statsFile ? readJson(statsFile) : null);
     if (!detail) continue;
-    fs.writeFileSync(path.join(GAMES_DIR, `${game.slug}.json`), `${JSON.stringify(detail, null, 2)}\n`, 'utf8');
+    fs.writeFileSync(path.join(gamesDir, `${game.slug}.json`), `${JSON.stringify(detail, null, 2)}\n`, 'utf8');
     slugs.push(game.slug);
   }
 
-  console.log(`${slugs.length} game files written to ${path.relative(process.cwd(), GAMES_DIR)}`);
+  console.log(`${slugs.length} game files written to ${path.relative(process.cwd(), gamesDir)}`);
   return { count: slugs.length, slugs };
 }
 
-async function buildCalendar(config) {
-  const allGames = (await readDatedGamesFile(config))['dated-games'];
-  const games = allGames.filter(isValidGame);
-  const skipped = allGames.filter((game) => !isValidGame(game)).map((game) => game.slug || '(no slug)');
+async function buildCalendar(config, { dataDir = DATA_DIR } = {}) {
+  const { games, skipped, clubs } = await loadGames(dataDir);
   const scoreIndex = indexFilesById(config.paths.gamesScores);
-  const clubs = loadClubs();
+  const calendarFile = path.join(dataDir, 'calendar.json');
 
   const calendar = games.map((game) => fromDatedGame(game, clubs, scoreIndex.get(game.id)));
 
   calendar.sort((a, b) => a.date.localeCompare(b.date));
 
-  fs.mkdirSync(DATA_DIR, { recursive: true });
-  fs.writeFileSync(CALENDAR_FILE, `${JSON.stringify(calendar, null, 2)}\n`, 'utf8');
+  fs.mkdirSync(dataDir, { recursive: true });
+  fs.writeFileSync(calendarFile, `${JSON.stringify(calendar, null, 2)}\n`, 'utf8');
 
-  console.log(`${calendar.length} games written to ${path.relative(process.cwd(), CALENDAR_FILE)}`);
+  console.log(`${calendar.length} games written to ${path.relative(process.cwd(), calendarFile)}`);
   if (skipped.length > 0) {
-    console.warn(`\n${skipped.length} game(s) skipped (missing slug or invalid id):`);
+    console.warn(`\n${skipped.length} game(s) skipped (invalid id):`);
     for (const slug of skipped) console.warn(`  - ${slug}`);
   }
   return { count: calendar.length, skipped };

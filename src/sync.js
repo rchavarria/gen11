@@ -12,11 +12,14 @@
  *   1. Requests the upcoming games (`DAYS` days), renewing the API key and
  *      retrying once if the API returns an error. Saves the raw response to
  *      <outputDir>/next-games/<YYYY-MM-DD>.json and consolidates upcoming
- *      games into <outputDir>/dated-games.json.
- *   2. Manual step (outside this script): put a `slug` to the new games in
- *      dated-games.json. Games without slug are ignored and listed in the report.
- *   3. Downloads stats and score of the games with id and slug not downloaded
- *      yet (same rules as download-games.js).
+ *      games into the competition trees (src/data/<competitionId>.json),
+ *      matching games by IdPartido. New games go to `pending-games` of the
+ *      current season competition of their category; games of a category
+ *      without competition are discarded and listed in the report.
+ *   2. Manual step (outside this script): move the pending games to their
+ *      round in the tree. Pending games are listed in the report.
+ *   3. Downloads stats and score of every game (placed or pending) not
+ *      downloaded yet (same rules as download-games.js).
  *   4. Rebuilds src/data/calendar.json (build-data.js).
  *   5. Rebuilds src/data/games/<slug>.json for games with scores, including
  *      each team's timelyScores (score evolution from the raw actions).
@@ -37,7 +40,7 @@
 
 const { ApiClient } = require('./core/api-client');
 const { loadConfig } = require('./core/config');
-const { readDatedGamesFile, writeDatedGamesFile } = require('./core/dated-games');
+const { listGames, loadClubs, readCompetitionTrees, writeCompetitionTree } = require('./core/competitions');
 const { fetchNextGamesRenewingKey, DAYS } = require('./core/next-games');
 const download = require('./core/download');
 const { buildCalendar, buildGameFiles } = require('./build-data');
@@ -52,20 +55,14 @@ function step(text) {
   console.log(SEPARATOR);
 }
 
-/**
- * Games without slug in dated-games.json.
- */
-function findPendingSlug(games) {
-  return games
-    .filter(
-      (game) => game && typeof game.id === 'string' && game.id.trim() !== '' && String(game.slug || '').trim() === '',
-    )
-    .map((game) => ({
-      id: game.id,
-      date: game.date,
-      home: game.homeClubName ?? '',
-      away: game.awayClubName ?? '',
-    }));
+function describe(competition, game) {
+  return {
+    competition: competition.id,
+    id: game.id,
+    date: game.date,
+    home: game.homeClubName ?? '',
+    away: game.awayClubName ?? '',
+  };
 }
 
 async function run(config, result) {
@@ -77,6 +74,7 @@ async function run(config, result) {
     fileName,
     added,
     updated,
+    discarded,
     unmatchedVenues,
     invalidDates,
     total,
@@ -92,41 +90,50 @@ async function run(config, result) {
   );
   result.keyRenewed = keyRenewed;
   result.invalidDates = invalidDates;
+  result.discarded = discarded;
   console.log(`Games received: ${next.mispartidos.length} (saved to ${fileName})`);
-  console.log(`Dated games added: ${added.length}`);
-  console.log(`Dated games updated: ${updated.length}`);
-  console.log(`Total dated games: ${total}`);
+  console.log(`Games added: ${added.length}`);
+  console.log(`Games updated: ${updated.length}`);
+  console.log(`Total games: ${total}`);
   for (const name of unmatchedVenues) {
     console.warn(`Venue not found in src/data/venues.json: "${name}"`);
   }
   for (const game of invalidDates) {
     console.warn(`New game skipped due to invalid date: ${game.id} (${game.fecha} ${game.hora})`);
   }
+  for (const game of discarded) {
+    console.warn(
+      `New game discarded, no competition for "${game.category}": ${game.id} (${game.home} vs ${game.away})`,
+    );
+  }
 
-  const data = await readDatedGamesFile(config);
-  const games = data['dated-games'];
-  result.newGames = added.map((game) => ({
-    id: game.id,
-    date: game.date,
-    home: game.homeClubName,
-    away: game.awayClubName,
-  }));
-  result.pendingSlug = findPendingSlug(games);
-  console.log(`New games added to dated-games.json: ${result.newGames.length}`);
-  console.log(`Games pending a slug: ${result.pendingSlug.length}`);
+  const trees = await readCompetitionTrees();
+  const entries = listGames(trees, await loadClubs());
+  const byCompetition = new Map(trees.map(({ competition }) => [competition.id, competition]));
+  result.newGames = added.map(({ competition, game }) => describe(byCompetition.get(competition), game));
+  result.pendingGames = entries
+    .filter((entry) => entry.position === null)
+    .map(({ competition, game }) => describe(competition, game));
+  console.log(`Games pending placement: ${result.pendingGames.length}`);
 
   step('2. Download stats and scores');
+  const labels = new Map(entries.map((entry) => [entry.game, entry.label]));
   try {
     // A request was just sent, so the first download waits first.
-    const summary = await download.processGames(client, games, { requestsSent: 1 });
-    result.downloaded = summary.downloadedSlugs;
-    result.notPlayed = summary.notPlayedSlugs;
-    await writeDatedGamesFile(config, data);
+    const summary = await download.processGames(
+      client,
+      entries.map((entry) => entry.game),
+      { requestsSent: 1 },
+      { label: (game) => labels.get(game) },
+    );
+    result.downloaded = summary.downloadedGames;
+    result.notPlayed = summary.notPlayedGames;
+    for (const { competition, tree } of trees) await writeCompetitionTree(competition, tree);
     download.printSummary(summary, Date.now() - result.startedAt);
   } catch (err) {
     if (err.summary) {
-      result.downloaded = err.summary.downloadedSlugs;
-      result.notPlayed = err.summary.notPlayedSlugs;
+      result.downloaded = err.summary.downloadedGames;
+      result.notPlayed = err.summary.notPlayedGames;
     }
     throw err;
   }
@@ -146,7 +153,8 @@ async function main() {
     keyRenewed: false,
     newGames: [],
     invalidDates: [],
-    pendingSlug: [],
+    discarded: [],
+    pendingGames: [],
     downloaded: [],
     notPlayed: [],
     calendarCount: null,

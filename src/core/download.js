@@ -2,7 +2,8 @@
 
 /**
  * Download logic shared by download-games.js and sync.js: stats and score of
- * the games listed in <outputDir>/dated-games.json.
+ * the games of the competition trees (src/data/<competitionId>.json).
+ * Files are saved as <id>.json.
  */
 
 const path = require('node:path');
@@ -32,35 +33,33 @@ function isAfterGameSchedule(value) {
  * Downloads stats and scores of one game, sequentially.
  * Files already written are kept even if a later step fails.
  * @param {import('./api-client').ApiClient} client
- * @param {{slug: string, id: string}} game
+ * @param {{id: string}} game
  * @param {{requestsSent: number}} state Shared state used to pause between requests.
  */
 async function downloadGame(client, game, state) {
-  // saveStats / saveScore expect { title, id }.
-  const target = { title: game.slug, id: game.id };
-
   if (state.requestsSent > 0) await shortWait();
   state.requestsSent += 1;
-  const statsData = await client.getGameStats(target.id);
-  await saveStats(target, statsData, client.config.paths.gamesStats);
-  console.log(`Stats saved: ${buildFileName(target.title, target.id)}`);
+  const statsData = await client.getGameStats(game.id);
+  await saveStats(game, statsData, client.config.paths.gamesStats);
+  console.log(`Stats saved: ${buildFileName(game.id)}`);
 
   await shortWait();
   state.requestsSent += 1;
-  const scoreData = await client.getGameScore(target.id);
-  await saveScore(target, scoreData, client.config.paths.gamesScores);
-  console.log(`Score saved: ${buildFileName(target.title, target.id)}`);
+  const scoreData = await client.getGameScore(game.id);
+  await saveScore(game, scoreData, client.config.paths.gamesScores);
+  console.log(`Score saved: ${buildFileName(game.id)}`);
 }
 
 /**
  * Identifies games to download and updates the analysis counts in the summary.
  * @param {object[]} games
+ * @param {(game: object) => string} label
  * @param {string} statsDir
  * @param {string} scoresDir
  * @param {{ignored: number, skipped: number, notPlayedYet: number, alreadyDownloaded: number, toDownload: number}} summary
  * @returns {Promise<object[]>}
  */
-async function analyzeGames(games, summary, statsDir, scoresDir) {
+async function analyzeGames(games, label, summary, statsDir, scoresDir) {
   const toDownload = [];
   let partialDownloadError;
 
@@ -82,7 +81,7 @@ async function analyzeGames(games, summary, statsDir, scoresDir) {
       continue;
     }
 
-    const fileName = buildFileName(game.slug, game.id);
+    const fileName = buildFileName(game.id);
     const hasStats = await fileExists(path.join(statsDir, fileName));
     const hasScore = await fileExists(path.join(scoresDir, fileName));
 
@@ -95,7 +94,7 @@ async function analyzeGames(games, summary, statsDir, scoresDir) {
     if (hasStats !== hasScore) {
       const missing = hasStats ? scoresDir : statsDir;
       partialDownloadError ??= new Error(
-        `Game "${game.slug}" is only partially downloaded: missing ${path.join(missing, fileName)}`,
+        `Game "${label(game)}" is only partially downloaded: missing ${path.join(missing, fileName)}`,
       );
       continue;
     }
@@ -120,16 +119,17 @@ async function analyzeGames(games, summary, statsDir, scoresDir) {
  * Downloads analyzed games and updates the download counts in the summary.
  * @param {import('./api-client').ApiClient} client
  * @param {object[]} games
+ * @param {(game: object) => string} label
  * @param {{requestsSent: number}} state
- * @param {{notPlayed: number, newlyDownloaded: number, downloadedSlugs: string[], notPlayedSlugs: string[]}} summary
+ * @param {{notPlayed: number, newlyDownloaded: number, downloadedGames: string[], notPlayedGames: string[]}} summary
  * @returns {Promise<void>}
  */
-async function downloadGames(client, games, state, summary) {
+async function downloadGames(client, games, label, state, summary) {
   for (let i = 0; i < games.length; i += 1) {
     const game = games[i];
     console.log(SEPARATOR);
     console.log(`Game: ${i + 1}/${games.length}`);
-    console.log(`Slug: ${game.slug}`);
+    console.log(`Name: ${label(game)}`);
     console.log(`Id: ${game.id}`);
     const started = new Date();
     try {
@@ -138,7 +138,7 @@ async function downloadGames(client, games, state, summary) {
       if (isNoDataError(err)) {
         // Game not played yet: continue with the next one and retry next run.
         summary.notPlayed += 1;
-        summary.notPlayedSlugs.push(game.slug);
+        summary.notPlayedGames.push(label(game));
         console.warn(`No data ("${err.apiError}"): game will be retried on the next run.`);
         console.log(SEPARATOR);
         continue;
@@ -153,19 +153,22 @@ async function downloadGames(client, games, state, summary) {
 
     game.downloaded = true;
     summary.newlyDownloaded += 1;
-    summary.downloadedSlugs.push(game.slug);
+    summary.downloadedGames.push(label(game));
   }
 }
 
 /**
  * Processes games, first identifying downloads and then downloading them.
- * `summary.downloadedSlugs` and `summary.notPlayedSlugs` list the affected games.
+ * `summary.downloadedGames` and `summary.notPlayedGames` list the affected games
+ * by label.
  * @param {import('./api-client').ApiClient} client
  * @param {object[]} games
  * @param {{requestsSent?: number}} [state] Pass requestsSent > 0 when a request
  *   was already sent, so the first download waits first.
+ * @param {{label?: (game: object) => string}} [options] Label used in logs and
+ *   summaries (defaults to the game id).
  */
-async function processGames(client, games, state = { requestsSent: 0 }) {
+async function processGames(client, games, state = { requestsSent: 0 }, { label = (game) => game.id } = {}) {
   const { gamesStats: statsDir, gamesScores: scoresDir } = client.config.paths;
   const summary = {
     skipped: 0,
@@ -175,11 +178,11 @@ async function processGames(client, games, state = { requestsSent: 0 }) {
     newlyDownloaded: 0,
     notPlayed: 0,
     ignored: 0,
-    downloadedSlugs: [],
-    notPlayedSlugs: [],
+    downloadedGames: [],
+    notPlayedGames: [],
   };
-  const toDownload = await analyzeGames(games, summary, statsDir, scoresDir);
-  await downloadGames(client, toDownload, state, summary);
+  const toDownload = await analyzeGames(games, label, summary, statsDir, scoresDir);
+  await downloadGames(client, toDownload, label, state, summary);
   return summary;
 }
 

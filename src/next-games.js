@@ -29,9 +29,8 @@
  * key          (required) Key sent as `key`. Replaced by the received key.
  * outputDir    (optional) Root download directory, resolved against the
  *              project root. The daily response is written to
- *              <outputDir>/next-games; accumulated games go to
- *              <outputDir>/dated-games.json.
- *              created automatically if it does not exist.
+ *              <outputDir>/next-games (created automatically if it does
+ *              not exist).
  * The script aborts if config.json is missing or invalid.
  *
  * CONFIGURATION VARIABLES (in source)
@@ -43,11 +42,13 @@
  * ----------------------
  * <outputDir>/next-games/<YYYY-MM-DD>.json  (local date of execution)
  * An existing file for the same date is overwritten.
- * <outputDir>/dated-games.json accumulates games by IdPartido. New games are
- * added; existing games have their UTC date and venue refreshed. The venue slug
- * is resolved from CampoJuego using src/data/venues.json. Unknown venues are
- * reported as warnings without clearing existing slugs; new games use an empty
- * venue. Entries are sorted by UTC date.
+ * The competition trees (src/data/<competitionId>.json) accumulate games by
+ * IdPartido. Existing games have their UTC date and venue refreshed. New games
+ * are added to `pending-games` of the current season competition of their
+ * category (games of other categories are discarded with a warning). The venue
+ * slug is resolved from CampoJuego using src/data/venues.json. Unknown venues
+ * are reported as warnings without clearing existing slugs; new games use an
+ * empty venue. Games are sorted by UTC date. Only modified trees are written.
  *
  * ERROR HANDLING RULES
  * --------------------
@@ -113,7 +114,6 @@ async function main() {
   const fileName = `${toDayString(started)}.json`;
 
   console.log(`Daily output directory: ${client.config.paths.nextGames}`);
-  console.log(`Accumulated games file: ${client.config.paths.datedGamesFile}`);
   console.log(`Days ahead: ${DAYS}`);
 
   let data;
@@ -141,14 +141,19 @@ async function main() {
   console.log(`Sent key: ${sentKey}`);
   console.log(`Received key: ${client.key}`);
   console.log(`Games received: ${data.mispartidos.length}`);
-  console.log(`Dated games added: ${summary.added.length}`);
-  console.log(`Dated games updated: ${summary.updated.length}`);
-  console.log(`Total dated games: ${summary.total}`);
+  console.log(`Games added to pending-games: ${summary.added.length}`);
+  console.log(`Games updated: ${summary.updated.length}`);
+  console.log(`Total games: ${summary.total}`);
   for (const name of summary.unmatchedVenues) {
     console.warn(`Venue not found in src/data/venues.json: "${name}"`);
   }
   for (const game of summary.invalidDates) {
     console.warn(`New game skipped due to invalid date: ${game.id} (${game.fecha} ${game.hora})`);
+  }
+  for (const game of summary.discarded) {
+    console.warn(
+      `New game discarded, no competition for "${game.category}": ${game.id} (${game.home} vs ${game.away})`,
+    );
   }
   console.log(`Output file: ${fileName}`);
   console.log(`Started: ${timestamp(started)}`);

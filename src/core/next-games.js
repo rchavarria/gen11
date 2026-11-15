@@ -6,34 +6,50 @@
 
 const { writeJson } = require('./files');
 const { toDayString } = require('./format');
-const { readDatedGamesFile, writeDatedGamesFile } = require('./dated-games');
 const { ApiError } = require('./api-client');
 const { shorterWait } = require('./wait');
 const { loadVenues } = require('./venues');
-const { downloadedToUtcIso, isUtcIsoDateTime } = require('./dates');
+const { downloadedToUtcIso } = require('./dates');
+const {
+  CURRENT_SEASON,
+  DATA_DIR,
+  PENDING,
+  allGames,
+  readCompetitionTrees,
+  sortTreeGames,
+  writeCompetitionTree,
+} = require('./competitions');
 
 const DAYS = 100;
 
 /**
- * Adds new upcoming games and refreshes the date, time and venue of known games.
- * Mutates and sorts `games`.
- * @param {object[]} games
+ * Refreshes the date, time and venue of known games (matched by id in every
+ * tree, including pending games) and adds new games to `pending-games` of the
+ * current-season competition with the same category. New games without such a
+ * competition are discarded. Mutates and sorts the trees.
+ * @param {{competition: object, tree: object}[]} trees
  * @param {object[]} upcomingGames The `mispartidos` array of the response.
  * @param {Map<string, string>} venues Exact venue name -> slug.
- * @returns {{added: object[], updated: object[], unmatchedVenues: string[], invalidDates: object[]}}
+ * @param {string} [season] Current season.
+ * @returns {{added: object[], updated: object[], discarded: object[], unmatchedVenues: string[], invalidDates: object[], changed: Set<object>}}
+ *   `added` entries are `{competition, game}`; `changed` holds the modified tree entries.
  */
-function mergeDatedGames(games, upcomingGames, venues = new Map()) {
+function mergeNextGames(trees, upcomingGames, venues = new Map(), season = CURRENT_SEASON) {
   const byId = new Map();
-  for (const game of games) {
-    if (game && typeof game.id === 'string' && game.id !== '' && !byId.has(game.id)) {
-      byId.set(game.id, game);
+  for (const entry of trees) {
+    for (const game of allGames(entry.tree)) {
+      if (game && typeof game.id === 'string' && game.id !== '' && !byId.has(game.id)) {
+        byId.set(game.id, { game, entry });
+      }
     }
   }
 
   const added = [];
   const updated = [];
+  const discarded = [];
   const unmatchedVenues = new Set();
   const invalidDates = [];
+  const changed = new Set();
   for (const upcoming of upcomingGames) {
     const id = upcoming?.IdPartido;
     if (typeof id !== 'string' || id === '') continue;
@@ -41,86 +57,82 @@ function mergeDatedGames(games, upcomingGames, venues = new Map()) {
     const venueName = upcoming.CampoJuego;
     const venue = venues.get(venueName) || '';
     if (!venue) unmatchedVenues.add(venueName || '(missing CampoJuego)');
-    const existing = byId.get(id);
-    if (existing) {
-      let changed = false;
+    const known = byId.get(id);
+    if (known) {
+      const existing = known.game;
+      let modified = false;
       if (date && existing.date !== date) {
         existing.date = date;
-        changed = true;
+        modified = true;
       }
       if (venue && existing.venue !== venue) {
         existing.venue = venue;
-        changed = true;
+        modified = true;
       }
-      if (changed && !updated.includes(existing)) updated.push(existing);
+      if (modified) {
+        if (!updated.includes(existing)) updated.push(existing);
+        changed.add(known.entry);
+      }
       continue;
     }
+    const home = upcoming.NombreClubLocal ?? '';
+    const away = upcoming.NombreClubVisitante ?? '';
     if (!date) {
-      invalidDates.push({
-        id,
-        home: upcoming.NombreClubLocal ?? '',
-        away: upcoming.NombreClubVisitante ?? '',
-        fecha: upcoming.Fecha ?? '',
-        hora: upcoming.Hora ?? '',
-      });
+      invalidDates.push({ id, home, away, fecha: upcoming.Fecha ?? '', hora: upcoming.Hora ?? '' });
       continue;
     }
 
-    const game = {
-      slug: '',
-      id,
-      date,
-      venue,
-      category: upcoming.Categoria ?? '',
-      homeClubName: upcoming.NombreClubLocal ?? '',
-      awayClubName: upcoming.NombreClubVisitante ?? '',
-      downloaded: false,
-    };
-    games.push(game);
-    byId.set(id, game);
-    added.push(game);
+    const category = String(upcoming.Categoria ?? '').trim();
+    const entry = trees.find(({ competition }) => competition.season === season && competition.category === category);
+    if (!entry) {
+      discarded.push({ id, date, home, away, category });
+      continue;
+    }
+
+    const game = { id, date, venue, homeClubName: home, awayClubName: away, downloaded: false };
+    entry.tree[PENDING].push(game);
+    byId.set(id, { game, entry });
+    added.push({ competition: entry.competition.id, game });
+    changed.add(entry);
   }
 
-  games.sort((a, b) => {
-    const aDate = isUtcIsoDateTime(a.date);
-    const bDate = isUtcIsoDateTime(b.date);
-    if (aDate !== bDate) return aDate ? -1 : 1;
-    return (a.date || '').localeCompare(b.date || '');
-  });
-  return { added, updated, unmatchedVenues: [...unmatchedVenues], invalidDates };
+  for (const entry of changed) sortTreeGames(entry.tree);
+  return { added, updated, discarded, unmatchedVenues: [...unmatchedVenues], invalidDates, changed };
 }
 
 /**
  * Requests the upcoming games and saves the raw response to
  * <outputDir>/next-games/<YYYY-MM-DD>.json, then merges the received games
- * into <outputDir>/dated-games.json.
+ * into the competition trees (src/data/<competitionId>.json). Only modified
+ * trees are written.
  * @param {import('./api-client').ApiClient} client
- * @param {{days?: number, date?: Date}} [options]
- * @returns {Promise<{data: object, fileName: string, added: object[], updated: object[], unmatchedVenues: string[], invalidDates: object[], total: number}>}
+ * @param {{days?: number, date?: Date, dataDir?: string}} [options]
+ * @returns {Promise<{data: object, fileName: string, added: object[], updated: object[], discarded: object[], unmatchedVenues: string[], invalidDates: object[], total: number}>}
  */
-async function fetchNextGames(client, { days = DAYS, date = new Date() } = {}) {
+async function fetchNextGames(client, { days = DAYS, date = new Date(), dataDir = DATA_DIR } = {}) {
   const fileName = `${toDayString(date)}.json`;
   // ApiClient persists the rotated key before returning the data.
   const data = await client.getNextGames({ days });
   await writeJson(client.config.paths.nextGames, fileName, data);
 
-  const datedGames = await readDatedGamesFile(client.config);
+  const trees = await readCompetitionTrees(dataDir);
   const venues = await loadVenues();
-  const { added, updated, unmatchedVenues, invalidDates } = mergeDatedGames(
-    datedGames['dated-games'],
+  const { added, updated, discarded, unmatchedVenues, invalidDates, changed } = mergeNextGames(
+    trees,
     data.mispartidos,
     venues,
   );
-  await writeDatedGamesFile(client.config, datedGames);
-  return { data, fileName, added, updated, unmatchedVenues, invalidDates, total: datedGames['dated-games'].length };
+  for (const { competition, tree } of changed) await writeCompetitionTree(competition, tree, dataDir);
+  const total = trees.reduce((sum, { tree }) => sum + allGames(tree).length, 0);
+  return { data, fileName, added, updated, discarded, unmatchedVenues, invalidDates, total };
 }
 
 /**
  * Fetches upcoming games, renewing the key and retrying once on an API error.
  * @param {import('./api-client').ApiClient} client
- * @param {{days?: number, date?: Date}} [options]
+ * @param {{days?: number, date?: Date, dataDir?: string}} [options]
  * @param {{wait?: () => Promise<void>, onKeyRenewed?: () => void}} [hooks]
- * @returns {Promise<{data: object, fileName: string, added: object[], updated: object[], unmatchedVenues: string[], invalidDates: object[], total: number, keyRenewed: boolean}>}
+ * @returns {Promise<{data: object, fileName: string, added: object[], updated: object[], discarded: object[], unmatchedVenues: string[], invalidDates: object[], total: number, keyRenewed: boolean}>}
  */
 async function fetchNextGamesRenewingKey(client, options = {}, { wait = shorterWait, onKeyRenewed = () => {} } = {}) {
   try {
@@ -137,4 +149,4 @@ async function fetchNextGamesRenewingKey(client, options = {}, { wait = shorterW
   return { ...(await fetchNextGames(client, options)), keyRenewed: true };
 }
 
-module.exports = { DAYS, mergeDatedGames, fetchNextGames, fetchNextGamesRenewingKey };
+module.exports = { DAYS, mergeNextGames, fetchNextGames, fetchNextGamesRenewingKey };

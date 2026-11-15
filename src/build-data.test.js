@@ -168,48 +168,63 @@ test('game details reject unknown clubs', () => {
   }
 });
 
-test('calendar builds from dated games without legacy files, sorting and skipping incomplete entries', async (t) => {
+test('calendar builds from competition trees, sorting, computing slugs and skipping incomplete entries', async (t) => {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'gen11-calendar-'));
   t.onTestFinished(() => fs.rmSync(directory, { recursive: true }));
-  fs.mkdirSync(path.join(directory, 'core'));
-  fs.mkdirSync(path.join(directory, 'data'));
-  for (const file of [
-    'build-data.js',
-    'core/config.js',
-    'core/games.js',
-    'core/dated-games.js',
-    'core/dates.js',
-    'core/files.js',
-    'core/timely-scores.js',
-    'core/validate.js',
-    'core/format.js',
-  ]) {
-    fs.copyFileSync(path.join(import.meta.dirname, file), path.join(directory, file));
-  }
+  const dataDir = path.join(directory, 'data');
+  fs.mkdirSync(dataDir);
   fs.writeFileSync(
-    path.join(directory, 'data/clubs.json'),
+    path.join(dataDir, 'clubs.json'),
     JSON.stringify([
       { slug: 'home', sourceNames: ['HOME CLUB'] },
       { slug: 'away', sourceNames: ['AWAY CLUB'] },
     ]),
   );
-  const datedGamesFile = path.join(directory, 'dated-games.json');
   fs.writeFileSync(
-    datedGamesFile,
+    path.join(dataDir, 'competitions.json'),
     JSON.stringify({
-      'dated-games': [
-        { ...datedGame, slug: 'later', id: 'BCD', date: '2026-09-22T09:30:00Z' },
-        datedGame,
-        { ...datedGame, slug: 'earlier', id: 'CDE', date: '2026-09-21T06:00:00Z' },
-        { ...datedGame, slug: '' },
-        { ...datedGame, slug: 'invalid-id', id: '' },
+      competitions: [
+        {
+          id: 'c',
+          season: 's67',
+          category: ' Cadete ',
+          phases: [{ id: 'f1', type: 'league', groups: [{ id: 'g1', teams: [] }] }],
+        },
       ],
     }),
   );
+  const { slug, category, ...treeGame } = datedGame;
+  const round = (id, game) => ({ id, games: [{ ...treeGame, ...game }] });
+  const treeFile = path.join(dataDir, 'c.json');
+  fs.writeFileSync(
+    treeFile,
+    JSON.stringify({
+      phases: [
+        {
+          id: 'f1',
+          groups: [
+            {
+              id: 'g1',
+              rounds: [
+                round('j03', { id: 'BCD', date: '2026-09-22T09:30:00Z' }),
+                round('j02', {}),
+                round('j01', { id: 'CDE', date: '2026-09-21T06:00:00Z' }),
+                round('j04', { id: '' }),
+              ],
+            },
+          ],
+        },
+      ],
+      'pending-games': [{ ...treeGame, id: 'DEF' }],
+    }),
+  );
+  const gameSlug = 'c-f1-g1-j02-home-away';
+  const earlierSlug = 'c-f1-g1-j01-home-away';
+  const laterSlug = 'c-f1-g1-j03-home-away';
   const gamesScores = path.join(directory, 'scores/season');
   fs.mkdirSync(gamesScores, { recursive: true });
   fs.writeFileSync(
-    path.join(gamesScores, 'game-ABC.json'),
+    path.join(gamesScores, 'ABC.json'),
     JSON.stringify({
       partido: { tanteo_local: '80', tanteo_visitante: '70', estado_partido: 'FINALIZADO', idlocal: 1, idvisitante: 2 },
       envivo: {
@@ -226,65 +241,69 @@ test('calendar builds from dated games without legacy files, sorting and skippin
       },
     }),
   );
-  const { buildCalendar, buildGameFiles } = require(path.join(directory, 'build-data.js'));
-  const config = {
-    paths: {
-      datedGamesFile,
-      gamesScores: path.dirname(gamesScores),
+  const { buildCalendar, buildGameFiles } = require('./build-data.js');
+  const config = { paths: { gamesScores: path.dirname(gamesScores) } };
+  const options = { dataDir };
+  const sync = await fetchNextGames(
+    {
+      config: { paths: { ...config.paths, nextGames: path.join(directory, 'next-games') } },
+      getNextGames: async () => ({
+        mispartidos: [{ IdPartido: 'CDE', Fecha: '21/09/2026', Hora: '09:00:00' }],
+      }),
     },
-  };
-  const sync = await fetchNextGames({
-    config: { paths: { ...config.paths, nextGames: path.join(directory, 'next-games') } },
-    getNextGames: async () => ({
-      mispartidos: [{ IdPartido: 'CDE', Fecha: '21/09/2026', Hora: '09:00:00' }],
-    }),
-  });
+    options,
+  );
   assert.equal(sync.updated[0].date, '2026-09-21T07:00:00Z');
-  assert.deepEqual(await buildCalendar(config), { count: 3, skipped: ['(no slug)', 'invalid-id'] });
-  const calendar = JSON.parse(fs.readFileSync(path.join(directory, 'data/calendar.json'), 'utf8'));
+  assert.deepEqual(await buildCalendar(config, options), { count: 3, skipped: ['c-f1-g1-j04-home-away'] });
+  const calendar = JSON.parse(fs.readFileSync(path.join(dataDir, 'calendar.json'), 'utf8'));
   assert.deepEqual(
     calendar.map((game) => game.slug),
-    ['earlier', 'game', 'later'],
+    [earlierSlug, gameSlug, laterSlug],
   );
-  assert.deepEqual(calendar[1], fromDatedGame(datedGame, clubs, path.join(gamesScores, 'game-ABC.json')));
+  assert.deepEqual(
+    calendar[1],
+    fromDatedGame({ ...datedGame, slug: gameSlug }, clubs, path.join(gamesScores, 'ABC.json')),
+  );
   assert.equal(calendar[0].played, false);
   assert.equal(calendar[2].played, false);
 
-  const calendarFile = path.join(directory, 'data/calendar.json');
+  const calendarFile = path.join(dataDir, 'calendar.json');
   fs.writeFileSync(
     calendarFile,
     JSON.stringify([...calendar].reverse().map((game) => ({ ...game, venue: `manual-${game.slug}`, time: '00:01' }))),
   );
-  const datedGames = JSON.parse(fs.readFileSync(datedGamesFile, 'utf8'));
-  datedGames['dated-games'].find((game) => game.slug === 'earlier').venue = 'manual-earlier';
-  datedGames['dated-games'].find((game) => game.slug === 'later').venue = '';
-  fs.writeFileSync(datedGamesFile, JSON.stringify(datedGames));
+  const tree = JSON.parse(fs.readFileSync(treeFile, 'utf8'));
+  const treeGames = tree.phases[0].groups[0].rounds.flatMap((item) => item.games);
+  treeGames.find((game) => game.id === 'CDE').venue = 'manual-earlier';
+  treeGames.find((game) => game.id === 'BCD').venue = '';
+  fs.writeFileSync(treeFile, JSON.stringify(tree));
 
-  await buildCalendar(config);
+  await buildCalendar(config, options);
   const rebuilt = JSON.parse(fs.readFileSync(calendarFile, 'utf8'));
   assert.deepEqual(
     rebuilt.map(({ slug, venue, date }) => ({ slug, venue, date })),
     [
-      { slug: 'earlier', venue: 'manual-earlier', date: '2026-09-21T07:00:00Z' },
-      { slug: 'game', venue: '', date: '2026-09-21T09:30:00Z' },
-      { slug: 'later', venue: '', date: '2026-09-22T09:30:00Z' },
+      { slug: earlierSlug, venue: 'manual-earlier', date: '2026-09-21T07:00:00Z' },
+      { slug: gameSlug, venue: '', date: '2026-09-21T09:30:00Z' },
+      { slug: laterSlug, venue: '', date: '2026-09-22T09:30:00Z' },
     ],
   );
-  await buildCalendar(config);
+  await buildCalendar(config, options);
   assert.deepEqual(JSON.parse(fs.readFileSync(calendarFile, 'utf8')), rebuilt);
 
   fs.writeFileSync(
-    path.join(gamesScores, 'earlier-CDE.json'),
+    path.join(gamesScores, 'CDE.json'),
     JSON.stringify({
       partido: { tanteo_local: 10 },
     }),
   );
-  assert.deepEqual(await buildGameFiles(config), { count: 1, slugs: ['game'] });
-  const gamesDir = path.join(directory, 'data/games');
-  assert.deepEqual(fs.readdirSync(gamesDir), ['game.json']);
-  const gameFile = path.join(gamesDir, 'game.json');
+  assert.deepEqual(await buildGameFiles(config, options), { count: 1, slugs: [gameSlug] });
+  const gamesDir = path.join(dataDir, 'games');
+  assert.deepEqual(fs.readdirSync(gamesDir), [`${gameSlug}.json`]);
+  const gameFile = path.join(gamesDir, `${gameSlug}.json`);
   assert.deepEqual(JSON.parse(fs.readFileSync(gameFile, 'utf8')), {
     ...detailMetadata,
+    slug: gameSlug,
     home: {
       slug: 'home',
       score: 80,
@@ -302,16 +321,16 @@ test('calendar builds from dated games without legacy files, sorting and skippin
     },
   });
   fs.writeFileSync(
-    path.join(gamesScores, 'game-ABC.json'),
+    path.join(gamesScores, 'ABC.json'),
     JSON.stringify({
       partido: { tanteo_local: 81, tanteo_visitante: 70 },
     }),
   );
-  assert.deepEqual(await buildGameFiles(config), { count: 1, slugs: ['game'] });
+  assert.deepEqual(await buildGameFiles(config, options), { count: 1, slugs: [gameSlug] });
   const rewritten = fs.readFileSync(gameFile, 'utf8');
   assert.equal(JSON.parse(rewritten).home.score, 81);
   assert.deepEqual(JSON.parse(rewritten).home.timelyScores, []);
   assert.deepEqual(JSON.parse(rewritten).away.timelyScores, []);
-  await buildGameFiles(config);
+  await buildGameFiles(config, options);
   assert.equal(fs.readFileSync(gameFile, 'utf8'), rewritten);
 });

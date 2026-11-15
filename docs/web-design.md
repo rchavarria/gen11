@@ -31,16 +31,18 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 ## Datos
 
 - `src/build-data.js` lee los datos en bruto de `downloads/` y genera `src/data/calendar.json`
-  - lee `dated-games.json` para obtener slug, `date`, categoría, clubs y `venue` (slug del pabellón)
+  - lee los árboles de competición (`src/data/<competición>.json`, ver `competitions.json`)
+    para obtener `date`, clubs y `venue` (slug del pabellón); la categoría sale de la competición
+    y el slug se calcula a partir de la posición del partido en el árbol
   - `date` es ISO 8601 UTC (`YYYY-MM-DDTHH:mm:ssZ`); la web muestra el día y la hora en Europe/Madrid.
     `T00:00:00Z` indica hora desconocida y conserva el día del partido
   - al cargar el calendario o un partido, la web convierte `date` en un objeto `Date`
-  - las correcciones manuales de `venue` se hacen en `dated-games.json`;
+  - las correcciones manuales de `venue` se hacen en el árbol de la competición;
     el calendario se regenera desde ese origen, sin leer sus valores anteriores
-  - combina esos datos con su marcador (`games-scores/`) por id de partido;
+  - combina esos datos con su marcador (`games-scores/<id>.json`) por id de partido;
     considera jugado un partido finalizado o con ambas puntuaciones presentes
   - sin fichero de marcador, lo considera no jugado y deja las puntuaciones vacías
-  - omite los partidos sin slug o con id inválido
+  - omite los partidos de `pending-games` y los que tienen id inválido
   - escribe solo los campos de una lista blanca
 - Cada `home` y `away` guarda `club` (slug de un club existente) y `score`.
   La web obtiene el nombre y el escudo desde `clubs.json`, sin duplicarlos en el calendario.
@@ -68,14 +70,16 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   Si falta el historial o sus datos son inválidos, ambos arrays quedan vacíos y el
   generador emite un aviso con el slug. Un historial válido vacío conserva solo los puntos iniciales.
   La página de detalle carga cada JSON de forma lazy mediante `import.meta.glob`.
-- Slug del partido: lo añades a mano en `dated-games.json` antes de procesarlo;
-  es el id estable (el `id_partido` de la fuente caduca)
+- Slug del partido: no se guarda; se calcula como
+  `<competición>-<fase>[-<grupo>]-<jornada>-<local>-<visitante>` con los slugs de `clubs.json`.
+  Los partidos se identifican por `id` (`IdPartido` de la fuente). Los nuevos entran en
+  `pending-games` y se colocan a mano en su jornada
 - `src/data/clubs.json` (a mano): `slug`, `initials` (3 letras, se muestran en la tira de
   próximos partidos), `name` (el que se muestra), `logo` (fichero en
   `public/logos/`, o `null`) y `sourceNames` (nombres del club en la fuente)
 - `src/data/venues.json` (a mano): `slug`, `name` (campo de juego) y `address`.
   Al obtener los próximos partidos, `CampoJuego` se compara literalmente con `name`,
-  sin normalizar espacios, mayúsculas ni acentos. Se guarda o actualiza `venue` en `dated-games.json`; si no
+  sin normalizar espacios, mayúsculas ni acentos. Se guarda o actualiza `venue` en el árbol de la competición; si no
   hay coincidencia, se conserva el valor existente (o `""` en partidos nuevos) y se
   avisa sin abortar. Solo se actualiza un slug existente si el nuevo es distinto y
   no está vacío. No se usan coincidencias

@@ -23,8 +23,8 @@ Each script writes into its own subfolder of `outputDir`:
 | Script              | Output                                                                        |
 | ------------------- | ----------------------------------------------------------------------------- |
 | `previous-games.js` | `<outputDir>/games/`                                                          |
-| `download-games.js` | `<outputDir>/dated-games.json`, `games-stats/`, `games-scores/`               |
-| `next-games.js`     | `<outputDir>/next-games/<YYYY-MM-DD>.json`, `dated-games.json`                |
+| `download-games.js` | `src/data/<competition>.json`, `games-stats/`, `games-scores/`                |
+| `next-games.js`     | `<outputDir>/next-games/<YYYY-MM-DD>.json`, `src/data/<competition>.json`     |
 | `build-data.js`     | `src/data/calendar.json`, `src/data/games/<slug>.json` (data for the web)     |
 | `sync.js`           | `<outputDir>/sync-reports/<YYYY-MM-DD>.md` (plus everything above, see below) |
 
@@ -39,14 +39,33 @@ node src/build-data.js
 npm run sync   # same as: node src/sync.js
 ```
 
+## Competitions
+
+Games are organised as seasons › competitions › phases › groups › rounds › games:
+
+- `src/data/competitions.json` (by hand): each competition's `id` (e.g. `s67-kdt-oro`),
+  `season`, source `category`, and its `phases` (`league`/`knockout`), with optional
+  `groups` and their `teams` (club slugs).
+- `src/data/<competition>.json` (maintained by `sync`): the game tree
+  `phases[].groups[].rounds[].games[]` (or `phases[].rounds[]` for phases without groups),
+  plus a `pending-games` array.
+- Games are identified by the source `IdPartido` (`id`). New games are added to
+  `pending-games` of the current-season competition (`CURRENT_SEASON` in
+  `src/core/competitions.js`) for their category; games whose category has no
+  competition are discarded and reported. Placing a pending game in its round is
+  a manual step: move it in the JSON and run `sync` (or `build-data`) again.
+- The game slug is not stored: it is computed as
+  `<competition>-<phase>[-<group>]-<round>-<home>-<away>`, using club slugs from `clubs.json`.
+
+`src/migrate-dated-games.js` is the one-off migration from the old
+`downloads/dated-games.json` (it reads it but never modifies it).
+
 `sync.js` runs the whole pipeline: fetch upcoming games and add the new ones
-to `dated-games.json` (empty `slug`); if that request fails with an API error,
+to the competition trees; if that request fails with an API error,
 it renews the key and retries once. It also updates dates and times of known
 games, downloads stats/scores, rebuilds `calendar.json` and per-game files,
-including each game's score evolution, and writes a report. Setting the `slug` of
-new games in `dated-games.json` is a manual step: games without a slug are
-ignored and listed in the report as pending until you fill it in and run
-`sync` again.
+including each game's score evolution, and writes a report listing discarded
+games and games pending placement.
 
 Game `date` fields use UTC ISO 8601 (`YYYY-MM-DDTHH:mm:ssZ`), converted from
 Europe/Madrid. The UI displays Madrid dates and times. `T00:00:00Z` represents an
@@ -57,14 +76,15 @@ use the earlier occurrence; nonexistent times during the spring change are rejec
 Downloads are skipped until more than three hours after the stored UTC `date`.
 For unknown times, this rule uses the stored `00:00:00Z` marker.
 
-`build-data.js` reads game metadata from `dated-games.json` and scores from
-`games-scores/`. Without a score file, games are shown as not played.
+`build-data.js` reads game metadata from the competition trees (placed games only;
+`pending-games` are ignored) and scores from `games-scores/<id>.json`.
+Without a score file, games are shown as not played.
 For games with both numeric scores, it also rewrites `src/data/games/<slug>.json`.
-These files preserve dated-game fields, including `id`, but omit `homeClubName`,
+These files preserve the tree game fields, including `id`, plus the competition `category`, but omit `homeClubName`,
 `awayClubName`, `downloaded` and `scored`. They add `home` and `away` objects with the club `slug`, `score`, and numeric
 `quarterScores` ordered by period (including overtime). Club slugs are resolved
 through `sourceNames` in `clubs.json`; unknown clubs cause an error.
-If `games-stats/<slug>-<id>.json` exists, `home` and `away` also get `players`: one entry per player
+If `games-stats/<id>.json` exists, `home` and `away` also get `players`: one entry per player
 (the source's `TOTALES` row is excluded) with `jersey`, `msPlayed`, `starter`, `freeThrows`, `twoPointers`,
 `threePointers` (`made`/`attempted`), `rebounds` (`defensive`/`offensive`), `assists`, `turnovers`, `steals`,
 `blocks` (`made`/`received`), `fouls` (`committed`/`received`), `plusMinus` and `efficiency`.
@@ -113,11 +133,11 @@ GitHub Pages checks lint and tests before building.
 | `src/core/format.js`        | `formatDuration`, `timestamp`                                                                        |
 | `src/core/validate.js`      | `isEmptyValue`, `isPlainObject`, `fileExists`                                                        |
 | `src/core/games.js`         | `isValidGame`                                                                                        |
-| `src/core/dated-games.js`   | `readDatedGamesFile`, `writeDatedGamesFile`                                                          |
+| `src/core/competitions.js`  | Competitions and game trees: read/write, `listGames`, `computeSlug`, `loadClubs`                     |
 | `src/core/files.js`         | `writeJson`, `buildFileName`, `saveStats`, `saveScore`                                               |
 | `src/core/api-client.js`    | `ApiClient` (API calls, validation, key rotation), `ApiError`, `isNoDataError`                       |
 | `src/core/download.js`      | `processGames` (stats + scores download), `downloadGame`, `isAfterGameSchedule`                      |
 | `src/core/timely-scores.js` | `getScoringActions`, `getTimelyScores`                                                               |
-| `src/core/next-games.js`    | `fetchNextGames`, `mergeDatedGames`                                                                  |
+| `src/core/next-games.js`    | `fetchNextGames`, `mergeNextGames`                                                                   |
 | `src/core/dates.js`         | Madrid/UTC conversion and date helpers                                                               |
 | `src/core/report.js`        | `buildReport`, `writeReport` (sync report)                                                           |

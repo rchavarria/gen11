@@ -18,6 +18,10 @@ búsqueda y que caduca
 
 Si nadie la descarga después del partido, luego puede no haber forma de pedirla
 
+Por ahora hemos observado que el `IdPartido` de un partido (el que devuelven los
+próximos partidos y se guarda como `id`) no cambia entre peticiones, así que se usa
+para identificar los partidos
+
 - Arranque en frío lento
 
 Rehacer el barrido del buscador son unas 18 páginas a ~3 s cada una

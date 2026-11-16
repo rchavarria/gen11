@@ -54,9 +54,9 @@ Games are organised as seasons › competitions › phases › groups › rounds
   `src/core/competitions.js`) for their category; games whose category has no
   competition are discarded and reported. Placing a pending game in its round is
   a manual step: move it in the JSON and run `sync` (or `build-data`) again.
-- Each game's `home` and `away` is an object containing the source
-  `name` and a `score` initially set to `0`. The score is reserved for future use;
-  web scores continue to come from downloaded score files.
+- Each game's `home` and `away` is an object containing the source `name` and a
+  `score`, initially `null` and filled from the downloaded score file. Web scores
+  continue to come directly from those files.
 - The game slug is not stored: it is computed as
   `<competition>-<phase>[-<group>]-<round>-<home>-<away>`, using club slugs from `clubs.json`.
 

@@ -6,6 +6,7 @@
  * Files are saved as <id>.json.
  */
 
+const fs = require('node:fs/promises');
 const path = require('node:path');
 
 const { isNoDataError } = require('./api-client');
@@ -18,6 +19,19 @@ const { isUtcIsoDateTime } = require('./dates');
 
 const SEPARATOR = '-'.repeat(50);
 const THREE_HOURS_MS = 3 * 60 * 60 * 1000;
+
+function applyScores(game, scoreData) {
+  const score = (value) => {
+    if (typeof value !== 'number' && typeof value !== 'string') return null;
+    if (typeof value === 'string' && !/^\d+$/.test(value.trim())) return null;
+    const number = Number(value);
+    return Number.isSafeInteger(number) && number >= 0 ? number : null;
+  };
+  game.home ??= { name: '', score: null };
+  game.away ??= { name: '', score: null };
+  game.home.score = score(scoreData?.partido?.tanteo_local);
+  game.away.score = score(scoreData?.partido?.tanteo_visitante);
+}
 
 /**
  * Returns true until strictly more than three hours after the game starts.
@@ -48,6 +62,7 @@ async function downloadGame(client, game, state) {
   const scoreData = await client.getGameScore(game.id);
   await saveScore(game, scoreData, client.config.paths.gamesScores);
   console.log(`Score saved: ${buildFileName(game.id)}`);
+  return scoreData;
 }
 
 /**
@@ -86,6 +101,8 @@ async function analyzeGames(games, label, summary, statsDir, scoresDir) {
     const hasScore = await fileExists(path.join(scoresDir, fileName));
 
     if (hasStats && hasScore) {
+      const scoreData = JSON.parse(await fs.readFile(path.join(scoresDir, fileName), 'utf8'));
+      applyScores(game, scoreData);
       game.downloaded = true;
       summary.alreadyDownloaded += 1;
       continue;
@@ -133,7 +150,8 @@ async function downloadGames(client, games, label, state, summary) {
     console.log(`Id: ${game.id}`);
     const started = new Date();
     try {
-      await downloadGame(client, game, state);
+      const scoreData = await downloadGame(client, game, state);
+      applyScores(game, scoreData);
     } catch (err) {
       if (isNoDataError(err)) {
         // Game not played yet: continue with the next one and retry next run.
@@ -202,4 +220,4 @@ function printSummary(summary, elapsedMs) {
   console.log('='.repeat(50));
 }
 
-module.exports = { isAfterGameSchedule, downloadGame, processGames, printSummary };
+module.exports = { applyScores, isAfterGameSchedule, downloadGame, processGames, printSummary };

@@ -15,11 +15,11 @@
                   "venue": "sba",
                   "home": {
                     "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-                    "score": 0
+                    "score": 119
                   },
                   "away": {
                     "name": "BALONCESTO ALCOBENDAS",
-                    "score": 0
+                    "score": 95
                   },
                   "downloaded": true
                 }
@@ -34,11 +34,11 @@
                   "venue": "antela",
                   "home": {
                     "name": "BALONCESTO ALCOBENDAS",
-                    "score": 0
+                    "score": 90
                   },
                   "away": {
                     "name": "BASKET TORREJON CDE",
-                    "score": 0
+                    "score": 101
                   },
                   "downloaded": true
                 }
@@ -53,11 +53,11 @@
                   "venue": "diaz-miguel",
                   "home": {
                     "name": "SAN JORGE BALONCESTO",
-                    "score": 0
+                    "score": 105
                   },
                   "away": {
                     "name": "BALONCESTO ALCOBENDAS",
-                    "score": 0
+                    "score": 90
                   },
                   "downloaded": true
                 }
@@ -72,11 +72,11 @@
                   "venue": "canoe",
                   "home": {
                     "name": "REAL CANOE N.C.",
-                    "score": 0
+                    "score": 94
                   },
                   "away": {
                     "name": "BALONCESTO ALCOBENDAS",
-                    "score": 0
+                    "score": 76
                   },
                   "downloaded": true
                 }
@@ -91,11 +91,11 @@
                   "venue": "antela",
                   "home": {
                     "name": "BALONCESTO ALCOBENDAS",
-                    "score": 0
+                    "score": 60
                   },
                   "away": {
                     "name": "REAL MADRID C.F.",
-                    "score": 0
+                    "score": 131
                   },
                   "downloaded": true
                 }
@@ -111,11 +111,11 @@
                   "video": "https://youtu.be/go9AWn84-pg",
                   "home": {
                     "name": "BALONCESTO ALCOBENDAS",
-                    "score": 0
+                    "score": 90
                   },
                   "away": {
                     "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
-                    "score": 0
+                    "score": 110
                   },
                   "downloaded": true
                 }
@@ -130,11 +130,11 @@
                   "venue": "limones",
                   "home": {
                     "name": "BASKET TORREJON CDE",
-                    "score": 0
+                    "score": null
                   },
                   "away": {
                     "name": "BALONCESTO ALCOBENDAS",
-                    "score": 0
+                    "score": null
                   },
                   "downloaded": false
                 }
@@ -149,11 +149,11 @@
                   "venue": "antela",
                   "home": {
                     "name": "BALONCESTO ALCOBENDAS",
-                    "score": 0
+                    "score": null
                   },
                   "away": {
                     "name": "SAN JORGE BALONCESTO",
-                    "score": 0
+                    "score": null
                   },
                   "downloaded": false
                 }
@@ -169,11 +169,11 @@
                   "video": "https://youtu.be/xS8Smxr4KSM",
                   "home": {
                     "name": "BALONCESTO ALCOBENDAS",
-                    "score": 0
+                    "score": 95
                   },
                   "away": {
                     "name": "REAL CANOE N.C.",
-                    "score": 0
+                    "score": 94
                   },
                   "downloaded": true
                 }
@@ -188,11 +188,11 @@
                   "venue": "valdebebas",
                   "home": {
                     "name": "REAL MADRID C.F.",
-                    "score": 0
+                    "score": null
                   },
                   "away": {
                     "name": "BALONCESTO ALCOBENDAS",
-                    "score": 0
+                    "score": null
                   },
                   "downloaded": false
                 }

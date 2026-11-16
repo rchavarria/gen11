@@ -93,8 +93,8 @@ function mergeNextGames(trees, upcomingGames, venues = new Map(), season = CURRE
       id,
       date,
       venue,
-      home: { name: home, score: 0 },
-      away: { name: away, score: 0 },
+      home: { name: home, score: null },
+      away: { name: away, score: null },
       downloaded: false,
     };
     entry.tree[PENDING].push(game);

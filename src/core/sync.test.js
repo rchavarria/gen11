@@ -5,7 +5,7 @@ import path from 'node:path';
 import { test, vi } from 'vitest';
 import { ApiError } from './api-client.js';
 import { allGames, emptyTree, PENDING } from './competitions.js';
-import { isAfterGameSchedule, processGames as processDownloads } from './download.js';
+import { applyScores, isAfterGameSchedule, processGames as processDownloads } from './download.js';
 import { DAYS, fetchNextGames, fetchNextGamesRenewingKey, mergeNextGames } from './next-games.js';
 import { buildReport } from './report.js';
 
@@ -55,8 +55,8 @@ test('mergeNextGames adds new games to pending-games and updates placed games by
     id: 'BB',
     date: '2026-11-03T07:30:00Z',
     venue: '',
-    home: { name: 'Local', score: 0 },
-    away: { name: 'Visitante', score: 0 },
+    home: { name: 'Local', score: null },
+    away: { name: 'Visitante', score: null },
     downloaded: false,
   };
   assert.deepEqual(added, [{ competition: 's67-c', game: newGame }]);
@@ -229,12 +229,12 @@ test('fetchNextGames saves raw responses and writes only modified trees', async 
     id: 'BB',
     date: '2026-11-01T12:15:00Z',
     venue: 'canoe',
-    home: { name: 'Home', score: 0 },
-    away: { name: 'Away', score: 0 },
+    home: { name: 'Home', score: null },
+    away: { name: 'Away', score: null },
     downloaded: false,
   });
-  assert.deepEqual(pending[2].home, { name: '', score: 0 });
-  assert.deepEqual(pending[2].away, { name: '', score: 0 });
+  assert.deepEqual(pending[2].home, { name: '', score: null });
+  assert.deepEqual(pending[2].away, { name: '', score: null });
 });
 
 test('fetchNextGames rejects invalid trees without overwriting them', async (t) => {
@@ -388,6 +388,73 @@ test('download processing skips future games without adding a played field', asy
   assert.equal(summary.notPlayedYet, 1);
   assert.equal(games[0].played, undefined);
   assert.equal(isAfterGameSchedule('2099-99-99'), false);
+});
+
+test('score updates preserve names, accept zero and use null for missing or invalid values', () => {
+  const game = { home: { name: 'Home', score: 9 }, away: { name: 'Away', score: 8 } };
+  applyScores(game, { partido: { tanteo_local: 0, tanteo_visitante: '72' } });
+  assert.deepEqual(game, { home: { name: 'Home', score: 0 }, away: { name: 'Away', score: 72 } });
+  applyScores(game, { partido: { tanteo_local: '12x', tanteo_visitante: null } });
+  assert.equal(game.home.score, null);
+  assert.equal(game.away.score, null);
+  applyScores(game, {});
+  assert.equal(game.home.score, null);
+  assert.equal(game.away.score, null);
+});
+
+test('download processing applies scores from existing files', async (t) => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gen11-existing-scores-'));
+  t.onTestFinished(() => fs.rm(dir, { recursive: true, force: true }));
+  const stats = path.join(dir, 'stats');
+  const scores = path.join(dir, 'scores');
+  await fs.mkdir(stats);
+  await fs.mkdir(scores);
+  await fs.writeFile(path.join(stats, 'AA.json'), '{}');
+  await fs.writeFile(
+    path.join(scores, 'AA.json'),
+    JSON.stringify({ partido: { tanteo_local: 0, tanteo_visitante: 65 } }),
+  );
+  const game = { id: 'AA', home: { name: 'Home', score: null }, away: { name: 'Away', score: null } };
+
+  const summary = await processDownloads({ config: { paths: { gamesStats: stats, gamesScores: scores } } }, [game]);
+
+  assert.equal(summary.alreadyDownloaded, 1);
+  assert.equal(game.downloaded, true);
+  assert.deepEqual(game.home, { name: 'Home', score: 0 });
+  assert.deepEqual(game.away, { name: 'Away', score: 65 });
+});
+
+test('download processing applies scores from a new download', async (t) => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gen11-new-scores-'));
+  t.onTestFinished(() => fs.rm(dir, { recursive: true, force: true }));
+  const stats = path.join(dir, 'stats');
+  const scores = path.join(dir, 'scores');
+  const game = { id: 'AA', home: { name: 'Home', score: null }, away: { name: 'Away', score: null } };
+  const response = { partido: { tanteo_local: 77, tanteo_visitante: 68 } };
+  vi.useFakeTimers({ toFake: ['setTimeout'] });
+  try {
+    const processing = processDownloads(
+      {
+        config: { paths: { gamesStats: stats, gamesScores: scores } },
+        getGameStats: async () => ({}),
+        getGameScore: async () => response,
+      },
+      [game],
+    );
+    for (let i = 0; i < 1000 && vi.getTimerCount() === 0; i++) {
+      await new Promise((resolve) => setImmediate(resolve));
+    }
+    assert.equal(vi.getTimerCount(), 1);
+    await vi.runAllTimersAsync();
+    const summary = await processing;
+    assert.equal(summary.newlyDownloaded, 1);
+    assert.equal(game.downloaded, true);
+    assert.deepEqual(game.home, { name: 'Home', score: 77 });
+    assert.deepEqual(game.away, { name: 'Away', score: 68 });
+    assert.deepEqual(JSON.parse(await fs.readFile(path.join(scores, 'AA.json'), 'utf8')), response);
+  } finally {
+    vi.useRealTimers();
+  }
 });
 
 test('download progress counts only games that need downloading', async (t) => {

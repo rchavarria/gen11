@@ -2,6 +2,7 @@
 
 ## To Do list
 
+- sync: renombrar slug del madrid a realmadrid, todo junto, revisar otros slugs con `-` de por medio
 - sync y web: renombrar games a matches
 - sync y web: teams en lugar de clubs
 - web: mostrar los datos a partir de la competición, fase, grupo y jornada

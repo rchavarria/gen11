@@ -31,8 +31,8 @@ test('mergeNextGames adds new games to pending-games and updates placed games by
   const known = {
     id: 'AA',
     date: '2026-11-05T11:00:00Z',
-    homeClubName: 'Home',
-    awayClubName: 'Away',
+    home: { name: 'Home', score: 21 },
+    away: { name: 'Away', score: 20 },
     downloaded: true,
   };
   const trees = makeTrees({ placed: [known] });
@@ -55,8 +55,8 @@ test('mergeNextGames adds new games to pending-games and updates placed games by
     id: 'BB',
     date: '2026-11-03T07:30:00Z',
     venue: '',
-    homeClubName: 'Local',
-    awayClubName: 'Visitante',
+    home: { name: 'Local', score: 0 },
+    away: { name: 'Visitante', score: 0 },
     downloaded: false,
   };
   assert.deepEqual(added, [{ competition: 's67-c', game: newGame }]);
@@ -66,8 +66,8 @@ test('mergeNextGames adds new games to pending-games and updates placed games by
   assert.deepEqual(known, {
     id: 'AA',
     date: '2026-11-04T08:15:00Z',
-    homeClubName: 'Home',
-    awayClubName: 'Away',
+    home: { name: 'Home', score: 21 },
+    away: { name: 'Away', score: 20 },
     downloaded: true,
   });
   assert.deepEqual(discarded, [{ id: 'CC', date: '2026-11-03T00:00:00Z', home: 'X', away: 'Y', category: 'Other' }]);
@@ -229,10 +229,12 @@ test('fetchNextGames saves raw responses and writes only modified trees', async 
     id: 'BB',
     date: '2026-11-01T12:15:00Z',
     venue: 'canoe',
-    homeClubName: 'Home',
-    awayClubName: 'Away',
+    home: { name: 'Home', score: 0 },
+    away: { name: 'Away', score: 0 },
     downloaded: false,
   });
+  assert.deepEqual(pending[2].home, { name: '', score: 0 });
+  assert.deepEqual(pending[2].away, { name: '', score: 0 });
 });
 
 test('fetchNextGames rejects invalid trees without overwriting them', async (t) => {

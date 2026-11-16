@@ -7,6 +7,7 @@ import {
   allGames,
   computeSlug,
   emptyTree,
+  listGames,
   loadClubs,
   placedGames,
   readCompetitions,
@@ -30,8 +31,8 @@ const game = (id, date, extra = {}) => ({
   id,
   date,
   venue: '',
-  homeClubName: 'HOME CLUB',
-  awayClubName: 'AWAY CLUB',
+  home: { name: 'HOME CLUB', score: 0 },
+  away: { name: 'AWAY CLUB', score: 0 },
   downloaded: false,
   ...extra,
 });
@@ -94,12 +95,25 @@ test('trees are written, read back and walked with positions', async (t) => {
     's67-kdt-oro-f1-g1-j01-home-away',
   );
   assert.equal(
-    computeSlug('s67-kdt-oro', { phase: 'playoffs', round: 'j1' }, { ...second, homeClubName: ' away club ' }, clubs),
+    computeSlug(
+      's67-kdt-oro',
+      { phase: 'playoffs', round: 'j1' },
+      { ...second, home: { name: ' away club ', score: 0 } },
+      clubs,
+    ),
     's67-kdt-oro-playoffs-j1-away-away',
   );
   assert.throws(
-    () => computeSlug('x', { phase: 'f1', round: 'j1' }, { ...first, awayClubName: 'Unknown' }, clubs),
+    () => computeSlug('x', { phase: 'f1', round: 'j1' }, { ...first, away: { name: 'Unknown', score: 0 } }, clubs),
     /Club not found.*Unknown/,
+  );
+  assert.equal(
+    listGames([{ competition, tree: read }], clubs)[2].label,
+    's67-kdt-oro pending: HOME CLUB vs AWAY CLUB (CC)',
+  );
+  assert.equal(
+    listGames([{ competition, tree: read }], new Map())[0].label,
+    's67-kdt-oro f1-g1-j01: HOME CLUB vs AWAY CLUB (AA)',
   );
 });
 

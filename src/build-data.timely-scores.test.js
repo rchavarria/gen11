@@ -7,7 +7,12 @@ const clubs = new Map([
   ['HOME CLUB', { slug: 'home' }],
   ['AWAY CLUB', { slug: 'away' }],
 ]);
-const game = { slug: 'game', id: 'ABC', homeClubName: 'HOME CLUB', awayClubName: 'AWAY CLUB' };
+const game = {
+  slug: 'game',
+  id: 'ABC',
+  home: { name: 'HOME CLUB', score: 0 },
+  away: { name: 'AWAY CLUB', score: 0 },
+};
 const match = { idlocal: 1, idvisitante: 2, local: 'Home', visitante: 'Away', tanteo_local: 7, tanteo_visitante: 3 };
 const basket = {
   accion_tipo: 'CANASTA-2P',

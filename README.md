@@ -54,6 +54,9 @@ Games are organised as seasons › competitions › phases › groups › rounds
   `src/core/competitions.js`) for their category; games whose category has no
   competition are discarded and reported. Placing a pending game in its round is
   a manual step: move it in the JSON and run `sync` (or `build-data`) again.
+- Each game's `home` and `away` is an object containing the source
+  `name` and a `score` initially set to `0`. The score is reserved for future use;
+  web scores continue to come from downloaded score files.
 - The game slug is not stored: it is computed as
   `<competition>-<phase>[-<group>]-<round>-<home>-<away>`, using club slugs from `clubs.json`.
 
@@ -77,8 +80,8 @@ For unknown times, this rule uses the stored `00:00:00Z` marker.
 `pending-games` are ignored) and scores from `games-scores/<id>.json`.
 Without a score file, games are shown as not played.
 For games with both numeric scores, it also rewrites `src/data/games/<slug>.json`.
-These files preserve the tree game fields, including `id`, plus the competition `category`, but omit `homeClubName`,
-`awayClubName`, `downloaded` and `scored`. They add `home` and `away` objects with the club `slug`, `score`, and numeric
+These files preserve the tree game fields, including `id`, plus the competition `category`, but omit
+`downloaded` and `scored`. They replace the tree's `home` and `away` with objects containing the club `slug`, `score`, and numeric
 `quarterScores` ordered by period (including overtime). Club slugs are resolved
 through `sourceNames` in `clubs.json`; unknown clubs cause an error.
 If `games-stats/<id>.json` exists, `home` and `away` also get `players`: one entry per player

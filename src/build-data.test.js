@@ -19,8 +19,8 @@ const datedGame = {
   id: 'ABC',
   date: '2026-09-21T09:30:00Z',
   category: ' Cadete ',
-  homeClubName: 'HOME CLUB',
-  awayClubName: 'AWAY CLUB',
+  home: { name: 'HOME CLUB', score: 12 },
+  away: { name: 'AWAY CLUB', score: 10 },
   downloaded: false,
   scored: false,
 };
@@ -100,7 +100,7 @@ test('scores and played status come only from score files', (t) => {
 });
 
 test('game details omit source names and internal flags and sort numeric period scores including overtime', () => {
-  const game = { ...datedGame, extra: 'preserved', homeClubName: ' home club ' };
+  const game = { ...datedGame, extra: 'preserved', home: { name: ' home club ', score: 0 } };
   const scoreData = {
     partido: {
       tanteo_local: '85',
@@ -125,7 +125,7 @@ test('game details omit source names and internal flags and sort numeric period 
   });
   assert.equal(JSON.stringify(scoreData), original);
   assert.equal(JSON.stringify(game), originalGame);
-  assert.equal(game.home, undefined);
+  assert.deepEqual(game.home, { name: ' home club ', score: 0 });
 });
 
 test('game details require both scores, accept zero and handle missing periods', () => {
@@ -152,13 +152,13 @@ test('game details require both scores, accept zero and handle missing periods',
 
 test('game details reject unknown clubs', () => {
   const scoreData = { partido: { tanteo_local: 80, tanteo_visitante: 70 } };
-  for (const field of ['homeClubName', 'awayClubName']) {
+  for (const field of ['home', 'away']) {
     assert.throws(
       () =>
         buildGameDetail(
           {
             ...datedGame,
-            [field]: 'Unknown club',
+            [field]: { name: 'Unknown club', score: 0 },
           },
           clubs,
           scoreData,

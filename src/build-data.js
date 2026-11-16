@@ -118,8 +118,8 @@ function fromDatedGame(game, clubs, scoreFile) {
     venue: game.venue || '',
     category: (game.category || '').trim(),
     played: match.estado_partido === 'FINALIZADO' || (home !== null && away !== null),
-    home: buildSide(clubs, game.homeClubName, home),
-    away: buildSide(clubs, game.awayClubName, away),
+    home: buildSide(clubs, game.home?.name, home),
+    away: buildSide(clubs, game.away?.name, away),
   };
 }
 
@@ -153,9 +153,9 @@ function buildGameDetail(game, clubs, scoreData, statsData) {
   const awayScore = toScore(match.tanteo_visitante);
   if (homeScore === null || awayScore === null) return null;
 
-  const { homeClubName, awayClubName, downloaded, scored, ...metadata } = game;
-  const home = buildSide(clubs, homeClubName, homeScore);
-  const away = buildSide(clubs, awayClubName, awayScore);
+  const { home: homeSource, away: awaySource, downloaded, scored, ...metadata } = game;
+  const home = buildSide(clubs, homeSource?.name, homeScore);
+  const away = buildSide(clubs, awaySource?.name, awayScore);
   const periods = [...(match.periodos || [])].sort((a, b) => a.periodo - b.periodo);
 
   const stats = statsData?.estadisticas;

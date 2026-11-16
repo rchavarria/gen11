@@ -89,7 +89,14 @@ function mergeNextGames(trees, upcomingGames, venues = new Map(), season = CURRE
       continue;
     }
 
-    const game = { id, date, venue, homeClubName: home, awayClubName: away, downloaded: false };
+    const game = {
+      id,
+      date,
+      venue,
+      home: { name: home, score: 0 },
+      away: { name: away, score: 0 },
+      downloaded: false,
+    };
     entry.tree[PENDING].push(game);
     byId.set(id, { game, entry });
     added.push({ competition: entry.competition.id, game });

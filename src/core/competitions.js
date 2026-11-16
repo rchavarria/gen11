@@ -209,7 +209,7 @@ function clubSlug(clubs, sourceName) {
  * Throws when a club is not in clubs.json.
  */
 function computeSlug(competitionId, position, game, clubs) {
-  const sides = [game.homeClubName, game.awayClubName].map((name) => {
+  const sides = [game.home?.name, game.away?.name].map((name) => {
     const slug = clubSlug(clubs, name);
     if (!slug) {
       throw new Error(
@@ -231,7 +231,7 @@ function computeSlug(competitionId, position, game, clubs) {
  */
 function listGames(trees, clubs) {
   const describe = (competition, game, suffix) =>
-    `${competition.id} ${suffix}: ${game.homeClubName || '?'} vs ${game.awayClubName || '?'} (${game.id})`;
+    `${competition.id} ${suffix}: ${game.home?.name || '?'} vs ${game.away?.name || '?'} (${game.id})`;
   const result = [];
   for (const { competition, tree } of trees) {
     for (const { game, position } of placedGames(tree)) {

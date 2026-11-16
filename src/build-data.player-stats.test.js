@@ -7,7 +7,12 @@ const clubs = new Map([
   ['AWAY CLUB', { slug: 'away' }],
 ]);
 
-const game = { slug: 'game', id: 'ABC', homeClubName: 'HOME CLUB', awayClubName: 'AWAY CLUB' };
+const game = {
+  slug: 'game',
+  id: 'ABC',
+  home: { name: 'HOME CLUB', score: 0 },
+  away: { name: 'AWAY CLUB', score: 0 },
+};
 const scoreData = { partido: { tanteo_local: '80', tanteo_visitante: '70' } };
 
 const rawPlayer = {

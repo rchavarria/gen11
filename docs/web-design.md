@@ -34,6 +34,8 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   - lee los árboles de competición (`src/data/<competición>.json`, ver `competitions.json`)
     para obtener `date`, clubs y `venue` (slug del pabellón); la categoría sale de la competición
     y el slug se calcula a partir de la posición del partido en el árbol
+  - `home` y `away` del árbol son objetos con `name` y `score` (inicialmente 0);
+    el marcador del árbol queda reservado para uso futuro
   - `date` es ISO 8601 UTC (`YYYY-MM-DDTHH:mm:ssZ`); la web muestra el día y la hora en Europe/Madrid.
     `T00:00:00Z` indica hora desconocida y conserva el día del partido
   - al cargar el calendario o un partido, la web convierte `date` en un objeto `Date`
@@ -49,8 +51,8 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   El generador falla antes de escribir si no puede resolver un club; su nombre de la
   fuente debe estar en `sourceNames`.
 - También genera `src/data/games/<slug>.json` para partidos con ambos marcadores:
-  conserva los datos del partido (incluido `id`), omitiendo `homeClubName`,
-  `awayClubName`, `downloaded` y `scored`. Añade `home` y `away` con `slug`, `score`
+  conserva los datos del partido (incluido `id`), omitiendo `downloaded` y `scored`.
+  Sustituye `home` y `away` del árbol por objetos con `slug`, `score`
   y `quarterScores` ordenados por periodo, incluidas las prórrogas.
   El campo opcional `video` también se conserva. En el detalle se muestra debajo
   del marcador por cuartos, antes de las pestañas: un reproductor de YouTube

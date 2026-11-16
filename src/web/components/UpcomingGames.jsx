@@ -13,7 +13,7 @@ function Team({ slug }) {
 
   return (
     <div className="upcoming-card__club" title={team.name}>
-      <ClubLogo club={team} />
+      <ClubLogo team={team} />
       <span>{team.initials}</span>
     </div>
   );

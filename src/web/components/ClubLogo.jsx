@@ -11,13 +11,13 @@ function initials(name) {
   );
 }
 
-export default function ClubLogo({ club }) {
-  if (club.logo) {
-    return <img className="club-logo" src={`${BASE_URL}logos/${club.logo}`} alt="" loading="lazy" />;
+export default function ClubLogo({ team }) {
+  if (team.logo) {
+    return <img className="club-logo" src={`${BASE_URL}logos/${team.logo}`} alt={team.name} loading="lazy" />;
   }
   return (
     <span className="club-logo club-logo--placeholder" aria-hidden="true">
-      {initials(club.name)}
+      {initials(team.name)}
     </span>
   );
 }

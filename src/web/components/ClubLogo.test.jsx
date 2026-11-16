@@ -13,9 +13,9 @@ beforeAll(async () => {
 afterAll(() => vi.unstubAllEnvs());
 
 test('renders a decorative logo using the deployment base URL', () => {
-  render(<ClubLogo club={{ name: 'Alcobendas', logo: 'alcobendas.png' }} />);
+  render(<ClubLogo team={{ name: 'Alcobendas', logo: 'alcobendas.png' }} />);
 
-  expect(screen.getByAltText('')).toHaveAttribute('src', '/gen11/logos/alcobendas.png');
+  expect(screen.getByAltText('Alcobendas')).toHaveAttribute('src', '/gen11/logos/alcobendas.png');
 });
 
 test.each([
@@ -23,8 +23,8 @@ test.each([
   ['C.B. Alcobendas', 'A'],
   ['AB', 'AB'],
 ])('uses initials as a decorative fallback for %s', (name, initials) => {
-  render(<ClubLogo club={{ name, logo: null }} />);
+  render(<ClubLogo team={{ name, logo: null }} />);
 
-  expect(screen.queryByAltText('')).not.toBeInTheDocument();
+  expect(screen.queryByAltText(name)).not.toBeInTheDocument();
   expect(screen.getByText(initials)).toHaveAttribute('aria-hidden', 'true');
 });

@@ -68,7 +68,7 @@ function GameDetail({ game }) {
 
       <div className="game-detail__scoreboard">
         <div className="game-detail__club">
-          <ClubLogo club={sides[0].club} />
+          <ClubLogo team={sides[0].club} />
           <h2>{sides[0].club.name}</h2>
         </div>
 
@@ -89,7 +89,7 @@ function GameDetail({ game }) {
         </div>
 
         <div className="game-detail__club">
-          <ClubLogo club={sides[1].club} />
+          <ClubLogo team={sides[1].club} />
           <h2>{sides[1].club.name}</h2>
         </div>
       </div>
@@ -131,7 +131,7 @@ function GameDetail({ game }) {
               <tr key={side.slug}>
                 <th scope="row">
                   <span className="quarter-scores__club">
-                    <ClubLogo club={side.club} />
+                    <ClubLogo team={side.club} />
                     {side.club.name}
                   </span>
                 </th>

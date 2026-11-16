@@ -14,7 +14,7 @@ function Side({ side, winner }) {
 
   return (
     <div className={`game-card__side${winner ? ' game-card__side--winner' : ''}`}>
-      <ClubLogo club={team} />
+      <ClubLogo team={team} />
       <span className="game-card__club">{team.name}</span>
       {side.score != null && <span className="game-card__score">{side.score}</span>}
     </div>

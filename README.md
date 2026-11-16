@@ -117,7 +117,6 @@ npm run build        # dist/
   `club` and `logo`. Slugs and normalized team names must be unique; `club` is metadata,
   not a lookup key. The web displays the team name.
 - Logos: `src/web/public/logos/`, using the `logo` filename (independent of team slug).
-- `src/data/clubs.json` is a legacy file, no longer read or written by the application.
 
 ## Lint and tests
 

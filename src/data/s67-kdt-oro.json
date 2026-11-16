@@ -297,13 +297,13 @@
                   "venue": "valdebebas",
                   "home": {
                     "slug": "real-madrid",
-                    "score": null
+                    "score": 78
                   },
                   "away": {
                     "slug": "fuenlabrada",
-                    "score": null
+                    "score": 73
                   },
-                  "downloaded": false
+                  "downloaded": true
                 },
                 {
                   "id": "3800490072002B0076006400410038004600490070004C002B0054005700630075004C0055002F006C0067003D003D00",
@@ -311,13 +311,13 @@
                   "venue": "circular",
                   "home": {
                     "slug": "distrito",
-                    "score": null
+                    "score": 94
                   },
                   "away": {
                     "slug": "sanjorge",
-                    "score": null
+                    "score": 48
                   },
-                  "downloaded": false
+                  "downloaded": true
                 },
                 {
                   "id": "45006400750041002B00690048004500550030006200310073006400450055006300750048006900320051003D003D00",
@@ -325,19 +325,33 @@
                   "venue": "canoe",
                   "home": {
                     "slug": "canoe",
-                    "score": null
+                    "score": 65
                   },
                   "away": {
                     "slug": "sba",
-                    "score": null
+                    "score": 67
                   },
-                  "downloaded": false
+                  "downloaded": true
                 }
               ]
             },
             {
               "id": "j08",
               "games": [
+                {
+                  "id": "47006B006E00730054007A005400710074004E00360044006F00320078002B005A0041004D005500320077003D003D00",
+                  "date": "2026-11-21T17:30:00Z",
+                  "venue": "circular",
+                  "home": {
+                    "slug": "distrito",
+                    "score": null
+                  },
+                  "away": {
+                    "slug": "canoe",
+                    "score": null
+                  },
+                  "downloaded": false
+                },
                 {
                   "id": "66006900420039005A004B00670075004200720077006100770035004300740065006F0043004D00690041003D003D00",
                   "date": "2026-11-22T19:15:00Z",
@@ -354,7 +368,7 @@
                 },
                 {
                   "id": "35005600380059003400560067004A0039004500300037004F00770055003000440066004C006E00730041003D003D00",
-                  "date": "2026-11-21T08:00:00Z",
+                  "date": "2026-12-02T19:30:00Z",
                   "venue": "arroyo",
                   "home": {
                     "slug": "fuenlabrada",
@@ -365,40 +379,12 @@
                     "score": null
                   },
                   "downloaded": false
-                },
-                {
-                  "id": "47006B006E00730054007A005400710074004E00360044006F00320078002B005A0041004D005500320077003D003D00",
-                  "date": "2026-11-21T17:30:00Z",
-                  "venue": "circular",
-                  "home": {
-                    "slug": "distrito",
-                    "score": null
-                  },
-                  "away": {
-                    "slug": "canoe",
-                    "score": null
-                  },
-                  "downloaded": false
                 }
               ]
             },
             {
               "id": "j09",
               "games": [
-                {
-                  "id": "640048002B004C004C00610032004D004A006700580041002B004A0062003500430051002F004A004C0077003D003D00",
-                  "date": "2026-11-28T13:00:00Z",
-                  "venue": "sba",
-                  "home": {
-                    "slug": "sba",
-                    "score": null
-                  },
-                  "away": {
-                    "slug": "sanjorge",
-                    "score": null
-                  },
-                  "downloaded": false
-                },
                 {
                   "id": "33006D004200650064004D002B00730067005A004D00660053006B00780065006B0064002B004E00730077003D003D00",
                   "date": "2026-11-28T00:00:00Z",
@@ -423,6 +409,20 @@
                   },
                   "away": {
                     "slug": "distrito",
+                    "score": null
+                  },
+                  "downloaded": false
+                },
+                {
+                  "id": "640048002B004C004C00610032004D004A006700580041002B004A0062003500430051002F004A004C0077003D003D00",
+                  "date": "2026-11-28T13:00:00Z",
+                  "venue": "sba",
+                  "home": {
+                    "slug": "sba",
+                    "score": null
+                  },
+                  "away": {
+                    "slug": "sanjorge",
                     "score": null
                   },
                   "downloaded": false
@@ -773,13 +773,13 @@
                   "venue": "antela",
                   "home": {
                     "slug": "alcobendas",
-                    "score": null
+                    "score": 72
                   },
                   "away": {
                     "slug": "torrelodones",
-                    "score": null
+                    "score": 58
                   },
-                  "downloaded": false
+                  "downloaded": true
                 },
                 {
                   "id": "48007900790031005900490042004F005A004F00620049002F00560052006D005300660056005900300077003D003D00",
@@ -787,13 +787,13 @@
                   "venue": "canaleja",
                   "home": {
                     "slug": "alcorcon",
-                    "score": null
+                    "score": 68
                   },
                   "away": {
                     "slug": "estudiantes",
-                    "score": null
+                    "score": 86
                   },
-                  "downloaded": false
+                  "downloaded": true
                 },
                 {
                   "id": "4E0073006700560045004F004A006600550054004700310033004F0046007100720073004A004200520041003D003D00",
@@ -801,13 +801,13 @@
                   "venue": "diaz-miguel",
                   "home": {
                     "slug": "zentro",
-                    "score": null
+                    "score": 72
                   },
                   "away": {
                     "slug": "laso",
-                    "score": null
+                    "score": 73
                   },
-                  "downloaded": false
+                  "downloaded": true
                 }
               ]
             },

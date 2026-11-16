@@ -130,13 +130,13 @@
                   "venue": "limones",
                   "home": {
                     "slug": "torrejon",
-                    "score": null
+                    "score": 109
                   },
                   "away": {
                     "slug": "alcobendas",
-                    "score": null
+                    "score": 73
                   },
-                  "downloaded": false
+                  "downloaded": true
                 }
               ]
             },

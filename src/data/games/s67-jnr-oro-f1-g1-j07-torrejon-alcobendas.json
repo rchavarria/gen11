@@ -1,0 +1,1327 @@
+{
+  "slug": "s67-jnr-oro-f1-g1-j07-torrejon-alcobendas",
+  "venue": "limones",
+  "id": "61006D0070007A00410049004600540073006F006A006C004C004500640065006B00730069007800530051003D003D00",
+  "date": "2026-11-15T14:00:00Z",
+  "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+  "home": {
+    "slug": "torrejon",
+    "score": 109,
+    "quarterScores": [
+      26,
+      32,
+      30,
+      21
+    ],
+    "players": [
+      {
+        "jersey": "1",
+        "msPlayed": 1444243,
+        "starter": false,
+        "freeThrows": {
+          "made": 4,
+          "attempted": 7
+        },
+        "twoPointers": {
+          "made": 1,
+          "attempted": 3
+        },
+        "threePointers": {
+          "made": 0,
+          "attempted": 6
+        },
+        "rebounds": {
+          "defensive": 4,
+          "offensive": 1
+        },
+        "assists": 0,
+        "turnovers": 3,
+        "steals": 1,
+        "blocks": {
+          "made": 1,
+          "received": 1
+        },
+        "fouls": {
+          "committed": 2,
+          "received": 4
+        },
+        "plusMinus": 22,
+        "efficiency": 0
+      },
+      {
+        "jersey": "2",
+        "msPlayed": 1539637,
+        "starter": true,
+        "freeThrows": {
+          "made": 0,
+          "attempted": 0
+        },
+        "twoPointers": {
+          "made": 3,
+          "attempted": 4
+        },
+        "threePointers": {
+          "made": 1,
+          "attempted": 4
+        },
+        "rebounds": {
+          "defensive": 7,
+          "offensive": 3
+        },
+        "assists": 9,
+        "turnovers": 2,
+        "steals": 4,
+        "blocks": {
+          "made": 0,
+          "received": 0
+        },
+        "fouls": {
+          "committed": 1,
+          "received": 0
+        },
+        "plusMinus": 20,
+        "efficiency": 25
+      },
+      {
+        "jersey": "5",
+        "msPlayed": 1296339,
+        "starter": true,
+        "freeThrows": {
+          "made": 1,
+          "attempted": 2
+        },
+        "twoPointers": {
+          "made": 4,
+          "attempted": 4
+        },
+        "threePointers": {
+          "made": 0,
+          "attempted": 1
+        },
+        "rebounds": {
+          "defensive": 0,
+          "offensive": 0
+        },
+        "assists": 2,
+        "turnovers": 2,
+        "steals": 1,
+        "blocks": {
+          "made": 2,
+          "received": 0
+        },
+        "fouls": {
+          "committed": 3,
+          "received": 1
+        },
+        "plusMinus": 13,
+        "efficiency": 8
+      },
+      {
+        "jersey": "6",
+        "msPlayed": 1415077,
+        "starter": true,
+        "freeThrows": {
+          "made": 3,
+          "attempted": 4
+        },
+        "twoPointers": {
+          "made": 2,
+          "attempted": 5
+        },
+        "threePointers": {
+          "made": 6,
+          "attempted": 11
+        },
+        "rebounds": {
+          "defensive": 2,
+          "offensive": 1
+        },
+        "assists": 1,
+        "turnovers": 2,
+        "steals": 1,
+        "blocks": {
+          "made": 0,
+          "received": 0
+        },
+        "fouls": {
+          "committed": 2,
+          "received": 2
+        },
+        "plusMinus": 17,
+        "efficiency": 19
+      },
+      {
+        "jersey": "10",
+        "msPlayed": 682137,
+        "starter": false,
+        "freeThrows": {
+          "made": 2,
+          "attempted": 2
+        },
+        "twoPointers": {
+          "made": 0,
+          "attempted": 1
+        },
+        "threePointers": {
+          "made": 1,
+          "attempted": 1
+        },
+        "rebounds": {
+          "defensive": 0,
+          "offensive": 1
+        },
+        "assists": 0,
+        "turnovers": 0,
+        "steals": 1,
+        "blocks": {
+          "made": 0,
+          "received": 0
+        },
+        "fouls": {
+          "committed": 3,
+          "received": 1
+        },
+        "plusMinus": 17,
+        "efficiency": 4
+      },
+      {
+        "jersey": "11",
+        "msPlayed": 296403,
+        "starter": false,
+        "freeThrows": {
+          "made": 0,
+          "attempted": 0
+        },
+        "twoPointers": {
+          "made": 0,
+          "attempted": 1
+        },
+        "threePointers": {
+          "made": 0,
+          "attempted": 0
+        },
+        "rebounds": {
+          "defensive": 2,
+          "offensive": 0
+        },
+        "assists": 2,
+        "turnovers": 0,
+        "steals": 0,
+        "blocks": {
+          "made": 0,
+          "received": 0
+        },
+        "fouls": {
+          "committed": 0,
+          "received": 0
+        },
+        "plusMinus": 12,
+        "efficiency": 3
+      },
+      {
+        "jersey": "14",
+        "msPlayed": 1230076,
+        "starter": true,
+        "freeThrows": {
+          "made": 5,
+          "attempted": 8
+        },
+        "twoPointers": {
+          "made": 9,
+          "attempted": 11
+        },
+        "threePointers": {
+          "made": 0,
+          "attempted": 0
+        },
+        "rebounds": {
+          "defensive": 9,
+          "offensive": 2
+        },
+        "assists": 1,
+        "turnovers": 0,
+        "steals": 0,
+        "blocks": {
+          "made": 2,
+          "received": 0
+        },
+        "fouls": {
+          "committed": 1,
+          "received": 3
+        },
+        "plusMinus": 25,
+        "efficiency": 34
+      },
+      {
+        "jersey": "22",
+        "msPlayed": 1340482,
+        "starter": false,
+        "freeThrows": {
+          "made": 0,
+          "attempted": 0
+        },
+        "twoPointers": {
+          "made": 1,
+          "attempted": 3
+        },
+        "threePointers": {
+          "made": 2,
+          "attempted": 6
+        },
+        "rebounds": {
+          "defensive": 3,
+          "offensive": 0
+        },
+        "assists": 1,
+        "turnovers": 3,
+        "steals": 3,
+        "blocks": {
+          "made": 0,
+          "received": 0
+        },
+        "fouls": {
+          "committed": 2,
+          "received": 2
+        },
+        "plusMinus": 19,
+        "efficiency": 6
+      },
+      {
+        "jersey": "27",
+        "msPlayed": 317544,
+        "starter": false,
+        "freeThrows": {
+          "made": 0,
+          "attempted": 0
+        },
+        "twoPointers": {
+          "made": 0,
+          "attempted": 0
+        },
+        "threePointers": {
+          "made": 0,
+          "attempted": 0
+        },
+        "rebounds": {
+          "defensive": 2,
+          "offensive": 0
+        },
+        "assists": 0,
+        "turnovers": 0,
+        "steals": 0,
+        "blocks": {
+          "made": 0,
+          "received": 0
+        },
+        "fouls": {
+          "committed": 0,
+          "received": 0
+        },
+        "plusMinus": 3,
+        "efficiency": 2
+      },
+      {
+        "jersey": "33",
+        "msPlayed": 1542407,
+        "starter": true,
+        "freeThrows": {
+          "made": 3,
+          "attempted": 6
+        },
+        "twoPointers": {
+          "made": 3,
+          "attempted": 4
+        },
+        "threePointers": {
+          "made": 0,
+          "attempted": 1
+        },
+        "rebounds": {
+          "defensive": 3,
+          "offensive": 3
+        },
+        "assists": 5,
+        "turnovers": 0,
+        "steals": 0,
+        "blocks": {
+          "made": 0,
+          "received": 0
+        },
+        "fouls": {
+          "committed": 1,
+          "received": 2
+        },
+        "plusMinus": 28,
+        "efficiency": 16
+      },
+      {
+        "jersey": "67",
+        "msPlayed": 895655,
+        "starter": false,
+        "freeThrows": {
+          "made": 3,
+          "attempted": 3
+        },
+        "twoPointers": {
+          "made": 6,
+          "attempted": 11
+        },
+        "threePointers": {
+          "made": 0,
+          "attempted": 0
+        },
+        "rebounds": {
+          "defensive": 3,
+          "offensive": 4
+        },
+        "assists": 1,
+        "turnovers": 1,
+        "steals": 0,
+        "blocks": {
+          "made": 3,
+          "received": 0
+        },
+        "fouls": {
+          "committed": 2,
+          "received": 3
+        },
+        "plusMinus": 4,
+        "efficiency": 21
+      }
+    ],
+    "timelyScores": [
+      {
+        "time": 0,
+        "score": 0,
+        "jersey": null
+      },
+      {
+        "time": 22200,
+        "score": 3,
+        "jersey": "6"
+      },
+      {
+        "time": 62300,
+        "score": 4,
+        "jersey": "14"
+      },
+      {
+        "time": 104500,
+        "score": 6,
+        "jersey": "14"
+      },
+      {
+        "time": 156700,
+        "score": 9,
+        "jersey": "2"
+      },
+      {
+        "time": 183700,
+        "score": 11,
+        "jersey": "14"
+      },
+      {
+        "time": 248000,
+        "score": 13,
+        "jersey": "5"
+      },
+      {
+        "time": 390400,
+        "score": 15,
+        "jersey": "67"
+      },
+      {
+        "time": 390400,
+        "score": 17,
+        "jersey": "67"
+      },
+      {
+        "time": 417500,
+        "score": 19,
+        "jersey": "33"
+      },
+      {
+        "time": 441600,
+        "score": 20,
+        "jersey": "1"
+      },
+      {
+        "time": 441600,
+        "score": 21,
+        "jersey": "1"
+      },
+      {
+        "time": 474700,
+        "score": 23,
+        "jersey": "67"
+      },
+      {
+        "time": 475700,
+        "score": 24,
+        "jersey": "67"
+      },
+      {
+        "time": 506900,
+        "score": 26,
+        "jersey": "67"
+      },
+      {
+        "time": 624400,
+        "score": 29,
+        "jersey": "22"
+      },
+      {
+        "time": 670600,
+        "score": 31,
+        "jersey": "67"
+      },
+      {
+        "time": 704700,
+        "score": 34,
+        "jersey": "6"
+      },
+      {
+        "time": 730800,
+        "score": 37,
+        "jersey": "6"
+      },
+      {
+        "time": 763000,
+        "score": 39,
+        "jersey": "2"
+      },
+      {
+        "time": 786100,
+        "score": 40,
+        "jersey": "6"
+      },
+      {
+        "time": 858500,
+        "score": 41,
+        "jersey": "6"
+      },
+      {
+        "time": 858500,
+        "score": 42,
+        "jersey": "6"
+      },
+      {
+        "time": 911800,
+        "score": 44,
+        "jersey": "14"
+      },
+      {
+        "time": 952000,
+        "score": 46,
+        "jersey": "14"
+      },
+      {
+        "time": 978200,
+        "score": 48,
+        "jersey": "6"
+      },
+      {
+        "time": 1003400,
+        "score": 50,
+        "jersey": "22"
+      },
+      {
+        "time": 1023500,
+        "score": 51,
+        "jersey": "5"
+      },
+      {
+        "time": 1086700,
+        "score": 52,
+        "jersey": "33"
+      },
+      {
+        "time": 1107800,
+        "score": 53,
+        "jersey": "67"
+      },
+      {
+        "time": 1107800,
+        "score": 54,
+        "jersey": "67"
+      },
+      {
+        "time": 1154400,
+        "score": 56,
+        "jersey": "33"
+      },
+      {
+        "time": 1175200,
+        "score": 58,
+        "jersey": "14"
+      },
+      {
+        "time": 1334600,
+        "score": 61,
+        "jersey": "6"
+      },
+      {
+        "time": 1379700,
+        "score": 62,
+        "jersey": "14"
+      },
+      {
+        "time": 1379700,
+        "score": 63,
+        "jersey": "14"
+      },
+      {
+        "time": 1406800,
+        "score": 65,
+        "jersey": "2"
+      },
+      {
+        "time": 1423800,
+        "score": 67,
+        "jersey": "14"
+      },
+      {
+        "time": 1502200,
+        "score": 70,
+        "jersey": "22"
+      },
+      {
+        "time": 1556400,
+        "score": 72,
+        "jersey": "6"
+      },
+      {
+        "time": 1585500,
+        "score": 75,
+        "jersey": "6"
+      },
+      {
+        "time": 1604500,
+        "score": 76,
+        "jersey": "14"
+      },
+      {
+        "time": 1632600,
+        "score": 77,
+        "jersey": "33"
+      },
+      {
+        "time": 1632600,
+        "score": 78,
+        "jersey": "33"
+      },
+      {
+        "time": 1681800,
+        "score": 80,
+        "jersey": "5"
+      },
+      {
+        "time": 1705900,
+        "score": 82,
+        "jersey": "2"
+      },
+      {
+        "time": 1732000,
+        "score": 84,
+        "jersey": "14"
+      },
+      {
+        "time": 1740000,
+        "score": 85,
+        "jersey": "1"
+      },
+      {
+        "time": 1756600,
+        "score": 87,
+        "jersey": "14"
+      },
+      {
+        "time": 1774600,
+        "score": 88,
+        "jersey": "14"
+      },
+      {
+        "time": 1878600,
+        "score": 90,
+        "jersey": "14"
+      },
+      {
+        "time": 1917800,
+        "score": 92,
+        "jersey": "67"
+      },
+      {
+        "time": 2008300,
+        "score": 94,
+        "jersey": "1"
+      },
+      {
+        "time": 2098700,
+        "score": 97,
+        "jersey": "6"
+      },
+      {
+        "time": 2188100,
+        "score": 100,
+        "jersey": "10"
+      },
+      {
+        "time": 2270700,
+        "score": 102,
+        "jersey": "33"
+      },
+      {
+        "time": 2302900,
+        "score": 104,
+        "jersey": "5"
+      },
+      {
+        "time": 2302900,
+        "score": 105,
+        "jersey": "1"
+      },
+      {
+        "time": 2328000,
+        "score": 107,
+        "jersey": "5"
+      },
+      {
+        "time": 2368300,
+        "score": 108,
+        "jersey": "10"
+      },
+      {
+        "time": 2368300,
+        "score": 109,
+        "jersey": "10"
+      }
+    ]
+  },
+  "away": {
+    "slug": "alcobendas",
+    "score": 73,
+    "quarterScores": [
+      33,
+      11,
+      13,
+      16
+    ],
+    "players": [
+      {
+        "jersey": "0",
+        "msPlayed": 854557,
+        "starter": true,
+        "freeThrows": {
+          "made": 2,
+          "attempted": 2
+        },
+        "twoPointers": {
+          "made": 2,
+          "attempted": 2
+        },
+        "threePointers": {
+          "made": 0,
+          "attempted": 1
+        },
+        "rebounds": {
+          "defensive": 2,
+          "offensive": 1
+        },
+        "assists": 0,
+        "turnovers": 1,
+        "steals": 0,
+        "blocks": {
+          "made": 1,
+          "received": 1
+        },
+        "fouls": {
+          "committed": 5,
+          "received": 1
+        },
+        "plusMinus": -21,
+        "efficiency": 3
+      },
+      {
+        "jersey": "1",
+        "msPlayed": 1508729,
+        "starter": true,
+        "freeThrows": {
+          "made": 2,
+          "attempted": 2
+        },
+        "twoPointers": {
+          "made": 4,
+          "attempted": 7
+        },
+        "threePointers": {
+          "made": 1,
+          "attempted": 6
+        },
+        "rebounds": {
+          "defensive": 9,
+          "offensive": 5
+        },
+        "assists": 1,
+        "turnovers": 2,
+        "steals": 2,
+        "blocks": {
+          "made": 0,
+          "received": 1
+        },
+        "fouls": {
+          "committed": 0,
+          "received": 2
+        },
+        "plusMinus": -6,
+        "efficiency": 21
+      },
+      {
+        "jersey": "7",
+        "msPlayed": 946091,
+        "starter": true,
+        "freeThrows": {
+          "made": 1,
+          "attempted": 2
+        },
+        "twoPointers": {
+          "made": 1,
+          "attempted": 2
+        },
+        "threePointers": {
+          "made": 1,
+          "attempted": 1
+        },
+        "rebounds": {
+          "defensive": 1,
+          "offensive": 2
+        },
+        "assists": 1,
+        "turnovers": 3,
+        "steals": 2,
+        "blocks": {
+          "made": 0,
+          "received": 0
+        },
+        "fouls": {
+          "committed": 5,
+          "received": 1
+        },
+        "plusMinus": -4,
+        "efficiency": 3
+      },
+      {
+        "jersey": "11",
+        "msPlayed": 625616,
+        "starter": false,
+        "freeThrows": {
+          "made": 1,
+          "attempted": 2
+        },
+        "twoPointers": {
+          "made": 2,
+          "attempted": 2
+        },
+        "threePointers": {
+          "made": 0,
+          "attempted": 2
+        },
+        "rebounds": {
+          "defensive": 1,
+          "offensive": 1
+        },
+        "assists": 2,
+        "turnovers": 0,
+        "steals": 1,
+        "blocks": {
+          "made": 0,
+          "received": 0
+        },
+        "fouls": {
+          "committed": 2,
+          "received": 0
+        },
+        "plusMinus": -14,
+        "efficiency": 5
+      },
+      {
+        "jersey": "14",
+        "msPlayed": 839219,
+        "starter": true,
+        "freeThrows": {
+          "made": 3,
+          "attempted": 3
+        },
+        "twoPointers": {
+          "made": 2,
+          "attempted": 5
+        },
+        "threePointers": {
+          "made": 0,
+          "attempted": 4
+        },
+        "rebounds": {
+          "defensive": 1,
+          "offensive": 1
+        },
+        "assists": 0,
+        "turnovers": 0,
+        "steals": 0,
+        "blocks": {
+          "made": 0,
+          "received": 1
+        },
+        "fouls": {
+          "committed": 2,
+          "received": 1
+        },
+        "plusMinus": -5,
+        "efficiency": 0
+      },
+      {
+        "jersey": "15",
+        "msPlayed": 1028415,
+        "starter": false,
+        "freeThrows": {
+          "made": 0,
+          "attempted": 1
+        },
+        "twoPointers": {
+          "made": 1,
+          "attempted": 1
+        },
+        "threePointers": {
+          "made": 0,
+          "attempted": 3
+        },
+        "rebounds": {
+          "defensive": 0,
+          "offensive": 0
+        },
+        "assists": 1,
+        "turnovers": 1,
+        "steals": 0,
+        "blocks": {
+          "made": 0,
+          "received": 0
+        },
+        "fouls": {
+          "committed": 4,
+          "received": 1
+        },
+        "plusMinus": -15,
+        "efficiency": -5
+      },
+      {
+        "jersey": "19",
+        "msPlayed": 1121121,
+        "starter": false,
+        "freeThrows": {
+          "made": 0,
+          "attempted": 0
+        },
+        "twoPointers": {
+          "made": 2,
+          "attempted": 5
+        },
+        "threePointers": {
+          "made": 1,
+          "attempted": 4
+        },
+        "rebounds": {
+          "defensive": 1,
+          "offensive": 2
+        },
+        "assists": 1,
+        "turnovers": 0,
+        "steals": 1,
+        "blocks": {
+          "made": 0,
+          "received": 0
+        },
+        "fouls": {
+          "committed": 0,
+          "received": 0
+        },
+        "plusMinus": -24,
+        "efficiency": 6
+      },
+      {
+        "jersey": "23",
+        "msPlayed": 1733008,
+        "starter": true,
+        "freeThrows": {
+          "made": 3,
+          "attempted": 4
+        },
+        "twoPointers": {
+          "made": 3,
+          "attempted": 4
+        },
+        "threePointers": {
+          "made": 3,
+          "attempted": 8
+        },
+        "rebounds": {
+          "defensive": 1,
+          "offensive": 0
+        },
+        "assists": 1,
+        "turnovers": 1,
+        "steals": 3,
+        "blocks": {
+          "made": 0,
+          "received": 1
+        },
+        "fouls": {
+          "committed": 3,
+          "received": 3
+        },
+        "plusMinus": -18,
+        "efficiency": 14
+      },
+      {
+        "jersey": "X",
+        "msPlayed": 627821,
+        "starter": false,
+        "freeThrows": {
+          "made": 1,
+          "attempted": 4
+        },
+        "twoPointers": {
+          "made": 0,
+          "attempted": 5
+        },
+        "threePointers": {
+          "made": 0,
+          "attempted": 0
+        },
+        "rebounds": {
+          "defensive": 3,
+          "offensive": 0
+        },
+        "assists": 0,
+        "turnovers": 1,
+        "steals": 0,
+        "blocks": {
+          "made": 0,
+          "received": 1
+        },
+        "fouls": {
+          "committed": 1,
+          "received": 2
+        },
+        "plusMinus": -11,
+        "efficiency": -5
+      },
+      {
+        "jersey": "27",
+        "msPlayed": 1100912,
+        "starter": false,
+        "freeThrows": {
+          "made": 0,
+          "attempted": 0
+        },
+        "twoPointers": {
+          "made": 1,
+          "attempted": 4
+        },
+        "threePointers": {
+          "made": 0,
+          "attempted": 3
+        },
+        "rebounds": {
+          "defensive": 4,
+          "offensive": 5
+        },
+        "assists": 0,
+        "turnovers": 1,
+        "steals": 0,
+        "blocks": {
+          "made": 0,
+          "received": 2
+        },
+        "fouls": {
+          "committed": 1,
+          "received": 0
+        },
+        "plusMinus": -30,
+        "efficiency": 1
+      },
+      {
+        "jersey": "47",
+        "msPlayed": 861817,
+        "starter": false,
+        "freeThrows": {
+          "made": 0,
+          "attempted": 0
+        },
+        "twoPointers": {
+          "made": 3,
+          "attempted": 3
+        },
+        "threePointers": {
+          "made": 0,
+          "attempted": 3
+        },
+        "rebounds": {
+          "defensive": 1,
+          "offensive": 0
+        },
+        "assists": 1,
+        "turnovers": 1,
+        "steals": 0,
+        "blocks": {
+          "made": 0,
+          "received": 1
+        },
+        "fouls": {
+          "committed": 0,
+          "received": 3
+        },
+        "plusMinus": -9,
+        "efficiency": 6
+      },
+      {
+        "jersey": "55",
+        "msPlayed": 752694,
+        "starter": false,
+        "freeThrows": {
+          "made": 0,
+          "attempted": 0
+        },
+        "twoPointers": {
+          "made": 0,
+          "attempted": 2
+        },
+        "threePointers": {
+          "made": 0,
+          "attempted": 2
+        },
+        "rebounds": {
+          "defensive": 2,
+          "offensive": 0
+        },
+        "assists": 0,
+        "turnovers": 0,
+        "steals": 0,
+        "blocks": {
+          "made": 0,
+          "received": 0
+        },
+        "fouls": {
+          "committed": 2,
+          "received": 0
+        },
+        "plusMinus": -23,
+        "efficiency": -4
+      }
+    ],
+    "timelyScores": [
+      {
+        "time": 0,
+        "score": 0,
+        "jersey": null
+      },
+      {
+        "time": 7200,
+        "score": 1,
+        "jersey": "14"
+      },
+      {
+        "time": 7200,
+        "score": 2,
+        "jersey": "14"
+      },
+      {
+        "time": 7200,
+        "score": 3,
+        "jersey": "14"
+      },
+      {
+        "time": 40300,
+        "score": 6,
+        "jersey": "23"
+      },
+      {
+        "time": 73400,
+        "score": 8,
+        "jersey": "23"
+      },
+      {
+        "time": 123600,
+        "score": 10,
+        "jersey": "0"
+      },
+      {
+        "time": 199800,
+        "score": 12,
+        "jersey": "7"
+      },
+      {
+        "time": 230900,
+        "score": 14,
+        "jersey": "23"
+      },
+      {
+        "time": 265000,
+        "score": 16,
+        "jersey": "14"
+      },
+      {
+        "time": 324200,
+        "score": 18,
+        "jersey": "15"
+      },
+      {
+        "time": 350300,
+        "score": 21,
+        "jersey": "23"
+      },
+      {
+        "time": 379400,
+        "score": 24,
+        "jersey": "1"
+      },
+      {
+        "time": 407500,
+        "score": 26,
+        "jersey": "27"
+      },
+      {
+        "time": 429500,
+        "score": 27,
+        "jersey": "0"
+      },
+      {
+        "time": 429500,
+        "score": 28,
+        "jersey": "0"
+      },
+      {
+        "time": 499800,
+        "score": 31,
+        "jersey": "19"
+      },
+      {
+        "time": 516900,
+        "score": 33,
+        "jersey": "1"
+      },
+      {
+        "time": 640500,
+        "score": 34,
+        "jersey": "23"
+      },
+      {
+        "time": 660600,
+        "score": 35,
+        "jersey": "7"
+      },
+      {
+        "time": 823300,
+        "score": 37,
+        "jersey": "11"
+      },
+      {
+        "time": 936900,
+        "score": 39,
+        "jersey": "19"
+      },
+      {
+        "time": 971200,
+        "score": 41,
+        "jersey": "19"
+      },
+      {
+        "time": 1139900,
+        "score": 44,
+        "jersey": "23"
+      },
+      {
+        "time": 1214300,
+        "score": 46,
+        "jersey": "1"
+      },
+      {
+        "time": 1292500,
+        "score": 47,
+        "jersey": "23"
+      },
+      {
+        "time": 1292500,
+        "score": 48,
+        "jersey": "23"
+      },
+      {
+        "time": 1391700,
+        "score": 50,
+        "jersey": "47"
+      },
+      {
+        "time": 1525300,
+        "score": 51,
+        "jersey": "11"
+      },
+      {
+        "time": 1538300,
+        "score": 53,
+        "jersey": "11"
+      },
+      {
+        "time": 1633600,
+        "score": 55,
+        "jersey": "14"
+      },
+      {
+        "time": 1721900,
+        "score": 57,
+        "jersey": "0"
+      },
+      {
+        "time": 1903800,
+        "score": 59,
+        "jersey": "1"
+      },
+      {
+        "time": 1928800,
+        "score": 61,
+        "jersey": "47"
+      },
+      {
+        "time": 1984000,
+        "score": 63,
+        "jersey": "1"
+      },
+      {
+        "time": 2055500,
+        "score": 65,
+        "jersey": "47"
+      },
+      {
+        "time": 2085600,
+        "score": 68,
+        "jersey": "7"
+      },
+      {
+        "time": 2200300,
+        "score": 69,
+        "jersey": "1"
+      },
+      {
+        "time": 2200300,
+        "score": 70,
+        "jersey": "1"
+      },
+      {
+        "time": 2280800,
+        "score": 72,
+        "jersey": "23"
+      },
+      {
+        "time": 2319900,
+        "score": 73,
+        "jersey": "X"
+      }
+    ]
+  }
+}

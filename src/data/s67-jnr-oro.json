@@ -14,11 +14,11 @@
                   "date": "2026-09-20T10:30:00Z",
                   "venue": "sba",
                   "home": {
-                    "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                    "slug": "sba",
                     "score": 119
                   },
                   "away": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 95
                   },
                   "downloaded": true
@@ -33,11 +33,11 @@
                   "date": "2026-09-27T18:00:00Z",
                   "venue": "antela",
                   "home": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 90
                   },
                   "away": {
-                    "name": "BASKET TORREJON CDE",
+                    "slug": "torrejon",
                     "score": 101
                   },
                   "downloaded": true
@@ -52,11 +52,11 @@
                   "date": "2026-10-04T11:30:00Z",
                   "venue": "diaz-miguel",
                   "home": {
-                    "name": "SAN JORGE BALONCESTO",
+                    "slug": "sanjorge",
                     "score": 105
                   },
                   "away": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 90
                   },
                   "downloaded": true
@@ -71,11 +71,11 @@
                   "date": "2026-10-18T11:00:00Z",
                   "venue": "canoe",
                   "home": {
-                    "name": "REAL CANOE N.C.",
+                    "slug": "canoe",
                     "score": 94
                   },
                   "away": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 76
                   },
                   "downloaded": true
@@ -90,11 +90,11 @@
                   "date": "2026-10-25T12:15:00Z",
                   "venue": "antela",
                   "home": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 60
                   },
                   "away": {
-                    "name": "REAL MADRID C.F.",
+                    "slug": "real-madrid",
                     "score": 131
                   },
                   "downloaded": true
@@ -110,11 +110,11 @@
                   "venue": "antela",
                   "video": "https://youtu.be/go9AWn84-pg",
                   "home": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 90
                   },
                   "away": {
-                    "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                    "slug": "sba",
                     "score": 110
                   },
                   "downloaded": true
@@ -129,11 +129,11 @@
                   "date": "2026-11-15T14:00:00Z",
                   "venue": "limones",
                   "home": {
-                    "name": "BASKET TORREJON CDE",
+                    "slug": "torrejon",
                     "score": null
                   },
                   "away": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": null
                   },
                   "downloaded": false
@@ -148,11 +148,11 @@
                   "date": "2026-11-22T17:30:00Z",
                   "venue": "antela",
                   "home": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": null
                   },
                   "away": {
-                    "name": "SAN JORGE BALONCESTO",
+                    "slug": "sanjorge",
                     "score": null
                   },
                   "downloaded": false
@@ -168,11 +168,11 @@
                   "venue": "antela",
                   "video": "https://youtu.be/xS8Smxr4KSM",
                   "home": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 95
                   },
                   "away": {
-                    "name": "REAL CANOE N.C.",
+                    "slug": "canoe",
                     "score": 94
                   },
                   "downloaded": true
@@ -187,11 +187,11 @@
                   "date": "2026-12-13T00:00:00Z",
                   "venue": "valdebebas",
                   "home": {
-                    "name": "REAL MADRID C.F.",
+                    "slug": "real-madrid",
                     "score": null
                   },
                   "away": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": null
                   },
                   "downloaded": false

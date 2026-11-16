@@ -19,8 +19,8 @@ const datedGame = {
   id: 'ABC',
   date: '2026-09-21T09:30:00Z',
   category: ' Cadete ',
-  home: { name: 'HOME CLUB', score: 12 },
-  away: { name: 'AWAY CLUB', score: 10 },
+  home: { slug: 'home', score: 12 },
+  away: { slug: 'away', score: 10 },
   downloaded: false,
   scored: false,
 };
@@ -33,9 +33,10 @@ const detailMetadata = {
 };
 
 test('sides reference clubs without duplicating names, teams or logos', () => {
-  assert.deepEqual(buildSide(clubs, ' home club ', 0), { club: 'home', score: 0 });
-  assert.deepEqual(buildSide(clubs, 'AWAY CLUB', null), { club: 'away', score: null });
-  assert.throws(() => buildSide(clubs, 'Unknown club', 10), /Club not found.*Unknown club/);
+  assert.deepEqual(buildSide(clubs, { name: ' home club ' }, 0), { club: 'home', score: 0 });
+  assert.deepEqual(buildSide(clubs, { slug: 'away' }, null), { club: 'away', score: null });
+  assert.throws(() => buildSide(clubs, { name: 'Unknown club' }, 10), /Club not found.*Unknown club/);
+  assert.throws(() => buildSide(clubs, { slug: 'unknown' }, 10), /Club not found.*unknown/);
   assert.throws(() => buildSide(clubs, null, null), /missing name/);
 });
 

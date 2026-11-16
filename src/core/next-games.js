@@ -15,6 +15,8 @@ const {
   DATA_DIR,
   PENDING,
   allGames,
+  clubSlug,
+  loadClubs,
   readCompetitionTrees,
   sortTreeGames,
   writeCompetitionTree,
@@ -31,10 +33,11 @@ const DAYS = 100;
  * @param {object[]} upcomingGames The `mispartidos` array of the response.
  * @param {Map<string, string>} venues Exact venue name -> slug.
  * @param {string} [season] Current season.
+ * @param {Map<string, {slug: string}>} [clubs] Clubs indexed by source name.
  * @returns {{added: object[], updated: object[], discarded: object[], unmatchedVenues: string[], invalidDates: object[], changed: Set<object>}}
  *   `added` entries are `{competition, game}`; `changed` holds the modified tree entries.
  */
-function mergeNextGames(trees, upcomingGames, venues = new Map(), season = CURRENT_SEASON) {
+function mergeNextGames(trees, upcomingGames, venues = new Map(), season = CURRENT_SEASON, clubs = new Map()) {
   const byId = new Map();
   for (const entry of trees) {
     for (const game of allGames(entry.tree)) {
@@ -89,12 +92,16 @@ function mergeNextGames(trees, upcomingGames, venues = new Map(), season = CURRE
       continue;
     }
 
+    const makeSide = (name) => {
+      const slug = clubSlug(clubs, name);
+      return slug ? { slug, score: null } : { name, score: null };
+    };
     const game = {
       id,
       date,
       venue,
-      home: { name: home, score: null },
-      away: { name: away, score: null },
+      home: makeSide(home),
+      away: makeSide(away),
       downloaded: false,
     };
     entry.tree[PENDING].push(game);
@@ -124,10 +131,13 @@ async function fetchNextGames(client, { days = DAYS, date = new Date(), dataDir 
 
   const trees = await readCompetitionTrees(dataDir);
   const venues = await loadVenues();
+  const clubs = await loadClubs(dataDir);
   const { added, updated, discarded, unmatchedVenues, invalidDates, changed } = mergeNextGames(
     trees,
     data.mispartidos,
     venues,
+    CURRENT_SEASON,
+    clubs,
   );
   for (const { competition, tree } of changed) await writeCompetitionTree(competition, tree, dataDir);
   const total = trees.reduce((sum, { tree }) => sum + allGames(tree).length, 0);

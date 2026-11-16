@@ -14,11 +14,11 @@
                   "date": "2026-09-19T16:00:00Z",
                   "venue": "valdebebas",
                   "home": {
-                    "name": "REAL MADRID C.F.",
+                    "slug": "real-madrid",
                     "score": 107
                   },
                   "away": {
-                    "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                    "slug": "sba",
                     "score": 51
                   },
                   "downloaded": true
@@ -28,11 +28,11 @@
                   "date": "2026-09-19T16:30:00Z",
                   "venue": "circular",
                   "home": {
-                    "name": "DISTRITO OLIMPICO",
+                    "slug": "distrito",
                     "score": 125
                   },
                   "away": {
-                    "name": "BALONCESTO FUENLABRADA",
+                    "slug": "fuenlabrada",
                     "score": 68
                   },
                   "downloaded": true
@@ -42,11 +42,11 @@
                   "date": "2026-09-20T09:15:00Z",
                   "venue": "canoe",
                   "home": {
-                    "name": "REAL CANOE N.C.",
+                    "slug": "canoe",
                     "score": 84
                   },
                   "away": {
-                    "name": "SAN JORGE BALONCESTO",
+                    "slug": "sanjorge",
                     "score": 71
                   },
                   "downloaded": true
@@ -61,11 +61,11 @@
                   "date": "2026-09-26T12:00:00Z",
                   "venue": "sba",
                   "home": {
-                    "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                    "slug": "sba",
                     "score": 99
                   },
                   "away": {
-                    "name": "REAL CANOE N.C.",
+                    "slug": "canoe",
                     "score": 77
                   },
                   "downloaded": true
@@ -75,11 +75,11 @@
                   "date": "2026-10-11T14:00:00Z",
                   "venue": "diaz-miguel",
                   "home": {
-                    "name": "SAN JORGE BALONCESTO",
+                    "slug": "sanjorge",
                     "score": 52
                   },
                   "away": {
-                    "name": "DISTRITO OLIMPICO",
+                    "slug": "distrito",
                     "score": 131
                   },
                   "downloaded": true
@@ -89,11 +89,11 @@
                   "date": "2026-11-08T12:30:00Z",
                   "venue": "fernando-martin",
                   "home": {
-                    "name": "BALONCESTO FUENLABRADA",
+                    "slug": "fuenlabrada",
                     "score": 95
                   },
                   "away": {
-                    "name": "REAL MADRID C.F.",
+                    "slug": "real-madrid",
                     "score": 97
                   },
                   "downloaded": true
@@ -108,11 +108,11 @@
                   "date": "2026-10-03T12:00:00Z",
                   "venue": "sba",
                   "home": {
-                    "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                    "slug": "sba",
                     "score": 106
                   },
                   "away": {
-                    "name": "BALONCESTO FUENLABRADA",
+                    "slug": "fuenlabrada",
                     "score": 120
                   },
                   "downloaded": true
@@ -122,11 +122,11 @@
                   "date": "2026-10-03T14:30:00Z",
                   "venue": "canoe",
                   "home": {
-                    "name": "REAL CANOE N.C.",
+                    "slug": "canoe",
                     "score": 45
                   },
                   "away": {
-                    "name": "DISTRITO OLIMPICO",
+                    "slug": "distrito",
                     "score": 104
                   },
                   "downloaded": true
@@ -136,11 +136,11 @@
                   "date": "2026-10-03T15:00:00Z",
                   "venue": "valdebebas",
                   "home": {
-                    "name": "REAL MADRID C.F.",
+                    "slug": "real-madrid",
                     "score": 91
                   },
                   "away": {
-                    "name": "SAN JORGE BALONCESTO",
+                    "slug": "sanjorge",
                     "score": 58
                   },
                   "downloaded": true
@@ -155,11 +155,11 @@
                   "date": "2026-10-17T14:30:00Z",
                   "venue": "circular",
                   "home": {
-                    "name": "DISTRITO OLIMPICO",
+                    "slug": "distrito",
                     "score": 73
                   },
                   "away": {
-                    "name": "REAL MADRID C.F.",
+                    "slug": "real-madrid",
                     "score": 80
                   },
                   "downloaded": true
@@ -169,11 +169,11 @@
                   "date": "2026-10-18T09:15:00Z",
                   "venue": "canoe",
                   "home": {
-                    "name": "REAL CANOE N.C.",
+                    "slug": "canoe",
                     "score": 79
                   },
                   "away": {
-                    "name": "BALONCESTO FUENLABRADA",
+                    "slug": "fuenlabrada",
                     "score": 70
                   },
                   "downloaded": true
@@ -183,11 +183,11 @@
                   "date": "2026-10-18T18:15:00Z",
                   "venue": "diaz-miguel",
                   "home": {
-                    "name": "SAN JORGE BALONCESTO",
+                    "slug": "sanjorge",
                     "score": 86
                   },
                   "away": {
-                    "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                    "slug": "sba",
                     "score": 105
                   },
                   "downloaded": true
@@ -202,11 +202,11 @@
                   "date": "2026-10-24T12:00:00Z",
                   "venue": "sba",
                   "home": {
-                    "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                    "slug": "sba",
                     "score": 76
                   },
                   "away": {
-                    "name": "DISTRITO OLIMPICO",
+                    "slug": "distrito",
                     "score": 101
                   },
                   "downloaded": true
@@ -216,11 +216,11 @@
                   "date": "2026-10-24T15:00:00Z",
                   "venue": "valdebebas",
                   "home": {
-                    "name": "REAL MADRID C.F.",
+                    "slug": "real-madrid",
                     "score": 79
                   },
                   "away": {
-                    "name": "REAL CANOE N.C.",
+                    "slug": "canoe",
                     "score": 52
                   },
                   "downloaded": true
@@ -230,11 +230,11 @@
                   "date": "2026-10-25T15:30:00Z",
                   "venue": "fernando-martin",
                   "home": {
-                    "name": "BALONCESTO FUENLABRADA",
+                    "slug": "fuenlabrada",
                     "score": 100
                   },
                   "away": {
-                    "name": "SAN JORGE BALONCESTO",
+                    "slug": "sanjorge",
                     "score": 62
                   },
                   "downloaded": true
@@ -249,11 +249,11 @@
                   "date": "2026-11-07T12:30:00Z",
                   "venue": "fernando-martin",
                   "home": {
-                    "name": "BALONCESTO FUENLABRADA",
+                    "slug": "fuenlabrada",
                     "score": 69
                   },
                   "away": {
-                    "name": "DISTRITO OLIMPICO",
+                    "slug": "distrito",
                     "score": 102
                   },
                   "downloaded": true
@@ -263,11 +263,11 @@
                   "date": "2026-11-07T13:00:00Z",
                   "venue": "sba",
                   "home": {
-                    "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                    "slug": "sba",
                     "score": 63
                   },
                   "away": {
-                    "name": "REAL MADRID C.F.",
+                    "slug": "real-madrid",
                     "score": 140
                   },
                   "downloaded": true
@@ -277,11 +277,11 @@
                   "date": "2026-11-26T20:15:00Z",
                   "venue": "diaz-miguel",
                   "home": {
-                    "name": "SAN JORGE BALONCESTO",
+                    "slug": "sanjorge",
                     "score": null
                   },
                   "away": {
-                    "name": "REAL CANOE N.C.",
+                    "slug": "canoe",
                     "score": null
                   },
                   "downloaded": false
@@ -296,11 +296,11 @@
                   "date": "2026-11-14T09:00:00Z",
                   "venue": "valdebebas",
                   "home": {
-                    "name": "REAL MADRID C.F.",
+                    "slug": "real-madrid",
                     "score": null
                   },
                   "away": {
-                    "name": "BALONCESTO FUENLABRADA",
+                    "slug": "fuenlabrada",
                     "score": null
                   },
                   "downloaded": false
@@ -310,11 +310,11 @@
                   "date": "2026-11-14T12:30:00Z",
                   "venue": "circular",
                   "home": {
-                    "name": "DISTRITO OLIMPICO",
+                    "slug": "distrito",
                     "score": null
                   },
                   "away": {
-                    "name": "SAN JORGE BALONCESTO",
+                    "slug": "sanjorge",
                     "score": null
                   },
                   "downloaded": false
@@ -324,11 +324,11 @@
                   "date": "2026-11-15T10:15:00Z",
                   "venue": "canoe",
                   "home": {
-                    "name": "REAL CANOE N.C.",
+                    "slug": "canoe",
                     "score": null
                   },
                   "away": {
-                    "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                    "slug": "sba",
                     "score": null
                   },
                   "downloaded": false
@@ -343,11 +343,11 @@
                   "date": "2026-11-22T19:15:00Z",
                   "venue": "diaz-miguel",
                   "home": {
-                    "name": "SAN JORGE BALONCESTO",
+                    "slug": "sanjorge",
                     "score": null
                   },
                   "away": {
-                    "name": "REAL MADRID C.F.",
+                    "slug": "real-madrid",
                     "score": null
                   },
                   "downloaded": false
@@ -357,11 +357,11 @@
                   "date": "2026-11-21T08:00:00Z",
                   "venue": "arroyo",
                   "home": {
-                    "name": "BALONCESTO FUENLABRADA",
+                    "slug": "fuenlabrada",
                     "score": null
                   },
                   "away": {
-                    "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                    "slug": "sba",
                     "score": null
                   },
                   "downloaded": false
@@ -371,11 +371,11 @@
                   "date": "2026-11-21T17:30:00Z",
                   "venue": "circular",
                   "home": {
-                    "name": "DISTRITO OLIMPICO",
+                    "slug": "distrito",
                     "score": null
                   },
                   "away": {
-                    "name": "REAL CANOE N.C.",
+                    "slug": "canoe",
                     "score": null
                   },
                   "downloaded": false
@@ -390,11 +390,11 @@
                   "date": "2026-11-28T13:00:00Z",
                   "venue": "sba",
                   "home": {
-                    "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                    "slug": "sba",
                     "score": null
                   },
                   "away": {
-                    "name": "SAN JORGE BALONCESTO",
+                    "slug": "sanjorge",
                     "score": null
                   },
                   "downloaded": false
@@ -404,11 +404,11 @@
                   "date": "2026-11-28T00:00:00Z",
                   "venue": "arroyo",
                   "home": {
-                    "name": "BALONCESTO FUENLABRADA",
+                    "slug": "fuenlabrada",
                     "score": null
                   },
                   "away": {
-                    "name": "REAL CANOE N.C.",
+                    "slug": "canoe",
                     "score": null
                   },
                   "downloaded": false
@@ -418,11 +418,11 @@
                   "date": "2026-11-28T00:00:00Z",
                   "venue": "valdebebas",
                   "home": {
-                    "name": "REAL MADRID C.F.",
+                    "slug": "real-madrid",
                     "score": null
                   },
                   "away": {
-                    "name": "DISTRITO OLIMPICO",
+                    "slug": "distrito",
                     "score": null
                   },
                   "downloaded": false
@@ -437,11 +437,11 @@
                   "date": "2026-12-12T00:00:00Z",
                   "venue": "circular",
                   "home": {
-                    "name": "DISTRITO OLIMPICO",
+                    "slug": "distrito",
                     "score": null
                   },
                   "away": {
-                    "name": "ELITE INTERNATIONAL SCHOOL C.D.E",
+                    "slug": "sba",
                     "score": null
                   },
                   "downloaded": false
@@ -451,11 +451,11 @@
                   "date": "2026-12-13T00:00:00Z",
                   "venue": "diaz-miguel",
                   "home": {
-                    "name": "SAN JORGE BALONCESTO",
+                    "slug": "sanjorge",
                     "score": null
                   },
                   "away": {
-                    "name": "BALONCESTO FUENLABRADA",
+                    "slug": "fuenlabrada",
                     "score": null
                   },
                   "downloaded": false
@@ -465,11 +465,11 @@
                   "date": "2026-12-13T00:00:00Z",
                   "venue": "canoe",
                   "home": {
-                    "name": "REAL CANOE N.C.",
+                    "slug": "canoe",
                     "score": null
                   },
                   "away": {
-                    "name": "REAL MADRID C.F.",
+                    "slug": "real-madrid",
                     "score": null
                   },
                   "downloaded": false
@@ -489,11 +489,11 @@
                   "date": "2026-10-27T18:30:00Z",
                   "venue": "diaz-miguel",
                   "home": {
-                    "name": "ZENTRO C.B.",
+                    "slug": "zentro",
                     "score": 90
                   },
                   "away": {
-                    "name": "TORRELODONES A.D.",
+                    "slug": "torrelodones",
                     "score": 74
                   },
                   "downloaded": true
@@ -503,11 +503,11 @@
                   "date": "2026-11-08T08:30:00Z",
                   "venue": "canaleja",
                   "home": {
-                    "name": "ALCORCON BASKET",
+                    "slug": "alcorcon",
                     "score": 72
                   },
                   "away": {
-                    "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                    "slug": "laso",
                     "score": 111
                   },
                   "downloaded": true
@@ -518,11 +518,11 @@
                   "venue": "antela",
                   "video": "https://youtu.be/u8AJw0atlZ4",
                   "home": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 71
                   },
                   "away": {
-                    "name": "ESTUDIANTES",
+                    "slug": "estudiantes",
                     "score": 78
                   },
                   "downloaded": true
@@ -537,11 +537,11 @@
                   "date": "2026-09-26T17:30:00Z",
                   "venue": "torrelodones",
                   "home": {
-                    "name": "TORRELODONES A.D.",
+                    "slug": "torrelodones",
                     "score": 88
                   },
                   "away": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 81
                   },
                   "downloaded": true
@@ -551,11 +551,11 @@
                   "date": "2026-09-27T18:30:00Z",
                   "venue": "magariños",
                   "home": {
-                    "name": "ESTUDIANTES",
+                    "slug": "estudiantes",
                     "score": 103
                   },
                   "away": {
-                    "name": "ALCORCON BASKET",
+                    "slug": "alcorcon",
                     "score": 74
                   },
                   "downloaded": true
@@ -565,11 +565,11 @@
                   "date": "2026-10-08T19:00:00Z",
                   "venue": "retamar",
                   "home": {
-                    "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                    "slug": "laso",
                     "score": 93
                   },
                   "away": {
-                    "name": "ZENTRO C.B.",
+                    "slug": "zentro",
                     "score": 79
                   },
                   "downloaded": true
@@ -584,11 +584,11 @@
                   "date": "2026-10-03T10:30:00Z",
                   "venue": "torrelodones",
                   "home": {
-                    "name": "TORRELODONES A.D.",
+                    "slug": "torrelodones",
                     "score": 89
                   },
                   "away": {
-                    "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                    "slug": "laso",
                     "score": 93
                   },
                   "downloaded": true
@@ -598,11 +598,11 @@
                   "date": "2026-10-04T11:15:00Z",
                   "venue": "antela",
                   "home": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 70
                   },
                   "away": {
-                    "name": "ALCORCON BASKET",
+                    "slug": "alcorcon",
                     "score": 75
                   },
                   "downloaded": true
@@ -612,11 +612,11 @@
                   "date": "2026-10-04T16:15:00Z",
                   "venue": "diaz-miguel",
                   "home": {
-                    "name": "ZENTRO C.B.",
+                    "slug": "zentro",
                     "score": 92
                   },
                   "away": {
-                    "name": "ESTUDIANTES",
+                    "slug": "estudiantes",
                     "score": 62
                   },
                   "downloaded": true
@@ -631,11 +631,11 @@
                   "date": "2026-10-18T09:30:00Z",
                   "venue": "canaleja",
                   "home": {
-                    "name": "ALCORCON BASKET",
+                    "slug": "alcorcon",
                     "score": 49
                   },
                   "away": {
-                    "name": "ZENTRO C.B.",
+                    "slug": "zentro",
                     "score": 91
                   },
                   "downloaded": true
@@ -645,11 +645,11 @@
                   "date": "2026-10-18T16:30:00Z",
                   "venue": "magariños",
                   "home": {
-                    "name": "ESTUDIANTES",
+                    "slug": "estudiantes",
                     "score": 97
                   },
                   "away": {
-                    "name": "TORRELODONES A.D.",
+                    "slug": "torrelodones",
                     "score": 72
                   },
                   "downloaded": true
@@ -659,11 +659,11 @@
                   "date": "2026-10-18T18:00:00Z",
                   "venue": "antela",
                   "home": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 68
                   },
                   "away": {
-                    "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                    "slug": "laso",
                     "score": 95
                   },
                   "downloaded": true
@@ -678,11 +678,11 @@
                   "date": "2026-10-24T17:30:00Z",
                   "venue": "torrelodones",
                   "home": {
-                    "name": "TORRELODONES A.D.",
+                    "slug": "torrelodones",
                     "score": 66
                   },
                   "away": {
-                    "name": "ALCORCON BASKET",
+                    "slug": "alcorcon",
                     "score": 57
                   },
                   "downloaded": true
@@ -692,11 +692,11 @@
                   "date": "2026-10-25T17:15:00Z",
                   "venue": "diaz-miguel",
                   "home": {
-                    "name": "ZENTRO C.B.",
+                    "slug": "zentro",
                     "score": 93
                   },
                   "away": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 53
                   },
                   "downloaded": true
@@ -706,11 +706,11 @@
                   "date": "2026-11-05T20:00:00Z",
                   "venue": "retamar",
                   "home": {
-                    "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                    "slug": "laso",
                     "score": 94
                   },
                   "away": {
-                    "name": "ESTUDIANTES",
+                    "slug": "estudiantes",
                     "score": 75
                   },
                   "downloaded": true
@@ -725,11 +725,11 @@
                   "date": "2026-09-20T16:00:00Z",
                   "venue": "retamar",
                   "home": {
-                    "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                    "slug": "laso",
                     "score": 110
                   },
                   "away": {
-                    "name": "ALCORCON BASKET",
+                    "slug": "alcorcon",
                     "score": 72
                   },
                   "downloaded": true
@@ -739,11 +739,11 @@
                   "date": "2026-09-29T17:00:00Z",
                   "venue": "caja-magica",
                   "home": {
-                    "name": "ESTUDIANTES",
+                    "slug": "estudiantes",
                     "score": 60
                   },
                   "away": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 52
                   },
                   "downloaded": true
@@ -753,11 +753,11 @@
                   "date": "2026-11-07T10:30:00Z",
                   "venue": "torrelodones",
                   "home": {
-                    "name": "TORRELODONES A.D.",
+                    "slug": "torrelodones",
                     "score": 56
                   },
                   "away": {
-                    "name": "ZENTRO C.B.",
+                    "slug": "zentro",
                     "score": 90
                   },
                   "downloaded": true
@@ -772,11 +772,11 @@
                   "date": "2026-11-15T12:30:00Z",
                   "venue": "antela",
                   "home": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": null
                   },
                   "away": {
-                    "name": "TORRELODONES A.D.",
+                    "slug": "torrelodones",
                     "score": null
                   },
                   "downloaded": false
@@ -786,11 +786,11 @@
                   "date": "2026-11-15T14:30:00Z",
                   "venue": "canaleja",
                   "home": {
-                    "name": "ALCORCON BASKET",
+                    "slug": "alcorcon",
                     "score": null
                   },
                   "away": {
-                    "name": "ESTUDIANTES",
+                    "slug": "estudiantes",
                     "score": null
                   },
                   "downloaded": false
@@ -800,11 +800,11 @@
                   "date": "2026-11-15T17:15:00Z",
                   "venue": "diaz-miguel",
                   "home": {
-                    "name": "ZENTRO C.B.",
+                    "slug": "zentro",
                     "score": null
                   },
                   "away": {
-                    "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                    "slug": "laso",
                     "score": null
                   },
                   "downloaded": false
@@ -819,11 +819,11 @@
                   "date": "2026-11-22T10:30:00Z",
                   "venue": "canaleja",
                   "home": {
-                    "name": "ALCORCON BASKET",
+                    "slug": "alcorcon",
                     "score": null
                   },
                   "away": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": null
                   },
                   "downloaded": false
@@ -833,11 +833,11 @@
                   "date": "2026-11-22T17:15:00Z",
                   "venue": "retamar",
                   "home": {
-                    "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                    "slug": "laso",
                     "score": null
                   },
                   "away": {
-                    "name": "TORRELODONES A.D.",
+                    "slug": "torrelodones",
                     "score": null
                   },
                   "downloaded": false
@@ -847,11 +847,11 @@
                   "date": "2026-11-22T19:30:00Z",
                   "venue": "magariños",
                   "home": {
-                    "name": "ESTUDIANTES",
+                    "slug": "estudiantes",
                     "score": null
                   },
                   "away": {
-                    "name": "ZENTRO C.B.",
+                    "slug": "zentro",
                     "score": null
                   },
                   "downloaded": false
@@ -866,11 +866,11 @@
                   "date": "2026-11-28T00:00:00Z",
                   "venue": "torrelodones",
                   "home": {
-                    "name": "TORRELODONES A.D.",
+                    "slug": "torrelodones",
                     "score": null
                   },
                   "away": {
-                    "name": "ESTUDIANTES",
+                    "slug": "estudiantes",
                     "score": null
                   },
                   "downloaded": false
@@ -880,11 +880,11 @@
                   "date": "2026-11-29T00:00:00Z",
                   "venue": "diaz-miguel",
                   "home": {
-                    "name": "ZENTRO C.B.",
+                    "slug": "zentro",
                     "score": null
                   },
                   "away": {
-                    "name": "ALCORCON BASKET",
+                    "slug": "alcorcon",
                     "score": null
                   },
                   "downloaded": false
@@ -894,11 +894,11 @@
                   "date": "2026-11-29T00:00:00Z",
                   "venue": "retamar",
                   "home": {
-                    "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                    "slug": "laso",
                     "score": null
                   },
                   "away": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": null
                   },
                   "downloaded": false
@@ -913,11 +913,11 @@
                   "date": "2026-12-13T00:00:00Z",
                   "venue": "canaleja",
                   "home": {
-                    "name": "ALCORCON BASKET",
+                    "slug": "alcorcon",
                     "score": null
                   },
                   "away": {
-                    "name": "TORRELODONES A.D.",
+                    "slug": "torrelodones",
                     "score": null
                   },
                   "downloaded": false
@@ -927,11 +927,11 @@
                   "date": "2026-12-13T00:00:00Z",
                   "venue": "magariños",
                   "home": {
-                    "name": "ESTUDIANTES",
+                    "slug": "estudiantes",
                     "score": null
                   },
                   "away": {
-                    "name": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+                    "slug": "laso",
                     "score": null
                   },
                   "downloaded": false
@@ -941,11 +941,11 @@
                   "date": "2026-12-13T12:15:00Z",
                   "venue": "antela",
                   "home": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": null
                   },
                   "away": {
-                    "name": "ZENTRO C.B.",
+                    "slug": "zentro",
                     "score": null
                   },
                   "downloaded": false

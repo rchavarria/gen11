@@ -34,8 +34,9 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   - lee los árboles de competición (`src/data/<competición>.json`, ver `competitions.json`)
     para obtener `date`, clubs y `venue` (slug del pabellón); la categoría sale de la competición
     y el slug se calcula a partir de la posición del partido en el árbol
-  - `home` y `away` del árbol son objetos con `name` y `score` (inicialmente `null`);
-    el marcador se rellena con los datos descargados
+  - `home` y `away` del árbol son objetos con `slug` y `score` (inicialmente `null`);
+    el marcador se rellena con los datos descargados. En partidos pendientes, un club
+    desconocido conserva su `name` de origen hasta poder resolverlo en `clubs.json`
   - `date` es ISO 8601 UTC (`YYYY-MM-DDTHH:mm:ssZ`); la web muestra el día y la hora en Europe/Madrid.
     `T00:00:00Z` indica hora desconocida y conserva el día del partido
   - al cargar el calendario o un partido, la web convierte `date` en un objeto `Date`
@@ -48,8 +49,8 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   - escribe solo los campos de una lista blanca
 - Cada `home` y `away` guarda `club` (slug de un club existente) y `score`.
   La web obtiene el nombre y el escudo desde `clubs.json`, sin duplicarlos en el calendario.
-  El generador falla antes de escribir si no puede resolver un club; su nombre de la
-  fuente debe estar en `sourceNames`.
+  El generador falla antes de escribir si no puede resolver un club; su `slug` debe
+  existir en `clubs.json` o su nombre de origen debe estar en `sourceNames`.
 - También genera `src/data/games/<slug>.json` para partidos con ambos marcadores:
   conserva los datos del partido (incluido `id`), omitiendo `downloaded` y `scored`.
   Sustituye `home` y `away` del árbol por objetos con `slug`, `score`

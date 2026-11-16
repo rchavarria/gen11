@@ -59,12 +59,13 @@ async function readCompetitions(dataDir = DATA_DIR) {
 /**
  * Club lookup by source name (from src/data/clubs.json).
  * @param {string} [dataDir]
- * @returns {Promise<Map<string, {slug: string}>>} normalized source name -> club
+ * @returns {Promise<Map<string, {slug: string}>>} normalized source name and slug index -> club
  */
 async function loadClubs(dataDir = DATA_DIR) {
   const clubs = await readJsonFile(path.join(dataDir, CLUBS_FILE));
   const bySourceName = new Map();
   for (const club of clubs) {
+    bySourceName.set(`\0${club.slug}`, club);
     for (const sourceName of club.sourceNames || []) {
       bySourceName.set(normalizeName(sourceName), club);
     }
@@ -203,17 +204,27 @@ function clubSlug(clubs, sourceName) {
   return clubs.get(normalizeName(sourceName))?.slug ?? null;
 }
 
+function sideSlug(clubs, side) {
+  if (side?.slug) {
+    return clubs.get(`\0${side.slug}`)?.slug === side.slug ||
+      [...clubs.values()].some((club) => club.slug === side.slug)
+      ? side.slug
+      : null;
+  }
+  return clubSlug(clubs, side?.name);
+}
+
 /**
  * Builds the slug of a placed game:
  * <competitionId>-<phaseId>[-<groupId>]-<roundId>-<homeClubSlug>-<awayClubSlug>.
  * Throws when a club is not in clubs.json.
  */
 function computeSlug(competitionId, position, game, clubs) {
-  const sides = [game.home?.name, game.away?.name].map((name) => {
-    const slug = clubSlug(clubs, name);
+  const sides = [game.home, game.away].map((side) => {
+    const slug = sideSlug(clubs, side);
     if (!slug) {
       throw new Error(
-        `Club not found in ${CLUBS_FILE}: "${name || '(missing name)'}". Add its source name to sourceNames.`,
+        `Club not found in ${CLUBS_FILE}: "${side?.slug || side?.name || '(missing name)'}". Add the club or its source name to sourceNames.`,
       );
     }
     return slug;
@@ -231,7 +242,7 @@ function computeSlug(competitionId, position, game, clubs) {
  */
 function listGames(trees, clubs) {
   const describe = (competition, game, suffix) =>
-    `${competition.id} ${suffix}: ${game.home?.name || '?'} vs ${game.away?.name || '?'} (${game.id})`;
+    `${competition.id} ${suffix}: ${game.home?.slug || game.home?.name || '?'} vs ${game.away?.slug || game.away?.name || '?'} (${game.id})`;
   const result = [];
   for (const { competition, tree } of trees) {
     for (const { game, position } of placedGames(tree)) {
@@ -282,6 +293,7 @@ module.exports = {
   placedGames,
   allGames,
   clubSlug,
+  sideSlug,
   computeSlug,
   listGames,
   compareByDate,

@@ -36,26 +36,32 @@ test('mergeNextGames adds new games to pending-games and updates placed games by
     downloaded: true,
   };
   const trees = makeTrees({ placed: [known] });
-  const { added, updated, discarded, changed } = mergeNextGames(trees, [
-    { IdPartido: 'AA', Fecha: '04/11/2026', Hora: '09:15:00', Categoria: 'new category' },
-    {
-      IdPartido: 'BB',
-      Fecha: '03/11/2026',
-      Hora: '08:30:00',
-      Categoria: ' Cat ',
-      NombreClubLocal: 'Local',
-      NombreClubVisitante: 'Visitante',
-    },
-    { IdPartido: 'BB', Fecha: '03/11/2026', Hora: '08:30:00' },
-    { IdPartido: 'CC', Fecha: '03/11/2026', Categoria: 'Other', NombreClubLocal: 'X', NombreClubVisitante: 'Y' },
-    { IdPartido: '', Fecha: '01/11/2026' },
-  ]);
+  const { added, updated, discarded, changed } = mergeNextGames(
+    trees,
+    [
+      { IdPartido: 'AA', Fecha: '04/11/2026', Hora: '09:15:00', Categoria: 'new category' },
+      {
+        IdPartido: 'BB',
+        Fecha: '03/11/2026',
+        Hora: '08:30:00',
+        Categoria: ' Cat ',
+        NombreClubLocal: 'Local',
+        NombreClubVisitante: 'Visitante',
+      },
+      { IdPartido: 'BB', Fecha: '03/11/2026', Hora: '08:30:00' },
+      { IdPartido: 'CC', Fecha: '03/11/2026', Categoria: 'Other', NombreClubLocal: 'X', NombreClubVisitante: 'Y' },
+      { IdPartido: '', Fecha: '01/11/2026' },
+    ],
+    new Map(),
+    's67',
+    new Map([['LOCAL', { slug: 'local' }]]),
+  );
 
   const newGame = {
     id: 'BB',
     date: '2026-11-03T07:30:00Z',
     venue: '',
-    home: { name: 'Local', score: null },
+    home: { slug: 'local', score: null },
     away: { name: 'Visitante', score: null },
     downloaded: false,
   };
@@ -163,6 +169,13 @@ async function tempDataDir(t) {
     path.join(dataDir, 'competitions.json'),
     JSON.stringify({ competitions: [oldCompetition, competition] }),
   );
+  await fs.writeFile(
+    path.join(dataDir, 'clubs.json'),
+    JSON.stringify([
+      { slug: 'home', sourceNames: ['Home'] },
+      { slug: 'away', sourceNames: ['Away'] },
+    ]),
+  );
   return { dir, dataDir };
 }
 
@@ -229,10 +242,11 @@ test('fetchNextGames saves raw responses and writes only modified trees', async 
     id: 'BB',
     date: '2026-11-01T12:15:00Z',
     venue: 'canoe',
-    home: { name: 'Home', score: null },
-    away: { name: 'Away', score: null },
+    home: { slug: 'home', score: null },
+    away: { slug: 'away', score: null },
     downloaded: false,
   });
+  assert.deepEqual(pending[1].home, { name: 'A', score: null });
   assert.deepEqual(pending[2].home, { name: '', score: null });
   assert.deepEqual(pending[2].away, { name: '', score: null });
 });
@@ -390,10 +404,10 @@ test('download processing skips future games without adding a played field', asy
   assert.equal(isAfterGameSchedule('2099-99-99'), false);
 });
 
-test('score updates preserve names, accept zero and use null for missing or invalid values', () => {
-  const game = { home: { name: 'Home', score: 9 }, away: { name: 'Away', score: 8 } };
+test('score updates preserve club identifiers, accept zero and use null for missing or invalid values', () => {
+  const game = { home: { slug: 'home', score: 9 }, away: { name: 'Away', score: 8 } };
   applyScores(game, { partido: { tanteo_local: 0, tanteo_visitante: '72' } });
-  assert.deepEqual(game, { home: { name: 'Home', score: 0 }, away: { name: 'Away', score: 72 } });
+  assert.deepEqual(game, { home: { slug: 'home', score: 0 }, away: { name: 'Away', score: 72 } });
   applyScores(game, { partido: { tanteo_local: '12x', tanteo_visitante: null } });
   assert.equal(game.home.score, null);
   assert.equal(game.away.score, null);

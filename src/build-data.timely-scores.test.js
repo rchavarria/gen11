@@ -10,8 +10,8 @@ const clubs = new Map([
 const game = {
   slug: 'game',
   id: 'ABC',
-  home: { name: 'HOME CLUB', score: 0 },
-  away: { name: 'AWAY CLUB', score: 0 },
+  home: { slug: 'home', score: 0 },
+  away: { slug: 'away', score: 0 },
 };
 const match = { idlocal: 1, idvisitante: 2, local: 'Home', visitante: 'Away', tanteo_local: 7, tanteo_visitante: 3 };
 const basket = {

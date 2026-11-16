@@ -30,9 +30,9 @@ const {
   DATA_DIR,
   computeSlug,
   loadClubs,
-  normalizeName,
   placedGames,
   readCompetitionTrees,
+  sideSlug,
 } = require('./core/competitions');
 
 const CLUBS_FILE = 'src/data/clubs.json';
@@ -95,15 +95,15 @@ function toScore(value) {
   return Number.isFinite(number) ? number : null;
 }
 
-function buildSide(clubs, clubSourceName, score) {
-  const club = clubs.get(normalizeName(clubSourceName));
-  if (!club) {
+function buildSide(clubs, side, score) {
+  const slug = sideSlug(clubs, side);
+  if (!slug) {
     throw new Error(
-      `Club not found in ${CLUBS_FILE}: "${clubSourceName || '(missing name)'}". Add its source name to sourceNames.`,
+      `Club not found in ${CLUBS_FILE}: "${side?.slug || side?.name || '(missing name)'}". Add the club or its source name to sourceNames.`,
     );
   }
   return {
-    club: club.slug,
+    club: slug,
     score,
   };
 }
@@ -118,8 +118,8 @@ function fromDatedGame(game, clubs, scoreFile) {
     venue: game.venue || '',
     category: (game.category || '').trim(),
     played: match.estado_partido === 'FINALIZADO' || (home !== null && away !== null),
-    home: buildSide(clubs, game.home?.name, home),
-    away: buildSide(clubs, game.away?.name, away),
+    home: buildSide(clubs, game.home, home),
+    away: buildSide(clubs, game.away, away),
   };
 }
 
@@ -154,8 +154,8 @@ function buildGameDetail(game, clubs, scoreData, statsData) {
   if (homeScore === null || awayScore === null) return null;
 
   const { home: homeSource, away: awaySource, downloaded, scored, ...metadata } = game;
-  const home = buildSide(clubs, homeSource?.name, homeScore);
-  const away = buildSide(clubs, awaySource?.name, awayScore);
+  const home = buildSide(clubs, homeSource, homeScore);
+  const away = buildSide(clubs, awaySource, awayScore);
   const periods = [...(match.periodos || [])].sort((a, b) => a.periodo - b.periodo);
 
   const stats = statsData?.estadisticas;

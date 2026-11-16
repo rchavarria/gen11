@@ -27,8 +27,8 @@ function applyScores(game, scoreData) {
     const number = Number(value);
     return Number.isSafeInteger(number) && number >= 0 ? number : null;
   };
-  game.home ??= { name: '', score: null };
-  game.away ??= { name: '', score: null };
+  game.home ??= { score: null };
+  game.away ??= { score: null };
   game.home.score = score(scoreData?.partido?.tanteo_local);
   game.away.score = score(scoreData?.partido?.tanteo_visitante);
 }

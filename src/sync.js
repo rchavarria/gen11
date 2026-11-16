@@ -60,8 +60,8 @@ function describe(competition, game) {
     competition: competition.id,
     id: game.id,
     date: game.date,
-    home: game.home?.name ?? '',
-    away: game.away?.name ?? '',
+    home: game.home?.slug || game.home?.name || '',
+    away: game.away?.slug || game.away?.name || '',
   };
 }
 

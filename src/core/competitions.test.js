@@ -31,8 +31,8 @@ const game = (id, date, extra = {}) => ({
   id,
   date,
   venue: '',
-  home: { name: 'HOME CLUB', score: 0 },
-  away: { name: 'AWAY CLUB', score: 0 },
+  home: { slug: 'home', score: 0 },
+  away: { slug: 'away', score: 0 },
   downloaded: false,
   ...extra,
 });
@@ -46,6 +46,7 @@ async function tempDir(t) {
     JSON.stringify([
       { slug: 'home', sourceNames: ['HOME CLUB'] },
       { slug: 'away', sourceNames: ['AWAY CLUB'] },
+      { slug: 'no-source-names' },
     ]),
   );
   return dir;
@@ -107,13 +108,18 @@ test('trees are written, read back and walked with positions', async (t) => {
     () => computeSlug('x', { phase: 'f1', round: 'j1' }, { ...first, away: { name: 'Unknown', score: 0 } }, clubs),
     /Club not found.*Unknown/,
   );
-  assert.equal(
-    listGames([{ competition, tree: read }], clubs)[2].label,
-    's67-kdt-oro pending: HOME CLUB vs AWAY CLUB (CC)',
+  assert.throws(
+    () => computeSlug('x', { phase: 'f1', round: 'j1' }, { ...first, away: { slug: 'unknown', score: 0 } }, clubs),
+    /Club not found.*unknown/,
   );
   assert.equal(
+    computeSlug('x', { phase: 'f1', round: 'j1' }, { ...first, away: { slug: 'no-source-names' } }, clubs),
+    'x-f1-j1-home-no-source-names',
+  );
+  assert.equal(listGames([{ competition, tree: read }], clubs)[2].label, 's67-kdt-oro pending: home vs away (CC)');
+  assert.equal(
     listGames([{ competition, tree: read }], new Map())[0].label,
-    's67-kdt-oro f1-g1-j01: HOME CLUB vs AWAY CLUB (AA)',
+    's67-kdt-oro f1-g1-j01: home vs away (AA)',
   );
 });
 

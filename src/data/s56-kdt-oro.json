@@ -14,11 +14,11 @@
                   "date": "2025-09-20T09:00:00Z",
                   "venue": "valdebebas",
                   "home": {
-                    "name": "REAL MADRID C.F.",
+                    "slug": "real-madrid",
                     "score": 132
                   },
                   "away": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 37
                   },
                   "downloaded": true
@@ -33,11 +33,11 @@
                   "date": "2025-09-28T09:30:00Z",
                   "venue": "antela",
                   "home": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 84
                   },
                   "away": {
-                    "name": "LAS ROZAS C.B.",
+                    "slug": "rozas",
                     "score": 85
                   },
                   "downloaded": true
@@ -52,11 +52,11 @@
                   "date": "2025-10-05T16:15:00Z",
                   "venue": "triangulo-oro",
                   "home": {
-                    "name": "PATROCINIO SAN JOSE C.B.",
+                    "slug": "patrocinio",
                     "score": 84
                   },
                   "away": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 90
                   },
                   "downloaded": true
@@ -71,11 +71,11 @@
                   "date": "2025-10-18T17:00:00Z",
                   "venue": "antela",
                   "home": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 60
                   },
                   "away": {
-                    "name": "ESTUDIANTES",
+                    "slug": "estudiantes",
                     "score": 97
                   },
                   "downloaded": true
@@ -90,11 +90,11 @@
                   "date": "2025-10-26T11:00:00Z",
                   "venue": "arroyo",
                   "home": {
-                    "name": "BALONCESTO FUENLABRADA",
+                    "slug": "fuenlabrada",
                     "score": 86
                   },
                   "away": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 66
                   },
                   "downloaded": true
@@ -109,11 +109,11 @@
                   "date": "2025-11-09T17:00:00Z",
                   "venue": "antela",
                   "home": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 71
                   },
                   "away": {
-                    "name": "REAL MADRID C.F.",
+                    "slug": "real-madrid",
                     "score": 108
                   },
                   "downloaded": true
@@ -128,11 +128,11 @@
                   "date": "2025-11-16T14:30:00Z",
                   "venue": "ceip-san-jose",
                   "home": {
-                    "name": "LAS ROZAS C.B.",
+                    "slug": "rozas",
                     "score": 62
                   },
                   "away": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 72
                   },
                   "downloaded": true
@@ -147,11 +147,11 @@
                   "date": "2025-11-30T10:30:00Z",
                   "venue": "magariños",
                   "home": {
-                    "name": "ESTUDIANTES",
+                    "slug": "estudiantes",
                     "score": 103
                   },
                   "away": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 52
                   },
                   "downloaded": true
@@ -166,11 +166,11 @@
                   "date": "2025-12-13T12:15:00Z",
                   "venue": "antela",
                   "home": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 73
                   },
                   "away": {
-                    "name": "PATROCINIO SAN JOSE C.B.",
+                    "slug": "patrocinio",
                     "score": 80
                   },
                   "downloaded": true
@@ -185,11 +185,11 @@
                   "date": "2025-12-14T17:00:00Z",
                   "venue": "antela",
                   "home": {
-                    "name": "BALONCESTO ALCOBENDAS",
+                    "slug": "alcobendas",
                     "score": 51
                   },
                   "away": {
-                    "name": "BALONCESTO FUENLABRADA",
+                    "slug": "fuenlabrada",
                     "score": 82
                   },
                   "downloaded": true
@@ -211,11 +211,11 @@
               "date": "2026-05-10T09:30:00Z",
               "venue": "torrelodones",
               "home": {
-                "name": "TORRELODONES A.D.",
+                "slug": "torrelodones",
                 "score": 77
               },
               "away": {
-                "name": "BALONCESTO ALCOBENDAS",
+                "slug": "alcobendas",
                 "score": 57
               },
               "downloaded": true
@@ -230,11 +230,11 @@
               "date": "2026-05-17T16:30:00Z",
               "venue": "arroyo",
               "home": {
-                "name": "BALONCESTO FUENLABRADA",
+                "slug": "fuenlabrada",
                 "score": 80
               },
               "away": {
-                "name": "BALONCESTO ALCOBENDAS",
+                "slug": "alcobendas",
                 "score": 62
               },
               "downloaded": true
@@ -249,11 +249,11 @@
               "date": "2026-05-24T09:15:00Z",
               "venue": "antela",
               "home": {
-                "name": "BALONCESTO ALCOBENDAS",
+                "slug": "alcobendas",
                 "score": 68
               },
               "away": {
-                "name": "DISTRITO OLIMPICO",
+                "slug": "distrito",
                 "score": 71
               },
               "downloaded": true
@@ -268,11 +268,11 @@
               "date": "2026-05-31T16:00:00Z",
               "venue": "antela",
               "home": {
-                "name": "BALONCESTO ALCOBENDAS",
+                "slug": "alcobendas",
                 "score": 75
               },
               "away": {
-                "name": "TORRELODONES A.D.",
+                "slug": "torrelodones",
                 "score": 92
               },
               "downloaded": true
@@ -287,11 +287,11 @@
               "date": "2026-05-14T18:30:00Z",
               "venue": "antela",
               "home": {
-                "name": "BALONCESTO ALCOBENDAS",
+                "slug": "alcobendas",
                 "score": 79
               },
               "away": {
-                "name": "BALONCESTO FUENLABRADA",
+                "slug": "fuenlabrada",
                 "score": 117
               },
               "downloaded": true
@@ -306,11 +306,11 @@
               "date": "2026-05-27T18:30:00Z",
               "venue": "circular",
               "home": {
-                "name": "DISTRITO OLIMPICO",
+                "slug": "distrito",
                 "score": 96
               },
               "away": {
-                "name": "BALONCESTO ALCOBENDAS",
+                "slug": "alcobendas",
                 "score": 101
               },
               "downloaded": true
@@ -330,11 +330,11 @@
               "date": "2026-04-19T16:30:00Z",
               "venue": "diaz-miguel",
               "home": {
-                "name": "ZENTRO C.B.",
+                "slug": "zentro",
                 "score": 101
               },
               "away": {
-                "name": "BALONCESTO ALCOBENDAS",
+                "slug": "alcobendas",
                 "score": 46
               },
               "downloaded": true
@@ -349,11 +349,11 @@
               "date": "2026-04-25T11:15:00Z",
               "venue": "antela",
               "home": {
-                "name": "BALONCESTO ALCOBENDAS",
+                "slug": "alcobendas",
                 "score": 68
               },
               "away": {
-                "name": "ZENTRO C.B.",
+                "slug": "zentro",
                 "score": 105
               },
               "downloaded": true

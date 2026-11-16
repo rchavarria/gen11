@@ -45,7 +45,7 @@ Games are organised as seasons › competitions › phases › groups › rounds
 
 - `src/data/competitions.json` (by hand): each competition's `id` (e.g. `s67-kdt-oro`),
   `season`, source `category`, and its `phases` (`league`/`knockout`), with optional
-  `groups` and their `teams` (club slugs).
+  `groups` and their `teams` (team slugs).
 - `src/data/<competition>.json` (maintained by `sync`): the game tree
   `phases[].groups[].rounds[].games[]` (or `phases[].rounds[]` for phases without groups),
   plus a `pending-games` array.
@@ -54,12 +54,14 @@ Games are organised as seasons › competitions › phases › groups › rounds
   `src/core/competitions.js`) for their category; games whose category has no
   competition are discarded and reported. Placing a pending game in its round is
   a manual step: move it in the JSON and run `sync` (or `build-data`) again.
-- Each game's `home` and `away` contains the club `slug` and a `score`, initially
+- Each game's `home` and `away` contains the team `slug` and a `score`, initially
   `null` and filled from the downloaded score file. For a new pending game, an
-  unknown club retains its source `name` until it can be resolved in `clubs.json`.
+  unknown team retains its source team `name` until it can be resolved in `teams.json`.
   Web scores continue to come directly from the downloaded files.
 - The game slug is not stored: it is computed as
-  `<competition>-<phase>[-<group>]-<round>-<home>-<away>`, using club slugs from `clubs.json`.
+  `<competition>-<phase>[-<group>]-<round>-<home>-<away>`, using team slugs from `teams.json`.
+  Changing a team slug also changes game URLs; update tree and competition references
+  and regenerate the calendar and details, removing only the replaced detail files.
 
 `sync.js` runs the whole pipeline: fetch upcoming games and add the new ones
 to the competition trees; if that request fails with an API error,
@@ -82,9 +84,12 @@ For unknown times, this rule uses the stored `00:00:00Z` marker.
 Without a score file, games are shown as not played.
 For games with both numeric scores, it also rewrites `src/data/games/<slug>.json`.
 These files preserve the tree game fields, including `id`, plus the competition `category`, but omit
-`downloaded` and `scored`. They replace the tree's `home` and `away` with objects containing the club `slug`, `score`, and numeric
-`quarterScores` ordered by period (including overtime). Club slugs are validated
-against `clubs.json`; source names can be resolved through `sourceNames`. Unknown clubs cause an error.
+`downloaded` and `scored`. They replace the tree's `home` and `away` with objects containing the team `slug`, `score`, and numeric
+`quarterScores` ordered by period (including overtime). Team slugs are validated
+against `teams.json`; source team names resolve through `name` (trimmed and uppercased).
+Upcoming games use `NombreEquipoLocal` and `NombreEquipoVisitante`, never club names.
+Unknown teams cause an error when building placed games.
+The calendar retains its `home/away.club` field, now containing a team slug.
 If `games-stats/<id>.json` exists, `home` and `away` also get `players`: one entry per player
 (the source's `TOTALES` row is excluded) with `jersey`, `msPlayed`, `starter`, `freeThrows`, `twoPointers`,
 `threePointers` (`made`/`attempted`), `rebounds` (`defensive`/`offensive`), `assists`, `turnovers`, `steals`,
@@ -108,8 +113,11 @@ npm run dev          # local server
 npm run build        # dist/
 ```
 
-- Clubs (display name, logo, names used by the source): `src/data/clubs.json`
-- Club logos: `src/web/public/logos/<club-slug>.png|jpg`
+- Teams (manually maintained): `src/data/teams.json`, with `slug`, `initials`, `name`,
+  `club` and `logo`. Slugs and normalized team names must be unique; `club` is metadata,
+  not a lookup key. The web displays the team name.
+- Logos: `src/web/public/logos/`, using the `logo` filename (independent of team slug).
+- `src/data/clubs.json` is a legacy file, no longer read or written by the application.
 
 ## Lint and tests
 
@@ -134,7 +142,7 @@ GitHub Pages checks lint and tests before building.
 | `src/core/format.js`        | `formatDuration`, `timestamp`                                                                        |
 | `src/core/validate.js`      | `isEmptyValue`, `isPlainObject`, `fileExists`                                                        |
 | `src/core/games.js`         | `isValidGame`                                                                                        |
-| `src/core/competitions.js`  | Competitions and game trees: read/write, `listGames`, `computeSlug`, `loadClubs`                     |
+| `src/core/competitions.js`  | Competitions and game trees: read/write, `listGames`, `computeSlug`, `loadTeams`, `teamSlug`         |
 | `src/core/files.js`         | `writeJson`, `buildFileName`, `saveStats`, `saveScore`                                               |
 | `src/core/api-client.js`    | `ApiClient` (API calls, validation, key rotation), `ApiError`, `isNoDataError`                       |
 | `src/core/download.js`      | `processGames` (stats + scores download), `downloadGame`, `isAfterGameSchedule`                      |

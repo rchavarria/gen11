@@ -26,7 +26,7 @@ vi.mock('../../data/calendar.json', () => ({
     },
   ],
 }));
-vi.mock('../../data/clubs.json', () => ({
+vi.mock('../../data/teams.json', () => ({
   default: [
     { slug: 'madrid', name: 'Madrid', initials: 'MAD', logo: null },
     { slug: 'canoe', name: 'Canoe', initials: 'CAN', logo: null },

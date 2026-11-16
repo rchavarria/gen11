@@ -8,12 +8,13 @@ import {
   computeSlug,
   emptyTree,
   listGames,
-  loadClubs,
+  loadTeams,
   placedGames,
   readCompetitions,
   readCompetitionTree,
   readCompetitionTrees,
   sortTreeGames,
+  teamSlug,
   writeCompetitionTree,
 } from './competitions.js';
 
@@ -42,11 +43,11 @@ async function tempDir(t) {
   t.onTestFinished(() => fs.rm(dir, { recursive: true, force: true }));
   await fs.writeFile(path.join(dir, 'competitions.json'), JSON.stringify({ competitions: [competition] }));
   await fs.writeFile(
-    path.join(dir, 'clubs.json'),
+    path.join(dir, 'teams.json'),
     JSON.stringify([
-      { slug: 'home', sourceNames: ['HOME CLUB'] },
-      { slug: 'away', sourceNames: ['AWAY CLUB'] },
-      { slug: 'no-source-names' },
+      { slug: 'home', name: 'HOME TEAM', club: 'SHARED CLUB' },
+      { slug: 'away', name: 'AWAY TEAM', club: 'SHARED CLUB' },
+      { slug: 'third', name: 'THIRD TEAM' },
     ]),
   );
   return dir;
@@ -90,7 +91,7 @@ test('trees are written, read back and walked with positions', async (t) => {
     ['AA', 'BB', 'CC'],
   );
 
-  const clubs = await loadClubs(dir);
+  const clubs = await loadTeams(dir);
   assert.equal(
     computeSlug('s67-kdt-oro', { phase: 'f1', group: 'g1', round: 'j01' }, first, clubs),
     's67-kdt-oro-f1-g1-j01-home-away',
@@ -99,22 +100,22 @@ test('trees are written, read back and walked with positions', async (t) => {
     computeSlug(
       's67-kdt-oro',
       { phase: 'playoffs', round: 'j1' },
-      { ...second, home: { name: ' away club ', score: 0 } },
+      { ...second, home: { name: ' away team ', score: 0 } },
       clubs,
     ),
     's67-kdt-oro-playoffs-j1-away-away',
   );
   assert.throws(
     () => computeSlug('x', { phase: 'f1', round: 'j1' }, { ...first, away: { name: 'Unknown', score: 0 } }, clubs),
-    /Club not found.*Unknown/,
+    /Team not found.*Unknown/,
   );
   assert.throws(
     () => computeSlug('x', { phase: 'f1', round: 'j1' }, { ...first, away: { slug: 'unknown', score: 0 } }, clubs),
-    /Club not found.*unknown/,
+    /Team not found.*unknown/,
   );
   assert.equal(
-    computeSlug('x', { phase: 'f1', round: 'j1' }, { ...first, away: { slug: 'no-source-names' } }, clubs),
-    'x-f1-j1-home-no-source-names',
+    computeSlug('x', { phase: 'f1', round: 'j1' }, { ...first, away: { slug: 'third' } }, clubs),
+    'x-f1-j1-home-third',
   );
   assert.equal(listGames([{ competition, tree: read }], clubs)[2].label, 's67-kdt-oro pending: home vs away (CC)');
   assert.equal(
@@ -137,6 +138,50 @@ test('invalid trees are rejected', async (t) => {
   ]) {
     await fs.writeFile(file, content);
     await assert.rejects(readCompetitionTree(competition, dir), /Invalid/);
+  }
+});
+
+test('teams resolve by normalized team name, never by club or sourceNames', async (t) => {
+  const dir = await tempDir(t);
+  const teams = await loadTeams(dir);
+  assert.equal(teamSlug(teams, ' home team '), 'home');
+  assert.equal(teamSlug(teams, 'away team'), 'away');
+  assert.equal(teamSlug(teams, 'SHARED CLUB'), null);
+  assert.equal(teamSlug(teams, 'HOME'), null);
+  assert.equal(teamSlug(teams, undefined), null);
+});
+
+test('real competition participants and team lists reference the team catalog', async () => {
+  const teams = await loadTeams();
+  for (const { competition, tree } of await readCompetitionTrees()) {
+    for (const phase of competition.phases) {
+      for (const slug of [...(phase.teams || []), ...(phase.groups || []).flatMap((group) => group.teams)]) {
+        assert.ok(teams.has(`\0${slug}`), `Unknown team ${slug} in ${competition.id}`);
+      }
+    }
+    for (const { game, position } of placedGames(tree)) {
+      assert.ok(computeSlug(competition.id, position, game, teams));
+    }
+  }
+});
+
+test('team catalog rejects invalid entries and duplicate names or slugs', async (t) => {
+  const dir = await tempDir(t);
+  const valid = { name: 'Home', slug: 'home', club: 'Club', sourceNames: ['OLD NAME'] };
+  await fs.writeFile(path.join(dir, 'teams.json'), JSON.stringify([valid]));
+  assert.equal(teamSlug(await loadTeams(dir), 'OLD NAME'), null);
+  for (const data of [
+    {},
+    [null],
+    [{ slug: 'home' }],
+    [{ name: ' ', slug: 'home' }],
+    [{ name: 'Home', slug: '' }],
+    [{ name: 'Home', slug: '../home' }],
+    [valid, { name: 'Away', slug: 'home' }],
+    [valid, { name: ' home ', slug: 'away' }],
+  ]) {
+    await fs.writeFile(path.join(dir, 'teams.json'), JSON.stringify(data));
+    await assert.rejects(loadTeams(dir), /Invalid|Duplicate/);
   }
 });
 

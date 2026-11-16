@@ -59,7 +59,7 @@
 const { ApiClient } = require('./core/api-client');
 const { loadConfig } = require('./core/config');
 const { processGames, printSummary } = require('./core/download');
-const { listGames, loadClubs, readCompetitionTrees, writeCompetitionTree } = require('./core/competitions');
+const { listGames, loadTeams, readCompetitionTrees, writeCompetitionTree } = require('./core/competitions');
 
 async function main() {
   const startTime = Date.now();
@@ -70,7 +70,7 @@ async function main() {
   try {
     client = new ApiClient(loadConfig());
     trees = await readCompetitionTrees();
-    entries = listGames(trees, await loadClubs());
+    entries = listGames(trees, await loadTeams());
   } catch (err) {
     console.error(`Error: ${err.message}`);
     process.exitCode = 1;

@@ -1,21 +1,21 @@
 import { Link } from 'react-router-dom';
-import clubs from '../../data/clubs.json';
+import teams from '../../data/teams.json';
 import venues from '../../data/venues.json';
 import { formatDay, gameDay, gameTime } from '../lib/dates.js';
 import { isHighlighted } from '../lib/game.js';
 import ClubLogo from './ClubLogo.jsx';
 
-const clubsBySlug = new Map(clubs.map((club) => [club.slug, club]));
+const teamsBySlug = new Map(teams.map((team) => [team.slug, team]));
 const venuesBySlug = new Map(venues.map((venue) => [venue.slug, venue]));
 
 function Side({ side, winner }) {
-  const club = clubsBySlug.get(side.club);
-  if (!club) throw new Error(`Club no encontrado: ${side.club}`);
+  const team = teamsBySlug.get(side.club);
+  if (!team) throw new Error(`Equipo no encontrado: ${side.club}`);
 
   return (
     <div className={`game-card__side${winner ? ' game-card__side--winner' : ''}`}>
-      <ClubLogo club={club} />
-      <span className="game-card__club">{club.name}</span>
+      <ClubLogo club={team} />
+      <span className="game-card__club">{team.name}</span>
       {side.score != null && <span className="game-card__score">{side.score}</span>}
     </div>
   );

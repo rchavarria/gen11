@@ -5,10 +5,11 @@ import { MemoryRouter } from 'react-router-dom';
 import { expect, test, vi } from 'vitest';
 import GameCard from './GameCard.jsx';
 
-vi.mock('../../data/clubs.json', () => ({
+vi.mock('../../data/teams.json', () => ({
   default: [
-    { slug: 'alcobendas', name: 'Alcobendas', logo: null },
-    { slug: 'madrid', name: 'Madrid', logo: null },
+    { slug: 'alcobendas', name: 'Alcobendas', club: 'BALONCESTO ALCOBENDAS', logo: null },
+    { slug: 'madrid-b', name: 'Madrid B', club: 'Real Madrid', logo: 'madrid-b.png' },
+    { slug: 'madrid', name: 'Madrid', club: 'Real Madrid', logo: null },
     { slug: 'canoe', name: 'Canoe', logo: null },
   ],
 }));
@@ -94,7 +95,18 @@ test.each([
 });
 
 test('rejects unknown clubs instead of showing an incomplete card', () => {
-  expect(() => renderCard({ home: { club: 'unknown', score: 80 } })).toThrow('Club no encontrado: unknown');
+  expect(() => renderCard({ home: { club: 'unknown', score: 80 } })).toThrow('Equipo no encontrado: unknown');
+});
+
+test('shows the specific team name and logo when teams share a club', () => {
+  const { container } = renderCard({
+    home: { club: 'madrid-b', score: 80 },
+    away: { club: 'madrid', score: 70 },
+  });
+  expect(screen.getByText('Madrid B')).toBeInTheDocument();
+  expect(screen.getByText('Madrid')).toBeInTheDocument();
+  expect(screen.queryByText('Real Madrid')).not.toBeInTheDocument();
+  expect(container.querySelector('img')).toHaveAttribute('src', `${import.meta.env.BASE_URL}logos/madrid-b.png`);
 });
 
 test.each([

@@ -1,20 +1,20 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import clubs from '../../data/clubs.json';
+import teams from '../../data/teams.json';
 import calendar from '../lib/calendar.js';
 import { formatDay, gameDay, gameTime, madridToday } from '../lib/dates.js';
 import { isHighlighted, shortCategory } from '../lib/game.js';
 import ClubLogo from './ClubLogo.jsx';
 
-const clubsBySlug = new Map(clubs.map((club) => [club.slug, club]));
+const teamsBySlug = new Map(teams.map((team) => [team.slug, team]));
 
-function Club({ slug }) {
-  const club = clubsBySlug.get(slug);
-  if (!club) throw new Error(`Club no encontrado: ${slug}`);
+function Team({ slug }) {
+  const team = teamsBySlug.get(slug);
+  if (!team) throw new Error(`Equipo no encontrado: ${slug}`);
 
   return (
-    <div className="upcoming-card__club" title={club.name}>
-      <ClubLogo club={club} />
-      <span>{club.initials}</span>
+    <div className="upcoming-card__club" title={team.name}>
+      <ClubLogo club={team} />
+      <span>{team.initials}</span>
     </div>
   );
 }
@@ -41,8 +41,8 @@ function UpcomingCard({ game }) {
           <span>{formatDay(gameDay(game.date))}</span>
         </div>
         <div className="upcoming-card__clubs">
-          <Club slug={game.home.club} />
-          <Club slug={game.away.club} />
+          <Team slug={game.home.club} />
+          <Team slug={game.away.club} />
         </div>
       </div>
     </li>

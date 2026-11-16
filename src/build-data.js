@@ -8,14 +8,14 @@
  *   whose structure is described in src/data/competitions.json. Only games
  *   placed in a round are used; `pending-games` are ignored.
  * - Slugs are computed from the position of each game in the tree:
- *   <competitionId>-<phaseId>[-<groupId>]-<roundId>-<homeClub>-<awayClub>.
+ *   <competitionId>-<phaseId>[-<groupId>]-<roundId>-<homeTeam>-<awayTeam>.
  * - The category is the one of the competition.
  * - Scores and played status come from score files (<id>.json), matched by game id.
- * - Club slugs come from src/data/clubs.json (maintained by hand).
- *   The web resolves club names and logos from that file.
+ * - Team slugs come from src/data/teams.json (maintained by hand).
+ *   The web resolves team names and logos from that file.
  *
  * The calendar only includes whitelisted fields (no ids). Per-game files keep
- * game fields, including ids but excluding source club names and internal
+ * game fields, including ids but excluding source team names and internal
  * download flags, and add scores, period scores and score evolution.
  *
  * Usage: node src/build-data.js
@@ -29,13 +29,13 @@ const { getTimelyScores } = require('./core/timely-scores');
 const {
   DATA_DIR,
   computeSlug,
-  loadClubs,
+  loadTeams,
   placedGames,
   readCompetitionTrees,
   sideSlug,
 } = require('./core/competitions');
 
-const CLUBS_FILE = 'src/data/clubs.json';
+const TEAMS_FILE = 'src/data/teams.json';
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -70,16 +70,16 @@ function indexFilesById(dir) {
  * Reads the placed games of every competition as flat games with their
  * computed slug and the competition category.
  * @param {string} dataDir
- * @returns {Promise<{games: object[], skipped: string[], clubs: Map<string, object>}>}
+ * @returns {Promise<{games: object[], skipped: string[], teams: Map<string, object>}>}
  */
 async function loadGames(dataDir) {
   const trees = await readCompetitionTrees(dataDir);
-  const clubs = await loadClubs(dataDir);
+  const teams = await loadTeams(dataDir);
   const games = [];
   const skipped = [];
   for (const { competition, tree } of trees) {
     for (const { game, position } of placedGames(tree)) {
-      const slug = computeSlug(competition.id, position, game, clubs);
+      const slug = computeSlug(competition.id, position, game, teams);
       if (!isValidGame(game)) {
         skipped.push(slug);
         continue;
@@ -87,7 +87,7 @@ async function loadGames(dataDir) {
       games.push({ slug, venue: game.venue, ...game, category: competition.category });
     }
   }
-  return { games, skipped, clubs };
+  return { games, skipped, teams };
 }
 
 function toScore(value) {
@@ -95,11 +95,11 @@ function toScore(value) {
   return Number.isFinite(number) ? number : null;
 }
 
-function buildSide(clubs, side, score) {
-  const slug = sideSlug(clubs, side);
+function buildSide(teams, side, score) {
+  const slug = sideSlug(teams, side);
   if (!slug) {
     throw new Error(
-      `Club not found in ${CLUBS_FILE}: "${side?.slug || side?.name || '(missing name)'}". Add the club or its source name to sourceNames.`,
+      `Team not found in ${TEAMS_FILE}: "${side?.slug || side?.name || '(missing name)'}". Add the team with its source team name.`,
     );
   }
   return {
@@ -108,7 +108,7 @@ function buildSide(clubs, side, score) {
   };
 }
 
-function fromDatedGame(game, clubs, scoreFile) {
+function fromDatedGame(game, teams, scoreFile) {
   const match = scoreFile ? readJson(scoreFile).partido || {} : {};
   const home = toScore(match.tanteo_local);
   const away = toScore(match.tanteo_visitante);
@@ -118,8 +118,8 @@ function fromDatedGame(game, clubs, scoreFile) {
     venue: game.venue || '',
     category: (game.category || '').trim(),
     played: match.estado_partido === 'FINALIZADO' || (home !== null && away !== null),
-    home: buildSide(clubs, game.home, home),
-    away: buildSide(clubs, game.away, away),
+    home: buildSide(teams, game.home, home),
+    away: buildSide(teams, game.away, away),
   };
 }
 
@@ -147,15 +147,15 @@ function toPlayers(list) {
   return (list || []).filter((raw) => raw.nombre !== 'TOTALES').map(toPlayer);
 }
 
-function buildGameDetail(game, clubs, scoreData, statsData) {
+function buildGameDetail(game, teams, scoreData, statsData) {
   const match = scoreData?.partido || {};
   const homeScore = toScore(match.tanteo_local);
   const awayScore = toScore(match.tanteo_visitante);
   if (homeScore === null || awayScore === null) return null;
 
   const { home: homeSource, away: awaySource, downloaded, scored, ...metadata } = game;
-  const home = buildSide(clubs, homeSource, homeScore);
-  const away = buildSide(clubs, awaySource, awayScore);
+  const home = buildSide(teams, homeSource, homeScore);
+  const away = buildSide(teams, awaySource, awayScore);
   const periods = [...(match.periodos || [])].sort((a, b) => a.periodo - b.periodo);
 
   const stats = statsData?.estadisticas;
@@ -186,7 +186,7 @@ function buildGameDetail(game, clubs, scoreData, statsData) {
 }
 
 async function buildGameFiles(config, { dataDir = DATA_DIR } = {}) {
-  const { games, clubs } = await loadGames(dataDir);
+  const { games, teams } = await loadGames(dataDir);
   const scoreIndex = indexFilesById(config.paths.gamesScores);
   const statsIndex = indexFilesById(config.paths.gamesStats);
   const gamesDir = path.join(dataDir, 'games');
@@ -197,7 +197,7 @@ async function buildGameFiles(config, { dataDir = DATA_DIR } = {}) {
     const scoreFile = scoreIndex.get(game.id);
     if (!scoreFile) continue;
     const statsFile = statsIndex.get(game.id);
-    const detail = buildGameDetail(game, clubs, readJson(scoreFile), statsFile ? readJson(statsFile) : null);
+    const detail = buildGameDetail(game, teams, readJson(scoreFile), statsFile ? readJson(statsFile) : null);
     if (!detail) continue;
     fs.writeFileSync(path.join(gamesDir, `${game.slug}.json`), `${JSON.stringify(detail, null, 2)}\n`, 'utf8');
     slugs.push(game.slug);
@@ -208,11 +208,11 @@ async function buildGameFiles(config, { dataDir = DATA_DIR } = {}) {
 }
 
 async function buildCalendar(config, { dataDir = DATA_DIR } = {}) {
-  const { games, skipped, clubs } = await loadGames(dataDir);
+  const { games, skipped, teams } = await loadGames(dataDir);
   const scoreIndex = indexFilesById(config.paths.gamesScores);
   const calendarFile = path.join(dataDir, 'calendar.json');
 
-  const calendar = games.map((game) => fromDatedGame(game, clubs, scoreIndex.get(game.id)));
+  const calendar = games.map((game) => fromDatedGame(game, teams, scoreIndex.get(game.id)));
 
   calendar.sort((a, b) => a.date.localeCompare(b.date));
 

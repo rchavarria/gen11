@@ -15,8 +15,8 @@ const {
   DATA_DIR,
   PENDING,
   allGames,
-  clubSlug,
-  loadClubs,
+  teamSlug,
+  loadTeams,
   readCompetitionTrees,
   sortTreeGames,
   writeCompetitionTree,
@@ -33,11 +33,11 @@ const DAYS = 100;
  * @param {object[]} upcomingGames The `mispartidos` array of the response.
  * @param {Map<string, string>} venues Exact venue name -> slug.
  * @param {string} [season] Current season.
- * @param {Map<string, {slug: string}>} [clubs] Clubs indexed by source name.
+ * @param {Map<string, {slug: string}>} [teams] Teams indexed by team name.
  * @returns {{added: object[], updated: object[], discarded: object[], unmatchedVenues: string[], invalidDates: object[], changed: Set<object>}}
  *   `added` entries are `{competition, game}`; `changed` holds the modified tree entries.
  */
-function mergeNextGames(trees, upcomingGames, venues = new Map(), season = CURRENT_SEASON, clubs = new Map()) {
+function mergeNextGames(trees, upcomingGames, venues = new Map(), season = CURRENT_SEASON, teams = new Map()) {
   const byId = new Map();
   for (const entry of trees) {
     for (const game of allGames(entry.tree)) {
@@ -78,8 +78,8 @@ function mergeNextGames(trees, upcomingGames, venues = new Map(), season = CURRE
       }
       continue;
     }
-    const home = upcoming.NombreClubLocal ?? '';
-    const away = upcoming.NombreClubVisitante ?? '';
+    const home = upcoming.NombreEquipoLocal ?? '';
+    const away = upcoming.NombreEquipoVisitante ?? '';
     if (!date) {
       invalidDates.push({ id, home, away, fecha: upcoming.Fecha ?? '', hora: upcoming.Hora ?? '' });
       continue;
@@ -93,7 +93,7 @@ function mergeNextGames(trees, upcomingGames, venues = new Map(), season = CURRE
     }
 
     const makeSide = (name) => {
-      const slug = clubSlug(clubs, name);
+      const slug = teamSlug(teams, name);
       return slug ? { slug, score: null } : { name, score: null };
     };
     const game = {
@@ -131,13 +131,13 @@ async function fetchNextGames(client, { days = DAYS, date = new Date(), dataDir 
 
   const trees = await readCompetitionTrees(dataDir);
   const venues = await loadVenues();
-  const clubs = await loadClubs(dataDir);
+  const teams = await loadTeams(dataDir);
   const { added, updated, discarded, unmatchedVenues, invalidDates, changed } = mergeNextGames(
     trees,
     data.mispartidos,
     venues,
     CURRENT_SEASON,
-    clubs,
+    teams,
   );
   for (const { competition, tree } of changed) await writeCompetitionTree(competition, tree, dataDir);
   const total = trees.reduce((sum, { tree }) => sum + allGames(tree).length, 0);

@@ -40,7 +40,7 @@
 
 const { ApiClient } = require('./core/api-client');
 const { loadConfig } = require('./core/config');
-const { listGames, loadClubs, readCompetitionTrees, writeCompetitionTree } = require('./core/competitions');
+const { listGames, loadTeams, readCompetitionTrees, writeCompetitionTree } = require('./core/competitions');
 const { fetchNextGamesRenewingKey, DAYS } = require('./core/next-games');
 const download = require('./core/download');
 const { buildCalendar, buildGameFiles } = require('./build-data');
@@ -108,7 +108,7 @@ async function run(config, result) {
   }
 
   const trees = await readCompetitionTrees();
-  const entries = listGames(trees, await loadClubs());
+  const entries = listGames(trees, await loadTeams());
   const byCompetition = new Map(trees.map(({ competition }) => [competition.id, competition]));
   result.newGames = added.map(({ competition, game }) => describe(byCompetition.get(competition), game));
   result.pendingGames = entries

@@ -19,7 +19,7 @@ const { isUtcIsoDateTime } = require('./dates');
 const CURRENT_SEASON = 's67';
 const DATA_DIR = path.join(__dirname, '..', 'data');
 const COMPETITIONS_FILE = 'competitions.json';
-const CLUBS_FILE = 'clubs.json';
+const TEAMS_FILE = 'teams.json';
 const PENDING = 'pending-games';
 
 function normalizeName(name) {
@@ -57,20 +57,31 @@ async function readCompetitions(dataDir = DATA_DIR) {
 }
 
 /**
- * Club lookup by source name (from src/data/clubs.json).
+ * Team lookup by team name (from src/data/teams.json).
  * @param {string} [dataDir]
- * @returns {Promise<Map<string, {slug: string}>>} normalized source name and slug index -> club
+ * @returns {Promise<Map<string, {slug: string}>>} normalized team name and slug index -> team
  */
-async function loadClubs(dataDir = DATA_DIR) {
-  const clubs = await readJsonFile(path.join(dataDir, CLUBS_FILE));
-  const bySourceName = new Map();
-  for (const club of clubs) {
-    bySourceName.set(`\0${club.slug}`, club);
-    for (const sourceName of club.sourceNames || []) {
-      bySourceName.set(normalizeName(sourceName), club);
+async function loadTeams(dataDir = DATA_DIR) {
+  const file = path.join(dataDir, TEAMS_FILE);
+  const teams = await readJsonFile(file);
+  if (!Array.isArray(teams)) throw new Error(`Invalid structure in ${file}: expected a teams array.`);
+  const byName = new Map();
+  for (const team of teams) {
+    if (
+      typeof team?.name !== 'string' ||
+      !normalizeName(team.name) ||
+      typeof team.slug !== 'string' ||
+      !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(team.slug)
+    ) {
+      throw new Error(`Invalid team in ${file}: a non-empty name and a valid slug are required.`);
     }
+    if (byName.has(`\0${team.slug}`)) throw new Error(`Duplicate team slug in ${file}: "${team.slug}".`);
+    const name = normalizeName(team.name);
+    if (byName.has(name)) throw new Error(`Duplicate team name in ${file}: "${team.name}".`);
+    byName.set(`\0${team.slug}`, team);
+    byName.set(name, team);
   }
-  return bySourceName;
+  return byName;
 }
 
 /**
@@ -195,36 +206,36 @@ function allGames(tree) {
 }
 
 /**
- * Club slug for a source club name.
- * @param {Map<string, {slug: string}>} clubs
+ * Team slug for a source team name.
+ * @param {Map<string, {slug: string}>} teams
  * @param {string} sourceName
  * @returns {string|null}
  */
-function clubSlug(clubs, sourceName) {
-  return clubs.get(normalizeName(sourceName))?.slug ?? null;
+function teamSlug(teams, sourceName) {
+  return teams.get(normalizeName(sourceName))?.slug ?? null;
 }
 
-function sideSlug(clubs, side) {
+function sideSlug(teams, side) {
   if (side?.slug) {
-    return clubs.get(`\0${side.slug}`)?.slug === side.slug ||
-      [...clubs.values()].some((club) => club.slug === side.slug)
+    return teams.get(`\0${side.slug}`)?.slug === side.slug ||
+      [...teams.values()].some((team) => team.slug === side.slug)
       ? side.slug
       : null;
   }
-  return clubSlug(clubs, side?.name);
+  return teamSlug(teams, side?.name);
 }
 
 /**
  * Builds the slug of a placed game:
- * <competitionId>-<phaseId>[-<groupId>]-<roundId>-<homeClubSlug>-<awayClubSlug>.
- * Throws when a club is not in clubs.json.
+ * <competitionId>-<phaseId>[-<groupId>]-<roundId>-<homeTeamSlug>-<awayTeamSlug>.
+ * Throws when a team is not in teams.json.
  */
-function computeSlug(competitionId, position, game, clubs) {
+function computeSlug(competitionId, position, game, teams) {
   const sides = [game.home, game.away].map((side) => {
-    const slug = sideSlug(clubs, side);
+    const slug = sideSlug(teams, side);
     if (!slug) {
       throw new Error(
-        `Club not found in ${CLUBS_FILE}: "${side?.slug || side?.name || '(missing name)'}". Add the club or its source name to sourceNames.`,
+        `Team not found in ${TEAMS_FILE}: "${side?.slug || side?.name || '(missing name)'}". Add the team with its source team name.`,
       );
     }
     return slug;
@@ -234,13 +245,13 @@ function computeSlug(competitionId, position, game, clubs) {
 
 /**
  * Every game of every tree. Placed games carry their position; pending ones a
- * null position. `label` is the computed slug when the clubs are known, or a
+ * null position. `label` is the computed slug when the teams are known, or a
  * readable description otherwise.
  * @param {{competition: object, tree: object}[]} trees
- * @param {Map<string, {slug: string}>} clubs
+ * @param {Map<string, {slug: string}>} teams
  * @returns {{competition: object, game: object, position: object|null, label: string}[]}
  */
-function listGames(trees, clubs) {
+function listGames(trees, teams) {
   const describe = (competition, game, suffix) =>
     `${competition.id} ${suffix}: ${game.home?.slug || game.home?.name || '?'} vs ${game.away?.slug || game.away?.name || '?'} (${game.id})`;
   const result = [];
@@ -248,7 +259,7 @@ function listGames(trees, clubs) {
     for (const { game, position } of placedGames(tree)) {
       let label;
       try {
-        label = computeSlug(competition.id, position, game, clubs);
+        label = computeSlug(competition.id, position, game, teams);
       } catch {
         label = describe(competition, game, [position.phase, position.group, position.round].filter(Boolean).join('-'));
       }
@@ -285,14 +296,14 @@ module.exports = {
   PENDING,
   normalizeName,
   readCompetitions,
-  loadClubs,
+  loadTeams,
   emptyTree,
   readCompetitionTree,
   readCompetitionTrees,
   writeCompetitionTree,
   placedGames,
   allGames,
-  clubSlug,
+  teamSlug,
   sideSlug,
   computeSlug,
   listGames,

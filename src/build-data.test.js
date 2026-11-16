@@ -35,8 +35,8 @@ const detailMetadata = {
 test('sides reference clubs without duplicating names, teams or logos', () => {
   assert.deepEqual(buildSide(clubs, { name: ' home club ' }, 0), { club: 'home', score: 0 });
   assert.deepEqual(buildSide(clubs, { slug: 'away' }, null), { club: 'away', score: null });
-  assert.throws(() => buildSide(clubs, { name: 'Unknown club' }, 10), /Club not found.*Unknown club/);
-  assert.throws(() => buildSide(clubs, { slug: 'unknown' }, 10), /Club not found.*unknown/);
+  assert.throws(() => buildSide(clubs, { name: 'Unknown club' }, 10), /Team not found.*Unknown club/);
+  assert.throws(() => buildSide(clubs, { slug: 'unknown' }, 10), /Team not found.*unknown/);
   assert.throws(() => buildSide(clubs, null, null), /missing name/);
 });
 
@@ -164,7 +164,7 @@ test('game details reject unknown clubs', () => {
           clubs,
           scoreData,
         ),
-      /Club not found.*Unknown club/,
+      /Team not found.*Unknown club/,
     );
   }
 });
@@ -175,10 +175,10 @@ test('calendar builds from competition trees, sorting, computing slugs and skipp
   const dataDir = path.join(directory, 'data');
   fs.mkdirSync(dataDir);
   fs.writeFileSync(
-    path.join(dataDir, 'clubs.json'),
+    path.join(dataDir, 'teams.json'),
     JSON.stringify([
-      { slug: 'home', sourceNames: ['HOME CLUB'] },
-      { slug: 'away', sourceNames: ['AWAY CLUB'] },
+      { slug: 'home', name: 'HOME TEAM' },
+      { slug: 'away', name: 'AWAY TEAM' },
     ]),
   );
   fs.writeFileSync(

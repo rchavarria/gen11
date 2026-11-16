@@ -32,11 +32,11 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 
 - `src/build-data.js` lee los datos en bruto de `downloads/` y genera `src/data/calendar.json`
   - lee los árboles de competición (`src/data/<competición>.json`, ver `competitions.json`)
-    para obtener `date`, clubs y `venue` (slug del pabellón); la categoría sale de la competición
+    para obtener `date`, equipos y `venue` (slug del pabellón); la categoría sale de la competición
     y el slug se calcula a partir de la posición del partido en el árbol
   - `home` y `away` del árbol son objetos con `slug` y `score` (inicialmente `null`);
-    el marcador se rellena con los datos descargados. En partidos pendientes, un club
-    desconocido conserva su `name` de origen hasta poder resolverlo en `clubs.json`
+    el marcador se rellena con los datos descargados. En partidos pendientes, un equipo
+    desconocido conserva su nombre de equipo `name` hasta poder resolverlo en `teams.json`
   - `date` es ISO 8601 UTC (`YYYY-MM-DDTHH:mm:ssZ`); la web muestra el día y la hora en Europe/Madrid.
     `T00:00:00Z` indica hora desconocida y conserva el día del partido
   - al cargar el calendario o un partido, la web convierte `date` en un objeto `Date`
@@ -47,10 +47,13 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   - sin fichero de marcador, lo considera no jugado y deja las puntuaciones vacías
   - omite los partidos de `pending-games` y los que tienen id inválido
   - escribe solo los campos de una lista blanca
-- Cada `home` y `away` guarda `club` (slug de un club existente) y `score`.
-  La web obtiene el nombre y el escudo desde `clubs.json`, sin duplicarlos en el calendario.
-  El generador falla antes de escribir si no puede resolver un club; su `slug` debe
-  existir en `clubs.json` o su nombre de origen debe estar en `sourceNames`.
+- Cada `home` y `away` del calendario guarda `club` (se mantiene el campo, pero contiene
+  el slug del equipo) y `score`. La web obtiene nombre de equipo, iniciales y escudo
+  desde `teams.json`, sin duplicarlos en el calendario.
+  El generador falla antes de escribir si no puede resolver un equipo; su `slug` debe
+  existir en `teams.json` o su nombre de equipo debe coincidir con `name`, normalizando
+  espacios exteriores y mayúsculas. No se busca por club ni por `sourceNames`.
+  Los próximos partidos se resuelven por `NombreEquipoLocal` y `NombreEquipoVisitante`.
 - También genera `src/data/games/<slug>.json` para partidos con ambos marcadores:
   conserva los datos del partido (incluido `id`), omitiendo `downloaded` y `scored`.
   Sustituye `home` y `away` del árbol por objetos con `slug`, `score`
@@ -74,12 +77,15 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   generador emite un aviso con el slug. Un historial válido vacío conserva solo los puntos iniciales.
   La página de detalle carga cada JSON de forma lazy mediante `import.meta.glob`.
 - Slug del partido: no se guarda; se calcula como
-  `<competición>-<fase>[-<grupo>]-<jornada>-<local>-<visitante>` con los slugs de `clubs.json`.
+  `<competición>-<fase>[-<grupo>]-<jornada>-<local>-<visitante>` con los slugs de `teams.json`.
   Los partidos se identifican por `id` (`IdPartido` de la fuente). Los nuevos entran en
   `pending-games` y se colocan a mano en su jornada
-- `src/data/clubs.json` (a mano): `slug`, `initials` (3 letras, se muestran en la tira de
-  próximos partidos), `name` (el que se muestra), `logo` (fichero en
-  `public/logos/`, o `null`) y `sourceNames` (nombres del club en la fuente)
+- `src/data/teams.json` (a mano): `slug`, `initials` (se muestran en la tira de
+  próximos partidos), `name` (nombre del equipo en la fuente y en la web), `club`
+  (metadato del club, no se usa para resolver slugs) y `logo` (fichero en
+  `public/logos/`, o `null`). Los slugs y nombres normalizados son únicos.
+  Cambiar un slug exige migrar referencias y regenerar calendario y detalles;
+  las URLs cambian y se retiran los detalles reemplazados, sin redirecciones.
 - `src/data/venues.json` (a mano): `slug`, `name` (campo de juego) y `address`.
   Al obtener los próximos partidos, `CampoJuego` se compara literalmente con `name`,
   sin normalizar espacios, mayúsculas ni acentos. Se guarda o actualiza `venue` en el árbol de la competición; si no
@@ -99,7 +105,7 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   y escudo + `initials` de ambos clubs (local arriba)
 - Scroll horizontal con botones ‹ › a los lados (ocultos en móviles táctiles)
 - Las tarjetas no son clicables; si no hay próximos partidos se indica en la tira
-- Los partidos con el slug `alcobendas` en cualquiera de los clubs se resaltan con un borde izquierdo rojo
+- Los partidos con un equipo del club `BALONCESTO ALCOBENDAS` se resaltan con un borde izquierdo rojo
 
 ### Calendario
 
@@ -118,7 +124,7 @@ no se muestra el bloque.
 
 ### Tarjeta de partido
 
-- Nombre y escudo de ambos clubs (iniciales si no hay escudo)
+- Nombre y escudo de ambos equipos (iniciales si no hay escudo)
 - Resultado (si se ha jugado)
 - Fecha y hora
 - Categoría
@@ -128,12 +134,12 @@ no se muestra el bloque.
   y nombre del pabellón; fecha y hora se ocultan en la cabecera cuando aparece este
   bloque. El tooltip incluye nombre y dirección. Se omite si falta el pabellón.
 - Solo los partidos con ambos marcadores enlazan al detalle; los demás no son clicables
-- Los partidos con el slug `alcobendas` en cualquiera de los clubs se resaltan con un borde izquierdo rojo, jugados o pendientes
+- Los partidos con un equipo del club `BALONCESTO ALCOBENDAS` se resaltan con un borde izquierdo rojo, jugados o pendientes
 
 ## Página de detalle: `/#/game/:slug`
 
 - Cabecera con categoría, fecha y hora (`HH:MM`; se omite si es desconocida)
-- Logos y nombres de ambos clubs, resueltos desde `clubs.json`
+- Logos y nombres de ambos equipos, resueltos desde `teams.json`
 - Marcador total en grande, con la puntuación ganadora en negrita
 - Tabla de parciales: Q1–Q4, OT/OT2… para las prórrogas y columna Total
 - Debajo de los parciales, pestañas (estado local, no van en la URL): boxscore del club local,

@@ -1,7 +1,11 @@
-const HIGHLIGHTED_CLUB = 'alcobendas';
+import teams from '../../data/teams.json';
+
+const highlightedTeams = new Set(
+  teams.filter((team) => team.club === 'BALONCESTO ALCOBENDAS').map((team) => team.slug),
+);
 
 export function isHighlighted(game) {
-  return game.home.club === HIGHLIGHTED_CLUB || game.away.club === HIGHLIGHTED_CLUB;
+  return highlightedTeams.has(game.home.club) || highlightedTeams.has(game.away.club);
 }
 
 /** "Cadete Masculino …" -> "CAD", "Junior Masculino …" -> "JUN" */

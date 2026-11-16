@@ -45,11 +45,13 @@ test('mergeNextGames adds new games to pending-games and updates placed games by
         Fecha: '03/11/2026',
         Hora: '08:30:00',
         Categoria: ' Cat ',
-        NombreClubLocal: 'Local',
-        NombreClubVisitante: 'Visitante',
+        NombreEquipoLocal: 'Local',
+        NombreEquipoVisitante: 'Visitante',
+        NombreClubLocal: 'Shared club',
+        NombreClubVisitante: 'Shared club',
       },
       { IdPartido: 'BB', Fecha: '03/11/2026', Hora: '08:30:00' },
-      { IdPartido: 'CC', Fecha: '03/11/2026', Categoria: 'Other', NombreClubLocal: 'X', NombreClubVisitante: 'Y' },
+      { IdPartido: 'CC', Fecha: '03/11/2026', Categoria: 'Other', NombreEquipoLocal: 'X', NombreEquipoVisitante: 'Y' },
       { IdPartido: '', Fecha: '01/11/2026' },
     ],
     new Map(),
@@ -93,6 +95,33 @@ test('mergeNextGames updates pending games and leaves unchanged trees untouched'
     ['BB', 'AA'],
   );
   assert.equal(mergeNextGames(trees, [{ IdPartido: 'AA', Fecha: '02/11/2026', Hora: '10:00:00' }]).changed.size, 0);
+});
+
+test('mergeNextGames distinguishes teams of the same club and does not fall back to club names', () => {
+  const trees = makeTrees();
+  const teams = new Map([
+    ['HOME A', { slug: 'home-a', club: 'Shared club' }],
+    ['HOME B', { slug: 'home-b', club: 'Shared club' }],
+  ]);
+  const raw = {
+    IdPartido: 'AA',
+    Fecha: '03/11/2026',
+    Categoria: 'Cat',
+    NombreEquipoLocal: ' home a ',
+    NombreEquipoVisitante: 'Home B',
+    NombreClubLocal: 'Shared club',
+    NombreClubVisitante: 'Shared club',
+  };
+  const { added } = mergeNextGames(
+    trees,
+    [raw, { ...raw, IdPartido: 'BB', NombreEquipoLocal: 'Unknown team' }],
+    new Map(),
+    's67',
+    teams,
+  );
+  assert.deepEqual(added[0].game.home, { slug: 'home-a', score: null });
+  assert.deepEqual(added[0].game.away, { slug: 'home-b', score: null });
+  assert.deepEqual(added[1].game.home, { name: 'Unknown team', score: null });
 });
 
 test('mergeNextGames resolves exact venue names and refreshes venues without other changes', () => {
@@ -152,7 +181,13 @@ test('mergeNextGames keeps existing dates for invalid incoming dates and reports
   const trees = makeTrees({ placed: [existing] });
   const { updated, added, invalidDates } = mergeNextGames(trees, [
     { IdPartido: 'AA', Fecha: '31/02/2026', Hora: '11:00:00' },
-    { IdPartido: 'BB', Fecha: '31/02/2026', Categoria: 'Cat', NombreClubLocal: 'Home', NombreClubVisitante: 'Away' },
+    {
+      IdPartido: 'BB',
+      Fecha: '31/02/2026',
+      Categoria: 'Cat',
+      NombreEquipoLocal: 'Home',
+      NombreEquipoVisitante: 'Away',
+    },
   ]);
   assert.equal(existing.date, '2026-11-01T09:00:00Z');
   assert.deepEqual(updated, []);
@@ -170,10 +205,10 @@ async function tempDataDir(t) {
     JSON.stringify({ competitions: [oldCompetition, competition] }),
   );
   await fs.writeFile(
-    path.join(dataDir, 'clubs.json'),
+    path.join(dataDir, 'teams.json'),
     JSON.stringify([
-      { slug: 'home', sourceNames: ['Home'] },
-      { slug: 'away', sourceNames: ['Away'] },
+      { slug: 'home', name: 'Home' },
+      { slug: 'away', name: 'Away' },
     ]),
   );
   return { dir, dataDir };
@@ -184,14 +219,14 @@ test('fetchNextGames saves raw responses and writes only modified trees', async 
   const nextGames = path.join(dir, 'next-games');
   let response = {
     mispartidos: [
-      { IdPartido: 'AA', Fecha: '05/11/2026', Hora: '11:00:00', Categoria: 'Cat', NombreClubLocal: 'A' },
+      { IdPartido: 'AA', Fecha: '05/11/2026', Hora: '11:00:00', Categoria: 'Cat', NombreEquipoLocal: 'A' },
       {
         IdPartido: 'BB',
         Fecha: '06/11/2026',
         Hora: '12:00:00',
         Categoria: 'Cat',
-        NombreClubLocal: 'Home',
-        NombreClubVisitante: 'Away',
+        NombreEquipoLocal: 'Home',
+        NombreEquipoVisitante: 'Away',
         CampoJuego: 'PEDRO FERRANDIZ, PABELLON',
       },
     ],

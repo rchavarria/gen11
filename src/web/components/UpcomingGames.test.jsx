@@ -6,9 +6,10 @@ import UpcomingGames from './UpcomingGames.jsx';
 
 const calendar = vi.hoisted(() => []);
 vi.mock('../lib/calendar.js', () => ({ default: calendar }));
-vi.mock('../../data/clubs.json', () => ({
+vi.mock('../../data/teams.json', () => ({
   default: [
-    { slug: 'alcobendas', name: 'Alcobendas', initials: 'ALC', logo: null },
+    { slug: 'alcobendas', name: 'Alcobendas', club: 'BALONCESTO ALCOBENDAS', initials: 'ALC', logo: null },
+    { slug: 'another-team', name: 'Alcobendas B', club: 'BALONCESTO ALCOBENDAS', initials: 'ALB', logo: null },
     { slug: 'madrid', name: 'Madrid', initials: 'MAD', logo: null },
     { slug: 'canoe', name: 'Canoe', initials: 'CAN', logo: null },
   ],
@@ -93,6 +94,13 @@ test('keeps the strip visible when no upcoming games qualify', () => {
   const strip = screen.getByRole('region', { name: 'Próximos partidos' });
   expect(within(strip).getByText('No hay próximos partidos')).toBeInTheDocument();
   expect(within(strip).queryByRole('button')).not.toBeInTheDocument();
+});
+
+test('highlights an Alcobendas team independently of its slug', () => {
+  calendar.push(game('other-alcobendas', '2026-11-06', '18:30:00', { home: { club: 'another-team', score: null } }));
+  render(<UpcomingGames />);
+  expect(screen.getByRole('listitem')).toHaveClass('upcoming-card--highlighted');
+  expect(screen.getByTitle('Alcobendas B')).toHaveTextContent('ALB');
 });
 
 test('does not show the venue in the upcoming strip', () => {

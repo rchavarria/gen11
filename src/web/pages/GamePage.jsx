@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import clubs from '../../data/clubs.json';
+import teams from '../../data/teams.json';
 import venues from '../../data/venues.json';
 import Boxscore from '../components/Boxscore.jsx';
 import ClubLogo from '../components/ClubLogo.jsx';
@@ -11,13 +11,13 @@ import { formatDay, gameDay, gameTime } from '../lib/dates.js';
 import { periodLabel } from '../lib/game.js';
 
 const gameFiles = import.meta.glob('../../data/games/*.json', { import: 'default' });
-const clubsBySlug = new Map(clubs.map((club) => [club.slug, club]));
+const teamsBySlug = new Map(teams.map((team) => [team.slug, team]));
 const venuesBySlug = new Map(venues.map((venue) => [venue.slug, venue]));
 
 function GameDetail({ game }) {
-  const homeClub = clubsBySlug.get(game.home.slug);
-  const awayClub = clubsBySlug.get(game.away.slug);
-  if (!homeClub || !awayClub) throw new Error('Club no encontrado.');
+  const homeClub = teamsBySlug.get(game.home.slug);
+  const awayClub = teamsBySlug.get(game.away.slug);
+  if (!homeClub || !awayClub) throw new Error('Equipo no encontrado.');
   const venue = venuesBySlug.get(game.venue);
   let maps;
   if (venue?.maps) {
@@ -117,7 +117,7 @@ function GameDetail({ game }) {
           <caption>Marcador por cuartos</caption>
           <thead>
             <tr>
-              <th scope="col">Club</th>
+              <th scope="col">Equipo</th>
               {periods.map((index) => (
                 <th scope="col" key={index}>
                   {periodLabel(index)}

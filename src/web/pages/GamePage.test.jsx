@@ -5,9 +5,10 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { beforeEach, expect, test, vi } from 'vitest';
 import GamePage from './GamePage.jsx';
 
-vi.mock('../../data/clubs.json', () => ({
+vi.mock('../../data/teams.json', () => ({
   default: [
     { slug: 'madrid', name: 'Madrid', initials: 'MAD', logo: null },
+    { slug: 'madrid-b', name: 'Madrid B', initials: 'MDB', logo: null },
     { slug: 'canoe', name: 'Canoe', initials: 'CAN', logo: null },
   ],
 }));
@@ -32,6 +33,8 @@ vi.mock('../../data/games/s56-kdt-oro-f1-g1-j1-realmadrid-alcobendas.json', () =
 
 beforeEach(() => {
   game.venue = '';
+  game.home.slug = 'madrid';
+  game.away.slug = 'canoe';
 });
 
 function renderPage() {
@@ -62,6 +65,16 @@ test('shows the venue link below the scoreboard with a decorative pin', async ()
   expect(block.querySelector('[aria-hidden="true"]')).toHaveTextContent('📍');
   expect(block.previousElementSibling).toHaveClass('game-detail__when');
   expect(block.previousElementSibling.previousElementSibling).toHaveClass('game-detail__scoreboard');
+});
+
+test('resolves each team name and initials independently in the game detail', async () => {
+  game.home.slug = 'madrid-b';
+  game.away.slug = 'madrid';
+  renderPage();
+  expect(await screen.findByRole('heading', { name: 'Madrid B' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'Madrid' })).toBeInTheDocument();
+  expect(screen.getByRole('tab', { name: 'MDB' })).toBeInTheDocument();
+  expect(screen.getByRole('tab', { name: 'MAD' })).toBeInTheDocument();
 });
 
 test.each([

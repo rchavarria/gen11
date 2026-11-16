@@ -3,7 +3,6 @@
 ## To Do list
 
 - sync y web: renombrar games a matches
-- sync y web: teams en lugar de clubs
 - web: mostrar los datos a partir de la competición, fase, grupo y jornada
 - sync: build-data, debe calcular las clasificaciones (en los árboles se debe poder poner que se ignore el cálculo)
 - sync: generar ficheros sobre jugadores, con estadísticas de cada jugador en cada partido (puntos, rebotes, asistencias, valoración…)
@@ -14,6 +13,7 @@
 
 ## Done list
 
+- 2026-11-16: sync y web: teams en lugar de clubs
 - 2026-11-16: sync: renombrar slug del madrid a realmadrid, todo junto, revisar otros slugs con `-` de por medio
 - 2026-11-16: sync: score en home object del árbol de competiciones
 - 2026-11-15: sync: generar competicion, luego fases, grupo y jornadas, eliminar dated-games.json

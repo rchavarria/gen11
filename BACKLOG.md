@@ -2,7 +2,6 @@
 
 ## To Do list
 
-- sync: renombrar slug del madrid a realmadrid, todo junto, revisar otros slugs con `-` de por medio
 - sync y web: renombrar games a matches
 - sync y web: teams en lugar de clubs
 - web: mostrar los datos a partir de la competición, fase, grupo y jornada
@@ -15,6 +14,7 @@
 
 ## Done list
 
+- 2026-11-16: sync: renombrar slug del madrid a realmadrid, todo junto, revisar otros slugs con `-` de por medio
 - 2026-11-16: sync: score en home object del árbol de competiciones
 - 2026-11-15: sync: generar competicion, luego fases, grupo y jornadas, eliminar dated-games.json
 - 2026-11-13: sync: primero, analizar qué y cuántos partidos hay que descargar, y luego descargar solo los partidos que no estén en `dated-games.json`, de forma que el contador/progeso de partidos descargados es "real", muestra el total de los que habría que descargar, no el total de los dated-games.json

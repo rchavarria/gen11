@@ -10,7 +10,7 @@
 - web: el recuadro del nombre del pabellón, incluye un enlace a Google Maps
 - web: ampliar el boxscore con más columnas (tiros, rebotes, asistencias…)
 - web: filtro por categoría
-- web: rellenar la pestaña «Jugada a jugada», hoy es placeholder
+- WIP (hay sesión de copilot cli (2026-11-13)) web: rellenar la pestaña «Jugada a jugada», hoy es placeholder
 
 ## Done list
 

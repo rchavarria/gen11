@@ -2,8 +2,9 @@
 
 ## To Do list
 
-- sync y web: renombrar games a matches
 - web: mostrar los datos a partir de la competición, fase, grupo y jornada
+- web: basándome en el diseño de la ligau, hay svgs para iconos de fecha, hora y lugar, incorporarlos al detalle de partido, y la esquina del video incrustado redondeada
+- sync y web: renombrar games a matches
 - sync: build-data, debe calcular las clasificaciones (en los árboles se debe poder poner que se ignore el cálculo)
 - sync: generar ficheros sobre jugadores, con estadísticas de cada jugador en cada partido (puntos, rebotes, asistencias, valoración…)
 - web: el recuadro del nombre del pabellón, incluye un enlace a Google Maps

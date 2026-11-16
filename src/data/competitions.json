@@ -14,7 +14,7 @@
             {
               "id": "g1",
               "name": "Grupo 1",
-              "teams": ["real-madrid", "sba", "distrito", "fuenlabrada", "canoe", "sanjorge"]
+              "teams": ["realmadrid", "sba", "distrito", "fuenlabrada", "canoe", "sanjorge"]
             },
             {
               "id": "g2",
@@ -39,7 +39,7 @@
             {
               "id": "g1",
               "name": "Grupo 1",
-              "teams": ["alcobendas", "sba", "torrejon", "sanjorge", "canoe", "real-madrid"]
+              "teams": ["alcobendas", "sba", "torrejon", "sanjorge", "canoe", "realmadrid"]
             }
           ]
         }
@@ -59,7 +59,7 @@
             {
               "id": "g1",
               "name": "Grupo 1",
-              "teams": ["real-madrid", "alcobendas", "rozas", "patrocinio", "estudiantes", "fuenlabrada"]
+              "teams": ["realmadrid", "alcobendas", "rozas", "patrocinio", "estudiantes", "fuenlabrada"]
             }
           ]
         },

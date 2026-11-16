@@ -14,7 +14,7 @@
                   "date": "2026-09-19T16:00:00Z",
                   "venue": "valdebebas",
                   "home": {
-                    "slug": "real-madrid",
+                    "slug": "realmadrid",
                     "score": 107
                   },
                   "away": {
@@ -93,7 +93,7 @@
                     "score": 95
                   },
                   "away": {
-                    "slug": "real-madrid",
+                    "slug": "realmadrid",
                     "score": 97
                   },
                   "downloaded": true
@@ -136,7 +136,7 @@
                   "date": "2026-10-03T15:00:00Z",
                   "venue": "valdebebas",
                   "home": {
-                    "slug": "real-madrid",
+                    "slug": "realmadrid",
                     "score": 91
                   },
                   "away": {
@@ -159,7 +159,7 @@
                     "score": 73
                   },
                   "away": {
-                    "slug": "real-madrid",
+                    "slug": "realmadrid",
                     "score": 80
                   },
                   "downloaded": true
@@ -216,7 +216,7 @@
                   "date": "2026-10-24T15:00:00Z",
                   "venue": "valdebebas",
                   "home": {
-                    "slug": "real-madrid",
+                    "slug": "realmadrid",
                     "score": 79
                   },
                   "away": {
@@ -267,7 +267,7 @@
                     "score": 63
                   },
                   "away": {
-                    "slug": "real-madrid",
+                    "slug": "realmadrid",
                     "score": 140
                   },
                   "downloaded": true
@@ -296,7 +296,7 @@
                   "date": "2026-11-14T09:00:00Z",
                   "venue": "valdebebas",
                   "home": {
-                    "slug": "real-madrid",
+                    "slug": "realmadrid",
                     "score": 78
                   },
                   "away": {
@@ -361,7 +361,7 @@
                     "score": null
                   },
                   "away": {
-                    "slug": "real-madrid",
+                    "slug": "realmadrid",
                     "score": null
                   },
                   "downloaded": false
@@ -404,7 +404,7 @@
                   "date": "2026-11-28T00:00:00Z",
                   "venue": "valdebebas",
                   "home": {
-                    "slug": "real-madrid",
+                    "slug": "realmadrid",
                     "score": null
                   },
                   "away": {
@@ -469,7 +469,7 @@
                     "score": null
                   },
                   "away": {
-                    "slug": "real-madrid",
+                    "slug": "realmadrid",
                     "score": null
                   },
                   "downloaded": false

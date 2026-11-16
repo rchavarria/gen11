@@ -14,7 +14,7 @@
                   "date": "2025-09-20T09:00:00Z",
                   "venue": "valdebebas",
                   "home": {
-                    "slug": "real-madrid",
+                    "slug": "realmadrid",
                     "score": 132
                   },
                   "away": {
@@ -113,7 +113,7 @@
                     "score": 71
                   },
                   "away": {
-                    "slug": "real-madrid",
+                    "slug": "realmadrid",
                     "score": 108
                   },
                   "downloaded": true

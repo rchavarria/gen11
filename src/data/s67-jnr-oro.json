@@ -94,7 +94,7 @@
                     "score": 60
                   },
                   "away": {
-                    "slug": "real-madrid",
+                    "slug": "realmadrid",
                     "score": 131
                   },
                   "downloaded": true
@@ -187,7 +187,7 @@
                   "date": "2026-12-13T00:00:00Z",
                   "venue": "valdebebas",
                   "home": {
-                    "slug": "real-madrid",
+                    "slug": "realmadrid",
                     "score": null
                   },
                   "away": {

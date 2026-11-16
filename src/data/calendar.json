@@ -1,12 +1,12 @@
 [
   {
-    "slug": "s56-kdt-oro-f1-g1-j1-real-madrid-alcobendas",
+    "slug": "s56-kdt-oro-f1-g1-j1-realmadrid-alcobendas",
     "date": "2025-09-20T09:00:00Z",
     "venue": "valdebebas",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "real-madrid",
+      "club": "realmadrid",
       "score": 132
     },
     "away": {
@@ -75,7 +75,7 @@
     }
   },
   {
-    "slug": "s56-kdt-oro-f1-g1-j6-alcobendas-real-madrid",
+    "slug": "s56-kdt-oro-f1-g1-j6-alcobendas-realmadrid",
     "date": "2025-11-09T17:00:00Z",
     "venue": "antela",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
@@ -85,7 +85,7 @@
       "score": 71
     },
     "away": {
-      "club": "real-madrid",
+      "club": "realmadrid",
       "score": 108
     }
   },
@@ -270,13 +270,13 @@
     }
   },
   {
-    "slug": "s67-kdt-oro-f1-g1-j01-real-madrid-sba",
+    "slug": "s67-kdt-oro-f1-g1-j01-realmadrid-sba",
     "date": "2026-09-19T16:00:00Z",
     "venue": "valdebebas",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "real-madrid",
+      "club": "realmadrid",
       "score": 107
     },
     "away": {
@@ -465,13 +465,13 @@
     }
   },
   {
-    "slug": "s67-kdt-oro-f1-g1-j03-real-madrid-sanjorge",
+    "slug": "s67-kdt-oro-f1-g1-j03-realmadrid-sanjorge",
     "date": "2026-10-03T15:00:00Z",
     "venue": "valdebebas",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "real-madrid",
+      "club": "realmadrid",
       "score": 91
     },
     "away": {
@@ -555,7 +555,7 @@
     }
   },
   {
-    "slug": "s67-kdt-oro-f1-g1-j04-distrito-real-madrid",
+    "slug": "s67-kdt-oro-f1-g1-j04-distrito-realmadrid",
     "date": "2026-10-17T14:30:00Z",
     "venue": "circular",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
@@ -565,7 +565,7 @@
       "score": 73
     },
     "away": {
-      "club": "real-madrid",
+      "club": "realmadrid",
       "score": 80
     }
   },
@@ -675,13 +675,13 @@
     }
   },
   {
-    "slug": "s67-kdt-oro-f1-g1-j05-real-madrid-canoe",
+    "slug": "s67-kdt-oro-f1-g1-j05-realmadrid-canoe",
     "date": "2026-10-24T15:00:00Z",
     "venue": "valdebebas",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "real-madrid",
+      "club": "realmadrid",
       "score": 79
     },
     "away": {
@@ -705,7 +705,7 @@
     }
   },
   {
-    "slug": "s67-jnr-oro-f1-g1-j05-alcobendas-real-madrid",
+    "slug": "s67-jnr-oro-f1-g1-j05-alcobendas-realmadrid",
     "date": "2026-10-25T12:15:00Z",
     "venue": "antela",
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
@@ -715,7 +715,7 @@
       "score": 60
     },
     "away": {
-      "club": "real-madrid",
+      "club": "realmadrid",
       "score": 131
     }
   },
@@ -825,7 +825,7 @@
     }
   },
   {
-    "slug": "s67-kdt-oro-f1-g1-j06-sba-real-madrid",
+    "slug": "s67-kdt-oro-f1-g1-j06-sba-realmadrid",
     "date": "2026-11-07T13:00:00Z",
     "venue": "sba",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
@@ -835,7 +835,7 @@
       "score": 63
     },
     "away": {
-      "club": "real-madrid",
+      "club": "realmadrid",
       "score": 140
     }
   },
@@ -870,7 +870,7 @@
     }
   },
   {
-    "slug": "s67-kdt-oro-f1-g1-j02-fuenlabrada-real-madrid",
+    "slug": "s67-kdt-oro-f1-g1-j02-fuenlabrada-realmadrid",
     "date": "2026-11-08T12:30:00Z",
     "venue": "fernando-martin",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
@@ -880,7 +880,7 @@
       "score": 95
     },
     "away": {
-      "club": "real-madrid",
+      "club": "realmadrid",
       "score": 97
     }
   },
@@ -900,13 +900,13 @@
     }
   },
   {
-    "slug": "s67-kdt-oro-f1-g1-j07-real-madrid-fuenlabrada",
+    "slug": "s67-kdt-oro-f1-g1-j07-realmadrid-fuenlabrada",
     "date": "2026-11-14T09:00:00Z",
     "venue": "valdebebas",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "real-madrid",
+      "club": "realmadrid",
       "score": 78
     },
     "away": {
@@ -1065,7 +1065,7 @@
     }
   },
   {
-    "slug": "s67-kdt-oro-f1-g1-j08-sanjorge-real-madrid",
+    "slug": "s67-kdt-oro-f1-g1-j08-sanjorge-realmadrid",
     "date": "2026-11-22T19:15:00Z",
     "venue": "diaz-miguel",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
@@ -1075,7 +1075,7 @@
       "score": null
     },
     "away": {
-      "club": "real-madrid",
+      "club": "realmadrid",
       "score": null
     }
   },
@@ -1125,13 +1125,13 @@
     }
   },
   {
-    "slug": "s67-kdt-oro-f1-g1-j09-real-madrid-distrito",
+    "slug": "s67-kdt-oro-f1-g1-j09-realmadrid-distrito",
     "date": "2026-11-28T00:00:00Z",
     "venue": "valdebebas",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "real-madrid",
+      "club": "realmadrid",
       "score": null
     },
     "away": {
@@ -1245,7 +1245,7 @@
     }
   },
   {
-    "slug": "s67-kdt-oro-f1-g1-j10-canoe-real-madrid",
+    "slug": "s67-kdt-oro-f1-g1-j10-canoe-realmadrid",
     "date": "2026-12-13T00:00:00Z",
     "venue": "canoe",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
@@ -1255,7 +1255,7 @@
       "score": null
     },
     "away": {
-      "club": "real-madrid",
+      "club": "realmadrid",
       "score": null
     }
   },
@@ -1290,13 +1290,13 @@
     }
   },
   {
-    "slug": "s67-jnr-oro-f1-g1-j10-real-madrid-alcobendas",
+    "slug": "s67-jnr-oro-f1-g1-j10-realmadrid-alcobendas",
     "date": "2026-12-13T00:00:00Z",
     "venue": "valdebebas",
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "real-madrid",
+      "club": "realmadrid",
       "score": null
     },
     "away": {

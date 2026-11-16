@@ -1,0 +1,128 @@
+[
+  {
+    "slug": "alcobendas",
+    "initials": "CBA",
+    "name": "FUNDAL ALCOBENDAS \"A\"",
+    "club": "BALONCESTO ALCOBENDAS",
+    "logo": "alcobendas.png"
+  },
+  {
+    "slug": "alcorcon",
+    "initials": "ALC",
+    "name": "SALTIUM ALCORCÓN BASKET \"A\"",
+    "club": "ALCORCON BASKET",
+    "logo": "alcorcon.png"
+  },
+  {
+    "slug": "canoe",
+    "initials": "RCN",
+    "name": "REAL CANOE N.C. \"A\"",
+    "club": "REAL CANOE N.C.",
+    "logo": "canoe.png"
+  },
+  {
+    "slug": "distrito",
+    "initials": "DIS",
+    "name": "DISTRITO OLIMPICO A",
+    "club": "DISTRITO OLIMPICO",
+    "logo": "distrito-olimpico.png"
+  },
+  {
+    "slug": "distrito",
+    "initials": "DIS",
+    "name": "DISTRITO OLIMPICO EDU SPORTS A",
+    "club": "DISTRITO OLIMPICO",
+    "logo": "distrito-olimpico.png"
+  },
+  {
+    "slug": "estudiantes",
+    "initials": "EST",
+    "name": "MOVISTAR ESTUDIANTES \"A\"",
+    "club": "ESTUDIANTES",
+    "logo": "estudiantes.png"
+  },
+  {
+    "slug": "fuenlabrada",
+    "initials": "FNL",
+    "name": "BALONCESTO FUENLABRADA \"A\"",
+    "club": "BALONCESTO FUENLABRADA",
+    "logo": "fuenlabrada.jpg"
+  },
+  {
+    "slug": "laso",
+    "initials": "PLA",
+    "name": "LASO ACADEMY \"A\"",
+    "club": "GIGANTES YOUTH SPORTS ACADEMY C.D.B.",
+    "logo": "laso.png"
+  },
+  {
+    "slug": "patrocinio",
+    "initials": "PAT",
+    "name": "PATROCINIO SAN JOSE",
+    "club": "PATROCINIO SAN JOSE C.B.",
+    "logo": "patrocinio.png"
+  },
+  {
+    "slug": "realmadrid",
+    "initials": "RMA",
+    "name": "REAL MADRID ´A´",
+    "club": "REAL MADRID C.F.",
+    "logo": "real-madrid.png"
+  },
+  {
+    "slug": "realmadrid",
+    "initials": "RMA",
+    "name": "REAL MADRID",
+    "club": "REAL MADRID C.F.",
+    "logo": "real-madrid.png"
+  },
+  {
+    "slug": "rozas",
+    "initials": "ROZ",
+    "name": "C.B. LAS ROZAS \"A\"",
+    "club": "LAS ROZAS C.B.",
+    "logo": "rozas.png"
+  },
+  {
+    "slug": "sanjorge",
+    "initials": "SJO",
+    "name": "SANJORGE",
+    "club": "SAN JORGE BALONCESTO",
+    "logo": "san-jorge.jpg"
+  },
+  {
+    "slug": "sba",
+    "initials": "SBA",
+    "name": "SPANISH BASKETBALL ACADEMY",
+    "club": "ELITE INTERNATIONAL SCHOOL C.D.E",
+    "logo": "sba.png"
+  },
+  {
+    "slug": "sba",
+    "initials": "SBA",
+    "name": "SPANISH BASKETBALL ACADEMY A",
+    "club": "ELITE INTERNATIONAL SCHOOL C.D.E",
+    "logo": "sba.png"
+  },
+  {
+    "slug": "torrejon",
+    "initials": "TRJ",
+    "name": "BASKET TORREJON \"A\"",
+    "club": "BASKET TORREJON CDE",
+    "logo": "torrejon.png"
+  },
+  {
+    "slug": "torrelodones",
+    "initials": "JBT",
+    "name": "JANSEN BT \"A\"",
+    "club": "TORRELODONES A.D.",
+    "logo": "torrelodones.png"
+  },
+  {
+    "slug": "zentro",
+    "initials": "ZBK",
+    "name": "ZENTRO BASKET MADRID",
+    "club": "ZENTRO C.B.",
+    "logo": "zentro.png"
+  }
+]

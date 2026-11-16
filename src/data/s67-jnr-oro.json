@@ -14,7 +14,7 @@
                   "date": "2026-09-20T10:30:00Z",
                   "venue": "sba",
                   "home": {
-                    "slug": "sba",
+                    "slug": "sbajnr",
                     "score": 119
                   },
                   "away": {
@@ -94,7 +94,7 @@
                     "score": 60
                   },
                   "away": {
-                    "slug": "realmadrid",
+                    "slug": "realmadridjnr",
                     "score": 131
                   },
                   "downloaded": true
@@ -114,7 +114,7 @@
                     "score": 90
                   },
                   "away": {
-                    "slug": "sba",
+                    "slug": "sbajnr",
                     "score": 110
                   },
                   "downloaded": true
@@ -187,7 +187,7 @@
                   "date": "2026-12-13T00:00:00Z",
                   "venue": "valdebebas",
                   "home": {
-                    "slug": "realmadrid",
+                    "slug": "realmadridjnr",
                     "score": null
                   },
                   "away": {

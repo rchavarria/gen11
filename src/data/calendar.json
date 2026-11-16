@@ -225,7 +225,7 @@
     }
   },
   {
-    "slug": "s56-kdt-oro-f3-j3-alcobendas-distrito",
+    "slug": "s56-kdt-oro-f3-j3-alcobendas-distritokdtantiguo",
     "date": "2026-05-24T09:15:00Z",
     "venue": "antela",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
@@ -235,18 +235,18 @@
       "score": 68
     },
     "away": {
-      "club": "distrito",
+      "club": "distritokdtantiguo",
       "score": 71
     }
   },
   {
-    "slug": "s56-kdt-oro-f3-j6-distrito-alcobendas",
+    "slug": "s56-kdt-oro-f3-j6-distritokdtantiguo-alcobendas",
     "date": "2026-05-27T18:30:00Z",
     "venue": "circular",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "distrito",
+      "club": "distritokdtantiguo",
       "score": 96
     },
     "away": {
@@ -315,13 +315,13 @@
     }
   },
   {
-    "slug": "s67-jnr-oro-f1-g1-j01-sba-alcobendas",
+    "slug": "s67-jnr-oro-f1-g1-j01-sbajnr-alcobendas",
     "date": "2026-09-20T10:30:00Z",
     "venue": "sba",
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
     "played": true,
     "home": {
-      "club": "sba",
+      "club": "sbajnr",
       "score": 119
     },
     "away": {
@@ -705,7 +705,7 @@
     }
   },
   {
-    "slug": "s67-jnr-oro-f1-g1-j05-alcobendas-realmadrid",
+    "slug": "s67-jnr-oro-f1-g1-j05-alcobendas-realmadridjnr",
     "date": "2026-10-25T12:15:00Z",
     "venue": "antela",
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
@@ -715,7 +715,7 @@
       "score": 60
     },
     "away": {
-      "club": "realmadrid",
+      "club": "realmadridjnr",
       "score": 131
     }
   },
@@ -885,7 +885,7 @@
     }
   },
   {
-    "slug": "s67-jnr-oro-f1-g1-j06-alcobendas-sba",
+    "slug": "s67-jnr-oro-f1-g1-j06-alcobendas-sbajnr",
     "date": "2026-11-08T12:30:00Z",
     "venue": "antela",
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
@@ -895,7 +895,7 @@
       "score": 90
     },
     "away": {
-      "club": "sba",
+      "club": "sbajnr",
       "score": 110
     }
   },
@@ -1290,13 +1290,13 @@
     }
   },
   {
-    "slug": "s67-jnr-oro-f1-g1-j10-realmadrid-alcobendas",
+    "slug": "s67-jnr-oro-f1-g1-j10-realmadridjnr-alcobendas",
     "date": "2026-12-13T00:00:00Z",
     "venue": "valdebebas",
     "category": "Junior Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
-      "club": "realmadrid",
+      "club": "realmadridjnr",
       "score": null
     },
     "away": {

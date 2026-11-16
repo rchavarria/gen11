@@ -39,7 +39,7 @@
             {
               "id": "g1",
               "name": "Grupo 1",
-              "teams": ["alcobendas", "sba", "torrejon", "sanjorge", "canoe", "realmadrid"]
+              "teams": ["alcobendas", "sbajnr", "torrejon", "sanjorge", "canoe", "realmadridjnr"]
             }
           ]
         }
@@ -67,7 +67,7 @@
           "id": "f3",
           "name": "Tercera fase",
           "type": "league",
-          "teams": ["torrelodones", "alcobendas", "fuenlabrada", "distrito"]
+          "teams": ["torrelodones", "alcobendas", "fuenlabrada", "distritokdtantiguo"]
         },
         {
           "id": "playoffs",

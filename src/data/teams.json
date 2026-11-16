@@ -28,7 +28,7 @@
     "logo": "distrito-olimpico.png"
   },
   {
-    "slug": "distrito",
+    "slug": "distritokdtantiguo",
     "initials": "DIS",
     "name": "DISTRITO OLIMPICO EDU SPORTS A",
     "club": "DISTRITO OLIMPICO",
@@ -70,7 +70,7 @@
     "logo": "real-madrid.png"
   },
   {
-    "slug": "realmadrid",
+    "slug": "realmadridjnr",
     "initials": "RMA",
     "name": "REAL MADRID",
     "club": "REAL MADRID C.F.",
@@ -98,7 +98,7 @@
     "logo": "sba.png"
   },
   {
-    "slug": "sba",
+    "slug": "sbajnr",
     "initials": "SBA",
     "name": "SPANISH BASKETBALL ACADEMY A",
     "club": "ELITE INTERNATIONAL SCHOOL C.D.E",

@@ -1110,23 +1110,8 @@
     }
   },
   {
-    "slug": "s67-kdt-oro-f1-g1-j09-fuenlabrada-canoe",
-    "date": "2026-11-28T00:00:00Z",
-    "venue": "arroyo",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
-    "home": {
-      "club": "fuenlabrada",
-      "score": null
-    },
-    "away": {
-      "club": "canoe",
-      "score": null
-    }
-  },
-  {
     "slug": "s67-kdt-oro-f1-g1-j09-realmadrid-distrito",
-    "date": "2026-11-28T00:00:00Z",
+    "date": "2026-11-28T09:30:00Z",
     "venue": "valdebebas",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
@@ -1141,8 +1126,8 @@
   },
   {
     "slug": "s67-kdt-oro-f1-g2-j09-torrelodones-estudiantes",
-    "date": "2026-11-28T00:00:00Z",
-    "venue": "torrelodones",
+    "date": "2026-11-28T12:30:00Z",
+    "venue": "torrelodones-pequeno",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
     "home": {
@@ -1170,6 +1155,21 @@
     }
   },
   {
+    "slug": "s67-kdt-oro-f1-g1-j09-fuenlabrada-canoe",
+    "date": "2026-11-28T16:30:00Z",
+    "venue": "fernando-martin",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "fuenlabrada",
+      "score": null
+    },
+    "away": {
+      "club": "canoe",
+      "score": null
+    }
+  },
+  {
     "slug": "s67-kdt-oro-f1-g2-j09-zentro-alcorcon",
     "date": "2026-11-29T00:00:00Z",
     "venue": "diaz-miguel",
@@ -1186,7 +1186,7 @@
   },
   {
     "slug": "s67-kdt-oro-f1-g2-j09-laso-alcobendas",
-    "date": "2026-11-29T00:00:00Z",
+    "date": "2026-11-29T09:00:00Z",
     "venue": "retamar",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,

@@ -386,22 +386,8 @@
               "id": "j09",
               "games": [
                 {
-                  "id": "33006D004200650064004D002B00730067005A004D00660053006B00780065006B0064002B004E00730077003D003D00",
-                  "date": "2026-11-28T00:00:00Z",
-                  "venue": "arroyo",
-                  "home": {
-                    "slug": "fuenlabrada",
-                    "score": null
-                  },
-                  "away": {
-                    "slug": "canoe",
-                    "score": null
-                  },
-                  "downloaded": false
-                },
-                {
                   "id": "31006F00470039007700740076004E00320071005A006C0031005000690077004F00700056004300540067003D003D00",
-                  "date": "2026-11-28T00:00:00Z",
+                  "date": "2026-11-28T09:30:00Z",
                   "venue": "valdebebas",
                   "home": {
                     "slug": "realmadrid",
@@ -423,6 +409,20 @@
                   },
                   "away": {
                     "slug": "sanjorge",
+                    "score": null
+                  },
+                  "downloaded": false
+                },
+                {
+                  "id": "33006D004200650064004D002B00730067005A004D00660053006B00780065006B0064002B004E00730077003D003D00",
+                  "date": "2026-11-28T16:30:00Z",
+                  "venue": "fernando-martin",
+                  "home": {
+                    "slug": "fuenlabrada",
+                    "score": null
+                  },
+                  "away": {
+                    "slug": "canoe",
                     "score": null
                   },
                   "downloaded": false
@@ -863,8 +863,8 @@
               "games": [
                 {
                   "id": "430067003600580031005000360051007000660033004400490034004B006100540030006B004300650051003D003D00",
-                  "date": "2026-11-28T00:00:00Z",
-                  "venue": "torrelodones",
+                  "date": "2026-11-28T12:30:00Z",
+                  "venue": "torrelodones-pequeno",
                   "home": {
                     "slug": "torrelodones",
                     "score": null
@@ -891,7 +891,7 @@
                 },
                 {
                   "id": "4F005A00780056006D0051006100310072004500360056003900340035006B003400540044006E00740067003D003D00",
-                  "date": "2026-11-29T00:00:00Z",
+                  "date": "2026-11-29T09:00:00Z",
                   "venue": "retamar",
                   "home": {
                     "slug": "laso",

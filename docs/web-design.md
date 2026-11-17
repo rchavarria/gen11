@@ -138,9 +138,11 @@ no se muestra el bloque.
 - Solo los partidos con ambos marcadores enlazan al detalle; los demás no son clicables
 - Los partidos con un equipo del club `BALONCESTO ALCOBENDAS` se resaltan con un borde izquierdo rojo, jugados o pendientes
 
-## Página principal: competiciones (`/#/`)
+## Competiciones: `/#/competitions`
 
-- Es la página por defecto; las rutas desconocidas también la muestran.
+- La página principal (`/#/`) y las rutas desconocidas redirigen aquí con una jornada
+  destacada ya seleccionada (constante `HOME` en `src/web/main.jsx`, que se actualiza
+  cada semana), p.ej. `/#/competitions?c=s67-kdt-oro&ph=f1&g=g2&r=j08`.
 - Navegación con chips por competición, fase+grupo, jornada y partidos. Las fases sin
   grupos se seleccionan directamente; cada competición, fase+grupo y jornada se guarda
   en los parámetros `c`, `ph`, `g` y `r` de la URL.

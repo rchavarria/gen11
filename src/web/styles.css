@@ -64,7 +64,24 @@ button {
 }
 
 .competitions {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100dvh;
   padding-top: 1rem;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.competitions__filters {
+  max-height: 50dvh;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+
+.competitions__games {
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  padding-bottom: 2rem;
 }
 
 .competitions__section {

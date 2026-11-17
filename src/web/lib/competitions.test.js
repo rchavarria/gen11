@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { findRounds, phaseGroupOptions, roundLabel, toCardGame } from './competitions.js';
+import { findRounds, phaseGroupOptions, roundLabel, sortRounds, toCardGame } from './competitions.js';
 
 const competition = {
   id: 's67-kdt-oro',
@@ -36,6 +36,27 @@ test('finds rounds in grouped and ungrouped phases', () => {
   expect(findRounds(tree, 'f1', null)).toEqual([]);
   expect(findRounds(tree, 'playoffs', null)).toEqual([{ id: 'j1' }]);
   expect(findRounds(tree, 'missing', null)).toEqual([]);
+});
+
+test('orders rounds alphabetically by id and games chronologically without mutating the tree', () => {
+  const rounds = [
+    { id: 'j01', games: [{ id: 'later-round', date: '2026-10-10T09:00:00Z' }] },
+    { id: 'j03', games: [] },
+    {
+      id: 'j02',
+      games: [
+        { id: 'afternoon', date: '2026-10-03T15:00:00Z' },
+        { id: 'morning', date: '2026-10-03T09:00:00Z' },
+      ],
+    },
+    { id: 'j10', games: [{ id: 'earlier-match', date: '2026-09-01T09:00:00Z' }] },
+  ];
+
+  const sorted = sortRounds(rounds);
+  expect(sorted.map((round) => round.id)).toEqual(['j01', 'j02', 'j03', 'j10']);
+  expect(sorted[1].games.map((game) => game.id)).toEqual(['morning', 'afternoon']);
+  expect(rounds.map((round) => round.id)).toEqual(['j01', 'j03', 'j02', 'j10']);
+  expect(rounds[2].games.map((game) => game.id)).toEqual(['afternoon', 'morning']);
 });
 
 test.each([

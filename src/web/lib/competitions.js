@@ -22,6 +22,15 @@ export function findRounds(tree, phaseId, groupId) {
   return phase.rounds ?? [];
 }
 
+export function sortRounds(rounds) {
+  return rounds
+    .map((round) => ({
+      ...round,
+      games: [...round.games].sort((a, b) => Date.parse(a.date) - Date.parse(b.date)),
+    }))
+    .sort((a, b) => a.id.localeCompare(b.id));
+}
+
 export function roundLabel(id, abbreviated = false) {
   const match = /^j(?:ornada)?[-_]?0*(\d+)$/i.exec(id);
   if (!match) return id;

@@ -147,6 +147,15 @@ no se muestra el bloque.
 - Los partidos reutilizan las tarjetas del calendario y enlazan al detalle cuando tienen
   marcador completo.
 - Los botones de jornadas usan etiquetas cortas: «J01», «J05», «J10».
+- Al seleccionar fase y grupo se muestran todos sus partidos, agrupados por jornada.
+  Las jornadas se ordenan alfabéticamente por su id (`j01`, `j02`, …, `j10`), y los
+  partidos dentro de cada jornada por fecha y hora ascendentes.
+- Los botones de jornadas desplazan la lista al bloque correspondiente sin filtrar
+  partidos; el parámetro `r` también permite acceder directamente a una jornada.
+- Los filtros permanecen arriba; solo la lista de partidos tiene desplazamiento,
+  tanto al navegar entre jornadas como al desplazarse manualmente.
+  Si los filtros no caben en la mitad superior de la pantalla, tienen desplazamiento
+  propio para mantener todas las opciones accesibles y reservar espacio a los partidos.
 
 ## Página de detalle: `/#/game/:slug`
 

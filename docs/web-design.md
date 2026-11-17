@@ -136,6 +136,18 @@ no se muestra el bloque.
 - Solo los partidos con ambos marcadores enlazan al detalle; los demás no son clicables
 - Los partidos con un equipo del club `BALONCESTO ALCOBENDAS` se resaltan con un borde izquierdo rojo, jugados o pendientes
 
+## Página de competiciones: `/#/competitions`
+
+- Enlace «Competiciones» en la cabecera del calendario.
+- Navegación con chips por competición, fase+grupo, jornada y partidos. Las fases sin
+  grupos se seleccionan directamente; cada competición, fase+grupo y jornada se guarda
+  en los parámetros `c`, `ph`, `g` y `r` de la URL.
+- Las competiciones y opciones de fase/grupo se leen de `competitions.json`; las jornadas
+  y sus partidos, del árbol `src/data/<competición>.json`.
+- Los partidos reutilizan las tarjetas del calendario y enlazan al detalle cuando tienen
+  marcador completo.
+- Los botones de jornadas usan etiquetas cortas: «J01», «J05», «J10».
+
 ## Página de detalle: `/#/game/:slug`
 
 - Cabecera con categoría, fecha y hora (`HH:MM`; se omite si es desconocida)

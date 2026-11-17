@@ -1,5 +1,5 @@
 import { useLayoutEffect, useMemo, useRef } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import GameCard from '../components/GameCard.jsx';
 import UpcomingGames from '../components/UpcomingGames.jsx';
 import calendar from '../lib/calendar.js';
@@ -57,6 +57,9 @@ export default function CalendarPage() {
       <div className="calendar-header" ref={headerRef}>
         <UpcomingGames />
         <div className="calendar-header__nav">
+          <div className="calendar-header__links">
+            <Link to="/competitions">Competiciones</Link>
+          </div>
           <header className="month-nav">
             <button type="button" onClick={() => goTo(-1)} aria-label="Mes anterior">
               ‹

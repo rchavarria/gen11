@@ -94,8 +94,10 @@ test.each([
   expect(container.firstChild).toHaveClass('game-card--highlighted');
 });
 
-test('rejects unknown clubs instead of showing an incomplete card', () => {
-  expect(() => renderCard({ home: { club: 'unknown', score: 80 } })).toThrow('Equipo no encontrado: unknown');
+test('shows unresolved team names with a placeholder logo', () => {
+  const { container } = renderCard({ home: { club: 'unknown', name: 'Equipo pendiente', score: 80 } });
+  expect(screen.getByText('Equipo pendiente')).toBeInTheDocument();
+  expect(container.querySelector('.club-logo--placeholder')).toBeInTheDocument();
 });
 
 test('shows the specific team name and logo when teams share a club', () => {

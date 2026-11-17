@@ -10,12 +10,12 @@ const venuesBySlug = new Map(venues.map((venue) => [venue.slug, venue]));
 
 function Side({ side, winner }) {
   const team = teamsBySlug.get(side.club);
-  if (!team) throw new Error(`Equipo no encontrado: ${side.club}`);
+  const name = team?.name ?? side.name ?? side.club;
 
   return (
     <div className={`game-card__side${winner ? ' game-card__side--winner' : ''}`}>
-      <ClubLogo team={team} />
-      <span className="game-card__club">{team.name}</span>
+      <ClubLogo team={team ?? { name, logo: null }} />
+      <span className="game-card__club">{name}</span>
       {side.score != null && <span className="game-card__score">{side.score}</span>}
     </div>
   );

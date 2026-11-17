@@ -9,8 +9,8 @@
 - sync: generar ficheros sobre jugadores, con estadísticas de cada jugador en cada partido (puntos, rebotes, asistencias, valoración…)
 - web: el recuadro del nombre del pabellón, incluye un enlace a Google Maps
 - web: ampliar el boxscore con más columnas (tiros, rebotes, asistencias…)
-- web: filtro por categoría
 - WIP (hay sesión de copilot cli (2026-11-13)) web: rellenar la pestaña «Jugada a jugada», hoy es placeholder
+- web: inspirarse en la [federación Catalana](https://www.basquetcatala.cat/competicions/resultats/23288/11) para diseñar la página de detalle de jugador
 
 ## Done list
 

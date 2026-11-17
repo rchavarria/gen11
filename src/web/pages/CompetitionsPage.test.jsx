@@ -15,7 +15,7 @@ function Location() {
   return <output data-testid="location">{search}</output>;
 }
 
-function renderPage(path = '/competitions') {
+function renderPage(path = '/') {
   return render(
     <MemoryRouter initialEntries={[path]}>
       <CompetitionsPage />
@@ -62,7 +62,7 @@ test('navigates competition, phase and group, round, and games through URL param
 });
 
 test('scrolls to a URL-selected round after the competition loads without hiding other rounds', async () => {
-  renderPage('/competitions?c=s67-kdt-oro&ph=f1&g=g1&r=j05');
+  renderPage('/?c=s67-kdt-oro&ph=f1&g=g1&r=j05');
 
   await waitFor(() => expect(Element.prototype.scrollTo).toHaveBeenCalled());
   expect(Element.prototype.scrollTo.mock.instances.at(-1)).toBe(
@@ -72,7 +72,7 @@ test('scrolls to a URL-selected round after the competition loads without hiding
 });
 
 test('uses just the phase for competitions without groups', async () => {
-  renderPage('/competitions?c=s56-kdt-oro');
+  renderPage('/?c=s56-kdt-oro');
 
   fireEvent.click(screen.getByRole('button', { name: 'Tercera fase' }));
   expect(screen.getByTestId('location')).toHaveTextContent('?c=s56-kdt-oro&ph=f3');
@@ -81,7 +81,7 @@ test('uses just the phase for competitions without groups', async () => {
 });
 
 test('ignores a phase/group selection that is invalid for the selected competition', () => {
-  renderPage('/competitions?c=s67-kdt-oro&ph=invalid&g=unknown&r=j01');
+  renderPage('/?c=s67-kdt-oro&ph=invalid&g=unknown&r=j01');
 
   expect(screen.getAllByRole('button', { name: 'Cadete Oro', exact: true })[0]).toHaveAttribute('aria-pressed', 'true');
   expect(screen.getByRole('heading', { name: 'Fase + Grupo' })).toBeInTheDocument();

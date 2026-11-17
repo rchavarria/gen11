@@ -95,7 +95,9 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
   parciales: «PISTA 1» no coincide con «PISTA 1-3».
 - Vídeos: enlaces añadidos a mano (pendiente)
 
-## Página principal: calendario
+## Calendario: `/#/calendar`
+
+Sin enlaces desde otras páginas por ahora; se accede por URL directa.
 
 ### Tira de próximos partidos
 
@@ -109,7 +111,7 @@ Web para seguir partidos de baloncesto, principalmente de la generación 2011
 
 ### Calendario
 
-- Selector de mes arriba (‹ Octubre 2026 ›); el mes va en la URL (`/#/?m=2026-10`)
+- Selector de mes arriba (‹ Octubre 2026 ›); el mes va en la URL (`/#/calendar?m=2026-10`)
 - Bloques por semana, de lunes a domingo
 - Una semana que cruza dos meses aparece en ambos
 - Semanas sin partidos: se muestra «Sin partidos»
@@ -136,9 +138,9 @@ no se muestra el bloque.
 - Solo los partidos con ambos marcadores enlazan al detalle; los demás no son clicables
 - Los partidos con un equipo del club `BALONCESTO ALCOBENDAS` se resaltan con un borde izquierdo rojo, jugados o pendientes
 
-## Página de competiciones: `/#/competitions`
+## Página principal: competiciones (`/#/`)
 
-- Enlace «Competiciones» en la cabecera del calendario.
+- Es la página por defecto; las rutas desconocidas también la muestran.
 - Navegación con chips por competición, fase+grupo, jornada y partidos. Las fases sin
   grupos se seleccionan directamente; cada competición, fase+grupo y jornada se guarda
   en los parámetros `c`, `ph`, `g` y `r` de la URL.
@@ -178,7 +180,7 @@ no se muestra el bloque.
   Sin canastas en ambos equipos muestra «Evolución del marcador no disponible.»;
   si solo hay datos de uno, muestra los disponibles.
 - «Jugada a jugada» mantiene el mensaje provisional.
-- Enlace de vuelta al calendario en el mes del partido
+- Sin enlace de vuelta; se usa el botón atrás del navegador
 - Estados de carga, partido no encontrado y error de carga
 
 ### Pendiente

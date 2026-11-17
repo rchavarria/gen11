@@ -47,11 +47,11 @@ function renderPage() {
   );
 }
 
-test('returns to the Madrid month when the UTC date is in the previous month', async () => {
+test('shows the game date in Madrid time without a back link', async () => {
   renderPage();
   expect(await screen.findByText('dom 1 nov')).toHaveClass('game-detail__date');
   expect(screen.getByText('00:30')).toBeInTheDocument();
-  expect(screen.getByRole('link', { name: /Calendario/ })).toHaveAttribute('href', '/?m=2026-11');
+  expect(screen.queryByRole('link', { name: /Volver|Calendario/ })).not.toBeInTheDocument();
 });
 
 test('shows the venue link below the scoreboard with a decorative pin', async () => {

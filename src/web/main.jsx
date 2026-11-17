@@ -10,10 +10,10 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <HashRouter>
       <Routes>
-        <Route path="/" element={<CalendarPage />} />
-        <Route path="/competitions" element={<CompetitionsPage />} />
+        <Route path="/" element={<CompetitionsPage />} />
+        <Route path="/calendar" element={<CalendarPage />} />
         <Route path="/game/:slug" element={<GamePage />} />
-        <Route path="*" element={<CalendarPage />} />
+        <Route path="*" element={<CompetitionsPage />} />
       </Routes>
     </HashRouter>
   </StrictMode>,

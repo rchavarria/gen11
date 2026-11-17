@@ -47,22 +47,6 @@ button {
   padding: 0 1rem;
 }
 
-.calendar-header__links {
-  display: flex;
-  justify-content: flex-end;
-  padding-top: 0.6rem;
-}
-
-.calendar-header__links a {
-  color: var(--color-primary);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.calendar-header__links a:hover {
-  text-decoration: underline;
-}
-
 .competitions {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
@@ -313,13 +297,6 @@ a.game-card--highlighted:hover {
   color: var(--color-text-muted);
   font-size: 0.7rem;
   font-weight: 700;
-}
-
-.back-link {
-  display: inline-block;
-  margin: 1rem 0;
-  color: var(--color-primary);
-  text-decoration: none;
 }
 
 .upcoming {

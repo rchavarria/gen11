@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import teams from '../../data/teams.json';
 import venues from '../../data/venues.json';
 import Boxscore from '../components/Boxscore.jsx';
@@ -157,7 +157,6 @@ export default function GamePage() {
   const [state, setState] = useState({ slug: null, status: 'loading', game: null });
   const game = state.slug === slug ? state.game : null;
   const status = state.slug === slug ? state.status : 'loading';
-  const back = game ? `/?m=${gameDay(game.date).slice(0, 7)}` : '/';
 
   useEffect(() => {
     let active = true;
@@ -182,9 +181,6 @@ export default function GamePage() {
 
   return (
     <main className="page">
-      <Link className="back-link" to={back}>
-        ‹ Calendario
-      </Link>
       {status === 'loading' && <p role="status">Cargando…</p>}
       {status === 'not-found' && <p>Partido no encontrado.</p>}
       {status === 'error' && <p role="alert">No se pudo cargar el partido.</p>}

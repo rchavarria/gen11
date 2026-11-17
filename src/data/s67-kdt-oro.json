@@ -835,20 +835,6 @@
                   "downloaded": false
                 },
                 {
-                  "id": "670042006900790065007200320035003500670065005300560036006B0063004300390036006A00540067003D003D00",
-                  "date": "2026-11-22T17:15:00Z",
-                  "venue": "retamar",
-                  "home": {
-                    "slug": "laso",
-                    "score": null
-                  },
-                  "away": {
-                    "slug": "torrelodones",
-                    "score": null
-                  },
-                  "downloaded": false
-                },
-                {
                   "id": "49006500610066006E004600410071004D00660045006F0046002B004200570034007000750069006D0051003D003D00",
                   "date": "2026-11-22T19:30:00Z",
                   "venue": "magariños",
@@ -858,6 +844,20 @@
                   },
                   "away": {
                     "slug": "zentro",
+                    "score": null
+                  },
+                  "downloaded": false
+                },
+                {
+                  "id": "670042006900790065007200320035003500670065005300560036006B0063004300390036006A00540067003D003D00",
+                  "date": "2026-12-01T18:45:00Z",
+                  "venue": "retamar",
+                  "home": {
+                    "slug": "laso",
+                    "score": null
+                  },
+                  "away": {
+                    "slug": "torrelodones",
                     "score": null
                   },
                   "downloaded": false

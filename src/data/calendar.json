@@ -1035,21 +1035,6 @@
     }
   },
   {
-    "slug": "s67-kdt-oro-f1-g2-j08-laso-torrelodones",
-    "date": "2026-11-22T17:15:00Z",
-    "venue": "retamar",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
-    "home": {
-      "club": "laso",
-      "score": null
-    },
-    "away": {
-      "club": "torrelodones",
-      "score": null
-    }
-  },
-  {
     "slug": "s67-jnr-oro-f1-g1-j08-alcobendas-sanjorge",
     "date": "2026-11-22T17:30:00Z",
     "venue": "antela",
@@ -1196,6 +1181,21 @@
     },
     "away": {
       "club": "alcobendas",
+      "score": null
+    }
+  },
+  {
+    "slug": "s67-kdt-oro-f1-g2-j08-laso-torrelodones",
+    "date": "2026-12-01T18:45:00Z",
+    "venue": "retamar",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "laso",
+      "score": null
+    },
+    "away": {
+      "club": "torrelodones",
       "score": null
     }
   },

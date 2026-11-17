@@ -536,6 +536,7 @@
                   "id": "6200450062007A004A00670078007700630074007A007900470049006100330050005A0056005A00740077003D003D00",
                   "date": "2026-09-26T17:30:00Z",
                   "venue": "torrelodones",
+                  "video": "https://youtu.be/ur2_GO1mACE",
                   "home": {
                     "slug": "torrelodones",
                     "score": 88
@@ -597,6 +598,7 @@
                   "id": "6C0055006300460049006B004D006E0049006C0070006400770066007A004B003700770072005000300077003D003D00",
                   "date": "2026-10-04T11:15:00Z",
                   "venue": "antela",
+                  "video": "https://youtu.be/8cKRDBBE7QM",
                   "home": {
                     "slug": "alcobendas",
                     "score": 70
@@ -658,6 +660,7 @@
                   "id": "48006900570049006D006C0039004300770073006F00710049005A00730062003000410048006D00410051003D003D00",
                   "date": "2026-10-18T18:00:00Z",
                   "venue": "antela",
+                  "video": "https://youtu.be/haFSdL1POvY",
                   "home": {
                     "slug": "alcobendas",
                     "score": 68
@@ -691,6 +694,7 @@
                   "id": "710059003300380057006C00730054006600380062004800350063004D006C004A00320063005100590041003D003D00",
                   "date": "2026-10-25T17:15:00Z",
                   "venue": "diaz-miguel",
+                  "video": "https://youtu.be/tfrYbKtiP3Q",
                   "home": {
                     "slug": "zentro",
                     "score": 93
@@ -738,6 +742,7 @@
                   "id": "6F00530055006B00390061006F004600530072003800630066002B004A006400700051006F007500520041003D003D00",
                   "date": "2026-09-29T17:00:00Z",
                   "venue": "caja-magica",
+                  "video": "https://youtu.be/Hi1maY2soJc",
                   "home": {
                     "slug": "estudiantes",
                     "score": 60
@@ -771,6 +776,7 @@
                   "id": "4E007500560054004E005600560074004C00770044006A0071007800590032007A00470065005100320051003D003D00",
                   "date": "2026-11-15T12:30:00Z",
                   "venue": "antela",
+                  "video": "https://youtu.be/GpQR2ytRkkY",
                   "home": {
                     "slug": "alcobendas",
                     "score": 72

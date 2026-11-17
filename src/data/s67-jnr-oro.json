@@ -13,6 +13,7 @@
                   "id": "2B0066007A0045006A005A0050006B006100790032006400390038006B0049007200560053004D00750051003D003D00",
                   "date": "2026-09-20T10:30:00Z",
                   "venue": "sba",
+                  "video": "https://youtu.be/CdS_UBvzzg8",
                   "home": {
                     "slug": "sbajnr",
                     "score": 119
@@ -32,6 +33,7 @@
                   "id": "78004B00300068005500730072002F0057007700750064006F0067006E004D004D00350047003200720041003D003D00",
                   "date": "2026-09-27T18:00:00Z",
                   "venue": "antela",
+                  "video": "https://youtu.be/dzfWDCt6e1o",
                   "home": {
                     "slug": "alcobendas",
                     "score": 90
@@ -70,6 +72,7 @@
                   "id": "6C00730072005300430074007200790066006700680057005A0037003600380030006B004B006D006F0077003D003D00",
                   "date": "2026-10-18T11:00:00Z",
                   "venue": "canoe",
+                  "video": "https://youtu.be/0ilIBtFCwPY",
                   "home": {
                     "slug": "canoe",
                     "score": 94
@@ -89,6 +92,7 @@
                   "id": "2F0046007A006B006A00510035006B0035006900370033005A0070006F0065006F004F00530042004C0041003D003D00",
                   "date": "2026-10-25T12:15:00Z",
                   "venue": "antela",
+                  "video": "https://youtu.be/kH6mw-GcF0E",
                   "home": {
                     "slug": "alcobendas",
                     "score": 60

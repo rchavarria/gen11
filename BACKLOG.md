@@ -2,7 +2,6 @@
 
 ## To Do list
 
-- web: mostrar los datos a partir de la competición, fase, grupo y jornada
 - web: basándome en el diseño de la ligau, hay svgs para iconos de fecha, hora y lugar, incorporarlos al detalle de partido, y la esquina del video incrustado redondeada
 - sync y web: renombrar games a matches
 - sync: build-data, debe calcular las clasificaciones (en los árboles se debe poder poner que se ignore el cálculo)
@@ -14,6 +13,7 @@
 
 ## Done list
 
+- 2026-11-17: web: página de competiciones con navegación competición, fase/grupo, jornada y partidos
 - 2026-11-16: sync y web: teams en lugar de clubs
 - 2026-11-16: sync: renombrar slug del madrid a realmadrid, todo junto, revisar otros slugs con `-` de por medio
 - 2026-11-16: sync: score en home object del árbol de competiciones

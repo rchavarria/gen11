@@ -163,7 +163,10 @@ no se muestra el bloque.
 
 ## Página de detalle: `/#/game/:slug`
 
-- Cabecera con categoría, fecha y hora (`HH:MM`; se omite si es desconocida)
+- Cabecera con categoría; debajo, fecha y hora (`HH:MM`, se omite si es desconocida)
+  con iconos de calendario y reloj, separadas por «•», y el lugar con icono de chincheta.
+  Los iconos son SVG decorativos; el lugar enlaza a `venue.maps` cuando tiene una URL
+  HTTP(S) válida.
 - Logos y nombres de ambos equipos, resueltos desde `teams.json`
 - Marcador total en grande, con la puntuación ganadora en negrita
 - Tabla de parciales: Q1–Q4, OT/OT2… para las prórrogas y columna Total

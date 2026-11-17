@@ -5,6 +5,7 @@ import venues from '../../data/venues.json';
 import Boxscore from '../components/Boxscore.jsx';
 import ClubLogo from '../components/ClubLogo.jsx';
 import GameVideo from '../components/GameVideo.jsx';
+import { CalendarIcon, ClockIcon, MapPinIcon } from '../components/Icons.jsx';
 import ScoreEvolution from '../components/ScoreEvolution.jsx';
 import Tabs from '../components/Tabs.jsx';
 import { formatDay, gameDay, gameTime } from '../lib/dates.js';
@@ -95,12 +96,25 @@ function GameDetail({ game }) {
       </div>
 
       <p className="game-detail__when">
-        <strong className="game-detail__date">{formatDay(gameDay(game.date))}</strong>
-        {time && <span>{time}</span>}
+        <span className="game-detail__meta-item">
+          <CalendarIcon />
+          <strong className="game-detail__date">{formatDay(gameDay(game.date))}</strong>
+        </span>
+        {time && (
+          <>
+            <span className="game-detail__separator" aria-hidden="true">
+              •
+            </span>
+            <span className="game-detail__meta-item">
+              <ClockIcon />
+              <span className="game-detail__time">{time}</span>
+            </span>
+          </>
+        )}
       </p>
       {venue && (
         <p className="game-detail__venue">
-          <span aria-hidden="true">📍</span>{' '}
+          <MapPinIcon />
           {maps ? (
             <a href={maps} target="_blank" rel="noopener noreferrer">
               {venue.name}

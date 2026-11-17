@@ -32,6 +32,7 @@ vi.mock('../../data/games/s56-kdt-oro-f1-g1-j1-realmadrid-alcobendas.json', () =
 }));
 
 beforeEach(() => {
+  game.date = '2026-10-31T23:30:00Z';
   game.venue = '';
   game.home.slug = 'madrid';
   game.away.slug = 'canoe';
@@ -49,12 +50,16 @@ function renderPage() {
 
 test('shows the game date in Madrid time without a back link', async () => {
   renderPage();
-  expect(await screen.findByText('dom 1 nov')).toHaveClass('game-detail__date');
+  const date = await screen.findByText('dom 1 nov');
+  expect(date).toHaveClass('game-detail__date');
   expect(screen.getByText('00:30')).toBeInTheDocument();
   expect(screen.queryByRole('link', { name: /Volver|Calendario/ })).not.toBeInTheDocument();
+  const when = date.closest('.game-detail__when');
+  expect(when.querySelectorAll('svg')).toHaveLength(2);
+  expect(when.querySelector('.game-detail__separator')).toHaveTextContent('•');
 });
 
-test('shows the venue link below the scoreboard with a decorative pin', async () => {
+test('shows the venue link below the scoreboard with a decorative pin icon', async () => {
   game.venue = 'central';
   renderPage();
   const link = await screen.findByRole('link', { name: 'Pabellón Central' });
@@ -62,9 +67,21 @@ test('shows the venue link below the scoreboard with a decorative pin', async ()
   expect(link).toHaveAttribute('target', '_blank');
   expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   const block = link.closest('.game-detail__venue');
-  expect(block.querySelector('[aria-hidden="true"]')).toHaveTextContent('📍');
+  const icon = block.querySelector('svg');
+  expect(icon).toHaveAttribute('aria-hidden', 'true');
+  expect(icon).toHaveAttribute('focusable', 'false');
+  expect(icon).toHaveClass('icon');
   expect(block.previousElementSibling).toHaveClass('game-detail__when');
   expect(block.previousElementSibling.previousElementSibling).toHaveClass('game-detail__scoreboard');
+});
+
+test('omits the clock and separator when the game time is unknown', async () => {
+  game.date = '2026-11-01T00:00:00Z';
+  renderPage();
+  const date = await screen.findByText('dom 1 nov');
+  const when = date.closest('.game-detail__when');
+  expect(when.querySelectorAll('svg')).toHaveLength(1);
+  expect(when.querySelector('.game-detail__separator')).toBeNull();
 });
 
 test('resolves each team name and initials independently in the game detail', async () => {

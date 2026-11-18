@@ -10,6 +10,13 @@
           "id": "f1",
           "name": "Primera fase",
           "type": "league",
+          "standings": {
+            "type": "computed",
+            "winPoints": 2,
+            "lossPoints": 1,
+            "walkoverPoints": 0,
+            "tieBreaker": ["head-to-head", "point-difference", "points-for"]
+          },
           "groups": [
             {
               "id": "g1",
@@ -35,6 +42,13 @@
           "id": "f1",
           "name": "Primera fase",
           "type": "league",
+          "standings": {
+            "type": "computed",
+            "winPoints": 2,
+            "lossPoints": 1,
+            "walkoverPoints": 0,
+            "tieBreaker": ["head-to-head", "point-difference", "points-for"]
+          },
           "groups": [
             {
               "id": "g1",
@@ -55,6 +69,9 @@
           "id": "f1",
           "name": "Primera fase",
           "type": "league",
+          "standings": {
+            "type": "manual"
+          },
           "groups": [
             {
               "id": "g1",
@@ -67,12 +84,18 @@
           "id": "f3",
           "name": "Tercera fase",
           "type": "league",
+          "standings": {
+            "type": "manual"
+          },
           "teams": ["torrelodones", "alcobendas", "fuenlabrada", "distritokdtantiguo"]
         },
         {
           "id": "playoffs",
           "name": "Playoffs",
           "type": "knockout",
+          "standings": {
+            "type": "manual"
+          },
           "teams": ["zentro", "alcobendas"]
         }
       ]

@@ -127,6 +127,30 @@ button {
   border-color: var(--color-primary);
 }
 
+.competitions__round-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.25rem;
+  border: 0;
+  background: transparent;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.competitions__round-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.competitions__round-button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 .competitions__chip--active {
   border-color: var(--color-primary);
   background: var(--color-primary);

@@ -78,7 +78,13 @@ export default function CompetitionsPage() {
         : [],
     [treeState, treeKey, phaseOption],
   );
-  const selectedRound = rounds.find((round) => round.id === params.get('r'));
+  const requestedRound = params.get('r');
+  const selectedRound = rounds.find(
+    (round) =>
+      round.id.toLowerCase() === requestedRound?.toLowerCase() ||
+      roundLabel(round.id, true).toLowerCase() === requestedRound?.toLowerCase(),
+  );
+  const selectedRoundIndex = selectedRound ? rounds.indexOf(selectedRound) : 0;
   const loading = treeKey && (treeState?.key !== treeKey || treeState.loading);
   const error = treeState?.key === treeKey ? treeState.error : null;
 
@@ -100,17 +106,16 @@ export default function CompetitionsPage() {
     });
   }
 
-  function chooseRound(option) {
-    if (selectedRound?.id === option.id) {
-      scrollToRound(option.id);
-      return;
-    }
+  function navigateToRound(index) {
+    const round = rounds[index];
+    if (!round || !competition || !phaseOption) return;
     setParams({
       c: competition.id,
       ph: phaseOption.phaseId,
       ...(phaseOption.groupId ? { g: phaseOption.groupId } : {}),
-      r: option.id,
+      r: roundLabel(round.id, true).toLowerCase(),
     });
+    if (selectedRound?.id === round.id) scrollToRound(round.id);
   }
 
   const phaseGroupId = phaseOption?.id ?? null;
@@ -146,12 +151,48 @@ export default function CompetitionsPage() {
             {error && <p role="alert">No se pudo cargar la competición: {error.message}</p>}
             {!loading && !error && rounds.length === 0 && <p>No hay jornadas disponibles.</p>}
             {!loading && !error && rounds.length > 0 && (
-              <Chips
-                label="Jornadas"
-                options={rounds.map((round) => ({ id: round.id, label: roundLabel(round.id, true) }))}
-                selectedId={selectedRound?.id}
-                onSelect={chooseRound}
-              />
+              <nav className="competitions__chips" aria-label="Navegación por jornadas">
+                <button
+                  type="button"
+                  className="competitions__round-button"
+                  onClick={() => navigateToRound(0)}
+                  disabled={selectedRoundIndex === 0}
+                  title="Ir a la primera jornada"
+                  aria-label="Inicio"
+                >
+                  <span aria-hidden="true">⏮️</span>
+                </button>
+                <button
+                  type="button"
+                  className="competitions__round-button"
+                  onClick={() => navigateToRound(selectedRoundIndex - 1)}
+                  disabled={selectedRoundIndex === 0}
+                  title="Ir a la jornada anterior"
+                  aria-label="Atrás 1"
+                >
+                  <span aria-hidden="true">◀️</span>
+                </button>
+                <button
+                  type="button"
+                  className="competitions__round-button"
+                  onClick={() => navigateToRound(selectedRoundIndex + 1)}
+                  disabled={selectedRoundIndex >= rounds.length - 1}
+                  title="Ir a la jornada siguiente"
+                  aria-label="Adelante 1"
+                >
+                  <span aria-hidden="true">▶️</span>
+                </button>
+                <button
+                  type="button"
+                  className="competitions__round-button"
+                  onClick={() => navigateToRound(rounds.length - 1)}
+                  disabled={selectedRoundIndex >= rounds.length - 1}
+                  title="Ir a la última jornada"
+                  aria-label="Final"
+                >
+                  <span aria-hidden="true">⏭️</span>
+                </button>
+              </nav>
             )}
           </section>
         )}

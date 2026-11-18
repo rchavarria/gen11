@@ -263,6 +263,70 @@
               ]
             }
           ]
+        },
+        {
+          "id": "playoffs",
+              "standings": [
+                {
+                  "team": "zentro",
+                  "gamesPlayed": 2,
+                  "wins": 2,
+                  "losses": 0,
+                  "pointsFor": 206,
+                  "pointsAgainst": 114,
+                  "points": 4
+                },
+                {
+                  "team": "alcobendas",
+                  "gamesPlayed": 2,
+                  "wins": 0,
+                  "losses": 2,
+                  "pointsFor": 114,
+                  "pointsAgainst": 206,
+                  "points": 2
+                }
+              ]
+            },
+            {
+              "id": "f3",
+          "standings": [
+            {
+              "team": "fuenlabrada",
+              "gamesPlayed": 5,
+              "wins": 4,
+              "losses": 1,
+              "pointsFor": 415,
+              "pointsAgainst": 341,
+              "points": 9
+            },
+            {
+              "team": "torrelodones",
+              "gamesPlayed": 4,
+              "wins": 3,
+              "losses": 1,
+              "pointsFor": 311,
+              "pointsAgainst": 252,
+              "points": 7
+            },
+            {
+              "team": "alcobendas",
+              "gamesPlayed": 5,
+              "wins": 1,
+              "losses": 4,
+              "pointsFor": 367,
+              "pointsAgainst": 441,
+              "points": 6
+            },
+            {
+              "team": "distritokdtantiguo",
+              "gamesPlayed": 4,
+              "wins": 1,
+              "losses": 3,
+              "pointsFor": 292,
+              "pointsAgainst": 351,
+              "points": 5
+            }
+          ]
         }
       ]
     }

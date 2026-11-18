@@ -81,15 +81,6 @@
           ]
         },
         {
-          "id": "f3",
-          "name": "Tercera fase",
-          "type": "league",
-          "standings": {
-            "type": "manual"
-          },
-          "teams": ["torrelodones", "alcobendas", "fuenlabrada", "distritokdtantiguo"]
-        },
-        {
           "id": "playoffs",
           "name": "Playoffs",
           "type": "knockout",
@@ -97,6 +88,15 @@
             "type": "manual"
           },
           "teams": ["zentro", "alcobendas"]
+        },
+        {
+          "id": "f3",
+          "name": "Tercera fase",
+          "type": "league",
+          "standings": {
+            "type": "manual"
+          },
+          "teams": ["torrelodones", "alcobendas", "fuenlabrada", "distritokdtantiguo"]
         }
       ]
     }

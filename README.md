@@ -19,6 +19,8 @@ GitHub Pages runs lint and tests before building. Run `npm run lint` (or
 
 ## Refresh game data
 
+See the [sync flow diagram](docs/sync-flow.md) for the automated steps and manual handoff.
+
 Copy `config.example.json` to `config.json` at the project root (git-ignored).
 Set `baseUrl`, `deviceId` and `key`; the API client saves rotated keys.
 Optional `outputDir` controls where downloads and reports go (default: project root).

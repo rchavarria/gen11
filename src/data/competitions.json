@@ -43,11 +43,7 @@
           "name": "Primera fase",
           "type": "league",
           "standings": {
-            "type": "computed",
-            "winPoints": 2,
-            "lossPoints": 1,
-            "walkoverPoints": 0,
-            "tieBreaker": ["head-to-head", "point-difference", "points-for"]
+            "type": "manual"
           },
           "groups": [
             {

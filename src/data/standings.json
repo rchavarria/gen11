@@ -11,57 +11,57 @@
               "standings": [
                 {
                   "team": "realmadrid",
-                  "gamesPlayed": 5,
-                  "wins": 5,
+                  "gamesPlayed": 7,
+                  "wins": 7,
                   "losses": 0,
-                  "pointsFor": 420,
-                  "pointsAgainst": 310,
-                  "points": 10
-                },
-                {
-                  "team": "sba",
-                  "gamesPlayed": 5,
-                  "wins": 4,
-                  "losses": 1,
-                  "pointsFor": 390,
-                  "pointsAgainst": 330,
-                  "points": 9
+                  "pointsFor": 672,
+                  "pointsAgainst": 465,
+                  "points": 14
                 },
                 {
                   "team": "distrito",
-                  "gamesPlayed": 5,
+                  "gamesPlayed": 7,
+                  "wins": 6,
+                  "losses": 1,
+                  "pointsFor": 730,
+                  "pointsAgainst": 438,
+                  "points": 13
+                },
+                {
+                  "team": "sba",
+                  "gamesPlayed": 7,
                   "wins": 3,
-                  "losses": 2,
-                  "pointsFor": 365,
-                  "pointsAgainst": 355,
-                  "points": 8
+                  "losses": 4,
+                  "pointsFor": 567,
+                  "pointsAgainst": 696,
+                  "points": 10
                 },
                 {
                   "team": "fuenlabrada",
-                  "gamesPlayed": 5,
+                  "gamesPlayed": 7,
                   "wins": 2,
-                  "losses": 3,
-                  "pointsFor": 350,
-                  "pointsAgainst": 365,
-                  "points": 7
+                  "losses": 5,
+                  "pointsFor": 595,
+                  "pointsAgainst": 649,
+                  "points": 9
                 },
                 {
                   "team": "canoe",
-                  "gamesPlayed": 5,
-                  "wins": 1,
+                  "gamesPlayed": 6,
+                  "wins": 2,
                   "losses": 4,
-                  "pointsFor": 330,
-                  "pointsAgainst": 385,
-                  "points": 6
+                  "pointsFor": 402,
+                  "pointsAgainst": 490,
+                  "points": 8
                 },
                 {
                   "team": "sanjorge",
-                  "gamesPlayed": 5,
+                  "gamesPlayed": 6,
                   "wins": 0,
-                  "losses": 5,
-                  "pointsFor": 310,
-                  "pointsAgainst": 420,
-                  "points": 5
+                  "losses": 6,
+                  "pointsFor": 377,
+                  "pointsAgainst": 605,
+                  "points": 6
                 }
               ]
             },
@@ -69,58 +69,58 @@
               "id": "g2",
               "standings": [
                 {
-                  "team": "alcobendas",
-                  "gamesPlayed": 5,
-                  "wins": 5,
+                  "team": "laso",
+                  "gamesPlayed": 7,
+                  "wins": 7,
                   "losses": 0,
-                  "pointsFor": 420,
-                  "pointsAgainst": 310,
-                  "points": 10
+                  "pointsFor": 669,
+                  "pointsAgainst": 527,
+                  "points": 14
+                },
+                {
+                  "team": "zentro",
+                  "gamesPlayed": 7,
+                  "wins": 5,
+                  "losses": 2,
+                  "pointsFor": 607,
+                  "pointsAgainst": 460,
+                  "points": 12
                 },
                 {
                   "team": "estudiantes",
-                  "gamesPlayed": 5,
-                  "wins": 4,
-                  "losses": 1,
-                  "pointsFor": 390,
-                  "pointsAgainst": 330,
+                  "gamesPlayed": 7,
+                  "wins": 5,
+                  "losses": 2,
+                  "pointsFor": 561,
+                  "pointsAgainst": 523,
+                  "points": 12
+                },
+                {
+                  "team": "torrelodones",
+                  "gamesPlayed": 7,
+                  "wins": 2,
+                  "losses": 5,
+                  "pointsFor": 503,
+                  "pointsAgainst": 580,
                   "points": 9
                 },
                 {
                   "team": "alcorcon",
-                  "gamesPlayed": 5,
-                  "wins": 3,
-                  "losses": 2,
-                  "pointsFor": 365,
-                  "pointsAgainst": 355,
+                  "gamesPlayed": 7,
+                  "wins": 1,
+                  "losses": 6,
+                  "pointsFor": 467,
+                  "pointsAgainst": 637,
                   "points": 8
                 },
                 {
-                  "team": "laso",
-                  "gamesPlayed": 5,
-                  "wins": 2,
-                  "losses": 3,
-                  "pointsFor": 350,
-                  "pointsAgainst": 365,
-                  "points": 7
-                },
-                {
-                  "team": "zentro",
-                  "gamesPlayed": 5,
+                  "team": "alcobendas",
+                  "gamesPlayed": 7,
                   "wins": 1,
-                  "losses": 4,
-                  "pointsFor": 330,
-                  "pointsAgainst": 385,
-                  "points": 6
-                },
-                {
-                  "team": "torrelodones",
-                  "gamesPlayed": 5,
-                  "wins": 0,
-                  "losses": 5,
-                  "pointsFor": 310,
-                  "pointsAgainst": 420,
-                  "points": 5
+                  "losses": 6,
+                  "pointsFor": 467,
+                  "pointsAgainst": 547,
+                  "points": 8
                 }
               ]
             }

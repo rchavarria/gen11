@@ -136,7 +136,7 @@ test('shows group standings before the rounds and scrolls to them using the midd
     within(rows[1])
       .getAllByRole('cell')
       .map((cell) => cell.textContent),
-  ).toEqual(['5', '5', '0', '420', '310', '10']);
+  ).toEqual(['7', '7', '0', '672', '465', '14']);
   const navigation = screen.getByRole('navigation', { name: 'Navegación por jornadas' });
   expect(
     within(navigation)
@@ -155,7 +155,7 @@ test('shows group standings before the rounds and scrolls to them using the midd
 
   fireEvent.click(screen.getByRole('button', { name: 'Primera fase · Grupo 2' }));
   const groupTable = await screen.findByRole('table', { name: 'Primera fase · Grupo 2' });
-  expect(within(groupTable).getAllByRole('row')[1]).toHaveTextContent('FUNDAL ALCOBENDAS');
+  expect(within(groupTable).getByRole('rowheader', { name: /FUNDAL ALCOBENDAS/ })).toBeInTheDocument();
   expect(within(groupTable).queryByRole('rowheader', { name: 'REAL MADRID' })).not.toBeInTheDocument();
 });
 

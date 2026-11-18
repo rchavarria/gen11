@@ -151,6 +151,10 @@ button {
   outline-offset: 2px;
 }
 
+.competitions__round-nav {
+  align-items: center;
+}
+
 .competitions__chip--active {
   border-color: var(--color-primary);
   background: var(--color-primary);
@@ -636,6 +640,11 @@ a.game-card--highlighted:hover {
   align-items: center;
   gap: 0.5rem;
   min-width: 8rem;
+}
+
+.competitions__standings tbody th {
+  text-align: left;
+  min-width: 12rem;
 }
 
 .game-video {

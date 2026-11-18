@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import competitionsData from '../../data/competitions.json';
+import standingsData from '../../data/standings.json';
+import teams from '../../data/teams.json';
 import GameCard from '../components/GameCard.jsx';
 import { findRounds, phaseGroupOptions, roundLabel, sortRounds, toCardGame } from '../lib/competitions.js';
 
 const competitions = competitionsData.competitions;
 const competitionFiles = import.meta.glob('../../data/s*-*-*.json', { import: 'default' });
+const teamsBySlug = new Map(teams.map((team) => [team.slug, team]));
 
 function Chips({ label, options, selectedId, onSelect }) {
   return (
@@ -87,6 +90,12 @@ export default function CompetitionsPage() {
   const selectedRoundIndex = selectedRound ? rounds.indexOf(selectedRound) : 0;
   const loading = treeKey && (treeState?.key !== treeKey || treeState.loading);
   const error = treeState?.key === treeKey ? treeState.error : null;
+  const standingsPhase = standingsData.competitions
+    .find((item) => item.id === competition?.id)
+    ?.phases.find((phase) => phase.id === phaseOption?.phaseId);
+  const standings = phaseOption?.groupId
+    ? standingsPhase?.groups?.find((group) => group.id === phaseOption.groupId)?.standings
+    : standingsPhase?.standings;
 
   useEffect(() => {
     if (selectedRound) {
@@ -151,12 +160,11 @@ export default function CompetitionsPage() {
             {error && <p role="alert">No se pudo cargar la competición: {error.message}</p>}
             {!loading && !error && rounds.length === 0 && <p>No hay jornadas disponibles.</p>}
             {!loading && !error && rounds.length > 0 && (
-              <nav className="competitions__chips" aria-label="Navegación por jornadas">
+              <nav className="competitions__chips competitions__round-nav" aria-label="Navegación por jornadas">
                 <button
                   type="button"
                   className="competitions__round-button"
                   onClick={() => navigateToRound(0)}
-                  disabled={selectedRoundIndex === 0}
                   title="Ir a la primera jornada"
                   aria-label="Inicio"
                 >
@@ -171,6 +179,13 @@ export default function CompetitionsPage() {
                   aria-label="Atrás 1"
                 >
                   <span aria-hidden="true">◀️</span>
+                </button>
+                <button
+                  type="button"
+                  className="competitions__chip"
+                  onClick={() => gamesRef.current?.scrollTo({ top: 0, behavior: 'smooth' })}
+                >
+                  Clasificación
                 </button>
                 <button
                   type="button"
@@ -199,6 +214,57 @@ export default function CompetitionsPage() {
       </div>
 
       <div className="competitions__games" ref={gamesRef} key={treeKey}>
+        {phaseOption && (
+          <section className="competitions__section" aria-labelledby="standings-title">
+            <h2 id="standings-title">Clasificación</h2>
+            {standings?.length ? (
+              // biome-ignore lint/a11y/noNoninteractiveTabindex: Keyboard users need to scroll the table horizontally.
+              <section className="game-detail__table-scroll" aria-label="Tabla de clasificación" tabIndex={0}>
+                <table className="quarter-scores competitions__standings">
+                  <caption>{phaseOption.label}</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Equipo</th>
+                      <th scope="col" title="Partidos jugados">
+                        PJ
+                      </th>
+                      <th scope="col" title="Partidos ganados">
+                        PG
+                      </th>
+                      <th scope="col" title="Partidos perdidos">
+                        PP
+                      </th>
+                      <th scope="col" title="Puntos a favor">
+                        PF
+                      </th>
+                      <th scope="col" title="Puntos en contra">
+                        PC
+                      </th>
+                      <th scope="col" title="Puntos de clasificación">
+                        Pts
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {standings.map((entry) => (
+                      <tr key={entry.team}>
+                        <th scope="row">{teamsBySlug.get(entry.team)?.name ?? entry.team}</th>
+                        <td>{entry.gamesPlayed}</td>
+                        <td>{entry.wins}</td>
+                        <td>{entry.losses}</td>
+                        <td>{entry.pointsFor}</td>
+                        <td>{entry.pointsAgainst}</td>
+                        <td>{entry.points}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </section>
+            ) : (
+              <p>Clasificación no disponible.</p>
+            )}
+          </section>
+        )}
         {rounds.map((round) => (
           <section
             key={round.id}

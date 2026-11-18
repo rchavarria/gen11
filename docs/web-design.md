@@ -18,8 +18,13 @@ en `HOME` (`src/web/main.jsx`). La URL conserva competición (`c`), fase (`ph`),
 grupo opcional (`g`) y jornada (`r`): `/#/competitions?c=s67-kdt-oro&ph=f1&g=g2&r=j08`.
 
 Al elegir fase o grupo se ven todas sus jornadas, ordenadas por identificador,
-y los partidos de cada una por fecha y hora. Pulsar «J08» desplaza la lista
-hasta esa jornada **sin filtrar** las demás. Los filtros siguen visibles y tienen
+y los partidos de cada una por fecha y hora. Los botones ⏮️, ◀️, ▶️ y ⏭️ navegan
+entre jornadas, actualizan `r` y desplazan la lista **sin filtrar** las demás.
+El chip «Clasificación», entre las flechas, desplaza la lista hasta la tabla
+anterior a la primera jornada sin cambiar la URL. La tabla muestra los datos
+de `src/data/standings.json` correspondientes a la fase y grupo seleccionados;
+si faltan, se indica que la clasificación no está disponible.
+Los filtros siguen visibles y tienen
 desplazamiento propio si ocupan más de media pantalla.
 
 ## Calendario · `/#/calendar`

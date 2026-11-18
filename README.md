@@ -1,151 +1,64 @@
 # 2011 generation
 
-Gather basket players data born on 2011
+Follow basketball games for the 2011 generation: schedules, results and player
+statistics. The [web design guide](docs/web-design.md) covers navigation and privacy.
 
-## Configuration
+## Run the site
 
-Scripts read their configuration from `config.json` at the project root
-(ignored by git). Copy the example and fill in your values:
-
-```bash
-cp config.example.json config.json
-```
-
-| Key         | Required | Description                                                                               |
-| ----------- | -------- | ----------------------------------------------------------------------------------------- |
-| `baseUrl`   | yes      | Base URL of the API                                                                       |
-| `deviceId`  | yes      | Registered device id, sent as `id_dispositivo`                                            |
-| `key`       | yes      | Key sent as `key` (`api-client.js` rotates the key whenever a response returns a new one) |
-| `outputDir` | no       | Root download directory, relative to the project root (default `.`)                       |
-
-Each script writes into its own subfolder of `outputDir`:
-
-| Script              | Output                                                                        |
-| ------------------- | ----------------------------------------------------------------------------- |
-| `previous-games.js` | `<outputDir>/games/`                                                          |
-| `download-games.js` | `src/data/<competition>.json`, `games-stats/`, `games-scores/`                |
-| `next-games.js`     | `<outputDir>/next-games/<YYYY-MM-DD>.json`, `src/data/<competition>.json`     |
-| `build-data.js`     | `src/data/calendar.json`, `src/data/games/<slug>.json` (data for the web)     |
-| `sync.js`           | `<outputDir>/sync-reports/<YYYY-MM-DD>.md` (plus everything above, see below) |
-
-## Usage
-
-```bash
-node src/previous-games.js <startPage> <totalPages>
-node src/download-games.js
-node src/next-games.js
-node src/renew-key.js
-node src/build-data.js
-npm run sync   # same as: node src/sync.js
-```
-
-## Competitions
-
-Games are organised as seasons › competitions › phases › groups › rounds › games:
-
-- `src/data/competitions.json` (by hand): each competition's `id` (e.g. `s67-kdt-oro`),
-  `season`, source `category`, and its `phases` (`league`/`knockout`), with optional
-  `groups` and their `teams` (team slugs).
-- `src/data/<competition>.json` (maintained by `sync`): the game tree
-  `phases[].groups[].rounds[].games[]` (or `phases[].rounds[]` for phases without groups),
-  plus a `pending-games` array.
-- Games are identified by the source `IdPartido` (`id`). New games are added to
-  `pending-games` of the current-season competition (`CURRENT_SEASON` in
-  `src/core/competitions.js`) for their category; games whose category has no
-  competition are discarded and reported. Placing a pending game in its round is
-  a manual step: move it in the JSON and run `sync` (or `build-data`) again.
-- Each game's `home` and `away` contains the team `slug` and a `score`, initially
-  `null` and filled from the downloaded score file. For a new pending game, an
-  unknown team retains its source team `name` until it can be resolved in `teams.json`.
-  Web scores continue to come directly from the downloaded files.
-- The game slug is not stored: it is computed as
-  `<competition>-<phase>[-<group>]-<round>-<home>-<away>`, using team slugs from `teams.json`.
-  Changing a team slug also changes game URLs; update tree and competition references
-  and regenerate the calendar and details, removing only the replaced detail files.
-
-`sync.js` runs the whole pipeline: fetch upcoming games and add the new ones
-to the competition trees; if that request fails with an API error,
-it renews the key and retries once. It also updates dates and times of known
-games, downloads stats/scores, rebuilds `calendar.json` and per-game files,
-including each game's score evolution, and writes a report listing discarded
-games and games pending placement.
-
-Game `date` fields use UTC ISO 8601 (`YYYY-MM-DDTHH:mm:ssZ`), converted from
-Europe/Madrid. The UI displays Madrid dates and times. `T00:00:00Z` represents an
-unknown time on that calendar day; a real time converting to midnight UTC is
-indistinguishable from that marker. Missing or invalid source dates for new games
-are reported and skipped. Ambiguous Madrid times during the autumn clock change
-use the earlier occurrence; nonexistent times during the spring change are rejected.
-Downloads are skipped until more than three hours after the stored UTC `date`.
-For unknown times, this rule uses the stored `00:00:00Z` marker.
-
-`build-data.js` reads game metadata from the competition trees (placed games only;
-`pending-games` are ignored) and scores from `games-scores/<id>.json`.
-Without a score file, games are shown as not played.
-For games with both numeric scores, it also rewrites `src/data/games/<slug>.json`.
-These files preserve the tree game fields, including `id`, plus the competition `category`, but omit
-`downloaded` and `scored`. They replace the tree's `home` and `away` with objects containing the team `slug`, `score`, and numeric
-`quarterScores` ordered by period (including overtime). Team slugs are validated
-against `teams.json`; source team names resolve through `name` (trimmed and uppercased).
-Upcoming games use `NombreEquipoLocal` and `NombreEquipoVisitante`, never club names.
-Unknown teams cause an error when building placed games.
-The calendar retains its `home/away.club` field, now containing a team slug.
-If `games-stats/<id>.json` exists, `home` and `away` also get `players`: one entry per player
-(the source's `TOTALES` row is excluded) with `jersey`, `msPlayed`, `starter`, `freeThrows`, `twoPointers`,
-`threePointers` (`made`/`attempted`), `rebounds` (`defensive`/`offensive`), `assists`, `turnovers`, `steals`,
-`blocks` (`made`/`received`), `fouls` (`committed`/`received`), `plusMinus` and `efficiency`.
-Each side also gets `timelyScores`: `{time, score, jersey}` entries extracted from
-`games-scores/` actions, with elapsed game time in milliseconds, accumulated team score
-and the scorer's jersey. Entries start at `{time: 0, score: 0, jersey: null}` and are
-ordered by time, then total score for ties. Regular periods last 10 minutes and overtime
-periods 5 minutes. Missing or invalid action data produces empty arrays for both teams
-and a warning identifying the game. A valid empty history retains only the initial points.
-
-## Web
-
-Static React + Vite site in `src/web/`, published to GitHub Pages on every push
-to `main` (`.github/workflows/pages.yml`). See [web design](docs/web-design.md).
+The site uses the data committed in `src/data/`; no API credentials are needed
+to run it locally.
 
 ```bash
 npm install
-npm run build-data   # downloads/ -> src/data/calendar.json + games/*.json (commit them)
-npm run dev          # local server
-npm run build        # dist/
+npm run dev
 ```
 
-- Teams (manually maintained): `src/data/teams.json`, with `slug`, `initials`, `name`,
-  `club` and `logo`. Slugs and normalized team names must be unique; `club` is metadata,
-  not a lookup key. The web displays the team name.
-- Logos: `src/web/public/logos/`, using the `logo` filename (independent of team slug).
+`npm run build` creates the static site in `dist/`. On pushes to `main`,
+GitHub Pages runs lint and tests before building. Run `npm run lint` (or
+`npm run lint:fix`) and `npm run test` locally; tests use fixtures, not the API.
 
-## Lint and tests
+## Refresh game data
+
+Copy `config.example.json` to `config.json` at the project root (git-ignored).
+Set `baseUrl`, `deviceId` and `key`; the API client saves rotated keys.
+Optional `outputDir` controls where downloads and reports go (default: project root).
+
+1. Run `npm run sync` to fetch upcoming games, update schedules, download scores
+   and stats, and rebuild the web data. If the upcoming-games request returns an API
+   error, sync renews the key and retries once.
+2. Read `<outputDir>/sync-reports/<YYYY-MM-DD>.md`. New games go into `pending-games`
+   for their category in `CURRENT_SEASON` (`src/core/competitions.js`). Games with
+   no matching competition or an invalid date are reported and skipped.
+3. Move pending games into their rounds in `src/data/<competition>.json`. Resolve
+   unknown teams and correct venues there, not in the generated calendar. Run
+   `npm run build-data` to rebuild without fetching, then commit the updated `src/data/`.
+
+To run individual API steps:
 
 ```bash
-npm run lint       # check lint rules, formatting and import order
-npm run lint:fix   # apply formatting and safe fixes
-npm run test
+node src/previous-games.js <startPage> <totalPages>
+node src/next-games.js
+node src/download-games.js
+node src/renew-key.js
 ```
 
-Runs all unit tests with Vitest, including React component tests with Testing
-Library and jsdom. Tests use local fixtures and do not call the API.
+## Data sources and outputs
 
-Biome handles linting and formatting; generated data in `src/data/` is excluded.
-GitHub Pages checks lint and tests before building.
+| Under `src/data/` | Purpose |
+| --- | --- |
+| `competitions.json` | Season, source category, phases and optional groups with their team slugs. Maintained by hand. |
+| `<competition>.json` | Games by phase, optional group and round, plus `pending-games`. The source `IdPartido` is the game `id`. |
+| `teams.json` | Unique `slug` and `name`, plus `initials`, `club` and `logo` (filename in `src/web/public/logos/`). Source team names match `name` after trimming and uppercasing; `club` is not a lookup key. |
+| `venues.json` | Venue `slug`, `name`, `address` and optional `maps` link. `CampoJuego` must match `name` exactly; an unmatched venue does not overwrite an existing one. |
+| `calendar.json` | Generated from placed games and `games-scores/<id>.json` under `outputDir`. Without a score file the game is unplayed. `home.club` and `away.club` contain team slugs. |
+| `games/<slug>.json` | Generated when both scores are numeric. Includes period scores, score history (`timelyScores`) and, when `games-stats/<id>.json` exists, player stats by jersey. |
 
-## Shared modules
+Game URLs use `<competition>-<phase>[-<group>]-<round>-<home>-<away>`. When
+renaming a team slug, update its references in competitions and game trees,
+regenerate the web data and remove only the replaced detail files.
 
-| Module                      | Contents                                                                                             |
-| --------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `src/core/config.js`        | `loadConfig()`, `updateConfigKey()`: read/validate/update `config.json`                              |
-| `src/core/wait.js`          | `sleep`, `randomDelay`, `waitBeforeNextRequest`, `shortWait()` (100–200 s), `longWait()` (10–15 min) |
-| `src/core/format.js`        | `formatDuration`, `timestamp`                                                                        |
-| `src/core/validate.js`      | `isEmptyValue`, `isPlainObject`, `fileExists`                                                        |
-| `src/core/games.js`         | `isValidGame`                                                                                        |
-| `src/core/competitions.js`  | Competitions and game trees: read/write, `listGames`, `computeSlug`, `loadTeams`, `teamSlug`         |
-| `src/core/files.js`         | `writeJson`, `buildFileName`, `saveStats`, `saveScore`                                               |
-| `src/core/api-client.js`    | `ApiClient` (API calls, validation, key rotation), `ApiError`, `isNoDataError`                       |
-| `src/core/download.js`      | `processGames` (stats + scores download), `downloadGame`, `isAfterGameSchedule`                      |
-| `src/core/timely-scores.js` | `getScoringActions`, `getTimelyScores`                                                               |
-| `src/core/next-games.js`    | `fetchNextGames`, `mergeNextGames`                                                                   |
-| `src/core/dates.js`         | Madrid/UTC conversion and date helpers                                                               |
-| `src/core/report.js`        | `buildReport`, `writeReport` (sync report)                                                           |
+Schedules use Madrid local time at the source and UTC ISO 8601 in the tree.
+`T00:00:00Z` marks an unknown time on the given day (indistinguishable from
+actual midnight UTC). On clock changes, ambiguous times use the earlier
+occurrence; nonexistent times are rejected. Downloads start only when more
+than three hours have passed since the stored timestamp, including the marker.

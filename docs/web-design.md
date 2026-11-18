@@ -50,11 +50,11 @@ Si hay vídeo, aparece entre los parciales y las pestañas. Los vídeos de YouTu
 usan `youtube-nocookie.com`, sin reproducción automática y respetando el tiempo
 de inicio. Otras URL HTTP(S) se muestran como enlace.
 
-| Pestaña | Contenido |
-| --- | --- |
-| Estadísticas de cada equipo | Una tabla por equipo, ordenada por dorsal, con minutos, puntos, valoración y +/−; la fila final suma puntos y valoración. Si faltan estadísticas, se indica. |
-| Evolución del marcador | Gráfica de puntos acumulados por minuto, incluidas las prórrogas: local en rojo, visitante en azul. Al consultar una canasta se ven tiempo, equipo, tanteo y dorsal. Si solo hay datos de un equipo, se muestran los disponibles. |
-| Jugada a jugada | Pendiente; la pestaña muestra un aviso. |
+| Pestaña                     | Contenido                                                                                                                                                                                                                         |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Estadísticas de cada equipo | Una tabla por equipo, ordenada por dorsal, con minutos, puntos, valoración y +/−; la fila final suma puntos y valoración. Si faltan estadísticas, se indica.                                                                      |
+| Evolución del marcador      | Gráfica de puntos acumulados por minuto, incluidas las prórrogas: local en rojo, visitante en azul. Al consultar una canasta se ven tiempo, equipo, tanteo y dorsal. Si solo hay datos de un equipo, se muestran los disponibles. |
+| Jugada a jugada             | Pendiente; la pestaña muestra un aviso.                                                                                                                                                                                           |
 
 Las pestañas no cambian la URL. Para volver a la lista se usa «Atrás» del navegador.
 También quedan pendientes el filtro por categoría y más columnas de estadísticas.

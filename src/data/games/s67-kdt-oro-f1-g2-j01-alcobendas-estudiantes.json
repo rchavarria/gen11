@@ -1102,5 +1102,4895 @@
         "jersey": "1"
       }
     ]
-  }
+  },
+  "playByPlay": [
+    {
+      "id": 657,
+      "quarter": 4,
+      "clock": "00:00:00.0",
+      "type": "game-end",
+      "team": null,
+      "jersey": "-1"
+    },
+    {
+      "id": 656,
+      "quarter": 4,
+      "clock": "00:00:00.0",
+      "type": "period-end",
+      "team": null,
+      "jersey": "-1"
+    },
+    {
+      "id": 645,
+      "quarter": 4,
+      "clock": "00:00:37.0",
+      "type": "two-point-made",
+      "team": "away",
+      "jersey": "1",
+      "homeScore": 71,
+      "awayScore": 78
+    },
+    {
+      "id": 644,
+      "quarter": 4,
+      "clock": "00:00:37.0",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 643,
+      "quarter": 4,
+      "clock": "00:00:37.0",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 642,
+      "quarter": 4,
+      "clock": "00:00:37.0",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 640,
+      "quarter": 4,
+      "clock": "00:00:37.0",
+      "type": "free-throw-missed",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 639,
+      "quarter": 4,
+      "clock": "00:00:37.0",
+      "type": "free-throw-missed",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 638,
+      "quarter": 4,
+      "clock": "00:00:37.0",
+      "type": "two-free-throws-awarded",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 637,
+      "quarter": 4,
+      "clock": "00:00:37.0",
+      "type": "foul-received",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 636,
+      "quarter": 4,
+      "clock": "00:00:37.0",
+      "type": "foul-committed",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 635,
+      "quarter": 4,
+      "clock": "00:00:38.3",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 634,
+      "quarter": 4,
+      "clock": "00:00:38.3",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 633,
+      "quarter": 4,
+      "clock": "00:00:38.3",
+      "type": "foul-received",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 632,
+      "quarter": 4,
+      "clock": "00:00:38.3",
+      "type": "foul-committed",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 631,
+      "quarter": 4,
+      "clock": "00:00:40.2",
+      "type": "timeout",
+      "team": "home",
+      "jersey": "ENTRENADOR/A"
+    },
+    {
+      "id": 630,
+      "quarter": 4,
+      "clock": "00:00:42.3",
+      "type": "assist",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 629,
+      "quarter": 4,
+      "clock": "00:00:42.3",
+      "type": "three-point-made",
+      "team": "away",
+      "jersey": "21",
+      "homeScore": 71,
+      "awayScore": 76
+    },
+    {
+      "id": 628,
+      "quarter": 4,
+      "clock": "00:00:54.2",
+      "type": "offensive-rebound",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 627,
+      "quarter": 4,
+      "clock": "00:00:54.2",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 626,
+      "quarter": 4,
+      "clock": "00:01:18.9",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 625,
+      "quarter": 4,
+      "clock": "00:01:18.9",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 624,
+      "quarter": 4,
+      "clock": "00:01:30.9",
+      "type": "timeout",
+      "team": "home",
+      "jersey": "ENTRENADOR/A"
+    },
+    {
+      "id": 623,
+      "quarter": 4,
+      "clock": "00:01:30.9",
+      "type": "timeout",
+      "team": "home",
+      "jersey": "ENTRENADOR/A"
+    },
+    {
+      "id": 622,
+      "quarter": 4,
+      "clock": "00:01:30.9",
+      "type": "three-point-made",
+      "team": "away",
+      "jersey": "21",
+      "homeScore": 71,
+      "awayScore": 73
+    },
+    {
+      "id": 621,
+      "quarter": 4,
+      "clock": "00:01:42.9",
+      "type": "block-received",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 620,
+      "quarter": 4,
+      "clock": "00:01:43.9",
+      "type": "block-made",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 619,
+      "quarter": 4,
+      "clock": "00:01:52.9",
+      "type": "assist",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 618,
+      "quarter": 4,
+      "clock": "00:01:52.9",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "47",
+      "homeScore": 71,
+      "awayScore": 70
+    },
+    {
+      "id": 617,
+      "quarter": 4,
+      "clock": "00:02:00.9",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 616,
+      "quarter": 4,
+      "clock": "00:02:02.0",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 615,
+      "quarter": 4,
+      "clock": "00:02:21.0",
+      "type": "turnover",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 614,
+      "quarter": 4,
+      "clock": "00:02:26.0",
+      "type": "steal",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 613,
+      "quarter": 4,
+      "clock": "00:02:27.0",
+      "type": "turnover",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 612,
+      "quarter": 4,
+      "clock": "00:02:48.0",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 611,
+      "quarter": 4,
+      "clock": "00:02:48.0",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 610,
+      "quarter": 4,
+      "clock": "00:03:08.0",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "55",
+      "homeScore": 69,
+      "awayScore": 70
+    },
+    {
+      "id": 608,
+      "quarter": 4,
+      "clock": "00:03:19.0",
+      "type": "free-throw-made",
+      "team": "away",
+      "jersey": "1",
+      "homeScore": 67,
+      "awayScore": 70
+    },
+    {
+      "id": 607,
+      "quarter": 4,
+      "clock": "00:03:19.0",
+      "type": "free-throw-made",
+      "team": "away",
+      "jersey": "1",
+      "homeScore": 67,
+      "awayScore": 69
+    },
+    {
+      "id": 606,
+      "quarter": 4,
+      "clock": "00:03:19.0",
+      "type": "two-free-throws-awarded",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 605,
+      "quarter": 4,
+      "clock": "00:03:19.0",
+      "type": "foul-received",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 604,
+      "quarter": 4,
+      "clock": "00:03:19.0",
+      "type": "foul-committed",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 603,
+      "quarter": 4,
+      "clock": "00:03:20.0",
+      "type": "offensive-rebound",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 602,
+      "quarter": 4,
+      "clock": "00:03:22.1",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 601,
+      "quarter": 4,
+      "clock": "00:03:35.1",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 600,
+      "quarter": 4,
+      "clock": "00:03:35.1",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "32"
+    },
+    {
+      "id": 599,
+      "quarter": 4,
+      "clock": "00:03:35.1",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 598,
+      "quarter": 4,
+      "clock": "00:03:35.1",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 597,
+      "quarter": 4,
+      "clock": "00:03:47.1",
+      "type": "assist",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 596,
+      "quarter": 4,
+      "clock": "00:03:49.1",
+      "type": "three-point-made",
+      "team": "home",
+      "jersey": "55",
+      "homeScore": 67,
+      "awayScore": 68
+    },
+    {
+      "id": 595,
+      "quarter": 4,
+      "clock": "00:04:09.1",
+      "type": "assist",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 594,
+      "quarter": 4,
+      "clock": "00:04:10.1",
+      "type": "three-point-made",
+      "team": "away",
+      "jersey": "10",
+      "homeScore": 64,
+      "awayScore": 68
+    },
+    {
+      "id": 593,
+      "quarter": 4,
+      "clock": "00:04:34.2",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 592,
+      "quarter": 4,
+      "clock": "00:04:34.2",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 591,
+      "quarter": 4,
+      "clock": "00:04:38.2",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 590,
+      "quarter": 4,
+      "clock": "00:04:40.2",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "32"
+    },
+    {
+      "id": 589,
+      "quarter": 4,
+      "clock": "00:04:58.3",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 588,
+      "quarter": 4,
+      "clock": "00:04:58.3",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 587,
+      "quarter": 4,
+      "clock": "00:04:59.3",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 585,
+      "quarter": 4,
+      "clock": "00:05:05.3",
+      "type": "free-throw-missed",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 584,
+      "quarter": 4,
+      "clock": "00:05:05.3",
+      "type": "free-throw-made",
+      "team": "home",
+      "jersey": "9",
+      "homeScore": 64,
+      "awayScore": 65
+    },
+    {
+      "id": 583,
+      "quarter": 4,
+      "clock": "00:05:05.3",
+      "type": "two-free-throws-awarded",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 582,
+      "quarter": 4,
+      "clock": "00:05:05.3",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 581,
+      "quarter": 4,
+      "clock": "00:05:05.3",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 580,
+      "quarter": 4,
+      "clock": "00:05:13.3",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 579,
+      "quarter": 4,
+      "clock": "00:05:13.3",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 578,
+      "quarter": 4,
+      "clock": "00:05:14.3",
+      "type": "steal",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 577,
+      "quarter": 4,
+      "clock": "00:05:15.3",
+      "type": "turnover",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 576,
+      "quarter": 4,
+      "clock": "00:05:32.3",
+      "type": "two-point-made",
+      "team": "away",
+      "jersey": "51",
+      "homeScore": 63,
+      "awayScore": 65
+    },
+    {
+      "id": 575,
+      "quarter": 4,
+      "clock": "00:05:33.3",
+      "type": "offensive-rebound",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 574,
+      "quarter": 4,
+      "clock": "00:05:35.3",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 573,
+      "quarter": 4,
+      "clock": "00:06:08.4",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 572,
+      "quarter": 4,
+      "clock": "00:06:17.4",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 571,
+      "quarter": 4,
+      "clock": "00:06:17.4",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 570,
+      "quarter": 4,
+      "clock": "00:06:18.4",
+      "type": "block-received",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 569,
+      "quarter": 4,
+      "clock": "00:06:19.4",
+      "type": "block-made",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 568,
+      "quarter": 4,
+      "clock": "00:06:31.4",
+      "type": "two-point-made",
+      "team": "away",
+      "jersey": "51",
+      "homeScore": 63,
+      "awayScore": 63
+    },
+    {
+      "id": 567,
+      "quarter": 4,
+      "clock": "00:06:40.4",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 565,
+      "quarter": 4,
+      "clock": "00:06:40.4",
+      "type": "free-throw-missed",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 564,
+      "quarter": 4,
+      "clock": "00:06:40.4",
+      "type": "free-throw-made",
+      "team": "home",
+      "jersey": "9",
+      "homeScore": 63,
+      "awayScore": 61
+    },
+    {
+      "id": 563,
+      "quarter": 4,
+      "clock": "00:06:40.4",
+      "type": "two-free-throws-awarded",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 562,
+      "quarter": 4,
+      "clock": "00:06:45.4",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 561,
+      "quarter": 4,
+      "clock": "00:06:45.4",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 559,
+      "quarter": 4,
+      "clock": "00:07:03.5",
+      "type": "free-throw-missed",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 558,
+      "quarter": 4,
+      "clock": "00:07:03.5",
+      "type": "free-throw-missed",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 556,
+      "quarter": 4,
+      "clock": "00:07:03.5",
+      "type": "foul-received",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 555,
+      "quarter": 4,
+      "clock": "00:07:03.5",
+      "type": "foul-committed",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 557,
+      "quarter": 4,
+      "clock": "00:07:03.7",
+      "type": "two-free-throws-awarded",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 554,
+      "quarter": 4,
+      "clock": "00:07:09.5",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 553,
+      "quarter": 4,
+      "clock": "00:07:09.5",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 552,
+      "quarter": 4,
+      "clock": "00:07:09.5",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 551,
+      "quarter": 4,
+      "clock": "00:07:09.5",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 550,
+      "quarter": 4,
+      "clock": "00:07:09.5",
+      "type": "foul-received",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 549,
+      "quarter": 4,
+      "clock": "00:07:09.5",
+      "type": "foul-committed",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 548,
+      "quarter": 4,
+      "clock": "00:07:22.5",
+      "type": "assist",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 547,
+      "quarter": 4,
+      "clock": "00:07:23.5",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "9",
+      "homeScore": 62,
+      "awayScore": 61
+    },
+    {
+      "id": 546,
+      "quarter": 4,
+      "clock": "00:07:28.5",
+      "type": "steal",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 545,
+      "quarter": 4,
+      "clock": "00:07:29.5",
+      "type": "turnover",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 544,
+      "quarter": 4,
+      "clock": "00:07:33.6",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 543,
+      "quarter": 4,
+      "clock": "00:07:34.6",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 542,
+      "quarter": 4,
+      "clock": "00:07:44.6",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 541,
+      "quarter": 4,
+      "clock": "00:07:45.6",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 540,
+      "quarter": 4,
+      "clock": "00:07:48.6",
+      "type": "offensive-rebound",
+      "team": "away",
+      "jersey": "32"
+    },
+    {
+      "id": 539,
+      "quarter": 4,
+      "clock": "00:07:51.6",
+      "type": "block-received",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 538,
+      "quarter": 4,
+      "clock": "00:07:51.6",
+      "type": "block-made",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 537,
+      "quarter": 4,
+      "clock": "00:08:17.6",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 536,
+      "quarter": 4,
+      "clock": "00:08:17.6",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 535,
+      "quarter": 4,
+      "clock": "00:08:26.6",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 534,
+      "quarter": 4,
+      "clock": "00:08:26.6",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 533,
+      "quarter": 4,
+      "clock": "00:08:28.6",
+      "type": "two-point-made",
+      "team": "away",
+      "jersey": "1",
+      "homeScore": 60,
+      "awayScore": 61
+    },
+    {
+      "id": 532,
+      "quarter": 4,
+      "clock": "00:08:39.6",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 531,
+      "quarter": 4,
+      "clock": "00:08:40.6",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 530,
+      "quarter": 4,
+      "clock": "00:08:52.6",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 529,
+      "quarter": 4,
+      "clock": "00:08:52.6",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 528,
+      "quarter": 4,
+      "clock": "00:08:52.6",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "15"
+    },
+    {
+      "id": 527,
+      "quarter": 4,
+      "clock": "00:08:52.6",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 526,
+      "quarter": 4,
+      "clock": "00:08:54.7",
+      "type": "block-received",
+      "team": "home",
+      "jersey": "15"
+    },
+    {
+      "id": 525,
+      "quarter": 4,
+      "clock": "00:08:55.7",
+      "type": "block-made",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 524,
+      "quarter": 4,
+      "clock": "00:09:04.7",
+      "type": "assist",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 523,
+      "quarter": 4,
+      "clock": "00:09:04.7",
+      "type": "two-point-made",
+      "team": "away",
+      "jersey": "1",
+      "homeScore": 60,
+      "awayScore": 59
+    },
+    {
+      "id": 522,
+      "quarter": 4,
+      "clock": "00:09:04.7",
+      "type": "offensive-rebound",
+      "team": "away",
+      "jersey": "32"
+    },
+    {
+      "id": 521,
+      "quarter": 4,
+      "clock": "00:09:04.7",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 520,
+      "quarter": 4,
+      "clock": "00:09:05.7",
+      "type": "turnover",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 519,
+      "quarter": 4,
+      "clock": "00:09:09.7",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 518,
+      "quarter": 4,
+      "clock": "00:09:11.7",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 517,
+      "quarter": 4,
+      "clock": "00:09:26.7",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 516,
+      "quarter": 4,
+      "clock": "00:09:26.7",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 515,
+      "quarter": 4,
+      "clock": "00:09:26.7",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 514,
+      "quarter": 4,
+      "clock": "00:09:26.7",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 513,
+      "quarter": 4,
+      "clock": "00:09:33.7",
+      "type": "assist",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 512,
+      "quarter": 4,
+      "clock": "00:09:33.7",
+      "type": "three-point-made",
+      "team": "away",
+      "jersey": "32",
+      "homeScore": 60,
+      "awayScore": 57
+    },
+    {
+      "id": 511,
+      "quarter": 4,
+      "clock": "00:09:43.7",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 510,
+      "quarter": 4,
+      "clock": "00:09:44.7",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 509,
+      "quarter": 4,
+      "clock": "00:10:00.0",
+      "type": "period-start",
+      "team": null,
+      "jersey": "-1"
+    },
+    {
+      "id": 508,
+      "quarter": 4,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 507,
+      "quarter": 4,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "32"
+    },
+    {
+      "id": 506,
+      "quarter": 4,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 505,
+      "quarter": 4,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 504,
+      "quarter": 4,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 503,
+      "quarter": 4,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 502,
+      "quarter": 4,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 501,
+      "quarter": 4,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "15"
+    },
+    {
+      "id": 500,
+      "quarter": 4,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 499,
+      "quarter": 4,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 498,
+      "quarter": 3,
+      "clock": "00:00:00.0",
+      "type": "period-end",
+      "team": null,
+      "jersey": "-1"
+    },
+    {
+      "id": 487,
+      "quarter": 3,
+      "clock": "00:00:00.0",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "15"
+    },
+    {
+      "id": 486,
+      "quarter": 3,
+      "clock": "00:00:05.0",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 485,
+      "quarter": 3,
+      "clock": "00:00:05.7",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "32"
+    },
+    {
+      "id": 484,
+      "quarter": 3,
+      "clock": "00:00:19.2",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "34",
+      "homeScore": 60,
+      "awayScore": 54
+    },
+    {
+      "id": 483,
+      "quarter": 3,
+      "clock": "00:00:32.4",
+      "type": "assist",
+      "team": "away",
+      "jersey": "15"
+    },
+    {
+      "id": 482,
+      "quarter": 3,
+      "clock": "00:00:33.8",
+      "type": "three-point-made",
+      "team": "away",
+      "jersey": "32",
+      "homeScore": 58,
+      "awayScore": 54
+    },
+    {
+      "id": 481,
+      "quarter": 3,
+      "clock": "00:00:46.7",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "32"
+    },
+    {
+      "id": 479,
+      "quarter": 3,
+      "clock": "00:00:46.7",
+      "type": "free-throw-missed",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 478,
+      "quarter": 3,
+      "clock": "00:00:46.7",
+      "type": "free-throw-made",
+      "team": "home",
+      "jersey": "20",
+      "homeScore": 58,
+      "awayScore": 51
+    },
+    {
+      "id": 477,
+      "quarter": 3,
+      "clock": "00:00:46.7",
+      "type": "two-free-throws-awarded",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 476,
+      "quarter": 3,
+      "clock": "00:00:46.7",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 475,
+      "quarter": 3,
+      "clock": "00:00:46.7",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 474,
+      "quarter": 3,
+      "clock": "00:00:48.4",
+      "type": "turnover",
+      "team": "away",
+      "jersey": "15"
+    },
+    {
+      "id": 473,
+      "quarter": 3,
+      "clock": "00:01:05.7",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 472,
+      "quarter": 3,
+      "clock": "00:01:05.7",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 471,
+      "quarter": 3,
+      "clock": "00:01:05.7",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "15"
+    },
+    {
+      "id": 470,
+      "quarter": 3,
+      "clock": "00:01:05.7",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 469,
+      "quarter": 3,
+      "clock": "00:01:05.7",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 468,
+      "quarter": 3,
+      "clock": "00:01:05.7",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 467,
+      "quarter": 3,
+      "clock": "00:01:05.7",
+      "type": "timeout",
+      "team": "away",
+      "jersey": "ENTRENADOR/A"
+    },
+    {
+      "id": 466,
+      "quarter": 3,
+      "clock": "00:01:11.7",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "20",
+      "homeScore": 57,
+      "awayScore": 51
+    },
+    {
+      "id": 465,
+      "quarter": 3,
+      "clock": "00:01:12.7",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 464,
+      "quarter": 3,
+      "clock": "00:01:12.7",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 463,
+      "quarter": 3,
+      "clock": "00:01:26.8",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 462,
+      "quarter": 3,
+      "clock": "00:01:28.8",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "15"
+    },
+    {
+      "id": 461,
+      "quarter": 3,
+      "clock": "00:01:39.8",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 460,
+      "quarter": 3,
+      "clock": "00:01:39.8",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 459,
+      "quarter": 3,
+      "clock": "00:01:42.8",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "4",
+      "homeScore": 55,
+      "awayScore": 51
+    },
+    {
+      "id": 458,
+      "quarter": 3,
+      "clock": "00:02:06.9",
+      "type": "steal",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 457,
+      "quarter": 3,
+      "clock": "00:02:07.9",
+      "type": "turnover",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 456,
+      "quarter": 3,
+      "clock": "00:02:25.9",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "47",
+      "homeScore": 53,
+      "awayScore": 51
+    },
+    {
+      "id": 455,
+      "quarter": 3,
+      "clock": "00:02:37.0",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 454,
+      "quarter": 3,
+      "clock": "00:02:38.0",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 453,
+      "quarter": 3,
+      "clock": "00:02:45.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "32"
+    },
+    {
+      "id": 452,
+      "quarter": 3,
+      "clock": "00:02:45.0",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "20"
+    },
+    {
+      "id": 451,
+      "quarter": 3,
+      "clock": "00:03:03.0",
+      "type": "assist",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 450,
+      "quarter": 3,
+      "clock": "00:03:04.0",
+      "type": "three-point-made",
+      "team": "home",
+      "jersey": "34",
+      "homeScore": 51,
+      "awayScore": 51
+    },
+    {
+      "id": 449,
+      "quarter": 3,
+      "clock": "00:03:15.0",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 448,
+      "quarter": 3,
+      "clock": "00:03:16.0",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 447,
+      "quarter": 3,
+      "clock": "00:03:24.0",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "15"
+    },
+    {
+      "id": 446,
+      "quarter": 3,
+      "clock": "00:03:27.0",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 445,
+      "quarter": 3,
+      "clock": "00:03:39.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 444,
+      "quarter": 3,
+      "clock": "00:03:39.0",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 443,
+      "quarter": 3,
+      "clock": "00:03:40.0",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 442,
+      "quarter": 3,
+      "clock": "00:03:42.0",
+      "type": "block-received",
+      "team": "away",
+      "jersey": "15"
+    },
+    {
+      "id": 441,
+      "quarter": 3,
+      "clock": "00:03:43.0",
+      "type": "block-made",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 440,
+      "quarter": 3,
+      "clock": "00:04:05.1",
+      "type": "steal",
+      "team": "away",
+      "jersey": "15"
+    },
+    {
+      "id": 439,
+      "quarter": 3,
+      "clock": "00:04:05.1",
+      "type": "turnover",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 438,
+      "quarter": 3,
+      "clock": "00:04:23.1",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 437,
+      "quarter": 3,
+      "clock": "00:04:26.1",
+      "type": "offensive-rebound",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 436,
+      "quarter": 3,
+      "clock": "00:04:27.1",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 433,
+      "quarter": 3,
+      "clock": "00:04:36.1",
+      "type": "free-throw-made",
+      "team": "home",
+      "jersey": "47",
+      "homeScore": 48,
+      "awayScore": 51
+    },
+    {
+      "id": 432,
+      "quarter": 3,
+      "clock": "00:04:36.1",
+      "type": "one-free-throw-awarded",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 431,
+      "quarter": 3,
+      "clock": "00:04:36.1",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "20"
+    },
+    {
+      "id": 430,
+      "quarter": 3,
+      "clock": "00:04:36.1",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 429,
+      "quarter": 3,
+      "clock": "00:04:36.1",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 428,
+      "quarter": 3,
+      "clock": "00:04:36.1",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 427,
+      "quarter": 3,
+      "clock": "00:04:37.1",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "47",
+      "homeScore": 47,
+      "awayScore": 51
+    },
+    {
+      "id": 426,
+      "quarter": 3,
+      "clock": "00:04:45.1",
+      "type": "steal",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 425,
+      "quarter": 3,
+      "clock": "00:04:46.1",
+      "type": "turnover",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 424,
+      "quarter": 3,
+      "clock": "00:05:01.2",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 423,
+      "quarter": 3,
+      "clock": "00:05:01.2",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 422,
+      "quarter": 3,
+      "clock": "00:05:01.2",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "15"
+    },
+    {
+      "id": 421,
+      "quarter": 3,
+      "clock": "00:05:01.2",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 420,
+      "quarter": 3,
+      "clock": "00:05:01.2",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 419,
+      "quarter": 3,
+      "clock": "00:05:01.2",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 418,
+      "quarter": 3,
+      "clock": "00:05:01.2",
+      "type": "foul-received",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 417,
+      "quarter": 3,
+      "clock": "00:05:01.2",
+      "type": "foul-committed",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 416,
+      "quarter": 3,
+      "clock": "00:05:01.2",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 415,
+      "quarter": 3,
+      "clock": "00:05:02.2",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 414,
+      "quarter": 3,
+      "clock": "00:05:10.2",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 413,
+      "quarter": 3,
+      "clock": "00:05:11.2",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 412,
+      "quarter": 3,
+      "clock": "00:05:18.2",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 411,
+      "quarter": 3,
+      "clock": "00:05:18.2",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 410,
+      "quarter": 3,
+      "clock": "00:05:27.2",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 409,
+      "quarter": 3,
+      "clock": "00:05:27.2",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 408,
+      "quarter": 3,
+      "clock": "00:05:32.2",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 407,
+      "quarter": 3,
+      "clock": "00:05:33.2",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 406,
+      "quarter": 3,
+      "clock": "00:05:40.2",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 405,
+      "quarter": 3,
+      "clock": "00:05:43.2",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 404,
+      "quarter": 3,
+      "clock": "00:05:58.3",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 403,
+      "quarter": 3,
+      "clock": "00:05:58.3",
+      "type": "block-received",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 402,
+      "quarter": 3,
+      "clock": "00:05:59.3",
+      "type": "block-made",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 401,
+      "quarter": 3,
+      "clock": "00:06:02.3",
+      "type": "offensive-rebound",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 400,
+      "quarter": 3,
+      "clock": "00:06:02.3",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 399,
+      "quarter": 3,
+      "clock": "00:06:03.3",
+      "type": "block-received",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 398,
+      "quarter": 3,
+      "clock": "00:06:03.3",
+      "type": "block-made",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 397,
+      "quarter": 3,
+      "clock": "00:06:12.3",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 396,
+      "quarter": 3,
+      "clock": "00:06:13.3",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 395,
+      "quarter": 3,
+      "clock": "00:06:37.4",
+      "type": "assist",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 394,
+      "quarter": 3,
+      "clock": "00:06:39.4",
+      "type": "three-point-made",
+      "team": "away",
+      "jersey": "10",
+      "homeScore": 45,
+      "awayScore": 51
+    },
+    {
+      "id": 393,
+      "quarter": 3,
+      "clock": "00:06:48.4",
+      "type": "foul-received",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 392,
+      "quarter": 3,
+      "clock": "00:06:48.4",
+      "type": "foul-committed",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 391,
+      "quarter": 3,
+      "clock": "00:06:49.4",
+      "type": "offensive-rebound",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 390,
+      "quarter": 3,
+      "clock": "00:06:50.4",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 389,
+      "quarter": 3,
+      "clock": "00:06:50.4",
+      "type": "offensive-rebound",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 388,
+      "quarter": 3,
+      "clock": "00:06:51.4",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 387,
+      "quarter": 3,
+      "clock": "00:07:00.4",
+      "type": "foul-received",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 386,
+      "quarter": 3,
+      "clock": "00:07:00.4",
+      "type": "foul-committed",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 385,
+      "quarter": 3,
+      "clock": "00:07:10.4",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 384,
+      "quarter": 3,
+      "clock": "00:07:10.4",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 383,
+      "quarter": 3,
+      "clock": "00:07:32.4",
+      "type": "assist",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 382,
+      "quarter": 3,
+      "clock": "00:07:32.4",
+      "type": "three-point-made",
+      "team": "away",
+      "jersey": "51",
+      "homeScore": 45,
+      "awayScore": 48
+    },
+    {
+      "id": 381,
+      "quarter": 3,
+      "clock": "00:07:38.4",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 380,
+      "quarter": 3,
+      "clock": "00:07:39.4",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 379,
+      "quarter": 3,
+      "clock": "00:07:48.5",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 378,
+      "quarter": 3,
+      "clock": "00:07:48.5",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 377,
+      "quarter": 3,
+      "clock": "00:07:51.5",
+      "type": "steal",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 376,
+      "quarter": 3,
+      "clock": "00:07:52.5",
+      "type": "turnover",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 375,
+      "quarter": 3,
+      "clock": "00:07:55.5",
+      "type": "steal",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 374,
+      "quarter": 3,
+      "clock": "00:07:56.5",
+      "type": "turnover",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 373,
+      "quarter": 3,
+      "clock": "00:08:01.5",
+      "type": "steal",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 372,
+      "quarter": 3,
+      "clock": "00:08:01.5",
+      "type": "turnover",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 370,
+      "quarter": 3,
+      "clock": "00:08:16.5",
+      "type": "free-throw-made",
+      "team": "home",
+      "jersey": "14",
+      "homeScore": 45,
+      "awayScore": 45
+    },
+    {
+      "id": 369,
+      "quarter": 3,
+      "clock": "00:08:16.5",
+      "type": "free-throw-made",
+      "team": "home",
+      "jersey": "14",
+      "homeScore": 44,
+      "awayScore": 45
+    },
+    {
+      "id": 368,
+      "quarter": 3,
+      "clock": "00:08:16.5",
+      "type": "two-free-throws-awarded",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 367,
+      "quarter": 3,
+      "clock": "00:08:20.5",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 366,
+      "quarter": 3,
+      "clock": "00:08:20.5",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 365,
+      "quarter": 3,
+      "clock": "00:08:29.6",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 364,
+      "quarter": 3,
+      "clock": "00:08:29.6",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 363,
+      "quarter": 3,
+      "clock": "00:08:29.6",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 362,
+      "quarter": 3,
+      "clock": "00:08:29.6",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 361,
+      "quarter": 3,
+      "clock": "00:08:34.6",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 360,
+      "quarter": 3,
+      "clock": "00:08:35.6",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 359,
+      "quarter": 3,
+      "clock": "00:08:55.6",
+      "type": "foul-received",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 358,
+      "quarter": 3,
+      "clock": "00:08:55.6",
+      "type": "foul-committed",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 357,
+      "quarter": 3,
+      "clock": "00:08:56.6",
+      "type": "steal",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 356,
+      "quarter": 3,
+      "clock": "00:08:57.6",
+      "type": "turnover",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 355,
+      "quarter": 3,
+      "clock": "00:08:59.6",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 354,
+      "quarter": 3,
+      "clock": "00:09:00.6",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 353,
+      "quarter": 3,
+      "clock": "00:09:10.6",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 352,
+      "quarter": 3,
+      "clock": "00:09:11.6",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 351,
+      "quarter": 3,
+      "clock": "00:09:26.7",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 350,
+      "quarter": 3,
+      "clock": "00:09:27.7",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 349,
+      "quarter": 3,
+      "clock": "00:09:32.7",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 348,
+      "quarter": 3,
+      "clock": "00:09:32.7",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 347,
+      "quarter": 3,
+      "clock": "00:09:47.7",
+      "type": "assist",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 346,
+      "quarter": 3,
+      "clock": "00:09:47.7",
+      "type": "three-point-made",
+      "team": "away",
+      "jersey": "11",
+      "homeScore": 43,
+      "awayScore": 45
+    },
+    {
+      "id": 345,
+      "quarter": 3,
+      "clock": "00:10:00.0",
+      "type": "period-start",
+      "team": null,
+      "jersey": "-1"
+    },
+    {
+      "id": 344,
+      "quarter": 3,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 343,
+      "quarter": 3,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 342,
+      "quarter": 3,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 341,
+      "quarter": 3,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 340,
+      "quarter": 3,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 339,
+      "quarter": 3,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 338,
+      "quarter": 3,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 337,
+      "quarter": 3,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 336,
+      "quarter": 3,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 335,
+      "quarter": 3,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 334,
+      "quarter": 2,
+      "clock": "00:00:00.0",
+      "type": "period-end",
+      "team": null,
+      "jersey": "-1"
+    },
+    {
+      "id": 323,
+      "quarter": 2,
+      "clock": "00:00:00.0",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 322,
+      "quarter": 2,
+      "clock": "00:00:00.0",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "00"
+    },
+    {
+      "id": 321,
+      "quarter": 2,
+      "clock": "00:00:06.3",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 320,
+      "quarter": 2,
+      "clock": "00:00:06.7",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 319,
+      "quarter": 2,
+      "clock": "00:00:27.8",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 318,
+      "quarter": 2,
+      "clock": "00:00:27.8",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "00"
+    },
+    {
+      "id": 317,
+      "quarter": 2,
+      "clock": "00:00:27.8",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 316,
+      "quarter": 2,
+      "clock": "00:00:27.8",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 315,
+      "quarter": 2,
+      "clock": "00:00:27.8",
+      "type": "timeout",
+      "team": "away",
+      "jersey": "ENTRENADOR/A"
+    },
+    {
+      "id": 314,
+      "quarter": 2,
+      "clock": "00:00:34.5",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "15"
+    },
+    {
+      "id": 313,
+      "quarter": 2,
+      "clock": "00:00:36.3",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 312,
+      "quarter": 2,
+      "clock": "00:00:55.8",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "15"
+    },
+    {
+      "id": 311,
+      "quarter": 2,
+      "clock": "00:00:57.9",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 310,
+      "quarter": 2,
+      "clock": "00:01:04.6",
+      "type": "offensive-rebound",
+      "team": "away",
+      "jersey": "32"
+    },
+    {
+      "id": 309,
+      "quarter": 2,
+      "clock": "00:01:05.6",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 308,
+      "quarter": 2,
+      "clock": "00:01:24.7",
+      "type": "assist",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 307,
+      "quarter": 2,
+      "clock": "00:01:25.7",
+      "type": "three-point-made",
+      "team": "home",
+      "jersey": "34",
+      "homeScore": 43,
+      "awayScore": 42
+    },
+    {
+      "id": 306,
+      "quarter": 2,
+      "clock": "00:01:34.7",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 305,
+      "quarter": 2,
+      "clock": "00:01:38.7",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "15"
+    },
+    {
+      "id": 304,
+      "quarter": 2,
+      "clock": "00:01:54.7",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "32"
+    },
+    {
+      "id": 303,
+      "quarter": 2,
+      "clock": "00:01:54.7",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "13"
+    },
+    {
+      "id": 301,
+      "quarter": 2,
+      "clock": "00:01:54.7",
+      "type": "free-throw-made",
+      "team": "home",
+      "jersey": "9",
+      "homeScore": 40,
+      "awayScore": 42
+    },
+    {
+      "id": 300,
+      "quarter": 2,
+      "clock": "00:01:54.7",
+      "type": "free-throw-made",
+      "team": "home",
+      "jersey": "9",
+      "homeScore": 39,
+      "awayScore": 42
+    },
+    {
+      "id": 299,
+      "quarter": 2,
+      "clock": "00:01:54.7",
+      "type": "two-free-throws-awarded",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 298,
+      "quarter": 2,
+      "clock": "00:01:54.7",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 297,
+      "quarter": 2,
+      "clock": "00:01:54.7",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "13"
+    },
+    {
+      "id": 295,
+      "quarter": 2,
+      "clock": "00:02:04.7",
+      "type": "free-throw-made",
+      "team": "away",
+      "jersey": "21",
+      "homeScore": 38,
+      "awayScore": 42
+    },
+    {
+      "id": 294,
+      "quarter": 2,
+      "clock": "00:02:04.7",
+      "type": "free-throw-made",
+      "team": "away",
+      "jersey": "21",
+      "homeScore": 38,
+      "awayScore": 41
+    },
+    {
+      "id": 293,
+      "quarter": 2,
+      "clock": "00:02:04.7",
+      "type": "two-free-throws-awarded",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 292,
+      "quarter": 2,
+      "clock": "00:02:04.7",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 291,
+      "quarter": 2,
+      "clock": "00:02:04.7",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 290,
+      "quarter": 2,
+      "clock": "00:02:04.7",
+      "type": "foul-received",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 289,
+      "quarter": 2,
+      "clock": "00:02:04.7",
+      "type": "foul-committed",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 288,
+      "quarter": 2,
+      "clock": "00:02:11.8",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "47",
+      "homeScore": 38,
+      "awayScore": 40
+    },
+    {
+      "id": 287,
+      "quarter": 2,
+      "clock": "00:02:11.8",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 286,
+      "quarter": 2,
+      "clock": "00:02:12.8",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 285,
+      "quarter": 2,
+      "clock": "00:02:29.8",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 284,
+      "quarter": 2,
+      "clock": "00:02:29.8",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 282,
+      "quarter": 2,
+      "clock": "00:02:43.8",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "15"
+    },
+    {
+      "id": 281,
+      "quarter": 2,
+      "clock": "00:02:43.8",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 280,
+      "quarter": 2,
+      "clock": "00:02:44.8",
+      "type": "turnover",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 279,
+      "quarter": 2,
+      "clock": "00:02:45.8",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 278,
+      "quarter": 2,
+      "clock": "00:02:45.8",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 277,
+      "quarter": 2,
+      "clock": "00:02:56.8",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 276,
+      "quarter": 2,
+      "clock": "00:02:56.8",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 275,
+      "quarter": 2,
+      "clock": "00:03:07.8",
+      "type": "turnover",
+      "team": "away",
+      "jersey": "13"
+    },
+    {
+      "id": 274,
+      "quarter": 2,
+      "clock": "00:03:20.9",
+      "type": "assist",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 273,
+      "quarter": 2,
+      "clock": "00:03:21.9",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "55",
+      "homeScore": 36,
+      "awayScore": 40
+    },
+    {
+      "id": 272,
+      "quarter": 2,
+      "clock": "00:03:33.9",
+      "type": "two-point-made",
+      "team": "away",
+      "jersey": "21",
+      "homeScore": 34,
+      "awayScore": 40
+    },
+    {
+      "id": 271,
+      "quarter": 2,
+      "clock": "00:03:47.9",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 270,
+      "quarter": 2,
+      "clock": "00:03:47.9",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 269,
+      "quarter": 2,
+      "clock": "00:03:47.9",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "00"
+    },
+    {
+      "id": 268,
+      "quarter": 2,
+      "clock": "00:03:47.9",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 267,
+      "quarter": 2,
+      "clock": "00:03:47.9",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "15"
+    },
+    {
+      "id": 266,
+      "quarter": 2,
+      "clock": "00:03:47.9",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "13"
+    },
+    {
+      "id": 265,
+      "quarter": 2,
+      "clock": "00:03:47.9",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 264,
+      "quarter": 2,
+      "clock": "00:03:47.9",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 262,
+      "quarter": 2,
+      "clock": "00:03:47.9",
+      "type": "free-throw-made",
+      "team": "home",
+      "jersey": "55",
+      "homeScore": 34,
+      "awayScore": 38
+    },
+    {
+      "id": 261,
+      "quarter": 2,
+      "clock": "00:03:47.9",
+      "type": "free-throw-made",
+      "team": "home",
+      "jersey": "55",
+      "homeScore": 33,
+      "awayScore": 38
+    },
+    {
+      "id": 260,
+      "quarter": 2,
+      "clock": "00:03:47.9",
+      "type": "two-free-throws-awarded",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 259,
+      "quarter": 2,
+      "clock": "00:03:47.9",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 258,
+      "quarter": 2,
+      "clock": "00:03:47.9",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 257,
+      "quarter": 2,
+      "clock": "00:03:53.9",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 255,
+      "quarter": 2,
+      "clock": "00:03:54.9",
+      "type": "free-throw-missed",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 254,
+      "quarter": 2,
+      "clock": "00:03:54.9",
+      "type": "free-throw-missed",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 253,
+      "quarter": 2,
+      "clock": "00:03:54.9",
+      "type": "two-free-throws-awarded",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 252,
+      "quarter": 2,
+      "clock": "00:03:54.9",
+      "type": "foul-received",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 251,
+      "quarter": 2,
+      "clock": "00:03:54.9",
+      "type": "foul-committed",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 250,
+      "quarter": 2,
+      "clock": "00:04:04.9",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 249,
+      "quarter": 2,
+      "clock": "00:04:05.9",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 248,
+      "quarter": 2,
+      "clock": "00:04:19.9",
+      "type": "timeout",
+      "team": "home",
+      "jersey": "ENTRENADOR/A"
+    },
+    {
+      "id": 247,
+      "quarter": 2,
+      "clock": "00:04:20.9",
+      "type": "assist",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 246,
+      "quarter": 2,
+      "clock": "00:04:26.9",
+      "type": "three-point-made",
+      "team": "away",
+      "jersey": "10",
+      "homeScore": 32,
+      "awayScore": 38
+    },
+    {
+      "id": 245,
+      "quarter": 2,
+      "clock": "00:04:43.0",
+      "type": "turnover",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 244,
+      "quarter": 2,
+      "clock": "00:04:52.0",
+      "type": "assist",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 243,
+      "quarter": 2,
+      "clock": "00:04:53.0",
+      "type": "two-point-made",
+      "team": "away",
+      "jersey": "1",
+      "homeScore": 32,
+      "awayScore": 35
+    },
+    {
+      "id": 241,
+      "quarter": 2,
+      "clock": "00:05:27.0",
+      "type": "free-throw-made",
+      "team": "away",
+      "jersey": "51",
+      "homeScore": 32,
+      "awayScore": 33
+    },
+    {
+      "id": 240,
+      "quarter": 2,
+      "clock": "00:05:27.0",
+      "type": "free-throw-missed",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 239,
+      "quarter": 2,
+      "clock": "00:05:27.0",
+      "type": "two-free-throws-awarded",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 238,
+      "quarter": 2,
+      "clock": "00:05:27.0",
+      "type": "foul-received",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 237,
+      "quarter": 2,
+      "clock": "00:05:27.0",
+      "type": "foul-committed",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 236,
+      "quarter": 2,
+      "clock": "00:05:44.0",
+      "type": "assist",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 235,
+      "quarter": 2,
+      "clock": "00:05:45.0",
+      "type": "three-point-made",
+      "team": "home",
+      "jersey": "47",
+      "homeScore": 32,
+      "awayScore": 32
+    },
+    {
+      "id": 234,
+      "quarter": 2,
+      "clock": "00:06:08.1",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 233,
+      "quarter": 2,
+      "clock": "00:06:09.1",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 232,
+      "quarter": 2,
+      "clock": "00:06:15.1",
+      "type": "steal",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 231,
+      "quarter": 2,
+      "clock": "00:06:16.1",
+      "type": "turnover",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 230,
+      "quarter": 2,
+      "clock": "00:06:31.2",
+      "type": "assist",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 229,
+      "quarter": 2,
+      "clock": "00:06:32.2",
+      "type": "three-point-made",
+      "team": "away",
+      "jersey": "21",
+      "homeScore": 29,
+      "awayScore": 32
+    },
+    {
+      "id": 228,
+      "quarter": 2,
+      "clock": "00:06:36.3",
+      "type": "offensive-rebound",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 226,
+      "quarter": 2,
+      "clock": "00:06:36.3",
+      "type": "free-throw-missed",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 225,
+      "quarter": 2,
+      "clock": "00:06:36.3",
+      "type": "free-throw-made",
+      "team": "away",
+      "jersey": "11",
+      "homeScore": 29,
+      "awayScore": 29
+    },
+    {
+      "id": 224,
+      "quarter": 2,
+      "clock": "00:06:36.3",
+      "type": "two-free-throws-awarded",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 223,
+      "quarter": 2,
+      "clock": "00:06:36.3",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 222,
+      "quarter": 2,
+      "clock": "00:06:36.3",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "20"
+    },
+    {
+      "id": 221,
+      "quarter": 2,
+      "clock": "00:06:36.3",
+      "type": "foul-received",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 220,
+      "quarter": 2,
+      "clock": "00:06:36.3",
+      "type": "foul-committed",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 217,
+      "quarter": 2,
+      "clock": "00:06:49.3",
+      "type": "free-throw-missed",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 216,
+      "quarter": 2,
+      "clock": "00:06:49.3",
+      "type": "one-free-throw-awarded",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 215,
+      "quarter": 2,
+      "clock": "00:06:49.3",
+      "type": "coach-technical-foul",
+      "team": "away",
+      "jersey": "ENTRENADOR/A"
+    },
+    {
+      "id": 214,
+      "quarter": 2,
+      "clock": "00:06:49.3",
+      "type": "timeout",
+      "team": "away",
+      "jersey": "ENTRENADOR/A"
+    },
+    {
+      "id": 213,
+      "quarter": 2,
+      "clock": "00:06:50.3",
+      "type": "assist",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 212,
+      "quarter": 2,
+      "clock": "00:06:50.3",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "00",
+      "homeScore": 29,
+      "awayScore": 28
+    },
+    {
+      "id": 211,
+      "quarter": 2,
+      "clock": "00:06:55.3",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 210,
+      "quarter": 2,
+      "clock": "00:06:57.3",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 209,
+      "quarter": 2,
+      "clock": "00:07:11.4",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "55",
+      "homeScore": 27,
+      "awayScore": 28
+    },
+    {
+      "id": 208,
+      "quarter": 2,
+      "clock": "00:07:13.4",
+      "type": "offensive-rebound",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 207,
+      "quarter": 2,
+      "clock": "00:07:14.4",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 206,
+      "quarter": 2,
+      "clock": "00:07:29.4",
+      "type": "foul-received",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 205,
+      "quarter": 2,
+      "clock": "00:07:29.4",
+      "type": "foul-committed",
+      "team": "home",
+      "jersey": "00"
+    },
+    {
+      "id": 204,
+      "quarter": 2,
+      "clock": "00:07:36.4",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 203,
+      "quarter": 2,
+      "clock": "00:07:36.4",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "00"
+    },
+    {
+      "id": 202,
+      "quarter": 2,
+      "clock": "00:07:36.4",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 201,
+      "quarter": 2,
+      "clock": "00:07:36.4",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "15"
+    },
+    {
+      "id": 200,
+      "quarter": 2,
+      "clock": "00:07:37.4",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 199,
+      "quarter": 2,
+      "clock": "00:07:39.4",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 198,
+      "quarter": 2,
+      "clock": "00:07:53.4",
+      "type": "assist",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 197,
+      "quarter": 2,
+      "clock": "00:07:54.4",
+      "type": "two-point-made",
+      "team": "away",
+      "jersey": "11",
+      "homeScore": 25,
+      "awayScore": 28
+    },
+    {
+      "id": 196,
+      "quarter": 2,
+      "clock": "00:08:01.5",
+      "type": "steal",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 195,
+      "quarter": 2,
+      "clock": "00:08:02.5",
+      "type": "turnover",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 194,
+      "quarter": 2,
+      "clock": "00:08:17.5",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 193,
+      "quarter": 2,
+      "clock": "00:08:17.5",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 192,
+      "quarter": 2,
+      "clock": "00:08:17.5",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 191,
+      "quarter": 2,
+      "clock": "00:08:17.5",
+      "type": "foul-received",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 190,
+      "quarter": 2,
+      "clock": "00:08:17.5",
+      "type": "foul-committed",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 188,
+      "quarter": 2,
+      "clock": "00:08:28.5",
+      "type": "free-throw-made",
+      "team": "home",
+      "jersey": "55",
+      "homeScore": 25,
+      "awayScore": 26
+    },
+    {
+      "id": 187,
+      "quarter": 2,
+      "clock": "00:08:28.5",
+      "type": "free-throw-missed",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 186,
+      "quarter": 2,
+      "clock": "00:08:28.5",
+      "type": "two-free-throws-awarded",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 185,
+      "quarter": 2,
+      "clock": "00:08:28.5",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 184,
+      "quarter": 2,
+      "clock": "00:08:28.5",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 183,
+      "quarter": 2,
+      "clock": "00:08:28.5",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 182,
+      "quarter": 2,
+      "clock": "00:08:28.5",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 181,
+      "quarter": 2,
+      "clock": "00:08:36.6",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 180,
+      "quarter": 2,
+      "clock": "00:08:36.6",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 179,
+      "quarter": 2,
+      "clock": "00:08:44.6",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "55",
+      "homeScore": 24,
+      "awayScore": 26
+    },
+    {
+      "id": 178,
+      "quarter": 2,
+      "clock": "00:08:58.6",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 177,
+      "quarter": 2,
+      "clock": "00:08:58.6",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 176,
+      "quarter": 2,
+      "clock": "00:08:58.6",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "15"
+    },
+    {
+      "id": 175,
+      "quarter": 2,
+      "clock": "00:08:58.6",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 174,
+      "quarter": 2,
+      "clock": "00:09:06.7",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 173,
+      "quarter": 2,
+      "clock": "00:09:06.7",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "20"
+    },
+    {
+      "id": 172,
+      "quarter": 2,
+      "clock": "00:09:12.7",
+      "type": "steal",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 171,
+      "quarter": 2,
+      "clock": "00:09:12.7",
+      "type": "turnover",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 169,
+      "quarter": 2,
+      "clock": "00:09:26.7",
+      "type": "free-throw-made",
+      "team": "away",
+      "jersey": "10",
+      "homeScore": 22,
+      "awayScore": 26
+    },
+    {
+      "id": 168,
+      "quarter": 2,
+      "clock": "00:09:26.7",
+      "type": "free-throw-missed",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 167,
+      "quarter": 2,
+      "clock": "00:09:26.7",
+      "type": "two-free-throws-awarded",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 166,
+      "quarter": 2,
+      "clock": "00:09:26.7",
+      "type": "foul-received",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 165,
+      "quarter": 2,
+      "clock": "00:09:26.7",
+      "type": "foul-committed",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 164,
+      "quarter": 2,
+      "clock": "00:09:30.7",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 163,
+      "quarter": 2,
+      "clock": "00:09:31.7",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "15"
+    },
+    {
+      "id": 162,
+      "quarter": 2,
+      "clock": "00:09:46.7",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 161,
+      "quarter": 2,
+      "clock": "00:09:47.7",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 160,
+      "quarter": 2,
+      "clock": "00:10:00.0",
+      "type": "period-start",
+      "team": null,
+      "jersey": "-1"
+    },
+    {
+      "id": 159,
+      "quarter": 2,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 158,
+      "quarter": 2,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "20"
+    },
+    {
+      "id": 157,
+      "quarter": 2,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 156,
+      "quarter": 2,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 155,
+      "quarter": 2,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 154,
+      "quarter": 2,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 153,
+      "quarter": 2,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 152,
+      "quarter": 2,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "15"
+    },
+    {
+      "id": 151,
+      "quarter": 2,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 150,
+      "quarter": 2,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 149,
+      "quarter": 1,
+      "clock": "00:00:00.0",
+      "type": "period-end",
+      "team": null,
+      "jersey": "-1"
+    },
+    {
+      "id": 138,
+      "quarter": 1,
+      "clock": "00:00:00.0",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "20",
+      "homeScore": 22,
+      "awayScore": 25
+    },
+    {
+      "id": 137,
+      "quarter": 1,
+      "clock": "00:00:00.0",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 136,
+      "quarter": 1,
+      "clock": "00:00:00.0",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "15"
+    },
+    {
+      "id": 135,
+      "quarter": 1,
+      "clock": "00:00:26.6",
+      "type": "two-point-made",
+      "team": "away",
+      "jersey": "20",
+      "homeScore": 20,
+      "awayScore": 25
+    },
+    {
+      "id": 134,
+      "quarter": 1,
+      "clock": "00:00:40.8",
+      "type": "assist",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 133,
+      "quarter": 1,
+      "clock": "00:00:41.4",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "20",
+      "homeScore": 20,
+      "awayScore": 23
+    },
+    {
+      "id": 132,
+      "quarter": 1,
+      "clock": "00:00:53.1",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 131,
+      "quarter": 1,
+      "clock": "00:00:53.8",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "20"
+    },
+    {
+      "id": 130,
+      "quarter": 1,
+      "clock": "00:01:08.7",
+      "type": "assist",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 129,
+      "quarter": 1,
+      "clock": "00:01:09.7",
+      "type": "three-point-made",
+      "team": "home",
+      "jersey": "47",
+      "homeScore": 18,
+      "awayScore": 23
+    },
+    {
+      "id": 128,
+      "quarter": 1,
+      "clock": "00:01:15.7",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 127,
+      "quarter": 1,
+      "clock": "00:01:16.8",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 126,
+      "quarter": 1,
+      "clock": "00:01:18.8",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 125,
+      "quarter": 1,
+      "clock": "00:01:19.8",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 124,
+      "quarter": 1,
+      "clock": "00:01:27.8",
+      "type": "two-point-made",
+      "team": "away",
+      "jersey": "15",
+      "homeScore": 15,
+      "awayScore": 23
+    },
+    {
+      "id": 123,
+      "quarter": 1,
+      "clock": "00:01:27.8",
+      "type": "turnover",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 122,
+      "quarter": 1,
+      "clock": "00:01:29.8",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 121,
+      "quarter": 1,
+      "clock": "00:01:29.8",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 119,
+      "quarter": 1,
+      "clock": "00:01:31.8",
+      "type": "free-throw-made",
+      "team": "home",
+      "jersey": "20",
+      "homeScore": 15,
+      "awayScore": 21
+    },
+    {
+      "id": 118,
+      "quarter": 1,
+      "clock": "00:01:31.8",
+      "type": "free-throw-made",
+      "team": "home",
+      "jersey": "20",
+      "homeScore": 14,
+      "awayScore": 21
+    },
+    {
+      "id": 117,
+      "quarter": 1,
+      "clock": "00:01:31.8",
+      "type": "two-free-throws-awarded",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 116,
+      "quarter": 1,
+      "clock": "00:02:00.8",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 115,
+      "quarter": 1,
+      "clock": "00:02:00.8",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "13"
+    },
+    {
+      "id": 114,
+      "quarter": 1,
+      "clock": "00:02:26.9",
+      "type": "two-point-made",
+      "team": "away",
+      "jersey": "4",
+      "homeScore": 13,
+      "awayScore": 21
+    },
+    {
+      "id": 113,
+      "quarter": 1,
+      "clock": "00:02:40.9",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "13"
+    },
+    {
+      "id": 112,
+      "quarter": 1,
+      "clock": "00:02:40.9",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 111,
+      "quarter": 1,
+      "clock": "00:02:46.9",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "20"
+    },
+    {
+      "id": 110,
+      "quarter": 1,
+      "clock": "00:02:46.9",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 109,
+      "quarter": 1,
+      "clock": "00:03:23.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "15"
+    },
+    {
+      "id": 108,
+      "quarter": 1,
+      "clock": "00:03:23.0",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 107,
+      "quarter": 1,
+      "clock": "00:03:28.0",
+      "type": "turnover",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 106,
+      "quarter": 1,
+      "clock": "00:03:41.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 105,
+      "quarter": 1,
+      "clock": "00:03:41.0",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 104,
+      "quarter": 1,
+      "clock": "00:03:41.0",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 103,
+      "quarter": 1,
+      "clock": "00:03:41.0",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "13"
+    },
+    {
+      "id": 102,
+      "quarter": 1,
+      "clock": "00:03:41.0",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "15"
+    },
+    {
+      "id": 101,
+      "quarter": 1,
+      "clock": "00:03:56.1",
+      "type": "offensive-rebound",
+      "team": "away",
+      "jersey": "13"
+    },
+    {
+      "id": 100,
+      "quarter": 1,
+      "clock": "00:03:57.1",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 99,
+      "quarter": 1,
+      "clock": "00:04:05.1",
+      "type": "assist",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 98,
+      "quarter": 1,
+      "clock": "00:04:06.1",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "4",
+      "homeScore": 13,
+      "awayScore": 19
+    },
+    {
+      "id": 97,
+      "quarter": 1,
+      "clock": "00:04:21.1",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 96,
+      "quarter": 1,
+      "clock": "00:04:23.1",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 95,
+      "quarter": 1,
+      "clock": "00:04:32.1",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "15"
+    },
+    {
+      "id": 94,
+      "quarter": 1,
+      "clock": "00:04:33.1",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 93,
+      "quarter": 1,
+      "clock": "00:04:34.1",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 92,
+      "quarter": 1,
+      "clock": "00:04:39.1",
+      "type": "block-received",
+      "team": "away",
+      "jersey": "15"
+    },
+    {
+      "id": 91,
+      "quarter": 1,
+      "clock": "00:04:40.1",
+      "type": "block-made",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 90,
+      "quarter": 1,
+      "clock": "00:04:56.2",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "32"
+    },
+    {
+      "id": 89,
+      "quarter": 1,
+      "clock": "00:04:56.2",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 87,
+      "quarter": 1,
+      "clock": "00:04:56.2",
+      "type": "free-throw-made",
+      "team": "home",
+      "jersey": "9",
+      "homeScore": 11,
+      "awayScore": 19
+    },
+    {
+      "id": 86,
+      "quarter": 1,
+      "clock": "00:04:56.2",
+      "type": "free-throw-missed",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 85,
+      "quarter": 1,
+      "clock": "00:04:56.2",
+      "type": "two-free-throws-awarded",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 84,
+      "quarter": 1,
+      "clock": "00:04:56.2",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "4"
+    },
+    {
+      "id": 83,
+      "quarter": 1,
+      "clock": "00:04:56.2",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 82,
+      "quarter": 1,
+      "clock": "00:04:56.2",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 81,
+      "quarter": 1,
+      "clock": "00:04:56.2",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 80,
+      "quarter": 1,
+      "clock": "00:05:11.2",
+      "type": "assist",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 79,
+      "quarter": 1,
+      "clock": "00:05:11.2",
+      "type": "three-point-made",
+      "team": "away",
+      "jersey": "4",
+      "homeScore": 10,
+      "awayScore": 19
+    },
+    {
+      "id": 76,
+      "quarter": 1,
+      "clock": "00:05:31.2",
+      "type": "free-throw-made",
+      "team": "home",
+      "jersey": "47",
+      "homeScore": 10,
+      "awayScore": 16
+    },
+    {
+      "id": 75,
+      "quarter": 1,
+      "clock": "00:05:31.2",
+      "type": "one-free-throw-awarded",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 74,
+      "quarter": 1,
+      "clock": "00:05:31.2",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 73,
+      "quarter": 1,
+      "clock": "00:05:31.2",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 72,
+      "quarter": 1,
+      "clock": "00:05:31.2",
+      "type": "assist",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 71,
+      "quarter": 1,
+      "clock": "00:05:31.2",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "47",
+      "homeScore": 9,
+      "awayScore": 16
+    },
+    {
+      "id": 70,
+      "quarter": 1,
+      "clock": "00:05:45.3",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "9"
+    },
+    {
+      "id": 69,
+      "quarter": 1,
+      "clock": "00:05:45.3",
+      "type": "substitution-out",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 68,
+      "quarter": 1,
+      "clock": "00:05:45.3",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "15"
+    },
+    {
+      "id": 67,
+      "quarter": 1,
+      "clock": "00:05:45.3",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "13"
+    },
+    {
+      "id": 66,
+      "quarter": 1,
+      "clock": "00:05:45.3",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "4"
+    },
+    {
+      "id": 65,
+      "quarter": 1,
+      "clock": "00:05:45.3",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 64,
+      "quarter": 1,
+      "clock": "00:05:45.3",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 63,
+      "quarter": 1,
+      "clock": "00:05:45.3",
+      "type": "substitution-out",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 62,
+      "quarter": 1,
+      "clock": "00:05:45.3",
+      "type": "timeout",
+      "team": "home",
+      "jersey": "ENTRENADOR/A"
+    },
+    {
+      "id": 61,
+      "quarter": 1,
+      "clock": "00:05:54.3",
+      "type": "assist",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 60,
+      "quarter": 1,
+      "clock": "00:05:54.3",
+      "type": "three-point-made",
+      "team": "away",
+      "jersey": "1",
+      "homeScore": 7,
+      "awayScore": 16
+    },
+    {
+      "id": 59,
+      "quarter": 1,
+      "clock": "00:06:17.3",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "47",
+      "homeScore": 7,
+      "awayScore": 13
+    },
+    {
+      "id": 58,
+      "quarter": 1,
+      "clock": "00:06:37.4",
+      "type": "assist",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 57,
+      "quarter": 1,
+      "clock": "00:06:38.4",
+      "type": "three-point-made",
+      "team": "away",
+      "jersey": "1",
+      "homeScore": 5,
+      "awayScore": 13
+    },
+    {
+      "id": 56,
+      "quarter": 1,
+      "clock": "00:06:49.4",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 55,
+      "quarter": 1,
+      "clock": "00:06:50.4",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 54,
+      "quarter": 1,
+      "clock": "00:06:52.4",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 53,
+      "quarter": 1,
+      "clock": "00:06:54.4",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 52,
+      "quarter": 1,
+      "clock": "00:07:05.4",
+      "type": "assist",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 51,
+      "quarter": 1,
+      "clock": "00:07:08.4",
+      "type": "two-point-made",
+      "team": "away",
+      "jersey": "11",
+      "homeScore": 5,
+      "awayScore": 10
+    },
+    {
+      "id": 50,
+      "quarter": 1,
+      "clock": "00:07:13.4",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 49,
+      "quarter": 1,
+      "clock": "00:07:14.4",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 48,
+      "quarter": 1,
+      "clock": "00:07:27.4",
+      "type": "assist",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 47,
+      "quarter": 1,
+      "clock": "00:07:28.4",
+      "type": "three-point-made",
+      "team": "away",
+      "jersey": "10",
+      "homeScore": 5,
+      "awayScore": 8
+    },
+    {
+      "id": 46,
+      "quarter": 1,
+      "clock": "00:07:36.5",
+      "type": "offensive-rebound",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 45,
+      "quarter": 1,
+      "clock": "00:07:36.5",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 44,
+      "quarter": 1,
+      "clock": "00:07:38.5",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 43,
+      "quarter": 1,
+      "clock": "00:07:39.5",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 42,
+      "quarter": 1,
+      "clock": "00:07:48.5",
+      "type": "steal",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 41,
+      "quarter": 1,
+      "clock": "00:07:48.5",
+      "type": "turnover",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 40,
+      "quarter": 1,
+      "clock": "00:07:52.5",
+      "type": "assist",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 39,
+      "quarter": 1,
+      "clock": "00:07:53.5",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "14",
+      "homeScore": 5,
+      "awayScore": 5
+    },
+    {
+      "id": 38,
+      "quarter": 1,
+      "clock": "00:07:56.5",
+      "type": "steal",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 37,
+      "quarter": 1,
+      "clock": "00:07:57.5",
+      "type": "turnover",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 34,
+      "quarter": 1,
+      "clock": "00:08:10.5",
+      "type": "free-throw-made",
+      "team": "home",
+      "jersey": "34",
+      "homeScore": 3,
+      "awayScore": 5
+    },
+    {
+      "id": 33,
+      "quarter": 1,
+      "clock": "00:08:10.5",
+      "type": "one-free-throw-awarded",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 32,
+      "quarter": 1,
+      "clock": "00:08:10.5",
+      "type": "foul-received",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 31,
+      "quarter": 1,
+      "clock": "00:08:10.5",
+      "type": "foul-committed",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 30,
+      "quarter": 1,
+      "clock": "00:08:10.5",
+      "type": "two-point-made",
+      "team": "home",
+      "jersey": "34",
+      "homeScore": 2,
+      "awayScore": 5
+    },
+    {
+      "id": 29,
+      "quarter": 1,
+      "clock": "00:08:14.5",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 28,
+      "quarter": 1,
+      "clock": "00:08:15.5",
+      "type": "three-point-missed",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 27,
+      "quarter": 1,
+      "clock": "00:08:25.6",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 26,
+      "quarter": 1,
+      "clock": "00:08:27.6",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 25,
+      "quarter": 1,
+      "clock": "00:08:48.6",
+      "type": "assist",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 24,
+      "quarter": 1,
+      "clock": "00:08:48.6",
+      "type": "two-point-made",
+      "team": "away",
+      "jersey": "1",
+      "homeScore": 0,
+      "awayScore": 5
+    },
+    {
+      "id": 23,
+      "quarter": 1,
+      "clock": "00:08:51.6",
+      "type": "steal",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 22,
+      "quarter": 1,
+      "clock": "00:08:53.7",
+      "type": "turnover",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 21,
+      "quarter": 1,
+      "clock": "00:08:57.7",
+      "type": "defensive-rebound",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 20,
+      "quarter": 1,
+      "clock": "00:08:58.7",
+      "type": "two-point-missed",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 19,
+      "quarter": 1,
+      "clock": "00:09:08.7",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 18,
+      "quarter": 1,
+      "clock": "00:09:11.7",
+      "type": "two-point-missed",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 17,
+      "quarter": 1,
+      "clock": "00:09:25.7",
+      "type": "assist",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 16,
+      "quarter": 1,
+      "clock": "00:09:25.7",
+      "type": "three-point-made",
+      "team": "away",
+      "jersey": "21",
+      "homeScore": 0,
+      "awayScore": 3
+    },
+    {
+      "id": 15,
+      "quarter": 1,
+      "clock": "00:09:25.7",
+      "type": "defensive-rebound",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 14,
+      "quarter": 1,
+      "clock": "00:09:25.7",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 13,
+      "quarter": 1,
+      "clock": "00:09:25.7",
+      "type": "three-point-missed",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 12,
+      "quarter": 1,
+      "clock": "00:09:50.7",
+      "type": "turnover",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 11,
+      "quarter": 1,
+      "clock": "00:10:00.0",
+      "type": "period-start",
+      "team": null,
+      "jersey": "-1"
+    },
+    {
+      "id": 10,
+      "quarter": 1,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "51"
+    },
+    {
+      "id": 9,
+      "quarter": 1,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "21"
+    },
+    {
+      "id": 8,
+      "quarter": 1,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "11"
+    },
+    {
+      "id": 7,
+      "quarter": 1,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "10"
+    },
+    {
+      "id": 6,
+      "quarter": 1,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "away",
+      "jersey": "1"
+    },
+    {
+      "id": 5,
+      "quarter": 1,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "55"
+    },
+    {
+      "id": 4,
+      "quarter": 1,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "47"
+    },
+    {
+      "id": 3,
+      "quarter": 1,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "34"
+    },
+    {
+      "id": 2,
+      "quarter": 1,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "20"
+    },
+    {
+      "id": 1,
+      "quarter": 1,
+      "clock": "00:10:00.0",
+      "type": "substitution-in",
+      "team": "home",
+      "jersey": "14"
+    },
+    {
+      "id": 0,
+      "quarter": 1,
+      "clock": "00:10:00.0",
+      "type": "game-start",
+      "team": null,
+      "jersey": "-1"
+    }
+  ]
 }

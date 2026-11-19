@@ -139,5 +139,5 @@ test('missing or invalid actions produce empty arrays for both teams and a warni
     assert.equal(detail.away.score, 3);
     assert.match(warn.mock.lastCall[0], /game:/);
   }
-  assert.equal(warn.mock.calls.length, cases.length);
+  assert.equal(warn.mock.calls.filter(([message]) => message.includes('timely scores')).length, cases.length);
 });

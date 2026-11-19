@@ -123,6 +123,7 @@ test('game details omit source names and internal flags and sort numeric period 
     extra: 'preserved',
     home: { slug: 'home', score: 85, quarterScores: [10, 20, 20, 30, 5], timelyScores: [] },
     away: { slug: 'away', score: 80, quarterScores: [20, 15, 25, 20, 0], timelyScores: [] },
+    playByPlay: [],
   });
   assert.equal(JSON.stringify(scoreData), original);
   assert.equal(JSON.stringify(game), originalGame);
@@ -147,6 +148,7 @@ test('game details require both scores, accept zero and handle missing periods',
       ...detailMetadata,
       home: { slug: 'home', score: 0, quarterScores: [], timelyScores: [] },
       away: { slug: 'away', score: 20, quarterScores: [], timelyScores: [] },
+      playByPlay: [],
     },
   );
 });
@@ -302,7 +304,10 @@ test('calendar builds from competition trees, sorting, computing slugs and skipp
   const gamesDir = path.join(dataDir, 'games');
   assert.deepEqual(fs.readdirSync(gamesDir), [`${gameSlug}.json`]);
   const gameFile = path.join(gamesDir, `${gameSlug}.json`);
-  assert.deepEqual(JSON.parse(fs.readFileSync(gameFile, 'utf8')), {
+  const writtenGame = JSON.parse(fs.readFileSync(gameFile, 'utf8'));
+  assert.equal(writtenGame.playByPlay.length > 0, true);
+  delete writtenGame.playByPlay;
+  assert.deepEqual(writtenGame, {
     ...detailMetadata,
     slug: gameSlug,
     home: {

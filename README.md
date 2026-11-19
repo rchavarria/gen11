@@ -46,14 +46,14 @@ node src/renew-key.js
 
 ## Data sources and outputs
 
-| Under `src/data/`    | Purpose                                                                                                                                                                                        |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `competitions.json`  | Season, source category, phases and optional groups with their team slugs. Maintained by hand.                                                                                                 |
-| `<competition>.json` | Games by phase, optional group and round, plus `pending-games`. The source `IdPartido` is the game `id`.                                                                                       |
-| `teams.json`         | Unique `slug` and `name`, plus `initials`, `club` and `logo` (filename in `src/web/public/logos/`). Source team names match `name` after trimming and uppercasing; `club` is not a lookup key. |
-| `venues.json`        | Venue `slug`, `name`, `address` and optional `maps` link. `CampoJuego` must match `name` exactly; an unmatched venue does not overwrite an existing one.                                       |
-| `calendar.json`      | Generated from placed games and `games-scores/<id>.json` under `outputDir`. Without a score file the game is unplayed. `home.club` and `away.club` contain team slugs.                         |
-| `games/<slug>.json`  | Generated when both scores are numeric. Includes period scores, score history (`timelyScores`) and, when `games-stats/<id>.json` exists, player stats by jersey.                               |
+| Under `src/data/`    | Purpose                                                                                                                                                                                                                                             |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `competitions.json`  | Season, source category, phases and optional groups with their team slugs. Maintained by hand.                                                                                                                                                      |
+| `<competition>.json` | Games by phase, optional group and round, plus `pending-games`. The source `IdPartido` is the game `id`.                                                                                                                                            |
+| `teams.json`         | Unique `slug` and `name`, plus `initials`, `club` and `logo` (filename in `src/web/public/logos/`). Source team names match `name` after trimming and uppercasing; `club` is not a lookup key.                                                      |
+| `venues.json`        | Venue `slug`, `name`, `address` and optional `maps` link. `CampoJuego` must match `name` exactly; an unmatched venue does not overwrite an existing one.                                                                                            |
+| `calendar.json`      | Generated from placed games and `games-scores/<id>.json` under `outputDir`. Without a score file the game is unplayed. `home.club` and `away.club` contain team slugs.                                                                              |
+| `games/<slug>.json`  | Generated when both scores are numeric. Includes period scores, score history (`timelyScores`), the play-by-play (`playByPlay`, see [docs/play-by-play.md](docs/play-by-play.md)) and, when `games-stats/<id>.json` exists, player stats by jersey. |
 
 Game URLs use `<competition>-<phase>[-<group>]-<round>-<home>-<away>`. When
 renaming a team slug, update its references in competitions and game trees,

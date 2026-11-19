@@ -4,6 +4,8 @@
  * Extracts score timeline data from the raw actions of a game.
  */
 
+const { getActionScore, isHomeAction, readActions } = require('./actions');
+
 const SCORING_ACTION_TYPES = new Set(['CANASTA-1P', 'CANASTA-2P', 'CANASTA-3P']);
 const REGULAR_PERIODS = 4;
 const PERIOD_MS = 10 * 60 * 1000;
@@ -41,56 +43,17 @@ function getActionTimeMs(action) {
   return getPeriodEndMs(period) - timeMs;
 }
 
-/**
- * Returns the score after the action, decoded from `informacion_adicional`.
- * @param {{informacion_adicional: unknown}} action
- * @returns {{home_score: number, away_score: number}}
- */
-function getActionScore(action) {
-  let info;
-  try {
-    info = JSON.parse(action.informacion_adicional);
-  } catch {
-    throw new Error(`informacion_adicional no válida: ${action.informacion_adicional}`);
-  }
-  if (!info || typeof info !== 'object' || info.tanteoLocal === undefined || info.tanteoVisitante === undefined) {
-    throw new Error(`informacion_adicional sin tanteo: ${action.informacion_adicional}`);
-  }
-  return { home_score: info.tanteoLocal, away_score: info.tanteoVisitante };
-}
-
 function getScoringActions(data) {
-  if (!data || typeof data !== 'object' || Array.isArray(data)) {
-    throw new Error('El JSON debe contener un objeto en la raíz.');
-  }
-
-  const actions = data.envivo?.historialacciones;
-  if (!Array.isArray(actions)) {
-    throw new Error('No se encontró el array envivo.historialacciones.');
-  }
-
-  const game = data.partido;
-  if (!game || typeof game !== 'object') {
-    throw new Error('No se encontró el objeto partido.');
-  }
-  if (game.idlocal == null || game.idvisitante == null) {
-    throw new Error(`partido.idlocal / partido.idvisitante no válidos: ${game.idlocal} / ${game.idvisitante}`);
-  }
-  const homeId = Number(game.idlocal);
-  const awayId = Number(game.idvisitante);
+  const { actions, homeId, awayId } = readActions(data);
 
   return (
     actions
       .filter((action) => action && SCORING_ACTION_TYPES.has(action.accion_tipo))
       .map((action) => {
-        const teamId = Number(action.equipo_id);
-        if (teamId !== homeId && teamId !== awayId) {
-          throw new Error(`equipo_id no coincide con ningún equipo: ${action.equipo_id}`);
-        }
         return {
           timestamp: getActionTimeMs(action),
           jersey: action.dorsal,
-          isHome: teamId === homeId,
+          isHome: isHomeAction(action, homeId, awayId),
           ...getActionScore(action),
         };
       })

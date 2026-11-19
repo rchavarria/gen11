@@ -17,7 +17,8 @@
  *
  * The calendar only includes whitelisted fields (no ids). Per-game files keep
  * game fields, including ids but excluding source team names and internal
- * download flags, and add scores, period scores and score evolution.
+ * download flags, and add scores, period scores, score evolution and the
+ * play-by-play (see docs/play-by-play.md).
  *
  * Usage: node src/build-data.js
  */
@@ -28,6 +29,7 @@ const { loadConfig } = require('./core/config');
 const { writeJson } = require('./core/files');
 const { isValidGame } = require('./core/games');
 const { calculateStandings } = require('./core/standings');
+const { getPlayByPlay } = require('./core/play-by-play');
 const { getTimelyScores } = require('./core/timely-scores');
 const {
   DATA_DIR,
@@ -169,6 +171,13 @@ function buildGameDetail(game, teams, scoreData, statsData) {
     timelyScores = { home: [], away: [] };
     console.warn(`Cannot build timely scores for ${game.slug}: ${err.message}`);
   }
+  let playByPlay;
+  try {
+    playByPlay = getPlayByPlay(scoreData);
+  } catch (err) {
+    playByPlay = [];
+    console.warn(`Cannot build play-by-play for ${game.slug}: ${err.message}`);
+  }
   return {
     ...metadata,
     home: {
@@ -185,6 +194,7 @@ function buildGameDetail(game, teams, scoreData, statsData) {
       ...(stats && { players: toPlayers(stats.estadisticasequipovisitante) }),
       timelyScores: timelyScores.away,
     },
+    playByPlay,
   };
 }
 

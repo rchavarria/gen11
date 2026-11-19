@@ -1156,7 +1156,7 @@
   },
   {
     "slug": "s67-kdt-oro-f1-g2-j09-zentro-alcorcon",
-    "date": "2026-11-29T00:00:00Z",
+    "date": "2026-11-28T19:15:00Z",
     "venue": "diaz-miguel",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
     "played": false,
@@ -1211,6 +1211,21 @@
     },
     "away": {
       "club": "sba",
+      "score": null
+    }
+  },
+  {
+    "slug": "s67-kdt-oro-f1-g2-j10-alcobendas-zentro",
+    "date": "2026-12-03T19:00:00Z",
+    "venue": "ferrandiz",
+    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "played": false,
+    "home": {
+      "club": "alcobendas",
+      "score": null
+    },
+    "away": {
+      "club": "zentro",
       "score": null
     }
   },
@@ -1301,21 +1316,6 @@
     },
     "away": {
       "club": "alcobendas",
-      "score": null
-    }
-  },
-  {
-    "slug": "s67-kdt-oro-f1-g2-j10-alcobendas-zentro",
-    "date": "2026-12-13T12:15:00Z",
-    "venue": "antela",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
-    "home": {
-      "club": "alcobendas",
-      "score": null
-    },
-    "away": {
-      "club": "zentro",
       "score": null
     }
   }

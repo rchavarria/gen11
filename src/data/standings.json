@@ -266,29 +266,29 @@
         },
         {
           "id": "playoffs",
-              "standings": [
-                {
-                  "team": "zentro",
-                  "gamesPlayed": 2,
-                  "wins": 2,
-                  "losses": 0,
-                  "pointsFor": 206,
-                  "pointsAgainst": 114,
-                  "points": 4
-                },
-                {
-                  "team": "alcobendas",
-                  "gamesPlayed": 2,
-                  "wins": 0,
-                  "losses": 2,
-                  "pointsFor": 114,
-                  "pointsAgainst": 206,
-                  "points": 2
-                }
-              ]
+          "standings": [
+            {
+              "team": "zentro",
+              "gamesPlayed": 2,
+              "wins": 2,
+              "losses": 0,
+              "pointsFor": 206,
+              "pointsAgainst": 114,
+              "points": 4
             },
             {
-              "id": "f3",
+              "team": "alcobendas",
+              "gamesPlayed": 2,
+              "wins": 0,
+              "losses": 2,
+              "pointsFor": 114,
+              "pointsAgainst": 206,
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "f3",
           "standings": [
             {
               "team": "fuenlabrada",

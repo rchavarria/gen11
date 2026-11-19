@@ -883,7 +883,7 @@
                 },
                 {
                   "id": "650030005400370033004C00790039004A004700560032005300760062002F006C0046006F005300610077003D003D00",
-                  "date": "2026-11-29T00:00:00Z",
+                  "date": "2026-11-28T19:15:00Z",
                   "venue": "diaz-miguel",
                   "home": {
                     "slug": "zentro",
@@ -915,6 +915,20 @@
               "id": "j10",
               "games": [
                 {
+                  "id": "710047004F004E004B00310047004B007000370035006400470068004E004800420057006A0054004A0041003D003D00",
+                  "date": "2026-12-03T19:00:00Z",
+                  "venue": "ferrandiz",
+                  "home": {
+                    "slug": "alcobendas",
+                    "score": null
+                  },
+                  "away": {
+                    "slug": "zentro",
+                    "score": null
+                  },
+                  "downloaded": false
+                },
+                {
                   "id": "6200370038004E004B007000710061006C00420067007900520037006E0048004B006A0072006400550041003D003D00",
                   "date": "2026-12-13T00:00:00Z",
                   "venue": "canaleja",
@@ -938,20 +952,6 @@
                   },
                   "away": {
                     "slug": "laso",
-                    "score": null
-                  },
-                  "downloaded": false
-                },
-                {
-                  "id": "710047004F004E004B00310047004B007000370035006400470068004E004800420057006A0054004A0041003D003D00",
-                  "date": "2026-12-13T12:15:00Z",
-                  "venue": "antela",
-                  "home": {
-                    "slug": "alcobendas",
-                    "score": null
-                  },
-                  "away": {
-                    "slug": "zentro",
                     "score": null
                   },
                   "downloaded": false

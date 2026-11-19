@@ -41,8 +41,11 @@ fecha, hora si se conoce, escudos e iniciales, no son enlaces.
 **Tarjetas compartidas por calendario y competiciones.** Muestran categoría,
 fecha y hora de Madrid, nombre de cada equipo y escudo (o iniciales).
 Solo enlazan al detalle si hay dos puntuaciones; sin marcador completo, destacan
-el pabellón si se conoce. Un borde rojo identifica los partidos de
-`BALONCESTO ALCOBENDAS`, también en la tira superior.
+el pabellón si se conoce. El recuadro de fecha, hora y pabellón abre Google Maps
+en una pestaña nueva si `venues.json` contiene una URL HTTP(S) válida en `maps`.
+El nombre del pabellón se muestra como texto, sin subrayado propio.
+Un borde rojo identifica los partidos de `BALONCESTO ALCOBENDAS`, también en la
+tira superior.
 
 ## Detalle · `/#/game/:slug`
 

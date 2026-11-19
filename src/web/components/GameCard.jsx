@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
 import teams from '../../data/teams.json';
-import venues from '../../data/venues.json';
 import { formatDay, gameDay, gameTime } from '../lib/dates.js';
 import { isHighlighted } from '../lib/game.js';
+import { getVenue, getVenueMapsUrl } from '../lib/venues.js';
 import ClubLogo from './ClubLogo.jsx';
 
 const teamsBySlug = new Map(teams.map((team) => [team.slug, team]));
-const venuesBySlug = new Map(venues.map((venue) => [venue.slug, venue]));
 
 function Side({ side, winner }) {
   const team = teamsBySlug.get(side.club);
@@ -25,16 +24,27 @@ export default function GameCard({ game }) {
   const { home, away, played } = game;
   const className = `game-card${isHighlighted(game) ? ' game-card--highlighted' : ''}`;
   const hasScore = home.score != null && away.score != null;
-  const venue = !hasScore && venuesBySlug.get(game.venue);
+  const venue = hasScore ? undefined : getVenue(game.venue);
+  const maps = getVenueMapsUrl(venue);
+  const VenueBox = maps ? 'a' : 'div';
   const homeWins = played && home.score > away.score;
   const awayWins = played && away.score > home.score;
+  const day = formatDay(gameDay(game.date));
   const time = gameTime(game.date);
+  const mapsLink = maps
+    ? {
+        href: maps,
+        target: '_blank',
+        rel: 'noopener noreferrer',
+        'aria-label': `${[day, time, venue.name].filter(Boolean).join(', ')} (abrir en Google Maps)`,
+      }
+    : undefined;
 
   const meta = (
     <div className={`game-card__meta${venue ? ' game-card__meta--with-venue' : ''}`}>
       {!venue && (
         <span>
-          {formatDay(gameDay(game.date))}
+          {day}
           {time ? ` · ${time}` : ''}
         </span>
       )}
@@ -47,11 +57,15 @@ export default function GameCard({ game }) {
       {!venue && meta}
       <div className={`game-card__body${venue ? ' game-card__body--with-venue' : ''}`}>
         {venue && (
-          <div className="game-card__venue" title={[venue.name, venue.address].filter(Boolean).join(' — ')}>
-            <span>{formatDay(gameDay(game.date))}</span>
+          <VenueBox
+            className="game-card__venue"
+            title={[venue.name, venue.address].filter(Boolean).join(' — ')}
+            {...mapsLink}
+          >
+            <span>{day}</span>
             {time && <strong>{time}</strong>}
             <span>{venue.name}</span>
-          </div>
+          </VenueBox>
         )}
         <div className="game-card__clubs">
           {venue && meta}

@@ -14,7 +14,11 @@ vi.mock('../../data/teams.json', () => ({
   ],
 }));
 vi.mock('../../data/venues.json', () => ({
-  default: [{ slug: 'central', name: 'Pabellón Central', address: 'Calle Central, 1' }],
+  default: [
+    { slug: 'central', name: 'Pabellón Central', address: 'Calle Central, 1', maps: 'https://maps.app.goo.gl/example' },
+    { slug: 'north', name: 'Pabellón Norte' },
+    { slug: 'south', name: 'Pabellón Sur', maps: '/invalid' },
+  ],
 }));
 
 const game = {
@@ -137,6 +141,37 @@ test.each([
   expect(within(clubs).getByText('Madrid')).toBeInTheDocument();
   expect(within(clubs).getByText('Canoe')).toBeInTheDocument();
   expect(clubs.querySelectorAll('.game-card__score')).toHaveLength(home != null || away != null ? 1 : 0);
+});
+
+test('links the whole date, time and venue box to Google Maps in a new tab', () => {
+  renderCard({
+    venue: 'central',
+    home: { club: 'madrid', score: null },
+    away: { club: 'canoe', score: null },
+  });
+
+  const link = screen.getByRole('link', { name: /abrir en Google Maps/ });
+  expect(link).toHaveClass('game-card__venue');
+  expect(within(link).getByText('vie 6 nov')).toBeInTheDocument();
+  expect(within(link).getByText('18:30')).toBeInTheDocument();
+  expect(within(link).getByText('Pabellón Central')).toBeInTheDocument();
+  expect(link).toHaveAttribute('href', 'https://maps.app.goo.gl/example');
+  expect(link).toHaveAttribute('target', '_blank');
+  expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+});
+
+test.each([
+  ['north', 'Pabellón Norte'],
+  ['south', 'Pabellón Sur'],
+])('shows the venue name without a link when the URL is missing or invalid (%s)', (venue, name) => {
+  renderCard({
+    venue,
+    home: { club: 'madrid', score: null },
+    away: { club: 'canoe', score: null },
+  });
+
+  expect(screen.getByText(name)).toBeInTheDocument();
+  expect(screen.queryByRole('link')).not.toBeInTheDocument();
 });
 
 test.each(['', undefined, 'unknown'])('omits missing or unknown calendar venues (%s)', (venue) => {

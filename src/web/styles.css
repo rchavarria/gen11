@@ -309,6 +309,14 @@ a.game-card--highlighted:hover {
   font-size: 1rem;
 }
 
+a.game-card__venue {
+  text-decoration: none;
+}
+
+a.game-card__venue:hover {
+  border-color: var(--color-primary);
+}
+
 .club-logo {
   width: 28px;
   height: 28px;

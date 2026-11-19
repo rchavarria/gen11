@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import teams from '../../data/teams.json';
-import venues from '../../data/venues.json';
 import Boxscore from '../components/Boxscore.jsx';
 import ClubLogo from '../components/ClubLogo.jsx';
 import GameVideo from '../components/GameVideo.jsx';
@@ -10,25 +9,17 @@ import ScoreEvolution from '../components/ScoreEvolution.jsx';
 import Tabs from '../components/Tabs.jsx';
 import { formatDay, gameDay, gameTime } from '../lib/dates.js';
 import { periodLabel } from '../lib/game.js';
+import { getVenue, getVenueMapsUrl } from '../lib/venues.js';
 
 const gameFiles = import.meta.glob('../../data/games/*.json', { import: 'default' });
 const teamsBySlug = new Map(teams.map((team) => [team.slug, team]));
-const venuesBySlug = new Map(venues.map((venue) => [venue.slug, venue]));
 
 function GameDetail({ game }) {
   const homeClub = teamsBySlug.get(game.home.slug);
   const awayClub = teamsBySlug.get(game.away.slug);
   if (!homeClub || !awayClub) throw new Error('Equipo no encontrado.');
-  const venue = venuesBySlug.get(game.venue);
-  let maps;
-  if (venue?.maps) {
-    try {
-      const url = new URL(venue.maps);
-      if (['http:', 'https:'].includes(url.protocol)) maps = venue.maps;
-    } catch {
-      // Keep the venue name visible when its URL is invalid.
-    }
-  }
+  const venue = getVenue(game.venue);
+  const maps = getVenueMapsUrl(venue);
 
   const sides = [
     { ...game.home, club: homeClub, winner: game.home.score > game.away.score },

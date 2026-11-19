@@ -22,7 +22,8 @@ flowchart TD
     download --> scores["Obtener estadísticas y marcadores que correspondan; guardar los árboles"]
     scores --> calendar["Generar calendar.json con los partidos asignados"]
     calendar --> details["Generar el detalle de los que tienen ambos marcadores"]
-    details --> report
+    details --> standings["Actualizar las clasificaciones calculadas en standings.json"]
+    standings --> report
     report -.->|Si quedan pendientes| manual["Asignarlos a su jornada a mano y ejecutar npm run build-data"]
 ```
 
@@ -30,6 +31,11 @@ flowchart TD
 pasen más de tres horas desde el inicio previsto. Si ya existen estadísticas y
 marcador, se reutilizan; si solo existe uno, la ejecución se detiene. Si la API
 responde «sin datos», se continúa con el siguiente partido.
+
+**Clasificaciones.** Tanto `npm run sync` como `npm run build-data` calculan las
+fases con `standings.type: "computed"` en `src/data/competitions.json`. Usan los
+marcadores guardados en las jornadas de `src/data/<competitionId>.json` y
+actualizan `src/data/standings.json` sin reemplazar las clasificaciones manuales.
 
 **Informe.** Si falla la configuración, el proceso termina sin informe. Ante un
 fallo posterior que interrumpa la ejecución, se intenta guardar el progreso y el

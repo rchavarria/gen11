@@ -20,7 +20,7 @@
  *      round in the tree. Pending games are listed in the report.
  *   3. Downloads stats and score of every game (placed or pending) not
  *      downloaded yet (same rules as download-games.js).
- *   4. Rebuilds src/data/calendar.json (build-data.js).
+ *   4. Rebuilds the calendar, game details and computed standings (build-data.js).
  *   5. Rebuilds src/data/games/<slug>.json for games with scores, including
  *      each team's timelyScores (score evolution from the raw actions).
  *   6. Writes the report to <outputDir>/sync-reports/<YYYY-MM-DD>.md (an
@@ -43,7 +43,7 @@ const { loadConfig } = require('./core/config');
 const { listGames, loadTeams, readCompetitionTrees, writeCompetitionTree } = require('./core/competitions');
 const { fetchNextGamesRenewingKey, DAYS } = require('./core/next-games');
 const download = require('./core/download');
-const { buildCalendar, buildGameFiles } = require('./build-data');
+const { buildCalendar, buildGameFiles, buildStandings } = require('./build-data');
 const { buildReport, writeReport } = require('./core/report');
 
 const SEPARATOR = '='.repeat(50);
@@ -143,6 +143,9 @@ async function run(config, result) {
 
   step('4. Game files');
   result.gameFilesCount = (await buildGameFiles(config)).count;
+
+  step('5. Computed standings');
+  await buildStandings();
 }
 
 async function main() {

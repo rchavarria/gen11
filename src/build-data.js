@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Builds the web calendar and per-game files from the raw downloads.
+ * Builds the web calendar, per-game files and computed standings.
  * It makes no API requests.
  *
  * - Games come from the competition trees (src/data/<competitionId>.json),
@@ -11,6 +11,7 @@
  *   <competitionId>-<phaseId>[-<groupId>]-<roundId>-<homeTeam>-<awayTeam>.
  * - The category is the one of the competition.
  * - Scores and played status come from score files (<id>.json), matched by game id.
+ *   Standings use the scores stored in the competition trees instead.
  * - Team slugs come from src/data/teams.json (maintained by hand).
  *   The web resolves team names and logos from that file.
  *
@@ -24,6 +25,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { loadConfig } = require('./core/config');
+const { writeJson } = require('./core/files');
 const { isValidGame } = require('./core/games');
 const { getTimelyScores } = require('./core/timely-scores');
 const {
@@ -227,7 +229,70 @@ async function buildCalendar(config, { dataDir = DATA_DIR } = {}) {
   return { count: calendar.length, skipped };
 }
 
-module.exports = { toPlayers, buildSide, fromDatedGame, buildGameDetail, buildGameFiles, buildCalendar };
+function readStandings(file) {
+  let data;
+  try {
+    data = readJson(file);
+  } catch (err) {
+    if (err.code === 'ENOENT') return { competitions: [] };
+    throw err;
+  }
+  if (!Array.isArray(data?.competitions)) {
+    throw new Error(`Invalid structure in ${file}: "competitions" array is missing.`);
+  }
+  return data;
+}
+
+function findOrAddById(items, id) {
+  const existing = items.find((item) => item.id === id);
+  if (existing) return existing;
+  const entry = { id };
+  items.push(entry);
+  return entry;
+}
+
+async function buildStandings({ dataDir = DATA_DIR } = {}) {
+  const { calculateStandings } = await import('./core/standings.js');
+  const fileName = 'standings.json';
+  const file = path.join(dataDir, fileName);
+  let data;
+
+  for (const { competition, tree } of await readCompetitionTrees(dataDir)) {
+    for (const phase of tree.phases) {
+      const rules = competition.phases.find(({ id }) => id === phase.id)?.standings;
+      if (rules?.type !== 'computed' || phase.groups?.length === 0) continue;
+
+      data ??= readStandings(file);
+      const outputCompetition = findOrAddById(data.competitions, competition.id);
+      outputCompetition.phases ??= [];
+      const outputPhase = findOrAddById(outputCompetition.phases, phase.id);
+      if (phase.groups) {
+        outputPhase.groups ??= [];
+        for (const { id, rounds } of phase.groups) {
+          const outputGroup = findOrAddById(outputPhase.groups, id);
+          outputGroup.standings = calculateStandings(rules, rounds);
+        }
+      } else {
+        outputPhase.standings = calculateStandings(rules, phase.rounds);
+      }
+    }
+  }
+
+  if (data) {
+    await writeJson(dataDir, fileName, data);
+    console.log(`Computed standings updated in ${path.relative(process.cwd(), file)}`);
+  }
+}
+
+module.exports = {
+  toPlayers,
+  buildSide,
+  fromDatedGame,
+  buildGameDetail,
+  buildGameFiles,
+  buildCalendar,
+  buildStandings,
+};
 
 if (require.main === module) {
   Promise.resolve()
@@ -235,6 +300,7 @@ if (require.main === module) {
       const config = loadConfig();
       await buildCalendar(config);
       await buildGameFiles(config);
+      await buildStandings();
     })
     .catch((err) => {
       console.error(err.message);

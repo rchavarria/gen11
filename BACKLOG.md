@@ -3,13 +3,13 @@
 ## To Do list
 
 - sync: generar ficheros sobre jugadores, con estadísticas de cada jugador en cada partido (puntos, rebotes, asistencias, valoración…)
-- web: el recuadro del nombre del pabellón, incluye un enlace a Google Maps
 - web: ampliar el boxscore con más columnas (tiros, rebotes, asistencias…)
 - WIP (hay sesión de copilot cli (2026-11-13)) web: rellenar la pestaña «Jugada a jugada», hoy es placeholder
 - web: inspirarse en la [federación Catalana](https://www.basquetcatala.cat/competicions/resultats/23288/11) para diseñar la página de detalle de jugador
 
 ## Done list
 
+- 2026-11-19: web: el recuadro del nombre del pabellón, incluye un enlace a Google Maps
 - 2026-11-19: sync: build-data, debe calcular las clasificaciones (en los árboles se debe poder poner que se ignore el cálculo)
 - 2026-11-19: sync: si se detecta un error en la llamada a la API, mostrar un mensajito, para no quedarme mirando como un tonto la consola
 - 2026-11-19: sync y web: renombrar games a matches

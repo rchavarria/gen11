@@ -3,6 +3,7 @@
 ## To Do list
 
 - web: rellenar la pestaña «Jugada a jugada», hoy es placeholder (los datos ya están en `playByPlay`, ver `docs/play-by-play.md`)
+- sync: una vez se genere el play-by-play, refactorizar timelyScores para extraerlos del play-by-play en la web, al vuelo
 - sync: generar ficheros sobre jugadores, con estadísticas de cada jugador en cada partido (puntos, rebotes, asistencias, valoración…)
 - web: ampliar el boxscore con más columnas (tiros, rebotes, asistencias…)
 - web: inspirarse en la [federación Catalana](https://www.basquetcatala.cat/competicions/resultats/23288/11) para diseñar la página de detalle de jugador

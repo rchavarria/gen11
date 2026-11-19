@@ -5,6 +5,7 @@
 - sync: generar ficheros sobre jugadores, con estadísticas de cada jugador en cada partido (puntos, rebotes, asistencias, valoración…)
 - web: ampliar el boxscore con más columnas (tiros, rebotes, asistencias…)
 - web: inspirarse en la [federación Catalana](https://www.basquetcatala.cat/competicions/resultats/23288/11) para diseñar la página de detalle de jugador
+- web: head to head a nivel de equipo, por partido, comparando puntos, tiros de 1, 2 y 3, rebotes, asistencias, valoración y +/-, lo que se pueda
 
 ## Done list
 

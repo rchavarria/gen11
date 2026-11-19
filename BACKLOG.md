@@ -2,6 +2,7 @@
 
 ## To Do list
 
+- sync: si se detecta un error en la llamada a la API, mostrar un mensajito, para no quedarme mirando como un tonto la consola
 - sync y web: renombrar games a matches
 - sync: build-data, debe calcular las clasificaciones (en los árboles se debe poder poner que se ignore el cálculo)
 - sync: generar ficheros sobre jugadores, con estadísticas de cada jugador en cada partido (puntos, rebotes, asistencias, valoración…)

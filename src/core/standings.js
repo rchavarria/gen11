@@ -1,3 +1,5 @@
+'use strict';
+
 function recordResult(standings, team, pointsFor, pointsAgainst, won, points) {
   let row = standings.get(team);
   if (!row) {
@@ -35,7 +37,7 @@ function headToHeadMargin(rounds, first, second) {
  * Returns one group's standings ordered by points, with an optional two-team head-to-head tiebreaker.
  * Uses config.winPoints and config.lossPoints for games with both scores.
  */
-export function calculateStandings(config, rounds) {
+function calculateStandings(config, rounds) {
   const { winPoints, lossPoints, tieBreaker = [] } = config;
   const standings = new Map();
 
@@ -71,3 +73,5 @@ export function calculateStandings(config, rounds) {
   }
   return rows;
 }
+
+module.exports = { calculateStandings };

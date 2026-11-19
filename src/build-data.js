@@ -27,6 +27,7 @@ const path = require('node:path');
 const { loadConfig } = require('./core/config');
 const { writeJson } = require('./core/files');
 const { isValidGame } = require('./core/games');
+const { calculateStandings } = require('./core/standings');
 const { getTimelyScores } = require('./core/timely-scores');
 const {
   DATA_DIR,
@@ -252,7 +253,6 @@ function findOrAddById(items, id) {
 }
 
 async function buildStandings({ dataDir = DATA_DIR } = {}) {
-  const { calculateStandings } = await import('./core/standings.js');
   const fileName = 'standings.json';
   const file = path.join(dataDir, fileName);
   let data;

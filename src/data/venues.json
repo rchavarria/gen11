@@ -32,7 +32,14 @@
   {
     "slug": "canoe",
     "name": "REAL CANOE N.C.",
-    "address": "CALLE PEZ VOLADOR, 30, Madrid, Madrid"
+    "address": "CALLE PEZ VOLADOR, 30, Madrid, Madrid",
+    "maps": "https://maps.app.goo.gl/nLfNinpQfou54W8s6"
+  },
+  {
+    "slug": "ceip-san-jose",
+    "name": "CEIP San José",
+    "address": "C. Colegios, 2, 28290 Las Rozas de Madrid, Madrid",
+    "maps": "https://maps.app.goo.gl/aCQ6brmapSkCopko7"
   },
   {
     "slug": "circular",
@@ -55,7 +62,8 @@
   {
     "slug": "fernando-martin",
     "name": "FERNANDO MARTIN, PABELLON",
-    "address": "GRECIA, S/N, Fuenlabrada, Madrid"
+    "address": "GRECIA, S/N, Fuenlabrada, Madrid",
+    "maps": "https://maps.app.goo.gl/nGjw1WtFi1DD8HyFA"
   },
   {
     "slug": "ferrandiz",
@@ -70,25 +78,22 @@
     "maps": "https://maps.app.goo.gl/mb741XvChQkkQkiK6"
   },
   {
-    "slug": "ceip-san-jose",
-    "name": "CEIP San José",
-    "address": "C. Colegios, 2, 28290 Las Rozas de Madrid, Madrid",
-    "maps": "https://maps.app.goo.gl/aCQ6brmapSkCopko7"
-  },
-  {
     "slug": "magariños",
     "name": "MOVISTAR ACADEMY MAGARIÑOS, PABELLON",
-    "address": "SERRANO, 129, Madrid, Madrid"
+    "address": "SERRANO, 129, Madrid, Madrid",
+    "maps": "https://maps.app.goo.gl/Xpc2RDMhFjRPGN8P9"
   },
   {
     "slug": "retamar",
     "name": "RETAMAR, PABELLON COLEGIO",
-    "address": "PAJARES, 22 (vía de servicio M-502), Pozuelo de Alarcón, Madrid"
+    "address": "PAJARES, 22 (vía de servicio M-502), Pozuelo de Alarcón, Madrid",
+    "maps": "https://maps.app.goo.gl/ne1it3mcyTW71XcB8"
   },
   {
     "slug": "sba",
     "name": "SBA ARENA",
-    "address": "FRAGUAS, 26, Alcorcón, Madrid"
+    "address": "FRAGUAS, 26, Alcorcón, Madrid",
+    "maps": "https://maps.app.goo.gl/CZn4UsyBJ1n8Qi1v7"
   },
   {
     "slug": "torrelodones",
@@ -99,7 +104,8 @@
   {
     "slug": "torrelodones-pequeno",
     "name": "TORRELODONES, PABELLON pequeño",
-    "address": "PLAZA JOSE MARIA UNCETA, 4, Torrelodones, Madrid"
+    "address": "PLAZA JOSE MARIA UNCETA, 4, Torrelodones, Madrid",
+    "maps": "https://maps.app.goo.gl/iUnZhjReYBsBe4vi9"
   },
   {
     "slug": "triangulo-oro",

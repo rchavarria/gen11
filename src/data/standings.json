@@ -28,15 +28,6 @@
                   "points": 13
                 },
                 {
-                  "team": "sba",
-                  "gamesPlayed": 7,
-                  "wins": 3,
-                  "losses": 4,
-                  "pointsFor": 567,
-                  "pointsAgainst": 696,
-                  "points": 10
-                },
-                {
                   "team": "fuenlabrada",
                   "gamesPlayed": 7,
                   "wins": 2,
@@ -62,6 +53,15 @@
                   "pointsFor": 377,
                   "pointsAgainst": 605,
                   "points": 6
+                },
+                {
+                  "team": "sba",
+                  "gamesPlayed": 7,
+                  "wins": 3,
+                  "losses": 4,
+                  "pointsFor": 567,
+                  "pointsAgainst": 696,
+                  "points": 10
                 }
               ]
             },
@@ -69,13 +69,13 @@
               "id": "g2",
               "standings": [
                 {
-                  "team": "laso",
+                  "team": "alcobendas",
                   "gamesPlayed": 7,
-                  "wins": 7,
-                  "losses": 0,
-                  "pointsFor": 669,
-                  "pointsAgainst": 527,
-                  "points": 14
+                  "wins": 1,
+                  "losses": 6,
+                  "pointsFor": 467,
+                  "pointsAgainst": 547,
+                  "points": 8
                 },
                 {
                   "team": "zentro",
@@ -85,6 +85,15 @@
                   "pointsFor": 607,
                   "pointsAgainst": 460,
                   "points": 12
+                },
+                {
+                  "team": "laso",
+                  "gamesPlayed": 7,
+                  "wins": 7,
+                  "losses": 0,
+                  "pointsFor": 669,
+                  "pointsAgainst": 527,
+                  "points": 14
                 },
                 {
                   "team": "estudiantes",
@@ -111,15 +120,6 @@
                   "losses": 6,
                   "pointsFor": 467,
                   "pointsAgainst": 637,
-                  "points": 8
-                },
-                {
-                  "team": "alcobendas",
-                  "gamesPlayed": 7,
-                  "wins": 1,
-                  "losses": 6,
-                  "pointsFor": 467,
-                  "pointsAgainst": 547,
                   "points": 8
                 }
               ]

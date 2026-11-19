@@ -2,7 +2,6 @@
 
 ## To Do list
 
-- sync: si se detecta un error en la llamada a la API, mostrar un mensajito, para no quedarme mirando como un tonto la consola
 - sync: build-data, debe calcular las clasificaciones (en los árboles se debe poder poner que se ignore el cálculo)
 - sync: generar ficheros sobre jugadores, con estadísticas de cada jugador en cada partido (puntos, rebotes, asistencias, valoración…)
 - web: el recuadro del nombre del pabellón, incluye un enlace a Google Maps
@@ -12,6 +11,7 @@
 
 ## Done list
 
+- 2026-11-19: sync: si se detecta un error en la llamada a la API, mostrar un mensajito, para no quedarme mirando como un tonto la consola
 - 2026-11-19: sync y web: renombrar games a matches
 - 2026-11-18: doc: añadir un diagrama de flujo de la sincronización
 - 2026-11-18: doc: revisar web-design.md y README.md, y compactarlos, eliminar cosas duplicadas o superfluas, ha añadido mucho y no ha borrado nada

@@ -358,6 +358,8 @@ class ApiClient {
    * (case-insensitive, trimmed), the response is accepted and `resultado`
    * is not checked.
    * @param {unknown} data
+   * A non-empty `error` is printed to the console before throwing.
+   * @param {unknown} data
    * @param {{checkResultado?: boolean, allowedError?: string}} [options]
    */
   static #validateCommon(data, { checkResultado = true, allowedError } = {}) {
@@ -374,6 +376,7 @@ class ApiClient {
     }
 
     if ('error' in data && !isEmptyValue(data.error)) {
+      console.error(`[api] Error: ${JSON.stringify(data.error)}`);
       throw new ApiError(`API returned an error: ${JSON.stringify(data.error)}`, { apiError: data.error, data });
     }
 

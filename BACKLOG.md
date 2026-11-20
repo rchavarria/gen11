@@ -2,7 +2,6 @@
 
 ## To Do list
 
-- web: rellenar la pestaña «Jugada a jugada», hoy es placeholder (los datos ya están en `playByPlay`, ver `docs/play-by-play.md`)
 - sync: una vez se genere el play-by-play, refactorizar timelyScores para extraerlos del play-by-play en la web, al vuelo
 - sync: generar ficheros sobre jugadores, con estadísticas de cada jugador en cada partido (puntos, rebotes, asistencias, valoración…)
 - web: ampliar el boxscore con más columnas (tiros, rebotes, asistencias…)
@@ -11,6 +10,7 @@
 
 ## Done list
 
+- 2026-11-19: web: la pestaña «Jugada a jugada» muestra un timeline de tarjetas con las canastas metidas
 - 2026-11-19: sync: generar play-by-play de cada partido en `src/data/games/<slug>.json`
 - 2026-11-19: sync: build-data añade `playByPlay` a cada partido y `docs/play-by-play.md` documenta los tipos de acción y su mapeo
 - 2026-11-19: web: el recuadro del nombre del pabellón, incluye un enlace a Google Maps

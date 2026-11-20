@@ -5,6 +5,7 @@ import Boxscore from '../components/Boxscore.jsx';
 import ClubLogo from '../components/ClubLogo.jsx';
 import GameVideo from '../components/GameVideo.jsx';
 import { CalendarIcon, ClockIcon, MapPinIcon } from '../components/Icons.jsx';
+import PlayByPlay from '../components/PlayByPlay.jsx';
 import ScoreEvolution from '../components/ScoreEvolution.jsx';
 import Tabs from '../components/Tabs.jsx';
 import { formatDay, gameDay, gameTime } from '../lib/dates.js';
@@ -32,7 +33,6 @@ function GameDetail({ game }) {
     (_, index) => index,
   );
   const time = gameTime(game.date);
-  const placeholder = (title) => <p className="tabs__placeholder">{title}: próximamente.</p>;
   const tabs = [
     {
       id: 'home',
@@ -49,7 +49,11 @@ function GameDetail({ game }) {
       label: 'Evolución del marcador',
       content: <ScoreEvolution home={game.home} away={game.away} homeName={homeClub.name} awayName={awayClub.name} />,
     },
-    { id: 'play-by-play', label: 'Jugada a jugada', content: placeholder('Jugada a jugada') },
+    {
+      id: 'play-by-play',
+      label: 'Jugada a jugada',
+      content: <PlayByPlay playByPlay={game.playByPlay} homeName={homeClub.name} awayName={awayClub.name} />,
+    },
   ];
 
   return (

@@ -39,11 +39,13 @@ describe('PlayByPlay', () => {
 
     expect(cards[0].className).toContain('play-by-play__card--away');
     expect(cards[0].getAttribute('aria-label')).toBe('Visitante');
-    expect(parts(cards[0])).toEqual(['60–63', '#7', 'Triple', '0:05', 'OT']);
+    expect(parts(cards[0])).toEqual(['', '60–63', '#7Triple0:05OT']);
+    expect(parts(cards[0].lastElementChild)).toEqual(['#7', 'Triple', '0:05', 'OT']);
 
     expect(cards[1].className).toContain('play-by-play__card--home');
     expect(cards[1].getAttribute('aria-label')).toBe('Local');
-    expect(parts(cards[1])).toEqual(['Q1', '9:30', 'Tiro libre', '#10', '1–0']);
+    expect(parts(cards[1])).toEqual(['Q19:30Tiro libre#10', '1–0', '']);
+    expect(parts(cards[1].firstElementChild)).toEqual(['Q1', '9:30', 'Tiro libre', '#10']);
   });
 
   it('shows a notice when there are no baskets', () => {

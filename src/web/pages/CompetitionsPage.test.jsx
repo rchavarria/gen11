@@ -136,7 +136,7 @@ test('shows group standings before the rounds and scrolls to them using the midd
     within(rows[1])
       .getAllByRole('cell')
       .map((cell) => cell.textContent),
-  ).toEqual(['7', '7', '0', '672', '465', '14']);
+  ).toEqual(['8', '8', '0', '751', '538', '16']);
   const navigation = screen.getByRole('navigation', { name: 'Navegación por jornadas' });
   expect(
     within(navigation)

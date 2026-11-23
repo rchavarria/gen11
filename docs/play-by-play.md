@@ -58,6 +58,9 @@ El orden es el de la fuente, es decir, el más reciente primero.
 | `FALTA-COMETIDA`               | `foul-committed`            | Falta cometida                        | 2.767 | sí     | `JugadorEnPista`, `TLAsociados` (a veces vacía) |
 | `FALTA-RECIBIDA`               | `foul-received`             | Falta recibida                        | 2.738 | sí     | `JugadorEnPista`, `TLAsociados` (a veces vacía) |
 | `TECNICA`                      | `technical-foul`            | Técnica a un jugador                  |    10 | sí     | `JugadorEnPista`, `TLAsociados`                 |
+| `TECNICA-C1`                   | `technical-foul`            | Técnica a un jugador (variante C1)    |     2 | sí     | `JugadorEnPista`, `TLAsociados`                 |
+| `DISRUPTIVA`                   | `disruptive-foul`           | Falta disruptiva                      |     3 | sí     | `JugadorEnPista`, `TLAsociados`                 |
+| `FLAGRANTE`                    | `flagrant-foul`             | Falta flagrante                       |     1 | sí     | `JugadorEnPista`, `TLAsociados`                 |
 | `TANTIDEPORTIVA`               | `unsportsmanlike-foul`      | Antideportiva                         |     9 | sí     | `JugadorEnPista`, `TLAsociados`                 |
 | `TDESCALIFICANTE`              | `disqualifying-foul`        | Descalificante                        |     1 | sí     | `JugadorEnPista`, `TLAsociados`                 |
 | `TBANQUILLO-B`                 | `bench-technical-foul`      | Técnica al banquillo                  |     6 | sí     | `JugadorEnPista`, `TLAsociados`                 |
@@ -73,6 +76,7 @@ El orden es el de la fuente, es decir, el más reciente primero.
 | `FINAL-PERIODO`                | `period-end`                | Final de un periodo                   |   275 | no     | vacía                                           |
 
 Las dos flechas comparten `type`; el lado lo indica `team`.
+`TECNICA` y `TECNICA-C1` también comparten `type`.
 `JugadorEnPista` y `TLAsociados` no se guardan.
 
 ## Peculiaridades de los datos

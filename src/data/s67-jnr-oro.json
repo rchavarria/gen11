@@ -153,13 +153,13 @@
                   "venue": "antela",
                   "home": {
                     "slug": "alcobendas",
-                    "score": null
+                    "score": 83
                   },
                   "away": {
                     "slug": "sanjorge",
-                    "score": null
+                    "score": 62
                   },
-                  "downloaded": false
+                  "downloaded": true
                 }
               ]
             },

@@ -11,21 +11,21 @@
               "standings": [
                 {
                   "team": "realmadrid",
-                  "gamesPlayed": 7,
-                  "wins": 7,
+                  "gamesPlayed": 8,
+                  "wins": 8,
                   "losses": 0,
-                  "pointsFor": 672,
-                  "pointsAgainst": 465,
-                  "points": 14
+                  "pointsFor": 751,
+                  "pointsAgainst": 538,
+                  "points": 16
                 },
                 {
                   "team": "distrito",
-                  "gamesPlayed": 7,
-                  "wins": 6,
+                  "gamesPlayed": 8,
+                  "wins": 7,
                   "losses": 1,
-                  "pointsFor": 730,
-                  "pointsAgainst": 438,
-                  "points": 13
+                  "pointsFor": 820,
+                  "pointsAgainst": 479,
+                  "points": 15
                 },
                 {
                   "team": "sba",
@@ -37,6 +37,15 @@
                   "points": 10
                 },
                 {
+                  "team": "canoe",
+                  "gamesPlayed": 7,
+                  "wins": 2,
+                  "losses": 5,
+                  "pointsFor": 443,
+                  "pointsAgainst": 580,
+                  "points": 9
+                },
+                {
                   "team": "fuenlabrada",
                   "gamesPlayed": 7,
                   "wins": 2,
@@ -46,22 +55,13 @@
                   "points": 9
                 },
                 {
-                  "team": "canoe",
-                  "gamesPlayed": 6,
-                  "wins": 2,
-                  "losses": 4,
-                  "pointsFor": 402,
-                  "pointsAgainst": 490,
-                  "points": 8
-                },
-                {
                   "team": "sanjorge",
-                  "gamesPlayed": 6,
+                  "gamesPlayed": 7,
                   "wins": 0,
-                  "losses": 6,
-                  "pointsFor": 377,
-                  "pointsAgainst": 605,
-                  "points": 6
+                  "losses": 7,
+                  "pointsFor": 450,
+                  "pointsAgainst": 684,
+                  "points": 7
                 }
               ]
             },
@@ -79,21 +79,30 @@
                 },
                 {
                   "team": "zentro",
-                  "gamesPlayed": 7,
-                  "wins": 5,
+                  "gamesPlayed": 8,
+                  "wins": 6,
                   "losses": 2,
-                  "pointsFor": 607,
-                  "pointsAgainst": 460,
-                  "points": 12
+                  "pointsFor": 700,
+                  "pointsAgainst": 517,
+                  "points": 14
                 },
                 {
                   "team": "estudiantes",
-                  "gamesPlayed": 7,
+                  "gamesPlayed": 8,
                   "wins": 5,
-                  "losses": 2,
-                  "pointsFor": 561,
-                  "pointsAgainst": 523,
-                  "points": 12
+                  "losses": 3,
+                  "pointsFor": 618,
+                  "pointsAgainst": 616,
+                  "points": 13
+                },
+                {
+                  "team": "alcobendas",
+                  "gamesPlayed": 8,
+                  "wins": 2,
+                  "losses": 6,
+                  "pointsFor": 549,
+                  "pointsAgainst": 620,
+                  "points": 10
                 },
                 {
                   "team": "torrelodones",
@@ -106,21 +115,12 @@
                 },
                 {
                   "team": "alcorcon",
-                  "gamesPlayed": 7,
+                  "gamesPlayed": 8,
                   "wins": 1,
-                  "losses": 6,
-                  "pointsFor": 467,
-                  "pointsAgainst": 637,
-                  "points": 8
-                },
-                {
-                  "team": "alcobendas",
-                  "gamesPlayed": 7,
-                  "wins": 1,
-                  "losses": 6,
-                  "pointsFor": 467,
-                  "pointsAgainst": 547,
-                  "points": 8
+                  "losses": 7,
+                  "pointsFor": 540,
+                  "pointsAgainst": 719,
+                  "points": 9
                 }
               ]
             }

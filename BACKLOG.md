@@ -21,6 +21,7 @@
 
 ## Done list
 
+- 2026-11-25: deploy: forzar el despliegue de la web en GitHub Pages, aunque no haya cambios
 - 2026-11-19: web: la pestaña «Jugada a jugada» muestra un timeline de tarjetas con las canastas metidas
 - 2026-11-19: sync: generar play-by-play de cada partido en `src/data/games/<slug>.json`
 - 2026-11-19: sync: build-data añade `playByPlay` a cada partido y `docs/play-by-play.md` documenta los tipos de acción y su mapeo

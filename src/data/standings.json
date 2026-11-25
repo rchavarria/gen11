@@ -139,57 +139,57 @@
               "standings": [
                 {
                   "team": "realmadridjnr",
-                  "gamesPlayed": 7,
-                  "wins": 7,
+                  "gamesPlayed": 8,
+                  "wins": 8,
                   "losses": 0,
-                  "pointsFor": 836,
-                  "pointsAgainst": 386,
-                  "points": 14
+                  "pointsFor": 958,
+                  "pointsAgainst": 426,
+                  "points": 16
                 },
                 {
                   "team": "torrejon",
-                  "gamesPlayed": 7,
+                  "gamesPlayed": 8,
                   "wins": 5,
-                  "losses": 2,
-                  "pointsFor": 675,
-                  "pointsAgainst": 646,
+                  "losses": 3,
+                  "pointsFor": 715,
+                  "pointsAgainst": 768,
+                  "points": 13
+                },
+                {
+                  "team": "sbajnr",
+                  "gamesPlayed": 8,
+                  "wins": 4,
+                  "losses": 4,
+                  "pointsFor": 756,
+                  "pointsAgainst": 819,
                   "points": 12
                 },
                 {
                   "team": "canoe",
-                  "gamesPlayed": 8,
+                  "gamesPlayed": 9,
                   "wins": 3,
-                  "losses": 5,
-                  "pointsFor": 622,
-                  "pointsAgainst": 744,
+                  "losses": 6,
+                  "pointsFor": 717,
+                  "pointsAgainst": 843,
+                  "points": 12
+                },
+                {
+                  "team": "alcobendas",
+                  "gamesPlayed": 9,
+                  "wins": 2,
+                  "losses": 7,
+                  "pointsFor": 752,
+                  "pointsAgainst": 925,
                   "points": 11
                 },
                 {
                   "team": "sanjorge",
-                  "gamesPlayed": 7,
-                  "wins": 3,
-                  "losses": 4,
-                  "pointsFor": 555,
-                  "pointsAgainst": 651,
-                  "points": 10
-                },
-                {
-                  "team": "sbajnr",
-                  "gamesPlayed": 7,
-                  "wins": 3,
-                  "losses": 4,
-                  "pointsFor": 657,
-                  "pointsAgainst": 724,
-                  "points": 10
-                },
-                {
-                  "team": "alcobendas",
                   "gamesPlayed": 8,
-                  "wins": 1,
-                  "losses": 7,
-                  "pointsFor": 669,
-                  "pointsAgainst": 863,
-                  "points": 9
+                  "wins": 3,
+                  "losses": 5,
+                  "pointsFor": 617,
+                  "pointsAgainst": 734,
+                  "points": 11
                 }
               ]
             }

@@ -7,7 +7,7 @@
   - inicio y fin de cuarto ✅
   - falta personal, técnica, antideportiva, descalificante ✅
   - cambios ✅
-  - tiempo muerto
+  - tiempo muerto ✅
   - rebote
   - asistencia
   - robos y pérdidas
@@ -23,6 +23,7 @@
 
 ## Done list
 
+- 2026-11-26: web: play-by-play: tiempos muertos
 - 2026-11-26: web: play-by-play: cambios
 - 2026-11-26: web: play-by-play: faltas
 - 2026-11-26: web: play-by-play: acciones de inicio y fin de cuarto

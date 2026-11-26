@@ -30,6 +30,7 @@ const playByPlay = [
   foul(13, 'bench-technical-foul', 'home', 'ENT. AYUDANTE', '00:06:00.0'),
   foul(12, 'disruptive-foul', 'away', '12', '00:07:00.0'),
   foul(11, 'flagrant-foul', 'home', '14', '00:08:00.0'),
+  { id: 19, quarter: 3, clock: '00:09:00.0', type: 'timeout', team: 'away', jersey: 'ENTRENADOR/A' },
   {
     id: 1,
     quarter: 1,
@@ -86,7 +87,7 @@ describe('PlayByPlay', () => {
   it('leaves out actions that are not shown, such as a received foul', () => {
     const items = renderItems();
 
-    expect(items).toHaveLength(15);
+    expect(items).toHaveLength(16);
     expect(screen.queryByText('#4')).toBeNull();
   });
 
@@ -146,8 +147,16 @@ describe('PlayByPlay', () => {
     expect(parts(card.firstElementChild)).toEqual(['Q3', '8:00', 'Flagrante', '#14']);
   });
 
-  it('shows a free throw as a card for the home team', () => {
+  it('shows a timeout as a card with a stopwatch and no jersey', () => {
     const card = renderItems()[10];
+
+    expect(card.className).toContain('play-by-play__card--away');
+    expect(within(card).getByRole('img', { name: 'Tiempo muerto' }).textContent).toBe('⏱️');
+    expect(parts(card.lastElementChild)).toEqual(['Tiempo muerto', '9:00', 'Q3']);
+  });
+
+  it('shows a free throw as a card for the home team', () => {
+    const card = renderItems()[11];
 
     expect(card.className).toContain('play-by-play__card--home');
     expect(card.getAttribute('aria-label')).toBe('Local');
@@ -156,7 +165,7 @@ describe('PlayByPlay', () => {
   });
 
   it('shows a substitution as a card with the players going in and out', () => {
-    const card = renderItems()[11];
+    const card = renderItems()[12];
 
     expect(card.className).toContain('play-by-play__card--home');
     expect(within(card).getByRole('img', { name: 'Cambio' }).textContent).toBe('🔄');
@@ -164,7 +173,7 @@ describe('PlayByPlay', () => {
   });
 
   it('shows several players changed at once in a single card', () => {
-    const card = renderItems()[12];
+    const card = renderItems()[13];
 
     expect(card.className).toContain('play-by-play__card--away');
     expect(within(card).getByRole('img', { name: 'Cambio' }).textContent).toBe('🔄');
@@ -172,14 +181,14 @@ describe('PlayByPlay', () => {
   });
 
   it('shows a period start as a separator', () => {
-    const mark = renderItems()[13];
+    const mark = renderItems()[14];
 
     expect(mark.className).toContain('play-by-play__mark--period-start');
     expect(mark.textContent).toBe('Inicio de cuarto Q1');
   });
 
   it('shows the lineup at the period start as a card', () => {
-    const card = renderItems()[14];
+    const card = renderItems()[15];
 
     expect(card.className).toContain('play-by-play__card--home');
     expect(within(card).getByRole('img', { name: 'Quinteto' }).textContent).toBe('🔄');

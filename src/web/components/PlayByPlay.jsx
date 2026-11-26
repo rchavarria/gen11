@@ -11,10 +11,12 @@ import {
   substitutionText,
 } from '../lib/play-by-play.js';
 
-const STAFF_FOULS = new Set(['coach-technical-foul', 'bench-technical-foul']);
+/** Actions by the coach or the bench: the jersey adds nothing. */
+const NO_JERSEY = new Set(['coach-technical-foul', 'bench-technical-foul', 'timeout']);
 
 function centerIcon(item) {
   if (isFoul(item)) return ['✋', 'Falta'];
+  if (item.type === 'timeout') return ['⏱️', 'Tiempo muerto'];
   if (item.type === 'substitution') return ['🔄', 'Cambio'];
   if (item.type === 'lineup') return ['🔄', 'Quinteto'];
   return null;
@@ -41,7 +43,7 @@ export default function PlayByPlay({ playByPlay, homeName, awayName }) {
           ['period', periodLabel(action.quarter - 1)],
           ['clock', formatClock(action.clock)],
           ['action', substitution ? substitutionText(action) : ACTION_LABELS[action.type]],
-          ['jersey', !substitution && !STAFF_FOULS.has(action.type) && action.jersey && `#${action.jersey}`],
+          ['jersey', !substitution && !NO_JERSEY.has(action.type) && action.jersey && `#${action.jersey}`],
         ].filter(([, text]) => text);
         if (side === 'away') parts.reverse();
         const info = parts.map(([name, text]) => (

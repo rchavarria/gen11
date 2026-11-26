@@ -6,7 +6,7 @@
   - canasta ✅
   - inicio y fin de cuarto ✅
   - falta personal, técnica, antideportiva, descalificante ✅
-  - cambios
+  - cambios ✅
   - tiempo muerto
   - rebote
   - asistencia
@@ -23,6 +23,7 @@
 
 ## Done list
 
+- 2026-11-26: web: play-by-play: cambios
 - 2026-11-26: web: play-by-play: faltas
 - 2026-11-26: web: play-by-play: acciones de inicio y fin de cuarto
 - 2026-11-25: deploy: forzar el despliegue de la web en GitHub Pages, aunque no haya cambios

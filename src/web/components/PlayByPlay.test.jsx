@@ -6,6 +6,7 @@ import PlayByPlay from './PlayByPlay.jsx';
 afterEach(cleanup);
 
 const playByPlay = [
+  { id: 5, quarter: 5, clock: '00:00:00.0', type: 'period-end', team: null, jersey: '-1' },
   {
     id: 3,
     quarter: 5,
@@ -27,25 +28,54 @@ const playByPlay = [
     homeScore: 1,
     awayScore: 0,
   },
+  { id: 0, quarter: 1, clock: '00:10:00.0', type: 'period-start', team: null, jersey: '-1' },
 ];
 
+function renderItems() {
+  render(<PlayByPlay playByPlay={playByPlay} homeName="Local" awayName="Visitante" />);
+  return within(screen.getByRole('list', { name: 'Jugada a jugada' })).getAllByRole('listitem');
+}
+
+const parts = (element) => [...element.children].map((part) => part.textContent);
+
 describe('PlayByPlay', () => {
-  it('shows made baskets as cards in the original order, mirrored for the away team', () => {
-    render(<PlayByPlay playByPlay={playByPlay} homeName="Local" awayName="Visitante" />);
+  it('shows a period end as a separator', () => {
+    const [mark] = renderItems();
 
-    const cards = within(screen.getByRole('list', { name: 'Canastas del partido' })).getAllByRole('listitem');
-    const parts = (card) => [...card.children].map((part) => part.textContent);
-    expect(cards).toHaveLength(2);
+    expect(mark.className).toContain('play-by-play__mark--period-end');
+    expect(mark.textContent).toBe('Fin de prórroga OT1');
+  });
 
-    expect(cards[0].className).toContain('play-by-play__card--away');
-    expect(cards[0].getAttribute('aria-label')).toBe('Visitante');
-    expect(parts(cards[0])).toEqual(['', '60–63', '#7Triple0:05OT']);
-    expect(parts(cards[0].lastElementChild)).toEqual(['#7', 'Triple', '0:05', 'OT']);
+  it('shows a three-pointer as a card mirrored for the away team', () => {
+    const card = renderItems()[1];
 
-    expect(cards[1].className).toContain('play-by-play__card--home');
-    expect(cards[1].getAttribute('aria-label')).toBe('Local');
-    expect(parts(cards[1])).toEqual(['Q19:30Tiro libre#10', '1–0', '']);
-    expect(parts(cards[1].firstElementChild)).toEqual(['Q1', '9:30', 'Tiro libre', '#10']);
+    expect(card.className).toContain('play-by-play__card--away');
+    expect(card.getAttribute('aria-label')).toBe('Visitante');
+    expect(parts(card)).toEqual(['', '60–63', '#7Triple0:05OT']);
+    expect(parts(card.lastElementChild)).toEqual(['#7', 'Triple', '0:05', 'OT']);
+  });
+
+  it('leaves out actions that are neither baskets nor period marks', () => {
+    const items = renderItems();
+
+    expect(items).toHaveLength(4);
+    expect(screen.queryByText('#4')).toBeNull();
+  });
+
+  it('shows a free throw as a card for the home team', () => {
+    const card = renderItems()[2];
+
+    expect(card.className).toContain('play-by-play__card--home');
+    expect(card.getAttribute('aria-label')).toBe('Local');
+    expect(parts(card)).toEqual(['Q19:30Tiro libre#10', '1–0', '']);
+    expect(parts(card.firstElementChild)).toEqual(['Q1', '9:30', 'Tiro libre', '#10']);
+  });
+
+  it('shows a period start as a separator', () => {
+    const mark = renderItems()[3];
+
+    expect(mark.className).toContain('play-by-play__mark--period-start');
+    expect(mark.textContent).toBe('Inicio de cuarto Q1');
   });
 
   it('shows a notice when there are no baskets', () => {

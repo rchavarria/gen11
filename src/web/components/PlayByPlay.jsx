@@ -1,13 +1,28 @@
 import { periodLabel } from '../lib/game.js';
-import { BASKET_LABELS, formatClock, getMadeBaskets } from '../lib/play-by-play.js';
+import {
+  BASKET_LABELS,
+  formatClock,
+  getMadeBaskets,
+  getTimeline,
+  isPeriodMark,
+  periodMarkLabel,
+} from '../lib/play-by-play.js';
 
 export default function PlayByPlay({ playByPlay, homeName, awayName }) {
-  const baskets = getMadeBaskets(playByPlay);
-  if (baskets.length === 0) return <p className="tabs__placeholder">Jugada a jugada no disponible.</p>;
+  if (getMadeBaskets(playByPlay).length === 0) {
+    return <p className="tabs__placeholder">Jugada a jugada no disponible.</p>;
+  }
 
   return (
-    <ol className="play-by-play" aria-label="Canastas del partido">
-      {baskets.map((action) => {
+    <ol className="play-by-play" aria-label="Jugada a jugada">
+      {getTimeline(playByPlay).map((action) => {
+        if (isPeriodMark(action)) {
+          return (
+            <li key={action.id} className={`play-by-play__mark play-by-play__mark--${action.type}`}>
+              <span>{periodMarkLabel(action)}</span>
+            </li>
+          );
+        }
         const side = action.team === 'away' ? 'away' : 'home';
         const parts = [
           ['period', periodLabel(action.quarter - 1)],

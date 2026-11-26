@@ -6,11 +6,12 @@
   - canasta ✅
   - inicio y fin de cuarto ✅
   - falta personal, técnica, antideportiva, descalificante
+  - cambios
+  - tiempo muerto
   - rebote
   - asistencia
   - robos y pérdidas
   - tapón
-  - cambios
   - tiro fallado
   - tiempo muerto
 - sync: una vez se genere el play-by-play, refactorizar timelyScores para extraerlos del play-by-play en la web, al vuelo

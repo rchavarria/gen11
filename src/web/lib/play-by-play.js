@@ -4,6 +4,23 @@ export const BASKET_LABELS = {
   'three-point-made': 'Triple',
 };
 
+export const FOUL_LABELS = {
+  'foul-committed': 'Falta personal',
+  'technical-foul': 'Técnica',
+  'unsportsmanlike-foul': 'Antideportiva',
+  'disqualifying-foul': 'Descalificante',
+  'coach-technical-foul': 'Técnica al entrenador',
+  'bench-technical-foul': 'Técnica al banquillo',
+  'disruptive-foul': 'Disruptiva',
+  'flagrant-foul': 'Flagrante',
+};
+
+export const ACTION_LABELS = { ...BASKET_LABELS, ...FOUL_LABELS };
+
+export function isFoul(action) {
+  return Object.hasOwn(FOUL_LABELS, action.type);
+}
+
 const PERIOD_MARKS = { 'period-start': 'Inicio', 'period-end': 'Fin' };
 
 export function isPeriodMark(action) {
@@ -23,14 +40,14 @@ export function getMadeBaskets(playByPlay) {
 }
 
 /**
- * Made baskets plus period start/end marks, in the original order.
+ * Made baskets, fouls and period start/end marks, in the original order.
  * A mark repeated right after itself (some games have two "end of Q4") is dropped.
  */
 export function getTimeline(playByPlay) {
   if (!Array.isArray(playByPlay)) return [];
   const timeline = [];
   for (const action of playByPlay) {
-    if (!Object.hasOwn(BASKET_LABELS, action.type) && !isPeriodMark(action)) continue;
+    if (!Object.hasOwn(ACTION_LABELS, action.type) && !isPeriodMark(action)) continue;
     const previous = timeline.at(-1);
     if (isPeriodMark(action) && previous?.type === action.type && previous.quarter === action.quarter) continue;
     timeline.push(action);

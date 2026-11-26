@@ -6,10 +6,19 @@ import {
   getTimeline,
   isFoul,
   isPeriodMark,
+  isSubstitution,
   periodMarkLabel,
+  substitutionText,
 } from '../lib/play-by-play.js';
 
 const STAFF_FOULS = new Set(['coach-technical-foul', 'bench-technical-foul']);
+
+function centerIcon(item) {
+  if (isFoul(item)) return ['✋', 'Falta'];
+  if (item.type === 'substitution') return ['🔄', 'Cambio'];
+  if (item.type === 'lineup') return ['🔄', 'Quinteto'];
+  return null;
+}
 
 export default function PlayByPlay({ playByPlay, homeName, awayName }) {
   if (getMadeBaskets(playByPlay).length === 0) {
@@ -27,11 +36,12 @@ export default function PlayByPlay({ playByPlay, homeName, awayName }) {
           );
         }
         const side = action.team === 'away' ? 'away' : 'home';
+        const substitution = isSubstitution(action);
         const parts = [
           ['period', periodLabel(action.quarter - 1)],
           ['clock', formatClock(action.clock)],
-          ['action', ACTION_LABELS[action.type]],
-          ['jersey', !STAFF_FOULS.has(action.type) && action.jersey && `#${action.jersey}`],
+          ['action', substitution ? substitutionText(action) : ACTION_LABELS[action.type]],
+          ['jersey', !substitution && !STAFF_FOULS.has(action.type) && action.jersey && `#${action.jersey}`],
         ].filter(([, text]) => text);
         if (side === 'away') parts.reverse();
         const info = parts.map(([name, text]) => (
@@ -39,6 +49,7 @@ export default function PlayByPlay({ playByPlay, homeName, awayName }) {
             {text}
           </span>
         ));
+        const icon = centerIcon(action);
         return (
           <li
             key={action.id}
@@ -46,9 +57,9 @@ export default function PlayByPlay({ playByPlay, homeName, awayName }) {
             aria-label={side === 'away' ? awayName : homeName}
           >
             <span className="play-by-play__team play-by-play__team--home">{side === 'home' && info}</span>
-            {isFoul(action) ? (
-              <span className="play-by-play__score play-by-play__score--foul" role="img" aria-label="Falta">
-                ✋
+            {icon ? (
+              <span className="play-by-play__score play-by-play__score--icon" role="img" aria-label={icon[1]}>
+                {icon[0]}
               </span>
             ) : (
               <span className="play-by-play__score">

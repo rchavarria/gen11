@@ -7,6 +7,8 @@ afterEach(cleanup);
 
 const foul = (id, type, team, jersey, clock) => ({ id, quarter: 3, clock, type, team, jersey });
 
+const sub = (id, type, team, jersey, clock) => ({ id, quarter: 1, clock, type: `substitution-${type}`, team, jersey });
+
 const playByPlay = [
   { id: 5, quarter: 5, clock: '00:00:00.0', type: 'period-end', team: null, jersey: '-1' },
   {
@@ -38,7 +40,16 @@ const playByPlay = [
     homeScore: 1,
     awayScore: 0,
   },
+  sub(28, 'out', 'home', '6', '00:09:40.0'),
+  sub(27, 'in', 'home', '9', '00:09:40.0'),
+  sub(26, 'out', 'away', '5', '00:09:50.0'),
+  sub(25, 'out', 'away', 'X', '00:09:50.0'),
+  sub(24, 'in', 'away', '20', '00:09:50.0'),
+  sub(23, 'in', 'away', '21', '00:09:50.0'),
   { id: 0, quarter: 1, clock: '00:10:00.0', type: 'period-start', team: null, jersey: '-1' },
+  sub(22, 'in', 'home', '4', '00:10:00.0'),
+  sub(21, 'in', 'home', '6', '00:10:00.0'),
+  sub(20, 'in', 'home', 'X', '00:10:00.0'),
 ];
 
 function renderItems() {
@@ -75,7 +86,7 @@ describe('PlayByPlay', () => {
   it('leaves out actions that are not shown, such as a received foul', () => {
     const items = renderItems();
 
-    expect(items).toHaveLength(12);
+    expect(items).toHaveLength(15);
     expect(screen.queryByText('#4')).toBeNull();
   });
 
@@ -144,11 +155,35 @@ describe('PlayByPlay', () => {
     expect(parts(card.firstElementChild)).toEqual(['Q1', '9:30', 'Tiro libre', '#10']);
   });
 
+  it('shows a substitution as a card with the players going in and out', () => {
+    const card = renderItems()[11];
+
+    expect(card.className).toContain('play-by-play__card--home');
+    expect(within(card).getByRole('img', { name: 'Cambio' }).textContent).toBe('🔄');
+    expect(parts(card.firstElementChild)).toEqual(['Q1', '9:40', 'Entra #9 · Sale #6']);
+  });
+
+  it('shows several players changed at once in a single card', () => {
+    const card = renderItems()[12];
+
+    expect(card.className).toContain('play-by-play__card--away');
+    expect(within(card).getByRole('img', { name: 'Cambio' }).textContent).toBe('🔄');
+    expect(parts(card.lastElementChild)).toEqual(['Entra #20 #21 · Sale #5 #X', '9:50', 'Q1']);
+  });
+
   it('shows a period start as a separator', () => {
-    const mark = renderItems()[11];
+    const mark = renderItems()[13];
 
     expect(mark.className).toContain('play-by-play__mark--period-start');
     expect(mark.textContent).toBe('Inicio de cuarto Q1');
+  });
+
+  it('shows the lineup at the period start as a card', () => {
+    const card = renderItems()[14];
+
+    expect(card.className).toContain('play-by-play__card--home');
+    expect(within(card).getByRole('img', { name: 'Quinteto' }).textContent).toBe('🔄');
+    expect(parts(card.firstElementChild)).toEqual(['Q1', '10:00', 'Quinteto: #4 #6 #X']);
   });
 
   it('shows a notice when there are no baskets', () => {

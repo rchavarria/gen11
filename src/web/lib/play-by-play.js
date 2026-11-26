@@ -15,7 +15,11 @@ export const FOUL_LABELS = {
   'flagrant-foul': 'Flagrante',
 };
 
-export const ACTION_LABELS = { ...BASKET_LABELS, ...FOUL_LABELS };
+export const OTHER_LABELS = {
+  timeout: 'Tiempo muerto',
+};
+
+export const ACTION_LABELS = { ...BASKET_LABELS, ...FOUL_LABELS, ...OTHER_LABELS };
 
 export function isFoul(action) {
   return Object.hasOwn(FOUL_LABELS, action.type);
@@ -55,7 +59,7 @@ export function getMadeBaskets(playByPlay) {
 }
 
 /**
- * Made baskets, fouls, substitutions and period start/end marks, in the original order.
+ * Made baskets, fouls, timeouts, substitutions and period start/end marks, in the original order.
  * A mark repeated right after itself (some games have two "end of Q4") is dropped.
  * Consecutive substitutions of the same team at the same moment become a single
  * `substitution` item (`in` and `out` jerseys), or `lineup` at the period start.

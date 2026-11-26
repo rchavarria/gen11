@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatClock, getMadeBaskets } from './play-by-play.js';
+import { formatClock, getMadeBaskets, getTimeline, periodMarkLabel } from './play-by-play.js';
 
 describe('getMadeBaskets', () => {
   it('keeps only made baskets in the original order', () => {
@@ -16,6 +16,31 @@ describe('getMadeBaskets', () => {
 
   it('returns an empty list when there is no play-by-play', () => {
     expect(getMadeBaskets(undefined)).toEqual([]);
+  });
+});
+
+describe('getTimeline', () => {
+  it('keeps baskets and period marks in order, dropping a repeated mark', () => {
+    const actions = [
+      { id: 7, type: 'period-end', quarter: 4 },
+      { id: 6, type: 'period-end', quarter: 4 },
+      { id: 5, type: 'two-point-made', quarter: 4 },
+      { id: 4, type: 'foul', quarter: 4 },
+      { id: 3, type: 'period-start', quarter: 4 },
+      { id: 2, type: 'period-end', quarter: 3 },
+      { id: 1, type: 'game-start', quarter: 1 },
+    ];
+
+    expect(getTimeline(actions).map((action) => action.id)).toEqual([7, 5, 3, 2]);
+    expect(getTimeline(undefined)).toEqual([]);
+  });
+});
+
+describe('periodMarkLabel', () => {
+  it('names quarters and overtimes', () => {
+    expect(periodMarkLabel({ type: 'period-start', quarter: 1 })).toBe('Inicio de cuarto Q1');
+    expect(periodMarkLabel({ type: 'period-end', quarter: 4 })).toBe('Fin de cuarto Q4');
+    expect(periodMarkLabel({ type: 'period-end', quarter: 6 })).toBe('Fin de prórroga OT2');
   });
 });
 

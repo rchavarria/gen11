@@ -4,7 +4,7 @@
 
 - web: play-by-play: mostrar más acciones, con una imagen en el centro ilustrando la accion
   - canasta ✅
-  - inicio y fin de cuarto
+  - inicio y fin de cuarto ✅
   - falta personal, técnica, antideportiva, descalificante
   - rebote
   - asistencia
@@ -21,6 +21,7 @@
 
 ## Done list
 
+- 2026-11-26: web: play-by-play: acciones de inicio y fin de cuarto
 - 2026-11-25: deploy: forzar el despliegue de la web en GitHub Pages, aunque no haya cambios
 - 2026-11-19: web: la pestaña «Jugada a jugada» muestra un timeline de tarjetas con las canastas metidas
 - 2026-11-19: sync: generar play-by-play de cada partido en `src/data/games/<slug>.json`

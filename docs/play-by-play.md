@@ -88,6 +88,11 @@ Las dos flechas comparten `type`; el lado lo indica `team`.
 - Puede haber prórrogas (`quarter` 5 o más).
 - Dos partidos tienen dos `FINAL-PARTIDO`, y hay más `FINAL-PERIODO` que `INICIO-PERIODO`
   (por eso las cifras de arriba no coinciden entre sí). Se conservan tal cual.
+- Hay muchos más `CAMBIO-JUGADOR-ENTRA` que `-SALE` porque al empezar cada periodo
+  (reloj 10:00, o 5:00 en prórroga) llegan los cinco «entra» del quinteto sin ningún «sale».
+  Los cambios de un mismo equipo en el mismo instante van seguidos en el array, y
+  normalmente hay tantos «entra» como «sale». La web los agrupa en una tarjeta («Entra #9 · Sale #6»
+  o «Quinteto: #4 #6 …»).
 
 ## Campos de la fuente que no se guardan
 

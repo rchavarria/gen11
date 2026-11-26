@@ -33,6 +33,21 @@ export function periodMarkLabel({ type, quarter }) {
   return `${PERIOD_MARKS[type]} de ${period}`;
 }
 
+const SUBSTITUTIONS = { 'substitution-in': 'in', 'substitution-out': 'out' };
+
+export function isSubstitution(action) {
+  return action.type === 'substitution' || action.type === 'lineup';
+}
+
+function isPeriodStartClock({ quarter, clock }) {
+  return formatClock(clock) === (quarter > 4 ? '5:00' : '10:00');
+}
+
+/** Players going in with nobody going out at the period start: the lineup. */
+function classifySubstitution(group) {
+  return group.out.length === 0 && isPeriodStartClock(group) ? { ...group, type: 'lineup' } : group;
+}
+
 /** Keeps made baskets only, in the original order (most recent first). */
 export function getMadeBaskets(playByPlay) {
   if (!Array.isArray(playByPlay)) return [];
@@ -40,19 +55,52 @@ export function getMadeBaskets(playByPlay) {
 }
 
 /**
- * Made baskets, fouls and period start/end marks, in the original order.
+ * Made baskets, fouls, substitutions and period start/end marks, in the original order.
  * A mark repeated right after itself (some games have two "end of Q4") is dropped.
+ * Consecutive substitutions of the same team at the same moment become a single
+ * `substitution` item (`in` and `out` jerseys), or `lineup` at the period start.
  */
 export function getTimeline(playByPlay) {
   if (!Array.isArray(playByPlay)) return [];
   const timeline = [];
   for (const action of playByPlay) {
-    if (!Object.hasOwn(ACTION_LABELS, action.type) && !isPeriodMark(action)) continue;
     const previous = timeline.at(-1);
+    const direction = SUBSTITUTIONS[action.type];
+    if (direction) {
+      const sameMoment =
+        previous?.type === 'substitution' &&
+        previous.team === action.team &&
+        previous.quarter === action.quarter &&
+        previous.clock === action.clock;
+      const group = sameMoment
+        ? previous
+        : {
+            id: action.id,
+            type: 'substitution',
+            quarter: action.quarter,
+            clock: action.clock,
+            team: action.team,
+            in: [],
+            out: [],
+          };
+      if (!sameMoment) timeline.push(group);
+      group[direction].push(action.jersey);
+      continue;
+    }
+    if (!Object.hasOwn(ACTION_LABELS, action.type) && !isPeriodMark(action)) continue;
     if (isPeriodMark(action) && previous?.type === action.type && previous.quarter === action.quarter) continue;
     timeline.push(action);
   }
-  return timeline;
+  return timeline.map((item) => (item.type === 'substitution' ? classifySubstitution(item) : item));
+}
+
+/** "Entra #7 #11 · Sale #4 #9", "Quinteto: #7 #11 #15 #20 #X" */
+export function substitutionText(item) {
+  const jerseys = (list) => list.map((jersey) => `#${jersey}`).join(' ');
+  if (item.type === 'lineup') return `Quinteto: ${jerseys(item.in)}`;
+  return [item.in.length > 0 && `Entra ${jerseys(item.in)}`, item.out.length > 0 && `Sale ${jerseys(item.out)}`]
+    .filter(Boolean)
+    .join(' · ');
 }
 
 /** "00:01:12.0" -> "1:12" (remaining time in the period) */

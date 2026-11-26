@@ -7,7 +7,7 @@ import GamePage from './pages/GamePage.jsx';
 import './styles.css';
 
 // Featured round the home page redirects to; updated every week
-const HOME = '/competitions?c=s67-kdt-oro&ph=f1&g=g2&r=j08';
+const HOME = '/competitions?c=s67-kdt-oro&ph=f1&g=g2&r=j09';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

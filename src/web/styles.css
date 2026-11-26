@@ -788,6 +788,9 @@ a.game-card__venue:hover {
   font-weight: 700;
   white-space: nowrap;
 }
+.play-by-play__score--foul {
+  font-size: 1.1rem;
+}
 
 .play-by-play__mark {
   display: flex;

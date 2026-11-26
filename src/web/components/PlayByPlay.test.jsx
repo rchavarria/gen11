@@ -5,6 +5,8 @@ import PlayByPlay from './PlayByPlay.jsx';
 
 afterEach(cleanup);
 
+const foul = (id, type, team, jersey, clock) => ({ id, quarter: 3, clock, type, team, jersey });
+
 const playByPlay = [
   { id: 5, quarter: 5, clock: '00:00:00.0', type: 'period-end', team: null, jersey: '-1' },
   {
@@ -17,7 +19,15 @@ const playByPlay = [
     homeScore: 60,
     awayScore: 63,
   },
-  { id: 2, quarter: 4, clock: '00:01:12.0', type: 'foul', team: 'home', jersey: '4' },
+  foul(2, 'foul-received', 'home', '4', '00:01:12.0'),
+  foul(18, 'foul-committed', 'away', '8', '00:01:12.0'),
+  foul(17, 'technical-foul', 'home', '5', '00:02:00.0'),
+  foul(16, 'unsportsmanlike-foul', 'away', '9', '00:03:00.0'),
+  foul(15, 'disqualifying-foul', 'home', '11', '00:04:00.0'),
+  foul(14, 'coach-technical-foul', 'away', 'ENTRENADOR/A', '00:05:00.0'),
+  foul(13, 'bench-technical-foul', 'home', 'ENT. AYUDANTE', '00:06:00.0'),
+  foul(12, 'disruptive-foul', 'away', '12', '00:07:00.0'),
+  foul(11, 'flagrant-foul', 'home', '14', '00:08:00.0'),
   {
     id: 1,
     quarter: 1,
@@ -38,6 +48,13 @@ function renderItems() {
 
 const parts = (element) => [...element.children].map((part) => part.textContent);
 
+/** Renders the timeline and returns the foul card at `index`, checking its centre block. */
+function renderFoulCard(index) {
+  const card = renderItems()[index];
+  expect(within(card).getByRole('img', { name: 'Falta' }).textContent).toBe('✋');
+  return card;
+}
+
 describe('PlayByPlay', () => {
   it('shows a period end as a separator', () => {
     const [mark] = renderItems();
@@ -55,15 +72,71 @@ describe('PlayByPlay', () => {
     expect(parts(card.lastElementChild)).toEqual(['#7', 'Triple', '0:05', 'OT']);
   });
 
-  it('leaves out actions that are neither baskets nor period marks', () => {
+  it('leaves out actions that are not shown, such as a received foul', () => {
     const items = renderItems();
 
-    expect(items).toHaveLength(4);
+    expect(items).toHaveLength(12);
     expect(screen.queryByText('#4')).toBeNull();
   });
 
+  it('shows a personal foul as a card with a hand in the centre', () => {
+    const card = renderFoulCard(2);
+
+    expect(card.className).toContain('play-by-play__card--away');
+    expect(parts(card.lastElementChild)).toEqual(['#8', 'Falta personal', '1:12', 'Q3']);
+  });
+
+  it('shows a technical foul', () => {
+    const card = renderFoulCard(3);
+
+    expect(card.className).toContain('play-by-play__card--home');
+    expect(parts(card.firstElementChild)).toEqual(['Q3', '2:00', 'Técnica', '#5']);
+  });
+
+  it('shows an unsportsmanlike foul', () => {
+    const card = renderFoulCard(4);
+
+    expect(card.className).toContain('play-by-play__card--away');
+    expect(parts(card.lastElementChild)).toEqual(['#9', 'Antideportiva', '3:00', 'Q3']);
+  });
+
+  it('shows a disqualifying foul', () => {
+    const card = renderFoulCard(5);
+
+    expect(card.className).toContain('play-by-play__card--home');
+    expect(parts(card.firstElementChild)).toEqual(['Q3', '4:00', 'Descalificante', '#11']);
+  });
+
+  it('shows a coach technical foul without jersey', () => {
+    const card = renderFoulCard(6);
+
+    expect(card.className).toContain('play-by-play__card--away');
+    expect(parts(card.lastElementChild)).toEqual(['Técnica al entrenador', '5:00', 'Q3']);
+  });
+
+  it('shows a bench technical foul without jersey', () => {
+    const card = renderFoulCard(7);
+
+    expect(card.className).toContain('play-by-play__card--home');
+    expect(parts(card.firstElementChild)).toEqual(['Q3', '6:00', 'Técnica al banquillo']);
+  });
+
+  it('shows a disruptive foul', () => {
+    const card = renderFoulCard(8);
+
+    expect(card.className).toContain('play-by-play__card--away');
+    expect(parts(card.lastElementChild)).toEqual(['#12', 'Disruptiva', '7:00', 'Q3']);
+  });
+
+  it('shows a flagrant foul', () => {
+    const card = renderFoulCard(9);
+
+    expect(card.className).toContain('play-by-play__card--home');
+    expect(parts(card.firstElementChild)).toEqual(['Q3', '8:00', 'Flagrante', '#14']);
+  });
+
   it('shows a free throw as a card for the home team', () => {
-    const card = renderItems()[2];
+    const card = renderItems()[10];
 
     expect(card.className).toContain('play-by-play__card--home');
     expect(card.getAttribute('aria-label')).toBe('Local');
@@ -72,7 +145,7 @@ describe('PlayByPlay', () => {
   });
 
   it('shows a period start as a separator', () => {
-    const mark = renderItems()[3];
+    const mark = renderItems()[11];
 
     expect(mark.className).toContain('play-by-play__mark--period-start');
     expect(mark.textContent).toBe('Inicio de cuarto Q1');

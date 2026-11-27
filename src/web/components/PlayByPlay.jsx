@@ -20,6 +20,8 @@ function centerIcon(item) {
   if (isFoul(item)) return ['✋', 'Falta'];
   if (isRebound(item)) return ['🙌', 'Rebote'];
   if (isBlock(item)) return ['⛔', 'Tapón'];
+  if (item.type === 'steal-turnover' || item.type === 'steal') return ['🥷', 'Robo'];
+  if (item.type === 'turnover') return ['🥷', 'Pérdida'];
   if (item.type === 'timeout') return ['⏱️', 'Tiempo muerto'];
   if (item.type === 'assist') return ['🤝', 'Asistencia'];
   if (item.type === 'substitution') return ['🔄', 'Cambio'];
@@ -62,7 +64,7 @@ export default function PlayByPlay({ playByPlay, homeName, awayName }) {
           );
         }
         const side = sideOf(action);
-        const actions = action.type === 'block' ? [action.made, action.received] : [action];
+        const actions = action.actions ?? [action];
         const infoFor = (teamSide) => {
           const own = actions.find((item) => sideOf(item) === teamSide);
           return own && sideInfo(own, teamSide);

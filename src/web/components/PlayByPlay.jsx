@@ -6,6 +6,7 @@ import {
   getTimeline,
   isBlock,
   isFoul,
+  isMissedShot,
   isPeriodMark,
   isRebound,
   isSubstitution,
@@ -22,6 +23,7 @@ function centerIcon(item) {
   if (isBlock(item)) return ['⛔', 'Tapón'];
   if (item.type === 'steal-turnover' || item.type === 'steal') return ['🥷', 'Robo'];
   if (item.type === 'turnover') return ['🥷', 'Pérdida'];
+  if (isMissedShot(item)) return ['❌', 'Fallo'];
   if (item.type === 'timeout') return ['⏱️', 'Tiempo muerto'];
   if (item.type === 'assist') return ['🤝', 'Asistencia'];
   if (item.type === 'substitution') return ['🔄', 'Cambio'];

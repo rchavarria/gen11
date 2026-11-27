@@ -4,6 +4,7 @@ import {
   formatClock,
   getMadeBaskets,
   getTimeline,
+  isBlock,
   isFoul,
   isPeriodMark,
   isRebound,
@@ -18,11 +19,31 @@ const NO_JERSEY = new Set(['coach-technical-foul', 'bench-technical-foul', 'time
 function centerIcon(item) {
   if (isFoul(item)) return ['✋', 'Falta'];
   if (isRebound(item)) return ['🙌', 'Rebote'];
+  if (isBlock(item)) return ['⛔', 'Tapón'];
   if (item.type === 'timeout') return ['⏱️', 'Tiempo muerto'];
   if (item.type === 'assist') return ['🤝', 'Asistencia'];
   if (item.type === 'substitution') return ['🔄', 'Cambio'];
   if (item.type === 'lineup') return ['🔄', 'Quinteto'];
   return null;
+}
+
+const sideOf = (action) => (action.team === 'away' ? 'away' : 'home');
+
+/** Period, clock, text and jersey of one action, mirrored for the away team. */
+function sideInfo(action, side) {
+  const substitution = isSubstitution(action);
+  const parts = [
+    ['period', periodLabel(action.quarter - 1)],
+    ['clock', formatClock(action.clock)],
+    ['action', substitution ? substitutionText(action) : ACTION_LABELS[action.type]],
+    ['jersey', !substitution && !NO_JERSEY.has(action.type) && action.jersey && `#${action.jersey}`],
+  ].filter(([, text]) => text);
+  if (side === 'away') parts.reverse();
+  return parts.map(([name, text]) => (
+    <span key={name} className={`play-by-play__${name}`}>
+      {text}
+    </span>
+  ));
 }
 
 export default function PlayByPlay({ playByPlay, homeName, awayName }) {
@@ -40,20 +61,12 @@ export default function PlayByPlay({ playByPlay, homeName, awayName }) {
             </li>
           );
         }
-        const side = action.team === 'away' ? 'away' : 'home';
-        const substitution = isSubstitution(action);
-        const parts = [
-          ['period', periodLabel(action.quarter - 1)],
-          ['clock', formatClock(action.clock)],
-          ['action', substitution ? substitutionText(action) : ACTION_LABELS[action.type]],
-          ['jersey', !substitution && !NO_JERSEY.has(action.type) && action.jersey && `#${action.jersey}`],
-        ].filter(([, text]) => text);
-        if (side === 'away') parts.reverse();
-        const info = parts.map(([name, text]) => (
-          <span key={name} className={`play-by-play__${name}`}>
-            {text}
-          </span>
-        ));
+        const side = sideOf(action);
+        const actions = action.type === 'block' ? [action.made, action.received] : [action];
+        const infoFor = (teamSide) => {
+          const own = actions.find((item) => sideOf(item) === teamSide);
+          return own && sideInfo(own, teamSide);
+        };
         const icon = centerIcon(action);
         return (
           <li
@@ -61,7 +74,7 @@ export default function PlayByPlay({ playByPlay, homeName, awayName }) {
             className={`play-by-play__card play-by-play__card--${side}`}
             aria-label={side === 'away' ? awayName : homeName}
           >
-            <span className="play-by-play__team play-by-play__team--home">{side === 'home' && info}</span>
+            <span className="play-by-play__team play-by-play__team--home">{infoFor('home')}</span>
             {icon ? (
               <span className="play-by-play__score play-by-play__score--icon" role="img" aria-label={icon[1]}>
                 {icon[0]}
@@ -71,7 +84,7 @@ export default function PlayByPlay({ playByPlay, homeName, awayName }) {
                 {action.homeScore}–{action.awayScore}
               </span>
             )}
-            <span className="play-by-play__team play-by-play__team--away">{side === 'away' && info}</span>
+            <span className="play-by-play__team play-by-play__team--away">{infoFor('away')}</span>
           </li>
         );
       })}

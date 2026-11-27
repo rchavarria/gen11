@@ -1084,14 +1084,14 @@
     "date": "2026-11-26T20:15:00Z",
     "venue": "caja-magica",
     "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
-    "played": false,
+    "played": true,
     "home": {
       "club": "sanjorge",
-      "score": null
+      "score": 59
     },
     "away": {
       "club": "canoe",
-      "score": null
+      "score": 56
     }
   },
   {

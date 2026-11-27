@@ -278,13 +278,13 @@
                   "venue": "caja-magica",
                   "home": {
                     "slug": "sanjorge",
-                    "score": null
+                    "score": 59
                   },
                   "away": {
                     "slug": "canoe",
-                    "score": null
+                    "score": 56
                   },
-                  "downloaded": false
+                  "downloaded": true
                 }
               ]
             },

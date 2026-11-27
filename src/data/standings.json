@@ -38,12 +38,12 @@
                 },
                 {
                   "team": "canoe",
-                  "gamesPlayed": 7,
+                  "gamesPlayed": 8,
                   "wins": 2,
-                  "losses": 5,
-                  "pointsFor": 443,
-                  "pointsAgainst": 580,
-                  "points": 9
+                  "losses": 6,
+                  "pointsFor": 499,
+                  "pointsAgainst": 639,
+                  "points": 10
                 },
                 {
                   "team": "fuenlabrada",
@@ -56,12 +56,12 @@
                 },
                 {
                   "team": "sanjorge",
-                  "gamesPlayed": 7,
-                  "wins": 0,
+                  "gamesPlayed": 8,
+                  "wins": 1,
                   "losses": 7,
-                  "pointsFor": 450,
-                  "pointsAgainst": 684,
-                  "points": 7
+                  "pointsFor": 509,
+                  "pointsAgainst": 740,
+                  "points": 9
                 }
               ]
             },

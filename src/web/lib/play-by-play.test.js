@@ -51,7 +51,18 @@ describe('getTimeline', () => {
 
     expect(getTimeline([lone, received, made])).toEqual([
       lone,
-      { id: 2, type: 'block', quarter: 2, team: 'home', made, received },
+      { id: 2, type: 'block', quarter: 2, team: 'home', actions: [made, received] },
+    ]);
+  });
+
+  it('merges a steal and the turnover right after it, leaving a turnover without steal alone', () => {
+    const steal = { id: 3, type: 'steal', team: 'home', jersey: '6', quarter: 1 };
+    const turnover = { id: 2, type: 'turnover', team: 'away', jersey: '15', quarter: 1 };
+    const lone = { id: 1, type: 'turnover', team: 'home', jersey: '8', quarter: 1 };
+
+    expect(getTimeline([steal, turnover, lone])).toEqual([
+      { id: 3, type: 'steal-turnover', quarter: 1, team: 'home', actions: [steal, turnover] },
+      lone,
     ]);
   });
 

@@ -25,6 +25,11 @@ export const BLOCK_LABELS = {
   'block-received': 'Tapón recibido',
 };
 
+export const STEAL_LABELS = {
+  steal: 'Robo',
+  turnover: 'Pérdida',
+};
+
 export const OTHER_LABELS = {
   timeout: 'Tiempo muerto',
   assist: 'Asistencia',
@@ -35,6 +40,7 @@ export const ACTION_LABELS = {
   ...FOUL_LABELS,
   ...REBOUND_LABELS,
   ...BLOCK_LABELS,
+  ...STEAL_LABELS,
   ...OTHER_LABELS,
 };
 
@@ -46,14 +52,22 @@ export function isBlock(action) {
   return action.type === 'block' || Object.hasOwn(BLOCK_LABELS, action.type);
 }
 
-/** The block received comes right before the block made, by the other team. */
-function isBlockPair(received, made) {
-  return (
-    received?.type === 'block-received' &&
-    made.type === 'block-made' &&
-    received.team !== made.team &&
-    received.quarter === made.quarter
-  );
+/**
+ * Actions that come in pairs, one right after the other, by opposite teams:
+ * `first` then `second` in the JSON. `main` is the type whose team owns the card.
+ */
+const PAIRS = [
+  { type: 'block', first: 'block-received', second: 'block-made', main: 'block-made' },
+  { type: 'steal-turnover', first: 'steal', second: 'turnover', main: 'steal' },
+];
+
+function pairOf(previous, action) {
+  if (!previous || previous.team === action.team || previous.quarter !== action.quarter) return null;
+  const pair = PAIRS.find(({ first, second }) => previous.type === first && action.type === second);
+  if (!pair) return null;
+  const main = action.type === pair.main ? action : previous;
+  const other = main === action ? previous : action;
+  return { id: previous.id, type: pair.type, quarter: action.quarter, team: main.team, actions: [main, other] };
 }
 
 export function isFoul(action) {
@@ -98,7 +112,8 @@ export function getMadeBaskets(playByPlay) {
  * A mark repeated right after itself (some games have two "end of Q4") is dropped.
  * Consecutive substitutions of the same team at the same moment become a single
  * `substitution` item (`in` and `out` jerseys), or `lineup` at the period start.
- * A block received followed by its block made becomes a single `block` item (`made`, `received`).
+ * Paired actions (block received + block made, steal + turnover) become a single item
+ * (`block`, `steal-turnover`) with `actions: [main, other]`, owned by the main action's team.
  */
 export function getTimeline(playByPlay) {
   if (!Array.isArray(playByPlay)) return [];
@@ -129,15 +144,9 @@ export function getTimeline(playByPlay) {
     }
     if (!Object.hasOwn(ACTION_LABELS, action.type) && !isPeriodMark(action)) continue;
     if (isPeriodMark(action) && previous?.type === action.type && previous.quarter === action.quarter) continue;
-    if (isBlockPair(previous, action)) {
-      timeline[timeline.length - 1] = {
-        id: previous.id,
-        type: 'block',
-        quarter: action.quarter,
-        team: action.team,
-        made: action,
-        received: previous,
-      };
+    const pair = pairOf(previous, action);
+    if (pair) {
+      timeline[timeline.length - 1] = pair;
       continue;
     }
     timeline.push(action);

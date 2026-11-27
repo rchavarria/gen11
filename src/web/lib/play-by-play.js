@@ -22,6 +22,7 @@ export const REBOUND_LABELS = {
 
 export const OTHER_LABELS = {
   timeout: 'Tiempo muerto',
+  assist: 'Asistencia',
 };
 
 export const ACTION_LABELS = { ...BASKET_LABELS, ...FOUL_LABELS, ...REBOUND_LABELS, ...OTHER_LABELS };
@@ -68,7 +69,7 @@ export function getMadeBaskets(playByPlay) {
 }
 
 /**
- * Made baskets, fouls, rebounds, timeouts, substitutions and period start/end marks, in the original order.
+ * Made baskets, assists, fouls, rebounds, timeouts, substitutions and period start/end marks, in the original order.
  * A mark repeated right after itself (some games have two "end of Q4") is dropped.
  * Consecutive substitutions of the same team at the same moment become a single
  * `substitution` item (`in` and `out` jerseys), or `lineup` at the period start.

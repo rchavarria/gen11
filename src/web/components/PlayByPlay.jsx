@@ -19,6 +19,7 @@ function centerIcon(item) {
   if (isFoul(item)) return ['✋', 'Falta'];
   if (isRebound(item)) return ['🙌', 'Rebote'];
   if (item.type === 'timeout') return ['⏱️', 'Tiempo muerto'];
+  if (item.type === 'assist') return ['🤝', 'Asistencia'];
   if (item.type === 'substitution') return ['🔄', 'Cambio'];
   if (item.type === 'lineup') return ['🔄', 'Quinteto'];
   return null;

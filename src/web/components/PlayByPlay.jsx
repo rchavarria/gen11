@@ -6,6 +6,7 @@ import {
   getTimeline,
   isFoul,
   isPeriodMark,
+  isRebound,
   isSubstitution,
   periodMarkLabel,
   substitutionText,
@@ -16,6 +17,7 @@ const NO_JERSEY = new Set(['coach-technical-foul', 'bench-technical-foul', 'time
 
 function centerIcon(item) {
   if (isFoul(item)) return ['✋', 'Falta'];
+  if (isRebound(item)) return ['🙌', 'Rebote'];
   if (item.type === 'timeout') return ['⏱️', 'Tiempo muerto'];
   if (item.type === 'substitution') return ['🔄', 'Cambio'];
   if (item.type === 'lineup') return ['🔄', 'Quinteto'];

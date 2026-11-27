@@ -77,6 +77,9 @@ visitante (40 %).
   marcador aparece en el centro con borde. El periodo, el tiempo restante,
   el tipo y el dorsal van en el bloque del equipo que anota, en orden simétrico.
   Si no hay canastas, se indica.
+- **Tiros fallados.** «Tiro libre fallado», «Canasta de 2 fallada» y «Triple
+  fallado» aparecen en el lado de quien tira, con dorsal y ❌ en lugar del
+  marcador.
 - **Faltas.** Se muestran las cometidas (personal, técnica, antideportiva,
   descalificante, técnica al entrenador o al banquillo, disruptiva y flagrante)
   en el lado de quien las comete, con ✋ en lugar del marcador. Las técnicas

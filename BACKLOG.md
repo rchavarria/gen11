@@ -2,6 +2,7 @@
 
 ## To Do list
 
+- web: videos de los partidos de la temporada 2025-26
 - web: play-by-play: mostrar el número de faltas cometidas que lleva cada jugador
 - sync: una vez se genere el play-by-play, refactorizar timelyScores para extraerlos del play-by-play en la web, al vuelo
 - sync: generar ficheros sobre jugadores, con estadísticas de cada jugador en cada partido (puntos, rebotes, asistencias, valoración…)

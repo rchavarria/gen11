@@ -40,7 +40,7 @@ describe('getTimeline', () => {
       { id: 1, type: 'game-start', quarter: 1 },
     ];
 
-    expect(getTimeline(actions).map((action) => action.id)).toEqual([7, 14, 5, 4, 8, 10, 11, 12, 15, 16, 13, 3, 2]);
+    expect(getTimeline(actions).map((action) => action.id)).toEqual([7, 14, 5, 9, 4, 8, 10, 11, 12, 15, 16, 13, 3, 2]);
     expect(getTimeline(undefined)).toEqual([]);
   });
 
@@ -62,6 +62,17 @@ describe('getTimeline', () => {
 
     expect(getTimeline([steal, turnover, lone])).toEqual([
       { id: 3, type: 'steal-turnover', quarter: 1, team: 'home', actions: [steal, turnover] },
+      lone,
+    ]);
+  });
+
+  it('merges a foul received and the foul committed right after it, owned by the fouling team', () => {
+    const received = { id: 3, type: 'foul-received', team: 'home', jersey: '4', quarter: 2 };
+    const committed = { id: 2, type: 'unsportsmanlike-foul', team: 'away', jersey: '9', quarter: 2 };
+    const lone = { id: 1, type: 'foul-received', team: 'away', jersey: '5', quarter: 2 };
+
+    expect(getTimeline([received, committed, lone])).toEqual([
+      { id: 3, type: 'foul', quarter: 2, team: 'away', actions: [committed, received] },
       lone,
     ]);
   });

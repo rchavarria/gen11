@@ -13,6 +13,7 @@ export const FOUL_LABELS = {
   'bench-technical-foul': 'Técnica al banquillo',
   'disruptive-foul': 'Disruptiva',
   'flagrant-foul': 'Flagrante',
+  'foul-received': 'Falta recibida',
 };
 
 export const REBOUND_LABELS = {
@@ -65,24 +66,30 @@ export function isBlock(action) {
 
 /**
  * Actions that come in pairs, one right after the other, by opposite teams:
- * `first` then `second` in the JSON. `main` is the type whose team owns the card.
+ * `first` then one of `second` in the JSON. `mainIsFirst` tells whose team owns the card.
  */
 const PAIRS = [
-  { type: 'block', first: 'block-received', second: 'block-made', main: 'block-made' },
-  { type: 'steal-turnover', first: 'steal', second: 'turnover', main: 'steal' },
+  { type: 'block', first: 'block-received', second: ['block-made'], mainIsFirst: false },
+  { type: 'steal-turnover', first: 'steal', second: ['turnover'], mainIsFirst: true },
+  {
+    type: 'foul',
+    first: 'foul-received',
+    second: Object.keys(FOUL_LABELS).filter((type) => type !== 'foul-received'),
+    mainIsFirst: false,
+  },
 ];
 
 function pairOf(previous, action) {
   if (!previous || previous.team === action.team || previous.quarter !== action.quarter) return null;
-  const pair = PAIRS.find(({ first, second }) => previous.type === first && action.type === second);
+  const pair = PAIRS.find(({ first, second }) => previous.type === first && second.includes(action.type));
   if (!pair) return null;
-  const main = action.type === pair.main ? action : previous;
+  const main = pair.mainIsFirst ? previous : action;
   const other = main === action ? previous : action;
   return { id: previous.id, type: pair.type, quarter: action.quarter, team: main.team, actions: [main, other] };
 }
 
 export function isFoul(action) {
-  return Object.hasOwn(FOUL_LABELS, action.type);
+  return action.type === 'foul' || Object.hasOwn(FOUL_LABELS, action.type);
 }
 
 const PERIOD_MARKS = { 'period-start': 'Inicio', 'period-end': 'Fin' };

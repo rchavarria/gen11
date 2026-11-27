@@ -58,11 +58,11 @@ Si hay vídeo, aparece entre los parciales y las pestañas. Los vídeos de YouTu
 usan `youtube-nocookie.com`, sin reproducción automática y respetando el tiempo
 de inicio. Otras URL HTTP(S) se muestran como enlace.
 
-| Pestaña | Contenido |
-| --- | --- |
-| Estadísticas de cada equipo | Una tabla por equipo, ordenada por dorsal, con minutos, puntos, valoración y +/−; la fila final suma puntos y valoración. Si faltan estadísticas, se indica. |
-| Evolución del marcador | Gráfica de puntos acumulados por minuto, incluidas las prórrogas: local en rojo, visitante en azul. Al consultar una canasta se ven tiempo, equipo, tanteo y dorsal. Si solo hay datos de un equipo, se muestran los disponibles. |
-| Jugada a jugada | _Ver apartado_|
+| Pestaña                     | Contenido                                                                                                                                                                                                                         |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Estadísticas de cada equipo | Una tabla por equipo, ordenada por dorsal, con minutos, puntos, valoración y +/−; la fila final suma puntos y valoración. Si faltan estadísticas, se indica.                                                                      |
+| Evolución del marcador      | Gráfica de puntos acumulados por minuto, incluidas las prórrogas: local en rojo, visitante en azul. Al consultar una canasta se ven tiempo, equipo, tanteo y dorsal. Si solo hay datos de un equipo, se muestran los disponibles. |
+| Jugada a jugada             | _Ver apartado_                                                                                                                                                                                                                    |
 
 Las pestañas no cambian la URL. Para volver a la lista se usa «Atrás» del navegador.
 También quedan pendientes el filtro por categoría y más columnas de estadísticas.
@@ -90,6 +90,10 @@ visitante (40 %).
   un lado y «Tapón recibido» en el otro, cada uno con su dorsal. En el JSON,
   el recibido va justo antes del puesto; si alguno va suelto, aparece solo en
   su lado.
+- **Robos y pérdidas.** Funcionan como los tapones: una tarjeta con 🥷 en el
+  centro muestra «Robo» en el lado del equipo que roba y «Pérdida» en el otro,
+  cada uno con su dorsal. En el JSON, el robo va justo antes de la pérdida. Las
+  pérdidas sin robo aparecen solas en su lado.
 - **Tiempos muertos.** Aparecen en el lado del equipo que los pide, con ⏱️ en
   el centro y sin dorsal.
 - **Cambios y quintetos.** Los cambios de un equipo en el mismo instante se

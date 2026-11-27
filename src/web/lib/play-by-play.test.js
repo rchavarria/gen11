@@ -20,7 +20,7 @@ describe('getMadeBaskets', () => {
 });
 
 describe('getTimeline', () => {
-  it('keeps baskets, assists, fouls, rebounds, timeouts and period marks in order, dropping a repeated mark', () => {
+  it('keeps baskets, assists, fouls, rebounds, blocks, timeouts and period marks in order, dropping a repeated mark', () => {
     const actions = [
       { id: 7, type: 'period-end', quarter: 4 },
       { id: 6, type: 'period-end', quarter: 4 },
@@ -32,14 +32,27 @@ describe('getTimeline', () => {
       { id: 10, type: 'timeout', quarter: 4 },
       { id: 11, type: 'defensive-rebound', quarter: 4 },
       { id: 12, type: 'offensive-rebound', quarter: 4 },
+      { id: 15, type: 'block-received', quarter: 4 },
+      { id: 16, type: 'block-made', quarter: 4 },
       { id: 13, type: 'two-point-missed', quarter: 4 },
       { id: 3, type: 'period-start', quarter: 4 },
       { id: 2, type: 'period-end', quarter: 3 },
       { id: 1, type: 'game-start', quarter: 1 },
     ];
 
-    expect(getTimeline(actions).map((action) => action.id)).toEqual([7, 14, 5, 4, 8, 10, 11, 12, 3, 2]);
+    expect(getTimeline(actions).map((action) => action.id)).toEqual([7, 14, 5, 4, 8, 10, 11, 12, 15, 16, 3, 2]);
     expect(getTimeline(undefined)).toEqual([]);
+  });
+
+  it('merges a block received and the block made right after it into a single block item', () => {
+    const received = { id: 2, type: 'block-received', team: 'away', jersey: '7', quarter: 2 };
+    const made = { id: 3, type: 'block-made', team: 'home', jersey: '16', quarter: 2 };
+    const lone = { id: 1, type: 'block-made', team: 'away', jersey: '9', quarter: 2 };
+
+    expect(getTimeline([lone, received, made])).toEqual([
+      lone,
+      { id: 2, type: 'block', quarter: 2, team: 'home', made, received },
+    ]);
   });
 
   const sub = (id, type, team, jersey, clock = '00:04:12.0', quarter = 2) => ({

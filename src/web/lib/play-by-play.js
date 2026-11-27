@@ -20,15 +20,40 @@ export const REBOUND_LABELS = {
   'offensive-rebound': 'Rebote ofensivo',
 };
 
+export const BLOCK_LABELS = {
+  'block-made': 'Tapón puesto',
+  'block-received': 'Tapón recibido',
+};
+
 export const OTHER_LABELS = {
   timeout: 'Tiempo muerto',
   assist: 'Asistencia',
 };
 
-export const ACTION_LABELS = { ...BASKET_LABELS, ...FOUL_LABELS, ...REBOUND_LABELS, ...OTHER_LABELS };
+export const ACTION_LABELS = {
+  ...BASKET_LABELS,
+  ...FOUL_LABELS,
+  ...REBOUND_LABELS,
+  ...BLOCK_LABELS,
+  ...OTHER_LABELS,
+};
 
 export function isRebound(action) {
   return Object.hasOwn(REBOUND_LABELS, action.type);
+}
+
+export function isBlock(action) {
+  return action.type === 'block' || Object.hasOwn(BLOCK_LABELS, action.type);
+}
+
+/** The block received comes right before the block made, by the other team. */
+function isBlockPair(received, made) {
+  return (
+    received?.type === 'block-received' &&
+    made.type === 'block-made' &&
+    received.team !== made.team &&
+    received.quarter === made.quarter
+  );
 }
 
 export function isFoul(action) {
@@ -69,10 +94,11 @@ export function getMadeBaskets(playByPlay) {
 }
 
 /**
- * Made baskets, assists, fouls, rebounds, timeouts, substitutions and period start/end marks, in the original order.
+ * Made baskets, assists, fouls, rebounds, blocks, timeouts, substitutions and period start/end marks, in the original order.
  * A mark repeated right after itself (some games have two "end of Q4") is dropped.
  * Consecutive substitutions of the same team at the same moment become a single
  * `substitution` item (`in` and `out` jerseys), or `lineup` at the period start.
+ * A block received followed by its block made becomes a single `block` item (`made`, `received`).
  */
 export function getTimeline(playByPlay) {
   if (!Array.isArray(playByPlay)) return [];
@@ -103,6 +129,17 @@ export function getTimeline(playByPlay) {
     }
     if (!Object.hasOwn(ACTION_LABELS, action.type) && !isPeriodMark(action)) continue;
     if (isPeriodMark(action) && previous?.type === action.type && previous.quarter === action.quarter) continue;
+    if (isBlockPair(previous, action)) {
+      timeline[timeline.length - 1] = {
+        id: previous.id,
+        type: 'block',
+        quarter: action.quarter,
+        team: action.team,
+        made: action,
+        received: previous,
+      };
+      continue;
+    }
     timeline.push(action);
   }
   return timeline.map((item) => (item.type === 'substitution' ? classifySubstitution(item) : item));

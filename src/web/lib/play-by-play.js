@@ -30,6 +30,12 @@ export const STEAL_LABELS = {
   turnover: 'Pérdida',
 };
 
+export const MISSED_LABELS = {
+  'free-throw-missed': 'Tiro libre fallado',
+  'two-point-missed': 'Canasta de 2 fallada',
+  'three-point-missed': 'Triple fallado',
+};
+
 export const OTHER_LABELS = {
   timeout: 'Tiempo muerto',
   assist: 'Asistencia',
@@ -41,8 +47,13 @@ export const ACTION_LABELS = {
   ...REBOUND_LABELS,
   ...BLOCK_LABELS,
   ...STEAL_LABELS,
+  ...MISSED_LABELS,
   ...OTHER_LABELS,
 };
+
+export function isMissedShot(action) {
+  return Object.hasOwn(MISSED_LABELS, action.type);
+}
 
 export function isRebound(action) {
   return Object.hasOwn(REBOUND_LABELS, action.type);

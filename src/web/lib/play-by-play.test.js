@@ -20,7 +20,7 @@ describe('getMadeBaskets', () => {
 });
 
 describe('getTimeline', () => {
-  it('keeps baskets, assists, fouls, rebounds, blocks, timeouts and period marks in order, dropping a repeated mark', () => {
+  it('keeps baskets, missed shots, assists, fouls, rebounds, blocks, timeouts and period marks in order, dropping a repeated mark', () => {
     const actions = [
       { id: 7, type: 'period-end', quarter: 4 },
       { id: 6, type: 'period-end', quarter: 4 },
@@ -40,7 +40,7 @@ describe('getTimeline', () => {
       { id: 1, type: 'game-start', quarter: 1 },
     ];
 
-    expect(getTimeline(actions).map((action) => action.id)).toEqual([7, 14, 5, 4, 8, 10, 11, 12, 15, 16, 3, 2]);
+    expect(getTimeline(actions).map((action) => action.id)).toEqual([7, 14, 5, 4, 8, 10, 11, 12, 15, 16, 13, 3, 2]);
     expect(getTimeline(undefined)).toEqual([]);
   });
 

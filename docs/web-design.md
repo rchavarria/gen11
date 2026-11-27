@@ -83,8 +83,10 @@ visitante (40 %).
 - **Faltas.** Se muestran las cometidas (personal, técnica, antideportiva,
   descalificante, técnica al entrenador o al banquillo, disruptiva y flagrante)
   en el lado de quien las comete, con ✋ en lugar del marcador. Las técnicas
-  al entrenador y al banquillo no muestran dorsal. Las faltas recibidas no
-  se muestran.
+  al entrenador y al banquillo no muestran dorsal. En el JSON, la falta recibida
+  va justo antes de la cometida: ambas se unen en una tarjeta, con «Falta
+  recibida» y su dorsal en el lado contrario. Las recibidas sin pareja aparecen
+  solas en su lado.
 - **Rebotes y asistencias.** «Rebote defensivo», «Rebote ofensivo» y «Asistencia»
   aparecen en el lado del equipo que realiza la jugada, con dorsal y 🙌 o 🤝
   en el centro, respectivamente. En el JSON, la asistencia va justo encima

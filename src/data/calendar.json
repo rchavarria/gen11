@@ -1219,14 +1219,14 @@
     "date": "2026-11-28T09:30:00Z",
     "venue": "valdebebas",
     "category": "Cadete Masculino LIGA AHORRAMAS",
-    "played": false,
+    "played": true,
     "home": {
       "club": "realmadrid",
-      "score": null
+      "score": 74
     },
     "away": {
       "club": "distrito",
-      "score": null
+      "score": 78
     }
   },
   {
@@ -1234,14 +1234,14 @@
     "date": "2026-11-28T12:30:00Z",
     "venue": "torrelodones-pequeno",
     "category": "Cadete Masculino LIGA AHORRAMAS",
-    "played": false,
+    "played": true,
     "home": {
       "club": "torrelodones",
-      "score": null
+      "score": 62
     },
     "away": {
       "club": "estudiantes",
-      "score": null
+      "score": 67
     }
   },
   {
@@ -1249,14 +1249,14 @@
     "date": "2026-11-28T13:00:00Z",
     "venue": "sba",
     "category": "Cadete Masculino LIGA AHORRAMAS",
-    "played": false,
+    "played": true,
     "home": {
       "club": "sba",
-      "score": null
+      "score": 100
     },
     "away": {
       "club": "sanjorge",
-      "score": null
+      "score": 93
     }
   },
   {

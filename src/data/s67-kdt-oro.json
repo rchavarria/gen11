@@ -391,13 +391,13 @@
                   "venue": "valdebebas",
                   "home": {
                     "slug": "realmadrid",
-                    "score": null
+                    "score": 74
                   },
                   "away": {
                     "slug": "distrito",
-                    "score": null
+                    "score": 78
                   },
-                  "downloaded": false
+                  "downloaded": true
                 },
                 {
                   "id": "640048002B004C004C00610032004D004A006700580041002B004A0062003500430051002F004A004C0077003D003D00",
@@ -405,13 +405,13 @@
                   "venue": "sba",
                   "home": {
                     "slug": "sba",
-                    "score": null
+                    "score": 100
                   },
                   "away": {
                     "slug": "sanjorge",
-                    "score": null
+                    "score": 93
                   },
-                  "downloaded": false
+                  "downloaded": true
                 },
                 {
                   "id": "33006D004200650064004D002B00730067005A004D00660053006B00780065006B0064002B004E00730077003D003D00",
@@ -874,13 +874,13 @@
                   "venue": "torrelodones-pequeno",
                   "home": {
                     "slug": "torrelodones",
-                    "score": null
+                    "score": 62
                   },
                   "away": {
                     "slug": "estudiantes",
-                    "score": null
+                    "score": 67
                   },
-                  "downloaded": false
+                  "downloaded": true
                 },
                 {
                   "id": "650030005400370033004C00790039004A004700560032005300760062002F006C0046006F005300610077003D003D00",

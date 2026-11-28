@@ -3,7 +3,7 @@
     "slug": "s56-kdt-oro-f1-g1-j01-realmadrid-alcobendas",
     "date": "2025-09-20T09:00:00Z",
     "venue": "valdebebas",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "realmadrid",
@@ -18,7 +18,7 @@
     "slug": "s56-kdt-oro-f1-g1-j02-alcobendas-rozas",
     "date": "2025-09-28T09:30:00Z",
     "venue": "antela",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -33,7 +33,7 @@
     "slug": "s56-kdt-oro-f1-g1-j03-patrocinio-alcobendas",
     "date": "2025-10-05T16:15:00Z",
     "venue": "triangulo-oro",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "patrocinio",
@@ -48,7 +48,7 @@
     "slug": "s56-kdt-oro-f1-g1-j04-alcobendas-estudiantes",
     "date": "2025-10-18T17:00:00Z",
     "venue": "antela",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -63,7 +63,7 @@
     "slug": "s56-kdt-oro-f1-g1-j05-fuenlabrada-alcobendas",
     "date": "2025-10-26T11:00:00Z",
     "venue": "arroyo",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "fuenlabrada",
@@ -78,7 +78,7 @@
     "slug": "s56-kdt-oro-f1-g1-j06-alcobendas-realmadrid",
     "date": "2025-11-09T17:00:00Z",
     "venue": "antela",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -93,7 +93,7 @@
     "slug": "s56-kdt-oro-f1-g1-j07-rozas-alcobendas",
     "date": "2025-11-16T14:30:00Z",
     "venue": "ceip-san-jose",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "rozas",
@@ -108,7 +108,7 @@
     "slug": "s56-kdt-oro-f1-g1-j08-estudiantes-alcobendas",
     "date": "2025-11-30T10:30:00Z",
     "venue": "magariños",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "estudiantes",
@@ -123,7 +123,7 @@
     "slug": "s56-kdt-oro-f1-g1-j09-alcobendas-patrocinio",
     "date": "2025-12-13T12:15:00Z",
     "venue": "antela",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -138,7 +138,7 @@
     "slug": "s56-kdt-oro-f1-g1-j10-alcobendas-fuenlabrada",
     "date": "2025-12-14T17:00:00Z",
     "venue": "antela",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -153,7 +153,7 @@
     "slug": "s56-kdt-oro-playoffs-j01-zentro-alcobendas",
     "date": "2026-04-19T16:30:00Z",
     "venue": "diaz-miguel",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "zentro",
@@ -168,7 +168,7 @@
     "slug": "s56-kdt-oro-playoffs-j02-alcobendas-zentro",
     "date": "2026-04-25T11:15:00Z",
     "venue": "antela",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -183,7 +183,7 @@
     "slug": "s56-kdt-oro-f3-j01-torrelodones-alcobendas",
     "date": "2026-05-10T09:30:00Z",
     "venue": "torrelodones",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "torrelodones",
@@ -198,7 +198,7 @@
     "slug": "s56-kdt-oro-f3-j05-alcobendas-fuenlabrada",
     "date": "2026-05-14T18:30:00Z",
     "venue": "antela",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -213,7 +213,7 @@
     "slug": "s56-kdt-oro-f3-j02-fuenlabrada-alcobendas",
     "date": "2026-05-17T16:30:00Z",
     "venue": "arroyo",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "fuenlabrada",
@@ -228,7 +228,7 @@
     "slug": "s56-kdt-oro-f3-j03-alcobendas-distritokdtantiguo",
     "date": "2026-05-24T09:15:00Z",
     "venue": "antela",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -243,7 +243,7 @@
     "slug": "s56-kdt-oro-f3-j06-distritokdtantiguo-alcobendas",
     "date": "2026-05-27T18:30:00Z",
     "venue": "circular",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "distritokdtantiguo",
@@ -258,7 +258,7 @@
     "slug": "s56-kdt-oro-f3-j04-alcobendas-torrelodones",
     "date": "2026-05-31T16:00:00Z",
     "venue": "antela",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -273,7 +273,7 @@
     "slug": "s67-kdt-oro-f1-g1-j01-realmadrid-sba",
     "date": "2026-09-19T16:00:00Z",
     "venue": "valdebebas",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "realmadrid",
@@ -288,7 +288,7 @@
     "slug": "s67-kdt-oro-f1-g1-j01-distrito-fuenlabrada",
     "date": "2026-09-19T16:30:00Z",
     "venue": "circular",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "distrito",
@@ -300,10 +300,25 @@
     }
   },
   {
+    "slug": "s67-kdt-oro-f1-g3-j02-distrito-b-alcobendas-b",
+    "date": "2026-09-19T18:30:00Z",
+    "venue": "circular",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
+    "played": true,
+    "home": {
+      "club": "distrito-b",
+      "score": 86
+    },
+    "away": {
+      "club": "alcobendas-b",
+      "score": 66
+    }
+  },
+  {
     "slug": "s67-kdt-oro-f1-g1-j01-canoe-sanjorge",
     "date": "2026-09-20T09:15:00Z",
     "venue": "canoe",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "canoe",
@@ -318,7 +333,7 @@
     "slug": "s67-jnr-oro-f1-g1-j01-sbajnr-alcobendas",
     "date": "2026-09-20T10:30:00Z",
     "venue": "sba",
-    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "category": "Junior Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "sbajnr",
@@ -333,7 +348,7 @@
     "slug": "s67-kdt-oro-f1-g2-j06-laso-alcorcon",
     "date": "2026-09-20T16:00:00Z",
     "venue": "retamar",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "laso",
@@ -348,7 +363,7 @@
     "slug": "s67-kdt-oro-f1-g1-j02-sba-canoe",
     "date": "2026-09-26T12:00:00Z",
     "venue": "sba",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "sba",
@@ -360,10 +375,25 @@
     }
   },
   {
+    "slug": "s67-kdt-oro-f1-g3-j03-alcobendas-b-atocha",
+    "date": "2026-09-26T14:00:00Z",
+    "venue": "ferrandiz",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
+    "played": true,
+    "home": {
+      "club": "alcobendas-b",
+      "score": 63
+    },
+    "away": {
+      "club": "atocha",
+      "score": 65
+    }
+  },
+  {
     "slug": "s67-kdt-oro-f1-g2-j02-torrelodones-alcobendas",
     "date": "2026-09-26T17:30:00Z",
     "venue": "torrelodones",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "torrelodones",
@@ -378,7 +408,7 @@
     "slug": "s67-jnr-oro-f1-g1-j02-alcobendas-torrejon",
     "date": "2026-09-27T18:00:00Z",
     "venue": "antela",
-    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "category": "Junior Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -393,7 +423,7 @@
     "slug": "s67-kdt-oro-f1-g2-j02-estudiantes-alcorcon",
     "date": "2026-09-27T18:30:00Z",
     "venue": "magariños",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "estudiantes",
@@ -408,7 +438,7 @@
     "slug": "s67-kdt-oro-f1-g2-j06-estudiantes-alcobendas",
     "date": "2026-09-29T17:00:00Z",
     "venue": "caja-magica",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "estudiantes",
@@ -423,7 +453,7 @@
     "slug": "s67-kdt-oro-f1-g2-j03-torrelodones-laso",
     "date": "2026-10-03T10:30:00Z",
     "venue": "torrelodones",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "torrelodones",
@@ -438,7 +468,7 @@
     "slug": "s67-kdt-oro-f1-g1-j03-sba-fuenlabrada",
     "date": "2026-10-03T12:00:00Z",
     "venue": "sba",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "sba",
@@ -453,7 +483,7 @@
     "slug": "s67-kdt-oro-f1-g1-j03-canoe-distrito",
     "date": "2026-10-03T14:30:00Z",
     "venue": "canoe",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "canoe",
@@ -468,7 +498,7 @@
     "slug": "s67-kdt-oro-f1-g1-j03-realmadrid-sanjorge",
     "date": "2026-10-03T15:00:00Z",
     "venue": "valdebebas",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "realmadrid",
@@ -480,10 +510,25 @@
     }
   },
   {
+    "slug": "s67-kdt-oro-f1-g3-j04-estudiantes-b-alcobendas-b",
+    "date": "2026-10-03T18:00:00Z",
+    "venue": "caja-magica",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
+    "played": true,
+    "home": {
+      "club": "estudiantes-b",
+      "score": 71
+    },
+    "away": {
+      "club": "alcobendas-b",
+      "score": 65
+    }
+  },
+  {
     "slug": "s67-kdt-oro-f1-g2-j03-alcobendas-alcorcon",
     "date": "2026-10-04T11:15:00Z",
     "venue": "antela",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -498,7 +543,7 @@
     "slug": "s67-jnr-oro-f1-g1-j03-sanjorge-alcobendas",
     "date": "2026-10-04T11:30:00Z",
     "venue": "diaz-miguel",
-    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "category": "Junior Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "sanjorge",
@@ -513,7 +558,7 @@
     "slug": "s67-kdt-oro-f1-g2-j03-zentro-estudiantes",
     "date": "2026-10-04T16:15:00Z",
     "venue": "diaz-miguel",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "zentro",
@@ -528,7 +573,7 @@
     "slug": "s67-kdt-oro-f1-g2-j02-laso-zentro",
     "date": "2026-10-08T19:00:00Z",
     "venue": "retamar",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "laso",
@@ -543,7 +588,7 @@
     "slug": "s67-kdt-oro-f1-g1-j02-sanjorge-distrito",
     "date": "2026-10-11T14:00:00Z",
     "venue": "diaz-miguel",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "sanjorge",
@@ -558,7 +603,7 @@
     "slug": "s67-kdt-oro-f1-g1-j04-distrito-realmadrid",
     "date": "2026-10-17T14:30:00Z",
     "venue": "circular",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "distrito",
@@ -573,7 +618,7 @@
     "slug": "s67-kdt-oro-f1-g1-j04-canoe-fuenlabrada",
     "date": "2026-10-18T09:15:00Z",
     "venue": "canoe",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "canoe",
@@ -588,7 +633,7 @@
     "slug": "s67-kdt-oro-f1-g2-j04-alcorcon-zentro",
     "date": "2026-10-18T09:30:00Z",
     "venue": "canaleja",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcorcon",
@@ -603,7 +648,7 @@
     "slug": "s67-jnr-oro-f1-g1-j04-canoe-alcobendas",
     "date": "2026-10-18T11:00:00Z",
     "venue": "canoe",
-    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "category": "Junior Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "canoe",
@@ -618,7 +663,7 @@
     "slug": "s67-kdt-oro-f1-g2-j04-estudiantes-torrelodones",
     "date": "2026-10-18T16:30:00Z",
     "venue": "magariños",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "estudiantes",
@@ -633,7 +678,7 @@
     "slug": "s67-kdt-oro-f1-g2-j04-alcobendas-laso",
     "date": "2026-10-18T18:00:00Z",
     "venue": "antela",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -648,7 +693,7 @@
     "slug": "s67-kdt-oro-f1-g1-j04-sanjorge-sba",
     "date": "2026-10-18T18:15:00Z",
     "venue": "diaz-miguel",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "sanjorge",
@@ -663,7 +708,7 @@
     "slug": "s67-kdt-oro-f1-g1-j05-sba-distrito",
     "date": "2026-10-24T12:00:00Z",
     "venue": "sba",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "sba",
@@ -678,7 +723,7 @@
     "slug": "s67-kdt-oro-f1-g1-j05-realmadrid-canoe",
     "date": "2026-10-24T15:00:00Z",
     "venue": "valdebebas",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "realmadrid",
@@ -693,7 +738,7 @@
     "slug": "s67-kdt-oro-f1-g2-j05-torrelodones-alcorcon",
     "date": "2026-10-24T17:30:00Z",
     "venue": "torrelodones",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "torrelodones",
@@ -705,10 +750,40 @@
     }
   },
   {
+    "slug": "s67-kdt-oro-f1-g3-j05-alcorcon-b-alcobendas-b",
+    "date": "2026-10-24T17:30:00Z",
+    "venue": "canaleja",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
+    "played": true,
+    "home": {
+      "club": "alcorcon-b",
+      "score": 72
+    },
+    "away": {
+      "club": "alcobendas-b",
+      "score": 86
+    }
+  },
+  {
+    "slug": "s67-kdt-oro-f1-g3-j06-alcobendas-b-zentro-b",
+    "date": "2026-10-24T17:30:00Z",
+    "venue": "antela",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
+    "played": true,
+    "home": {
+      "club": "alcobendas-b",
+      "score": 87
+    },
+    "away": {
+      "club": "zentro-b",
+      "score": 72
+    }
+  },
+  {
     "slug": "s67-jnr-oro-f1-g1-j05-alcobendas-realmadridjnr",
     "date": "2026-10-25T12:15:00Z",
     "venue": "antela",
-    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "category": "Junior Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -723,7 +798,7 @@
     "slug": "s67-kdt-oro-f1-g1-j05-fuenlabrada-sanjorge",
     "date": "2026-10-25T15:30:00Z",
     "venue": "fernando-martin",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "fuenlabrada",
@@ -738,7 +813,7 @@
     "slug": "s67-kdt-oro-f1-g2-j05-zentro-alcobendas",
     "date": "2026-10-25T17:15:00Z",
     "venue": "diaz-miguel",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "zentro",
@@ -753,7 +828,7 @@
     "slug": "s67-kdt-oro-f1-g2-j01-zentro-torrelodones",
     "date": "2026-10-27T18:30:00Z",
     "venue": "diaz-miguel",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "zentro",
@@ -768,7 +843,7 @@
     "slug": "s67-kdt-oro-f1-g2-j05-laso-estudiantes",
     "date": "2026-11-05T20:00:00Z",
     "venue": "retamar",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "laso",
@@ -783,7 +858,7 @@
     "slug": "s67-kdt-oro-f1-g2-j06-torrelodones-zentro",
     "date": "2026-11-07T10:30:00Z",
     "venue": "torrelodones",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "torrelodones",
@@ -798,7 +873,7 @@
     "slug": "s67-kdt-oro-f1-g1-j06-fuenlabrada-distrito",
     "date": "2026-11-07T12:30:00Z",
     "venue": "fernando-martin",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "fuenlabrada",
@@ -813,7 +888,7 @@
     "slug": "s67-jnr-oro-f1-g1-j09-alcobendas-canoe",
     "date": "2026-11-07T12:30:00Z",
     "venue": "antela",
-    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "category": "Junior Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -828,7 +903,7 @@
     "slug": "s67-kdt-oro-f1-g1-j06-sba-realmadrid",
     "date": "2026-11-07T13:00:00Z",
     "venue": "sba",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "sba",
@@ -840,10 +915,25 @@
     }
   },
   {
+    "slug": "s67-kdt-oro-f1-g3-j07-alcobendas-b-distrito-b",
+    "date": "2026-11-07T19:00:00Z",
+    "venue": "ferrandiz",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
+    "played": true,
+    "home": {
+      "club": "alcobendas-b",
+      "score": 66
+    },
+    "away": {
+      "club": "distrito-b",
+      "score": 53
+    }
+  },
+  {
     "slug": "s67-kdt-oro-f1-g2-j01-alcorcon-laso",
     "date": "2026-11-08T08:30:00Z",
     "venue": "canaleja",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcorcon",
@@ -858,7 +948,7 @@
     "slug": "s67-kdt-oro-f1-g2-j01-alcobendas-estudiantes",
     "date": "2026-11-08T10:30:00Z",
     "venue": "antela",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -873,7 +963,7 @@
     "slug": "s67-kdt-oro-f1-g1-j02-fuenlabrada-realmadrid",
     "date": "2026-11-08T12:30:00Z",
     "venue": "fernando-martin",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "fuenlabrada",
@@ -888,7 +978,7 @@
     "slug": "s67-jnr-oro-f1-g1-j06-alcobendas-sbajnr",
     "date": "2026-11-08T12:30:00Z",
     "venue": "antela",
-    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "category": "Junior Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -903,7 +993,7 @@
     "slug": "s67-kdt-oro-f1-g1-j07-realmadrid-fuenlabrada",
     "date": "2026-11-14T09:00:00Z",
     "venue": "valdebebas",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "realmadrid",
@@ -918,7 +1008,7 @@
     "slug": "s67-kdt-oro-f1-g1-j07-distrito-sanjorge",
     "date": "2026-11-14T12:30:00Z",
     "venue": "circular",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "distrito",
@@ -930,10 +1020,25 @@
     }
   },
   {
+    "slug": "s67-kdt-oro-f1-g3-j08-atocha-alcobendas-b",
+    "date": "2026-11-15T00:00:00Z",
+    "venue": "",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
+    "played": true,
+    "home": {
+      "club": "atocha",
+      "score": 44
+    },
+    "away": {
+      "club": "alcobendas-b",
+      "score": 84
+    }
+  },
+  {
     "slug": "s67-kdt-oro-f1-g1-j07-canoe-sba",
     "date": "2026-11-15T10:15:00Z",
     "venue": "canoe",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "canoe",
@@ -948,7 +1053,7 @@
     "slug": "s67-kdt-oro-f1-g2-j07-alcobendas-torrelodones",
     "date": "2026-11-15T12:30:00Z",
     "venue": "antela",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -963,7 +1068,7 @@
     "slug": "s67-jnr-oro-f1-g1-j07-torrejon-alcobendas",
     "date": "2026-11-15T14:00:00Z",
     "venue": "limones",
-    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "category": "Junior Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "torrejon",
@@ -978,7 +1083,7 @@
     "slug": "s67-kdt-oro-f1-g2-j07-alcorcon-estudiantes",
     "date": "2026-11-15T14:30:00Z",
     "venue": "canaleja",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcorcon",
@@ -993,7 +1098,7 @@
     "slug": "s67-kdt-oro-f1-g2-j07-zentro-laso",
     "date": "2026-11-15T17:15:00Z",
     "venue": "diaz-miguel",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "zentro",
@@ -1008,7 +1113,7 @@
     "slug": "s67-kdt-oro-f1-g1-j08-distrito-canoe",
     "date": "2026-11-21T17:30:00Z",
     "venue": "circular",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "distrito",
@@ -1020,10 +1125,25 @@
     }
   },
   {
+    "slug": "s67-kdt-oro-f1-g3-j09-alcobendas-estudiantes",
+    "date": "2026-11-21T19:00:00Z",
+    "venue": "ferrandiz",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
+    "played": true,
+    "home": {
+      "club": "alcobendas",
+      "score": 77
+    },
+    "away": {
+      "club": "estudiantes",
+      "score": 55
+    }
+  },
+  {
     "slug": "s67-kdt-oro-f1-g2-j08-alcorcon-alcobendas",
     "date": "2026-11-22T10:30:00Z",
     "venue": "canaleja",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcorcon",
@@ -1038,7 +1158,7 @@
     "slug": "s67-jnr-oro-f1-g1-j08-alcobendas-sanjorge",
     "date": "2026-11-22T17:30:00Z",
     "venue": "antela",
-    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "category": "Junior Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "alcobendas",
@@ -1053,7 +1173,7 @@
     "slug": "s67-kdt-oro-f1-g1-j08-sanjorge-realmadrid",
     "date": "2026-11-22T19:15:00Z",
     "venue": "diaz-miguel",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "sanjorge",
@@ -1068,7 +1188,7 @@
     "slug": "s67-kdt-oro-f1-g2-j08-estudiantes-zentro",
     "date": "2026-11-22T19:30:00Z",
     "venue": "magariños",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "estudiantes",
@@ -1083,7 +1203,7 @@
     "slug": "s67-kdt-oro-f1-g1-j06-sanjorge-canoe",
     "date": "2026-11-26T20:15:00Z",
     "venue": "caja-magica",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": true,
     "home": {
       "club": "sanjorge",
@@ -1098,7 +1218,7 @@
     "slug": "s67-kdt-oro-f1-g1-j09-realmadrid-distrito",
     "date": "2026-11-28T09:30:00Z",
     "venue": "valdebebas",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": false,
     "home": {
       "club": "realmadrid",
@@ -1113,7 +1233,7 @@
     "slug": "s67-kdt-oro-f1-g2-j09-torrelodones-estudiantes",
     "date": "2026-11-28T12:30:00Z",
     "venue": "torrelodones-pequeno",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": false,
     "home": {
       "club": "torrelodones",
@@ -1128,7 +1248,7 @@
     "slug": "s67-kdt-oro-f1-g1-j09-sba-sanjorge",
     "date": "2026-11-28T13:00:00Z",
     "venue": "sba",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": false,
     "home": {
       "club": "sba",
@@ -1143,7 +1263,7 @@
     "slug": "s67-kdt-oro-f1-g1-j09-fuenlabrada-canoe",
     "date": "2026-11-28T16:30:00Z",
     "venue": "fernando-martin",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": false,
     "home": {
       "club": "fuenlabrada",
@@ -1158,7 +1278,7 @@
     "slug": "s67-kdt-oro-f1-g2-j09-zentro-alcorcon",
     "date": "2026-11-28T19:15:00Z",
     "venue": "diaz-miguel",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": false,
     "home": {
       "club": "zentro",
@@ -1173,7 +1293,7 @@
     "slug": "s67-kdt-oro-f1-g2-j09-laso-alcobendas",
     "date": "2026-11-29T09:00:00Z",
     "venue": "retamar",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": false,
     "home": {
       "club": "laso",
@@ -1188,7 +1308,7 @@
     "slug": "s67-kdt-oro-f1-g2-j08-laso-torrelodones",
     "date": "2026-12-01T18:45:00Z",
     "venue": "retamar",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": false,
     "home": {
       "club": "laso",
@@ -1203,7 +1323,7 @@
     "slug": "s67-kdt-oro-f1-g1-j08-fuenlabrada-sba",
     "date": "2026-12-02T19:30:00Z",
     "venue": "arroyo",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": false,
     "home": {
       "club": "fuenlabrada",
@@ -1218,7 +1338,7 @@
     "slug": "s67-kdt-oro-f1-g2-j10-alcobendas-zentro",
     "date": "2026-12-03T19:00:00Z",
     "venue": "ferrandiz",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": false,
     "home": {
       "club": "alcobendas",
@@ -1233,7 +1353,7 @@
     "slug": "s67-kdt-oro-f1-g2-j10-estudiantes-laso",
     "date": "2026-12-03T20:30:00Z",
     "venue": "magariños",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": false,
     "home": {
       "club": "estudiantes",
@@ -1248,7 +1368,7 @@
     "slug": "s67-kdt-oro-f1-g1-j10-distrito-sba",
     "date": "2026-12-12T00:00:00Z",
     "venue": "circular",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": false,
     "home": {
       "club": "distrito",
@@ -1263,7 +1383,7 @@
     "slug": "s67-kdt-oro-f1-g1-j10-sanjorge-fuenlabrada",
     "date": "2026-12-13T00:00:00Z",
     "venue": "diaz-miguel",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": false,
     "home": {
       "club": "sanjorge",
@@ -1278,7 +1398,7 @@
     "slug": "s67-kdt-oro-f1-g1-j10-canoe-realmadrid",
     "date": "2026-12-13T00:00:00Z",
     "venue": "canoe",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": false,
     "home": {
       "club": "canoe",
@@ -1293,7 +1413,7 @@
     "slug": "s67-kdt-oro-f1-g2-j10-alcorcon-torrelodones",
     "date": "2026-12-13T00:00:00Z",
     "venue": "canaleja",
-    "category": "Cadete Masculino LIGA AHORRAMAS - ORO",
+    "category": "Cadete Masculino LIGA AHORRAMAS",
     "played": false,
     "home": {
       "club": "alcorcon",
@@ -1308,7 +1428,7 @@
     "slug": "s67-jnr-oro-f1-g1-j10-realmadridjnr-alcobendas",
     "date": "2026-12-13T00:00:00Z",
     "venue": "valdebebas",
-    "category": "Junior Masculino LIGA AHORRAMAS - ORO",
+    "category": "Junior Masculino LIGA AHORRAMAS",
     "played": false,
     "home": {
       "club": "realmadridjnr",

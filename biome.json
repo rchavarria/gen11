@@ -6,7 +6,16 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!!src/data", "!!package-lock.json"]
+    "includes": [
+      "**",
+      "!src/data/**/*",
+      "src/data/calendar.json",
+      "src/data/competitions.json",
+      "src/data/s56-kdt-oro.json",
+      "src/data/s67-jnr-oro.json",
+      "src/data/s67-kdt-oro.json",
+      "!!package-lock.json"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -46,6 +55,18 @@
     }
   },
   "overrides": [
+    {
+      "includes": [
+        "src/data/competitions.json",
+        "src/data/s56-kdt*.json",
+        "src/data/s67-jnr*.json",
+        "src/data/s67-kdt-oro.json"
+      ],
+      "json": {
+        "parser": { "allowTrailingCommas": true },
+        "formatter": { "trailingCommas": "none" }
+      }
+    },
     {
       "includes": ["src/*.js", "src/core/**"],
       "linter": {

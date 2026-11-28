@@ -2,7 +2,8 @@
 
 Ejecutar `npm run lint` para revisar lint, formato y orden de imports con Biome.
 Usar `npm run lint:fix` para aplicar formato y correcciones seguras.
-Los JSON de `src/data/` quedan excluidos.
+Los JSON de `src/data/` quedan excluidos salvo algunos `.json` que pueden ser
+editados a mano y conviene corregir posibles errores de formato o sintaxis.
 
 Ejecutar `npm run test` para los tests unitarios con Vitest.
 Los tests de componentes React usan Testing Library y jsdom.

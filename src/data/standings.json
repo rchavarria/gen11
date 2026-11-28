@@ -128,6 +128,24 @@
               "id": "g3",
               "standings": [
                 {
+                  "team": "zentro-b",
+                  "gamesPlayed": 8,
+                  "wins": 7,
+                  "losses": 1,
+                  "pointsFor": 741,
+                  "pointsAgainst": 568,
+                  "points": 15
+                },
+                {
+                  "team": "estudiantes-b",
+                  "gamesPlayed": 8,
+                  "wins": 6,
+                  "losses": 2,
+                  "pointsFor": 645,
+                  "pointsAgainst": 554,
+                  "points": 14
+                },
+                {
                   "team": "alcobendas-b",
                   "gamesPlayed": 8,
                   "wins": 5,
@@ -138,48 +156,30 @@
                 },
                 {
                   "team": "distrito-b",
-                  "gamesPlayed": 2,
-                  "wins": 1,
-                  "losses": 1,
-                  "pointsFor": 139,
-                  "pointsAgainst": 132,
-                  "points": 3
+                  "gamesPlayed": 8,
+                  "wins": 3,
+                  "losses": 5,
+                  "pointsFor": 557,
+                  "pointsAgainst": 567,
+                  "points": 11
                 },
                 {
                   "team": "atocha",
-                  "gamesPlayed": 2,
-                  "wins": 1,
-                  "losses": 1,
-                  "pointsFor": 109,
-                  "pointsAgainst": 147,
-                  "points": 3
-                },
-                {
-                  "team": "estudiantes-b",
-                  "gamesPlayed": 2,
-                  "wins": 1,
-                  "losses": 1,
-                  "pointsFor": 126,
-                  "pointsAgainst": 142,
-                  "points": 3
+                  "gamesPlayed": 8,
+                  "wins": 2,
+                  "losses": 6,
+                  "pointsFor": 473,
+                  "pointsAgainst": 664,
+                  "points": 10
                 },
                 {
                   "team": "alcorcon-b",
-                  "gamesPlayed": 1,
-                  "wins": 0,
-                  "losses": 1,
-                  "pointsFor": 72,
-                  "pointsAgainst": 86,
-                  "points": 1
-                },
-                {
-                  "team": "zentro-b",
-                  "gamesPlayed": 1,
-                  "wins": 0,
-                  "losses": 1,
-                  "pointsFor": 72,
-                  "pointsAgainst": 87,
-                  "points": 1
+                  "gamesPlayed": 8,
+                  "wins": 1,
+                  "losses": 7,
+                  "pointsFor": 533,
+                  "pointsAgainst": 672,
+                  "points": 9
                 }
               ]
             }

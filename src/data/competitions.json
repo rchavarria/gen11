@@ -31,16 +31,7 @@
             {
               "id": "g3",
               "name": "Grupo 3",
-              "teams": [
-                "alcobendas",
-                "estudiantes",
-                "distrito",
-                "zentro",
-                "alcorcon",
-                "estudiantes-b",
-                "alcobendas-b",
-                "atocha"
-              ]
+              "teams": ["zentro-b", "estudiantes-b", "alcobendas-b", "distrito-b", "atocha", "alcorcon-b"]
             }
           ]
         }

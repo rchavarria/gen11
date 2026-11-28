@@ -123,6 +123,65 @@
                   "points": 9
                 }
               ]
+            },
+            {
+              "id": "g3",
+              "standings": [
+                {
+                  "team": "alcobendas-b",
+                  "gamesPlayed": 8,
+                  "wins": 5,
+                  "losses": 3,
+                  "pointsFor": 594,
+                  "pointsAgainst": 518,
+                  "points": 13
+                },
+                {
+                  "team": "distrito-b",
+                  "gamesPlayed": 2,
+                  "wins": 1,
+                  "losses": 1,
+                  "pointsFor": 139,
+                  "pointsAgainst": 132,
+                  "points": 3
+                },
+                {
+                  "team": "atocha",
+                  "gamesPlayed": 2,
+                  "wins": 1,
+                  "losses": 1,
+                  "pointsFor": 109,
+                  "pointsAgainst": 147,
+                  "points": 3
+                },
+                {
+                  "team": "estudiantes-b",
+                  "gamesPlayed": 2,
+                  "wins": 1,
+                  "losses": 1,
+                  "pointsFor": 126,
+                  "pointsAgainst": 142,
+                  "points": 3
+                },
+                {
+                  "team": "alcorcon-b",
+                  "gamesPlayed": 1,
+                  "wins": 0,
+                  "losses": 1,
+                  "pointsFor": 72,
+                  "pointsAgainst": 86,
+                  "points": 1
+                },
+                {
+                  "team": "zentro-b",
+                  "gamesPlayed": 1,
+                  "wins": 0,
+                  "losses": 1,
+                  "pointsFor": 72,
+                  "pointsAgainst": 87,
+                  "points": 1
+                }
+              ]
             }
           ]
         }

@@ -7,11 +7,32 @@
     "logo": "alcobendas.png"
   },
   {
+    "slug": "alcobendas-b",
+    "initials": "CBA",
+    "name": "FUNDAL ALCOBENDAS \"B\"",
+    "club": "BALONCESTO ALCOBENDAS",
+    "logo": "alcobendas.png"
+  },
+  {
     "slug": "alcorcon",
     "initials": "ALC",
     "name": "SALTIUM ALCORCÓN BASKET \"A\"",
     "club": "ALCORCON BASKET",
     "logo": "alcorcon.png"
+  },
+  {
+    "slug": "alcorcon-b",
+    "initials": "ALC",
+    "name": "SALTIUM ALCORCÓN BASKET \"B\"",
+    "club": "ALCORCON BASKET",
+    "logo": "alcorcon.png"
+  },
+  {
+    "slug": "atocha",
+    "initials": "VAT",
+    "name": "VIRGEN DE ATOCHA A",
+    "club": "VIRGEN DE ATOCHA FESD",
+    "logo": "virgen-atocha.png"
   },
   {
     "slug": "canoe",
@@ -28,6 +49,13 @@
     "logo": "distrito-olimpico.png"
   },
   {
+    "slug": "distrito-b",
+    "initials": "DIS",
+    "name": "DISTRITO OLIMPICO B",
+    "club": "DISTRITO OLIMPICO",
+    "logo": "distrito-olimpico.png"
+  },
+  {
     "slug": "distritokdtantiguo",
     "initials": "DIS",
     "name": "DISTRITO OLIMPICO EDU SPORTS A",
@@ -38,6 +66,13 @@
     "slug": "estudiantes",
     "initials": "EST",
     "name": "MOVISTAR ESTUDIANTES \"A\"",
+    "club": "ESTUDIANTES",
+    "logo": "estudiantes.png"
+  },
+  {
+    "slug": "estudiantes-b",
+    "initials": "EST",
+    "name": "MOVISTAR ESTUDIANTES \"B\"",
     "club": "ESTUDIANTES",
     "logo": "estudiantes.png"
   },
@@ -122,6 +157,13 @@
     "slug": "zentro",
     "initials": "ZBK",
     "name": "ZENTRO BASKET MADRID",
+    "club": "ZENTRO C.B.",
+    "logo": "zentro.png"
+  },
+  {
+    "slug": "zentro-b",
+    "initials": "ZBK",
+    "name": "ZENTRO BASKET FUTURES",
     "club": "ZENTRO C.B.",
     "logo": "zentro.png"
   }

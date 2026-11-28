@@ -27,6 +27,20 @@
               "id": "g2",
               "name": "Grupo 2",
               "teams": ["alcobendas", "estudiantes", "alcorcon", "laso", "zentro", "torrelodones"]
+            },
+            {
+              "id": "g3",
+              "name": "Grupo 3",
+              "teams": [
+                "alcobendas",
+                "estudiantes",
+                "distrito",
+                "zentro",
+                "alcorcon",
+                "estudiantes-b",
+                "alcobendas-b",
+                "atocha"
+              ]
             }
           ]
         }

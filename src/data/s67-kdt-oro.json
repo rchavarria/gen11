@@ -960,6 +960,201 @@
               ]
             }
           ]
+        },
+        {
+          "id": "g3",
+          "rounds": [
+            {
+              "id": "j01",
+              "games": [
+                {
+                  "id": "71003000560067006C00390042004F007A007900720046002F0049006F0062006100730052006200370041003D003D00",
+                  "date": "2026-09-19T18:30:00Z",
+                  "venue": "circular",
+                  "home": {
+                    "slug": "distrito-b",
+                    "score": 86
+                  },
+                  "away": {
+                    "slug": "alcobendas-b",
+                    "score": 66
+                  },
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j02",
+              "games": [
+                {
+                  "id": "410076006B007900480064007000420075006F006C00450057004F00350046007200510038004400700041003D003D00",
+                  "date": "2026-09-26T14:00:00Z",
+                  "venue": "ferrandiz",
+                  "home": {
+                    "slug": "alcobendas-b",
+                    "score": 63
+                  },
+                  "away": {
+                    "slug": "atocha",
+                    "score": 65
+                  },
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j03",
+              "games": [
+                {
+                  "id": "6D003000430070007500790054002B00450064006C00340041003100310066004E00700075003100750051003D003D00",
+                  "date": "2026-10-03T18:00:00Z",
+                  "venue": "caja-magica",
+                  "home": {
+                    "slug": "estudiantes-b",
+                    "score": 71
+                  },
+                  "away": {
+                    "slug": "alcobendas-b",
+                    "score": 65
+                  },
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j04",
+              "games": [
+                {
+                  "id": "2B00320073006200750049004C0077005900430061006D006E00550030004B003800790037006400770077003D003D00",
+                  "date": "2026-10-18T15:00:00Z",
+                  "venue": "canaleja",
+                  "home": {
+                    "slug": "alcorcon-b",
+                    "score": 72
+                  },
+                  "away": {
+                    "slug": "alcobendas-b",
+                    "score": 86
+                  },
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j05",
+              "games": [
+                {
+                  "id": "7400760077005200300074004500640062005500380056004300750061004B004B00610079006A00340051003D003D00",
+                  "date": "2026-10-24T17:30:00Z",
+                  "venue": "antela",
+                  "home": {
+                    "slug": "alcobendas-b",
+                    "score": 87
+                  },
+                  "away": {
+                    "slug": "zentro-b",
+                    "score": 72
+                  },
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j06",
+              "games": [
+                {
+                  "id": "540036005A00630053006F00440048005000460053004B004200390046005A005700710062006F00730077003D003D00",
+                  "date": "2026-11-07T19:00:00Z",
+                  "venue": "ferrandiz",
+                  "home": {
+                    "slug": "alcobendas-b",
+                    "score": 66
+                  },
+                  "away": {
+                    "slug": "distrito-b",
+                    "score": 53
+                  },
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j07",
+              "games": [
+                {
+                  "id": "6200510044004300660074006A004300670043006700650079007800520059004C0062005A004500530041003D003D00",
+                  "date": "2026-11-15T00:00:00Z",
+                  "venue": "",
+                  "home": {
+                    "slug": "atocha",
+                    "score": 44
+                  },
+                  "away": {
+                    "slug": "alcobendas-b",
+                    "score": 84
+                  },
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j08",
+              "games": [
+                {
+                  "id": "78006B00650053006300300074006A00500074004D003000370051003700550067004A0074006300710051003D003D00",
+                  "date": "2026-11-21T19:00:00Z",
+                  "venue": "ferrandiz",
+                  "home": {
+                    "slug": "alcobendas-b",
+                    "score": 77
+                  },
+                  "away": {
+                    "slug": "estudiantes-b",
+                    "score": 55
+                  },
+                  "downloaded": true
+                }
+              ]
+            },
+            {
+              "id": "j09",
+              "games": [
+                {
+                  "id": "360049004D006E00540057004400540052004A0075005A00530034004D0043003200420077002F004B0067003D003D00",
+                  "date": "2026-11-29T12:15:00Z",
+                  "venue": "canaleja",
+                  "home": {
+                    "slug": "alcobendas-b",
+                    "score": null
+                  },
+                  "away": {
+                    "slug": "alcorcon-b",
+                    "score": null
+                  },
+                  "downloaded": false
+                }
+              ]
+            },
+            {
+              "id": "j10",
+              "games": [
+                {
+                  "id": "75006F004400610057003300310045006A00760038006E0043004D005300770056004A0062007700670067003D003D00",
+                  "date": "2026-12-13T00:00:00Z",
+                  "venue": "diaz-miguel",
+                  "home": {
+                    "slug": "zentro-b",
+                    "score": null
+                  },
+                  "away": {
+                    "slug": "alcobendas-b",
+                    "score": null
+                  },
+                  "downloaded": false
+                }
+              ]
+            }
+          ]
         }
       ]
     }

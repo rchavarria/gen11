@@ -11,30 +11,30 @@
               "standings": [
                 {
                   "team": "realmadrid",
-                  "gamesPlayed": 8,
+                  "gamesPlayed": 9,
                   "wins": 8,
-                  "losses": 0,
-                  "pointsFor": 751,
-                  "pointsAgainst": 538,
-                  "points": 16
+                  "losses": 1,
+                  "pointsFor": 825,
+                  "pointsAgainst": 616,
+                  "points": 17
                 },
                 {
                   "team": "distrito",
-                  "gamesPlayed": 8,
-                  "wins": 7,
+                  "gamesPlayed": 9,
+                  "wins": 8,
                   "losses": 1,
-                  "pointsFor": 820,
-                  "pointsAgainst": 479,
-                  "points": 15
+                  "pointsFor": 898,
+                  "pointsAgainst": 553,
+                  "points": 17
                 },
                 {
                   "team": "sba",
-                  "gamesPlayed": 7,
-                  "wins": 3,
+                  "gamesPlayed": 8,
+                  "wins": 4,
                   "losses": 4,
-                  "pointsFor": 567,
-                  "pointsAgainst": 696,
-                  "points": 10
+                  "pointsFor": 667,
+                  "pointsAgainst": 789,
+                  "points": 12
                 },
                 {
                   "team": "canoe",
@@ -46,6 +46,15 @@
                   "points": 10
                 },
                 {
+                  "team": "sanjorge",
+                  "gamesPlayed": 9,
+                  "wins": 1,
+                  "losses": 8,
+                  "pointsFor": 602,
+                  "pointsAgainst": 840,
+                  "points": 10
+                },
+                {
                   "team": "fuenlabrada",
                   "gamesPlayed": 7,
                   "wins": 2,
@@ -53,21 +62,21 @@
                   "pointsFor": 595,
                   "pointsAgainst": 649,
                   "points": 9
-                },
-                {
-                  "team": "sanjorge",
-                  "gamesPlayed": 8,
-                  "wins": 1,
-                  "losses": 7,
-                  "pointsFor": 509,
-                  "pointsAgainst": 740,
-                  "points": 9
                 }
               ]
             },
             {
               "id": "g2",
               "standings": [
+                {
+                  "team": "estudiantes",
+                  "gamesPlayed": 9,
+                  "wins": 6,
+                  "losses": 3,
+                  "pointsFor": 685,
+                  "pointsAgainst": 678,
+                  "points": 15
+                },
                 {
                   "team": "laso",
                   "gamesPlayed": 7,
@@ -87,15 +96,6 @@
                   "points": 14
                 },
                 {
-                  "team": "estudiantes",
-                  "gamesPlayed": 8,
-                  "wins": 5,
-                  "losses": 3,
-                  "pointsFor": 618,
-                  "pointsAgainst": 616,
-                  "points": 13
-                },
-                {
                   "team": "alcobendas",
                   "gamesPlayed": 8,
                   "wins": 2,
@@ -106,12 +106,12 @@
                 },
                 {
                   "team": "torrelodones",
-                  "gamesPlayed": 7,
+                  "gamesPlayed": 8,
                   "wins": 2,
-                  "losses": 5,
-                  "pointsFor": 503,
-                  "pointsAgainst": 580,
-                  "points": 9
+                  "losses": 6,
+                  "pointsFor": 565,
+                  "pointsAgainst": 647,
+                  "points": 10
                 },
                 {
                   "team": "alcorcon",

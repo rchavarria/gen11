@@ -27,6 +27,10 @@ flowchart TD
     report -.->|Si quedan pendientes| manual["Asignarlos a su jornada a mano y ejecutar npm run build-data"]
 ```
 
+**Partidos nuevos.** Se busca una competición de la temporada actual comparando
+la categoría recibida con la del catálogo, sin los sufijos ` - ORO` y
+` - PLATA/BRONCE`. No se modifica la categoría del catálogo.
+
 **Descargas.** Se omiten los partidos marcados como descargados y se espera a que
 pasen más de tres horas desde el inicio previsto. Si ya existen estadísticas y
 marcador, se reutilizan; si solo existe uno, la ejecución se detiene. Si la API

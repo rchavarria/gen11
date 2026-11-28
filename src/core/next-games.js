@@ -24,11 +24,15 @@ const {
 
 const DAYS = 100;
 
+function baseCategory(category) {
+  return typeof category === 'string' ? category.trim().replace(/ - (?:ORO|PLATA\/BRONCE)$/, '') : undefined;
+}
+
 /**
  * Refreshes the date, time and venue of known games (matched by id in every
  * tree, including pending games) and adds new games to `pending-games` of the
- * current-season competition with the same category. New games without such a
- * competition are discarded. Mutates and sorts the trees.
+ * current-season competition with the same base category. New games without
+ * such a competition are discarded. Mutates and sorts the trees.
  * @param {{competition: object, tree: object}[]} trees
  * @param {object[]} upcomingGames The `mispartidos` array of the response.
  * @param {Map<string, string>} venues Exact venue name -> slug.
@@ -86,7 +90,10 @@ function mergeNextGames(trees, upcomingGames, venues = new Map(), season = CURRE
     }
 
     const category = String(upcoming.Categoria ?? '').trim();
-    const entry = trees.find(({ competition }) => competition.season === season && competition.category === category);
+    const base = baseCategory(category);
+    const entry = trees.find(
+      ({ competition }) => competition.season === season && baseCategory(competition.category) === base,
+    );
     if (!entry) {
       discarded.push({ id, date, home, away, category });
       continue;

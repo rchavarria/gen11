@@ -82,6 +82,32 @@ test('mergeNextGames adds new games to pending-games and updates placed games by
   assert.deepEqual([...changed], [trees[1]]);
 });
 
+test.each(['Cat', 'Cat - ORO'])('mergeNextGames matches the base category of "%s"', (category) => {
+  const trees = makeTrees();
+  trees[1].competition = { ...competition, category };
+  const { added, discarded } = mergeNextGames(
+    trees,
+    ['Cat', ' Cat - ORO ', 'Cat - PLATA/BRONCE', 'Cat - ORO extra'].map((Categoria, index) => ({
+      IdPartido: `game-${index}`,
+      Fecha: '03/11/2026',
+      Categoria,
+    })),
+  );
+
+  assert.deepEqual(
+    added.map(({ competition, game }) => [competition, game.id]),
+    [
+      ['s67-c', 'game-0'],
+      ['s67-c', 'game-1'],
+      ['s67-c', 'game-2'],
+    ],
+  );
+  assert.deepEqual(
+    discarded.map(({ category }) => category),
+    ['Cat - ORO extra'],
+  );
+});
+
 test('mergeNextGames updates pending games and leaves unchanged trees untouched', () => {
   const pending = { id: 'AA', date: '2026-11-05T11:00:00Z', venue: '' };
   const placed = { id: 'BB', date: '2026-11-01T11:00:00Z', venue: '' };
